@@ -3,7 +3,7 @@
   <Class Name="GeneticSharp.Domain.Chromosomes.ChromosomeBase" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="4" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAiAAAAAAAAIAQAgECAAgBAAEgAQIAAAAAAAAIAAjA=</HashCode>
+      <HashCode>AAAgAAhAAAAAIAQAgACAAgBAAEgAQIAAAAAAAAMAAjA=</HashCode>
       <FileName>Chromosomes\ChromosomeBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -11,12 +11,12 @@
   <Class Name="GeneticSharp.Domain.Chromosomes.ChromosomeExtensions">
     <Position X="8.75" Y="3.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAgAIAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Chromosomes\ChromosomeExtensions.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GeneticSharp.Domain.Chromosomes.Gene" BaseTypeListCollapsed="true">
-    <Position X="6.25" Y="0.5" Width="2.25" />
+    <Position X="0.5" Y="1.25" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAAAgAAAAAiA=</HashCode>
       <FileName>Chromosomes\Gene.cs</FileName>
@@ -26,7 +26,7 @@
   <Interface Name="GeneticSharp.Domain.Chromosomes.IChromosome">
     <Position X="4" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAiAAAAAAAAIAAAAEAAAgBAAAAAQAAAAAAAAAIAABA=</HashCode>
+      <HashCode>AAAgAAAAAAAAIAAAAAAAAgBAAAAAQAAAAAAAAAMAABA=</HashCode>
       <FileName>Chromosomes\IChromosome.cs</FileName>
     </TypeIdentifier>
   </Interface>

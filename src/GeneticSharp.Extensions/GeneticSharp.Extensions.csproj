@@ -67,6 +67,8 @@
     <Compile Include="Checkers\CheckersSquare.cs" />
     <Compile Include="Ghostwriter\GhostwriterChromosome.cs" />
     <Compile Include="Ghostwriter\GhostwriterFitness.cs" />
+    <Compile Include="Knapsack\KnapsackChromosome.cs" />
+    <Compile Include="Knapsack\KnapsackFitness.cs" />
     <Compile Include="Mathematic\EqualityFitness.cs" />
     <Compile Include="Mathematic\EquationSolverFitness.cs" />
     <Compile Include="Mathematic\FunctionBuilderChromosome.cs" />
