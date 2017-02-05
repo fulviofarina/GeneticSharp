@@ -9,11 +9,7 @@ namespace GeneticSharp.Extensions.Knapsack
     /// </summary>
     public class KnapsackFitness : IFitness
     {
-        /// <summary>
-        /// Gets or sets the evaluate function.
-        /// </summary>
-        /// <value>The evaluate function.</value>
-        public Func<string, double> EvaluateFunc { get; set; }
+        public Func<KnapsackChromosome, double> FitnessFuncToPass { get; set; }
 
         /// <summary>
         /// Performs the evaluation against the specified chromosome.
@@ -22,10 +18,9 @@ namespace GeneticSharp.Extensions.Knapsack
         /// <returns>The fitness of the chromosome.</returns>
         public double Evaluate(IChromosome chromosome)
         {
-            var c = chromosome as KnapsackChromosome;
-            var text = c.BuildText();
+            KnapsackChromosome c = chromosome as KnapsackChromosome;
 
-            return EvaluateFunc(text);
+            return FitnessFuncToPass(c);
         }
     }
 }

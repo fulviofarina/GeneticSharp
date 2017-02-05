@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace GeneticSharp.Domain.Chromosomes
 {
@@ -14,6 +15,10 @@ namespace GeneticSharp.Domain.Chromosomes
     /// </summary>
     public interface IChromosome : IComparable<IChromosome>
     {
+
+
+
+      
         #region Properties
         /// <summary>
         /// Gets or sets the fitness.

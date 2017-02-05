@@ -74,7 +74,8 @@ namespace GeneticSharp.Runner.ConsoleApp
            Domain.Crossovers.ICrossover crossover = sampleController.CreateCrossover();
             Domain.Mutations.IMutation mutation = sampleController.CreateMutation();
             Domain.Fitnesses.IFitness fitness = sampleController.CreateFitness();
-            Domain.Populations.IPopulation  population = new Population(100, 200, sampleController.CreateChromosome());
+            IChromosome adam = sampleController.CreateChromosome();
+            IPopulation  population = new Population(100, 200, adam);
             population.GenerationStrategy = new PerformanceGenerationStrategy();
 
             GeneticAlgorithm ga;
@@ -100,40 +101,16 @@ namespace GeneticSharp.Runner.ConsoleApp
             generationRan = delegate
             {
                 Msg.DrawSampleName(selectedSampleName);
-                string terminationName = ga.Termination.GetType().Name;
+
+                Msg.Report(ref ga); //report GA stuff
 
                 IChromosome bestChromosome = ga.Population.BestChromosome;
-             
-                Console.WriteLine("Chromo Lenght: {0}", bestChromosome.Length);
-                string genestring = string.Empty ;
-                string genestringVals = string.Empty;
-
-                IList<Gene> genes = bestChromosome.GetGenes();
-               
-                for (int i = 0; i< bestChromosome.Length; i++)
-                {
-                    Gene g = genes[i];
-                    genestringVals += g.Value.ToString();
-                    genestring += g.ToString();
-                }
-
-               
-
-                Console.WriteLine("Chromosome {0}", genestring);
-                Console.WriteLine("ChromosomeVal {0}", genestringVals);
-
-                Console.WriteLine("Termination: {0}", terminationName);
-
-                int generationsNum = ga.Population.GenerationsNumber;
-                Console.WriteLine("Generations: {0}", generationsNum);
-
                 double? fitness = bestChromosome.Fitness;
+
                 Console.WriteLine("Fitness: {0,10}", fitness);
+                Console.WriteLine("\n*** Chromosome\n");
+                scontroller.Draw(bestChromosome); //report CHROMOSOME stuff
 
-                TimeSpan te = ga.TimeEvolving;
-                Console.WriteLine("Time: {0}", te);
-
-                scontroller.Draw(bestChromosome);
             };
 
             ga.GenerationRan += generationRan;
@@ -143,7 +120,8 @@ namespace GeneticSharp.Runner.ConsoleApp
             
         }
 
+    
 
-      
+
     }
 }

@@ -69,12 +69,18 @@
     <Compile Include="Ghostwriter\GhostwriterFitness.cs" />
     <Compile Include="Knapsack\KnapsackChromosome.cs" />
     <Compile Include="Knapsack\KnapsackFitness.cs" />
+    <Compile Include="Knapsack\KnapsackStructure.cs" />
     <Compile Include="Mathematic\EqualityFitness.cs" />
     <Compile Include="Mathematic\EquationSolverFitness.cs" />
     <Compile Include="Mathematic\FunctionBuilderChromosome.cs" />
     <Compile Include="Mathematic\FunctionBuilderFitness.cs" />
     <Compile Include="Mathematic\FunctionBuilderInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Tsp\TspChromosome.cs" />
     <Compile Include="Tsp\TspCity.cs" />
     <Compile Include="Tsp\TspFitness.cs" />
@@ -114,8 +120,13 @@
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="GeneticSharp.snk" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup />
 </Project>

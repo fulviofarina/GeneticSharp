@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using HelperSharp;
 
 namespace GeneticSharp.Domain.Chromosomes
@@ -7,7 +9,7 @@ namespace GeneticSharp.Domain.Chromosomes
     /// <summary>
     /// A base class for chromosomes.
     /// </summary>
-    [DebuggerDisplay("Fitness:{Fitness}, Genes:{Length}")]
+    [DebuggerDisplay("Fitness:{Fitness}, Genes:{Length}, GenesAsInts:{GenesAsInts}")]
     [Serializable]
 	public abstract class ChromosomeBase : IChromosome
     {
@@ -36,6 +38,9 @@ namespace GeneticSharp.Domain.Chromosomes
         /// </summary>
         public double? Fitness { get; set; }
 
+
+       
+        
         /// <summary>
         /// Gets the length, in genes, of the chromosome.
         /// </summary>

@@ -68,6 +68,48 @@ namespace GeneticSharp.Runner.ConsoleApp
             Console.ResetColor();
         }
 
+        public static void Report(ref GeneticAlgorithm ga)
+        {
+            string terminationName = ga.Termination.GetType().Name;
+            int generationsNum = ga.Population.GenerationsNumber;
+            int Xparents = ga.Crossover.ParentsNumber;
+            int Xchildrens = ga.Crossover.ChildrenNumber;
+            int Xminlenght = ga.Crossover.MinChromosomeLength;
+
+            string generationStrategy = ga.Population.GenerationStrategy.ToString();
+            string populationMinMax = ga.Population.MinSize.ToString() + " - ";
+            populationMinMax += ga.Population.MaxSize.ToString();
+
+            int currentGeneration = ga.Population.CurrentGeneration.Number;
+            float mutationProbability = ga.MutationProbability;
+            TimeSpan te = ga.TimeEvolving;
+
+
+            ///REPORT PART
+
+            Console.WriteLine("\n");
+            Console.WriteLine("Termination: {0}", terminationName);
+
+            Console.WriteLine("\n*** Generation\n");
+            Console.WriteLine("Strategy: {0}", generationStrategy);
+            Console.WriteLine("Total: {0}", generationsNum);
+            Console.WriteLine("Current: {0}", currentGeneration);
+            Console.WriteLine("Population Min - Max: {0}", populationMinMax);
+
+            Console.WriteLine("\n*** Mutation\n");
+            Console.WriteLine("Probability: {0}", mutationProbability);
+
+
+            Console.WriteLine("\n*** Crossover\n");
+            Console.WriteLine("Parents: {0}", Xparents);
+            Console.WriteLine("Childrens: {0}", Xchildrens);
+            Console.WriteLine("MinChromosomeLength: {0}", Xminlenght);
+
+            Console.WriteLine("\n*** Algorithm\n");
+            Console.WriteLine("Time: {0}", te);
+        }
+
+
         public static string SelectSample(ref IList<string> sampleNames)
         {
             Console.WriteLine("Select the sample:");

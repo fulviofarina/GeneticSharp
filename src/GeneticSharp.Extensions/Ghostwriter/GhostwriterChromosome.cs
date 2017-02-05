@@ -40,7 +40,9 @@ namespace GeneticSharp.Extensions.Ghostwriter
         /// <param name="geneIndex">Gene index.</param>
         public override Gene GenerateGene(int geneIndex)
         {
-            return new Gene(m_words[RandomizationProvider.Current.GetInt(0, m_words.Count)]);
+            int i = RandomizationProvider.Current.GetInt(0, m_words.Count);
+
+            return new Gene(m_words[i]);
         }
 
         /// <summary>

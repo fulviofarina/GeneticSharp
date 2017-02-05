@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D3E976D0-DA5E-4A09-81A1-AE6AD5E756AB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GAForm</RootNamespace>
+    <AssemblyName>GAForm</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="KnapForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KnapForm.Designer.cs">
+      <DependentUpon>KnapForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KnapsackSampleController2.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="KnapForm.resx">
+      <DependentUpon>KnapForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GADB\GADB.csproj">
+      <Project>{b41c5a17-b5a2-4b38-94df-607615c90823}</Project>
+      <Name>GADB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GeneticSharp.Domain\GeneticSharp.Domain.csproj">
+      <Project>{c76dc1ad-fc7e-4168-bd19-101ff84a43f7}</Project>
+      <Name>GeneticSharp.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GeneticSharp.Extensions\GeneticSharp.Extensions.csproj">
+      <Project>{699af592-1e11-4084-b87e-9ac72ed7861b}</Project>
+      <Name>GeneticSharp.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GeneticSharp.Infrastructure.Framework\GeneticSharp.Infrastructure.Framework.csproj">
+      <Project>{1498d792-d02b-4a9e-8afc-24aeba0dee54}</Project>
+      <Name>GeneticSharp.Infrastructure.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GeneticSharp.Infrastructure.Threading\GeneticSharp.Infrastructure.Threading.csproj">
+      <Project>{f7887a7c-89e6-483a-a762-0a8fe6fcd923}</Project>
+      <Name>GeneticSharp.Infrastructure.Threading</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
