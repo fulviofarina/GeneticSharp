@@ -71,8 +71,6 @@
     <Compile Include="Samples\AutoConfigSampleController.cs" />
     <Compile Include="Samples\FunctionBuilderSampleController.cs" />
     <Compile Include="Samples\EquationSolverSampleController.cs" />
-    <Compile Include="Samples\KnapsackStructure.cs" />
-    <Compile Include="Samples\KnapsackSampleController.cs" />
     <Compile Include="Samples\GhostwriterSampleController.cs" />
     <Compile Include="Samples\EqualitySampleController.cs" />
     <Compile Include="Samples\ISampleController.cs" />
