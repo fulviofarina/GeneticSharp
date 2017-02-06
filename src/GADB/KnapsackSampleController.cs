@@ -19,12 +19,12 @@ namespace GADB
         private List<double> m_volumes;
 
         private int SIZE = 6;
-        private double PESO_MAX = 10; //en kilos
-        private double TARIFA = 10; //10 bolos
-        private double VOL_MAX = 20;
+       // private double PESO_MAX = 10; //en kilos
+     //   private double TARIFA = 10; //10 bolos
+      //  private double VOL_MAX = 20;
         private  double NORMA;
 
-
+        private GADataSet.KnapConditionsRow conditions;
 
         /// <summary>
         /// Algo for finding fitness
@@ -33,28 +33,31 @@ namespace GADB
         /// <param name="VOL_MAX"></param>
         /// <param name="TARIFA"></param>
         /// <returns></returns>
-        public void FindFitness(ref GADataSet.KnapSolutionsRow r, double PESO_MAX, double VOL_MAX, double TARIFA, double norm)
+        public void FindFitness(ref GADataSet.KnapSolutionsRow r,  double norm)
         {
 
-            float maxFINE = 10000000; //IN CASE EXCEEDS VOLUME, 1 MILLION PENALTY
+            double VOLFINE = conditions.VolumeFine; //IN CASE EXCEEDS VOLUME, 1 MILLION PENALTY
+            double WEIGHTFINE = conditions.WeightFine;
+            double maxWeight = conditions.MaxWeight;
+            double maxVolume = conditions.MaxVolume;
 
-            if (r.TotalWeight <= PESO_MAX && r.TotalVolume <= VOL_MAX)
+            if (r.TotalWeight <= maxWeight && r.TotalVolume <= maxVolume)
             {
                 r.Fine = 0;
             }
             else
             {
                 r.Fine = 0;
-                if (r.TotalWeight > PESO_MAX)
+                if (r.TotalWeight > maxWeight)
                 {
-                    r.Fine = r.TotalWeight - PESO_MAX; //excess weight
-
+                    r.Fine += (r.TotalWeight - maxWeight)* WEIGHTFINE; //excess weight
+                
                 }
-                if (r.TotalVolume > VOL_MAX)
+                if (r.TotalVolume > maxVolume)
                 {
-                    r.Fine += (r.TotalVolume - VOL_MAX) * maxFINE; //excess volume NEVER!
+                    r.Fine += (r.TotalVolume - maxVolume) * VOLFINE; //excess volume NEVER!
                 }
-                r.Fine *= TARIFA; //aply TARIF
+             
             }
             //ahora calculo el fitness, o valor neto, en función del ValorTotal y la Penalizacion
             r.Fitness = r.TotalValue;
@@ -75,7 +78,7 @@ namespace GADB
             r.TotalWeight = Aid.SetBasic(r.GenesAsInts, m_weights); //first
             r.TotalVolume = Aid.SetBasic(r.GenesAsInts, m_volumes); //first
 
-            FindFitness(ref r, PESO_MAX, VOL_MAX, TARIFA, NORMA);
+            FindFitness(ref r,  NORMA);
 
          
         }
@@ -135,16 +138,12 @@ namespace GADB
 
 
             //DETERMINE CONDITIONS from PROBLEM ID
-            GADataSet.KnapConditionsRow conditions  =p.GetKnapConditionsRows().FirstOrDefault();
+            conditions  =p.GetKnapConditionsRows().FirstOrDefault();
 
-            if (conditions != null)
+            if (conditions == null)
             {
-                PESO_MAX = conditions.TotalWeight;
-                VOL_MAX = conditions.TotalVolume;
-                TARIFA = conditions.Fine;
+                throw new Exception("No conditions given");
             }
-            else throw new Exception("No conditions given");
-
 
             SIZE = size;
 
