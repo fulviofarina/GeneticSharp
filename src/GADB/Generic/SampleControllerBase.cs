@@ -13,7 +13,7 @@ namespace GADB
 {
     public abstract class SampleControllerBase : ISampleController
     {
-        public IList<IChromosome> Chromosomes;
+      //  public IList<IChromosome> Chromosomes;
 
         /// <summary>
         /// Gets the Genetic Algorithm.
@@ -42,7 +42,7 @@ namespace GADB
         /// </summary>
         public virtual void Initialize()
         {
-            Chromosomes = new List<IChromosome>();
+           // Chromosomes = new List<IChromosome>();
         }
 
         /// <summary>
@@ -84,10 +84,10 @@ namespace GADB
         /// Draws the sample.
         /// </summary>
         /// <param name="bestChromosome">The current best chromosome</param>
-        public virtual void Add(IChromosome bestChromosome)
-        {
-            Chromosomes.Add(bestChromosome);
-        }
+      //  public virtual void Add(IChromosome bestChromosome)
+      //  {
+      //      Chromosomes.Add(bestChromosome);
+      //  }
 
         /// <summary>
         /// Draws the sample.

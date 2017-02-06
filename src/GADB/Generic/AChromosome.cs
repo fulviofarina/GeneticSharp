@@ -38,9 +38,9 @@ namespace GADB
             //makes 1 gene with a random index from 0 to m_values as MAX
             int randIndex = RandomizationProvider.Current.GetInt(0, this.Length);
             int extra = randIndex - numberOfGenes;
-            if (extra >= 0) randIndex = -1;
+            if (extra >= 0) randIndex = -2;
 
-            return new Gene(randIndex);
+            return new Gene(randIndex+1);
         }
 
         /// <summary>

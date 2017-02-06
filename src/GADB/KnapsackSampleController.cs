@@ -13,74 +13,111 @@ namespace GADB
     [DisplayName("Knapsack")]
     public class KnapsackSampleController : SampleControllerBase
     {
-        private GADataSet.KnapSolutionsDataTable m_solutions;
 
         private List<double> m_values;
         private List<double> m_weights;
         private List<double> m_volumes;
 
         private int SIZE = 6;
-
-
         private double PESO_MAX = 10; //en kilos
         private double TARIFA = 10; //10 bolos
         private double VOL_MAX = 20;
         private  double NORMA;
 
-        public void FillRows(int GAID)
+
+
+        /// <summary>
+        /// Algo for finding fitness
+        /// </summary>
+        /// <param name="PESO_MAX"></param>
+        /// <param name="VOL_MAX"></param>
+        /// <param name="TARIFA"></param>
+        /// <returns></returns>
+        public void FindFitness(ref GADataSet.KnapSolutionsRow r, double PESO_MAX, double VOL_MAX, double TARIFA, double norm)
         {
-           // m_solutions.Clear();
 
-            for (int i = 0; i < Chromosomes.Count; i++)
+            float maxFINE = 10000000; //IN CASE EXCEEDS VOLUME, 1 MILLION PENALTY
+
+            if (r.TotalWeight <= PESO_MAX && r.TotalVolume <= VOL_MAX)
             {
-                GADataSet.KnapSolutionsRow r = this.m_solutions.NewKnapSolutionsRow();
-                IChromosome c = Chromosomes[i];
-                FillRow(ref r, ref c, GAID);
-
-                this.m_solutions.AddKnapSolutionsRow(r);
+                r.Fine = 0;
             }
+            else
+            {
+                r.Fine = 0;
+                if (r.TotalWeight > PESO_MAX)
+                {
+                    r.Fine = r.TotalWeight - PESO_MAX; //excess weight
 
-            Chromosomes.Clear();
+                }
+                if (r.TotalVolume > VOL_MAX)
+                {
+                    r.Fine += (r.TotalVolume - VOL_MAX) * maxFINE; //excess volume NEVER!
+                }
+                r.Fine *= TARIFA; //aply TARIF
+            }
+            //ahora calculo el fitness, o valor neto, en función del ValorTotal y la Penalizacion
+            r.Fitness = r.TotalValue;
+            r.Fitness /= norm * (1 + r.Fine); //max vol, max value * (1+fine)
         }
 
-        public void FillRow(ref GADataSet.KnapSolutionsRow r ,ref IChromosome c, int GAID)
-        {
-           
 
+        /// <summary>
+        /// BASIC CALCULATION NECESSARY FOR FITNESS
+        /// </summary>
+        /// <param name="r"></param>
+        /// <param name="c"></param>
+        public void FillRow(ref GADataSet.KnapSolutionsRow r ,ref IChromosome c)
+        {
             r.Knap(ref c);
 
             r.TotalValue = Aid.SetBasic(r.GenesAsInts, m_values); //first
             r.TotalWeight = Aid.SetBasic(r.GenesAsInts, m_weights); //first
             r.TotalVolume = Aid.SetBasic(r.GenesAsInts, m_volumes); //first
 
-            r.FindFitness(PESO_MAX, VOL_MAX, TARIFA,NORMA);
+            FindFitness(ref r, PESO_MAX, VOL_MAX, TARIFA, NORMA);
 
+         
+        }
+
+        /// <summary>
+        /// POST CALCULATION TO DECODE
+        /// </summary>
+        /// <param name="r"></param>
+        public void DecodeRow(ref GADataSet.KnapSolutionsRow r)
+        {
             r.Genotype = Aid.SetStrings(r.GenesAsInts);
 
             r.ValueString = Aid.DecodeStrings<double>(r.GenesAsInts, m_values);
             r.WeightString = Aid.DecodeStrings<double>(r.GenesAsInts, m_weights);
             r.VolumeString = Aid.DecodeStrings<double>(r.GenesAsInts, m_volumes);
+        }
 
 
-            r.GAID = GAID;
+        public void FillRow(ref GADataSet.KnapSolutionsRow r,  ref GADataSet.GARow ga)
+        {
+
+            r.GAID = ga.ID;
+            r.TimeSpan = ga.TimeStamp;
+            r.Generations = ga.GenerationCurrent;
+
         }
 
         // //// / / / / / //////// //////////////////////////// AQUI TEMPLATE
 
 
-     
+
         /// <summary>
-        /// 
+        /// INITIALIZER 
         /// </summary>
         /// <param name="dt"></param>
-        public KnapsackSampleController(ref GADataSet.KnapSolutionsDataTable dataset, ref GADataSet.ProblemsRow p, int size)
+        public KnapsackSampleController( ref GADataSet.ProblemsRow p, int size)
         {
 
 
             if (p == null) throw new Exception("No problem ID given");
 
-            if (dataset == null) throw new Exception("No Solutions DataTable given");
-
+     
             m_values = new List<double>();
             m_weights = new List<double>();
             m_volumes = new List<double>();
@@ -91,16 +128,14 @@ namespace GADB
             m_weights = list.Select(o => o.Weight).ToList();
             m_volumes = list.Select(o => o.Volume).ToList();
 
-            m_solutions = dataset; //link to solutions table
+      
 
             //determine norm to normalize on fitness
             NORMA = m_values.Max() * m_values.Count;
-            //NORMA *= m_volumes.Max() * m_volumes.Count;
-
 
 
             //DETERMINE CONDITIONS from PROBLEM ID
-           GADataSet.KnapConditionsRow conditions  =p.GetKnapConditionsRows().FirstOrDefault();
+            GADataSet.KnapConditionsRow conditions  =p.GetKnapConditionsRows().FirstOrDefault();
 
             if (conditions != null)
             {
@@ -127,17 +162,9 @@ namespace GADB
                  GADataSet.KnapSolutionsRow nap = dt.NewKnapSolutionsRow();
 
 
-                 nap.Knap(ref c);
+                 FillRow(ref nap, ref c); //basic calculation
 
-                nap.TotalValue = Aid.SetBasic(nap.GenesAsInts, m_values); //first
-                nap.TotalWeight = Aid.SetBasic(nap.GenesAsInts, m_weights); //first
-                nap.TotalVolume = Aid.SetBasic(nap.GenesAsInts, m_volumes); //first
-
-                
-
-                nap.FindFitness(PESO_MAX, VOL_MAX, TARIFA, NORMA);//find fitness
-
-                double fit = nap.Fitness;
+                 double fit = nap.Fitness;
 
                  nap = null;
                  dt.Dispose();

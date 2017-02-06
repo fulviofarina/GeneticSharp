@@ -53,7 +53,8 @@ namespace GADB
                 TotalWeight = 0;
                 Fine = 0;
                 Fitness = 0;
-                ChromosomeLenght = c.Length;
+                Frequency = 1;
+                //  ChromosomeLength = c.Length;
                 DateTime = DateTime.Now;
             }
 
@@ -77,37 +78,7 @@ namespace GADB
                 }
             }
 
-            /// <summary>
-            /// Algo for finding fitness
-            /// </summary>
-            /// <param name="PESO_MAX"></param>
-            /// <param name="VOL_MAX"></param>
-            /// <param name="TARIFA"></param>
-            /// <returns></returns>
-            public void FindFitness(double PESO_MAX, double VOL_MAX, double TARIFA, double norm)
-            {
-                if (TotalWeight <= PESO_MAX && TotalVolume <= VOL_MAX)
-                {
-                    Fine = 0;
-                }
-                else
-                {
-                    Fine = 0;
-                    if (TotalWeight > PESO_MAX)
-                    {
-                        Fine = TotalWeight - PESO_MAX; //excess weight
-                        
-                    }
-                    if (TotalVolume > VOL_MAX)
-                    {
-                        Fine += (TotalVolume - VOL_MAX)*3; //excess volume
-                    }
-                    Fine *= TARIFA; //aply TARIF
-                }
-                //ahora calculo el fitness, o valor neto, en función del ValorTotal y la Penalizacion
-                Fitness = TotalValue;
-                Fitness /= norm * (1 + Fine); //max vol, max value * (1+fine)
-            }
+
         }
 
         partial class KnapDataDataTable

@@ -16,7 +16,7 @@ namespace GADB
                 //si está presente, entonces sumo el valor y el peso al contenedor
                 if (index != -1)
                 {
-                    TotalValue += values[index];
+                    TotalValue += values[index-1];
                 }
             }
 
@@ -36,7 +36,7 @@ namespace GADB
                 //si está presente, entonces sumo el valor y el peso al contenedor
                 if (index != -1)
                 {
-                    text += index.ToString();
+                    text += (index).ToString();
                 }
                 else
                 {
@@ -61,7 +61,7 @@ namespace GADB
                 //si está presente, entonces sumo el valor y el peso al contenedor
                 if (index != -1)
                 {
-                    text += values.ElementAt(index).ToString();
+                    text += values.ElementAt(index-1).ToString();
                 }
                 else
                 {

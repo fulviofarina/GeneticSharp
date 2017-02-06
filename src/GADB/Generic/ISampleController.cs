@@ -57,7 +57,7 @@ namespace GADB
         /// <param name="ga">The genetic algorithm.</param>
         void ConfigGA(ref GeneticAlgorithm ga, int minPop, int maxPop, float mutationProb, float crossProb);
 
-        void Add(IChromosome bestChromosome);
+       // void Add(IChromosome bestChromosome);
 
         /// <summary>
         /// Draws the sample.
