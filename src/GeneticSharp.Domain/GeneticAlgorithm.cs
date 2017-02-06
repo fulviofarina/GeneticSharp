@@ -321,10 +321,10 @@ namespace GeneticSharp.Domain
                 }
                 while (!terminationConditionReached);
             }
-            catch
+            catch (Exception ex)
             {
                 State = GeneticAlgorithmState.Stopped;
-                throw;
+                throw ex;
             }
         }
 

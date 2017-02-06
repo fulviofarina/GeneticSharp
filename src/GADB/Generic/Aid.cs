@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-using System.ComponentModel;
-
-using GeneticSharp.Domain;
-using GeneticSharp.Domain.Chromosomes;
-using GeneticSharp.Domain.Fitnesses;
-using GeneticSharp.Extensions.Knapsack;
-using GeneticSharp.Infrastructure.Threading;
 namespace GADB
 {
     public static class Aid
@@ -22,7 +12,7 @@ namespace GADB
             for (int i = 0; i < Genes.Count; i++)
             {
                 int index = Genes.ElementAt(i);
-              //  int index = int.Parse(g.Value.ToString());
+                //  int index = int.Parse(g.Value.ToString());
                 //si está presente, entonces sumo el valor y el peso al contenedor
                 if (index != -1)
                 {
@@ -42,7 +32,7 @@ namespace GADB
             for (int i = 0; i < Genes.Count; i++)
             {
                 int index = Genes.ElementAt(i);
-              //  int index = int.Parse(g.Value.ToString());
+                //  int index = int.Parse(g.Value.ToString());
                 //si está presente, entonces sumo el valor y el peso al contenedor
                 if (index != -1)
                 {
@@ -67,7 +57,6 @@ namespace GADB
 
             for (int i = 0; i < Genes.Count; i++)
             {
-
                 int index = Genes[i];
                 //si está presente, entonces sumo el valor y el peso al contenedor
                 if (index != -1)
@@ -84,5 +73,4 @@ namespace GADB
             return text;
         }
     }
-
 }

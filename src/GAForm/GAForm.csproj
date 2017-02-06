@@ -52,7 +52,6 @@
     <Compile Include="KnapForm.Designer.cs">
       <DependentUpon>KnapForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="KnapsackSampleController2.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="KnapForm.resx">
@@ -70,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Properties\DataSources\GADB.GADataSet.datasource" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GADB\GADB.csproj">

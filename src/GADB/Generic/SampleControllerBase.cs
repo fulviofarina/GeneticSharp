@@ -13,9 +13,8 @@ namespace GADB
 {
     public abstract class SampleControllerBase : ISampleController
     {
-      
-
         public IList<IChromosome> Chromosomes;
+
         /// <summary>
         /// Gets the Genetic Algorithm.
         /// </summary>
@@ -50,32 +49,24 @@ namespace GADB
         /// Configure the Genetic Algorithm.
         /// </summary>
         /// <param name="ga">The genetic algorithm.</param>
-      
+
         public virtual void ConfigGA(ref GeneticAlgorithm ga, int minPop, int maxPop, float mutationProb, float crossProb)
         {
-
-           
-
-         
             Initialize(); //IMPORTANT
 
             ISelection selection = CreateSelection();
             ICrossover crossover = CreateCrossover();
             IMutation mutation = CreateMutation();
 
-
             IChromosome adam = CreateChromosome();
 
             IPopulation population = new Population(minPop, maxPop, adam);
             population.GenerationStrategy = new PerformanceGenerationStrategy();
 
-
             IFitness fitness = CreateFitness();
-
 
             ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
             ga.Termination = CreateTermination(maxPop);
-
 
             ga.MutationProbability = mutationProb;
             ga.CrossoverProbability = crossProb;
@@ -83,12 +74,11 @@ namespace GADB
             ga.TaskExecutor = new SmartThreadPoolTaskExecutor()
             {
                 MinThreads = 25,
-                MaxThreads = 50
+                MaxThreads = 70
             };
 
             GA = ga;
         }
-
 
         /// <summary>
         /// Draws the sample.
@@ -98,15 +88,14 @@ namespace GADB
         {
             Chromosomes.Add(bestChromosome);
         }
+
         /// <summary>
         /// Draws the sample.
         /// </summary>
         /// <param name="bestChromosome">The current best chromosome</param>
         public virtual void Draw(IChromosome bestChromosome)
         {
-
         }
-     
 
         /// <summary>
         /// Creates the termination.

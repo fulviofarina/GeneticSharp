@@ -8,15 +8,23 @@ namespace GADB
 {
     partial class GADataSet
     {
-
         public partial class GARow
         {
             public void Fill(ref GeneticAlgorithm ga)
             {
 
+                double? fitnessVal = ga.Population.BestChromosome.Fitness;
+
+                if (fitnessVal == null) fitnessVal = 0;
+
+                Fitness = (double)fitnessVal;
+
+                //TimeSpan te = ga.TimeEvolving;
+                TimeStamp = ga.TimeEvolving.TotalSeconds;
+
+
                 CrossProbability = ga.CrossoverProbability;
                 CrossChromeMinLenght = ga.Crossover.MinChromosomeLength;
-
 
                 Termination = ga.Termination.GetType().Name;
                 GenerationCurrent = ga.Population.CurrentGeneration.Number;
@@ -28,18 +36,15 @@ namespace GADB
 
                 CrossParents = ga.Crossover.ParentsNumber;
                 CrossChildren = ga.Crossover.ChildrenNumber;
-
-
-
             }
         }
+
         partial class KnapSolutionsDataTable
         {
         }
 
         partial class KnapSolutionsRow
         {
-
             public void Knap(ref IChromosome c)
             {
                 chromosome = c;
@@ -79,7 +84,7 @@ namespace GADB
             /// <param name="VOL_MAX"></param>
             /// <param name="TARIFA"></param>
             /// <returns></returns>
-            public void FindFitness(double PESO_MAX, double VOL_MAX, double TARIFA)
+            public void FindFitness(double PESO_MAX, double VOL_MAX, double TARIFA, double norm)
             {
                 if (TotalWeight <= PESO_MAX && TotalVolume <= VOL_MAX)
                 {
@@ -90,20 +95,18 @@ namespace GADB
                     Fine = 0;
                     if (TotalWeight > PESO_MAX)
                     {
-                        Fine = TotalWeight - PESO_MAX;
-                        Fine *= TARIFA;
+                        Fine = TotalWeight - PESO_MAX; //excess weight
+                        
                     }
-
                     if (TotalVolume > VOL_MAX)
                     {
-                        double Voldeficit = TotalVolume - VOL_MAX;
-                        if (Fine == 0) Fine = 1;
-                        Fine *= Voldeficit * TARIFA;
+                        Fine += (TotalVolume - VOL_MAX)*3; //excess volume
                     }
+                    Fine *= TARIFA; //aply TARIF
                 }
                 //ahora calculo el fitness, o valor neto, en función del ValorTotal y la Penalizacion
-                Fitness = TotalVolume * TotalValue;
-                Fitness /= 26 * 73 * (1 + Fine); //max vol, max value * (1+fine)
+                Fitness = TotalValue;
+                Fitness /= norm * (1 + Fine); //max vol, max value * (1+fine)
             }
         }
 

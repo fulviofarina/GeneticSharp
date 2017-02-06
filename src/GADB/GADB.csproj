@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aid.cs" />
+    <Compile Include="Generic\Aid.cs" />
     <Compile Include="GADataSet.cs">
       <DependentUpon>GADataSet.xsd</DependentUpon>
     </Compile>
@@ -49,9 +49,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ISampleController.cs" />
+    <Compile Include="Generic\ISampleController.cs" />
+    <Compile Include="Generic\AChromosome.cs" />
+    <Compile Include="Generic\AFitness.cs" />
+    <Compile Include="KnapsackSampleController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SampleControllerBase.cs" />
+    <Compile Include="Generic\SampleControllerBase.cs" />
     <Compile Include="Settings.Designer.cs">
       <DependentUpon>Settings.settings</DependentUpon>
       <AutoGen>True</AutoGen>
