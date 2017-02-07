@@ -130,6 +130,12 @@ namespace GAForm
             this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gABS = new System.Windows.Forms.BindingSource(this.components);
             this.problemsDataGridView = new System.Windows.Forms.DataGridView();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.problemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.minSizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maxSizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itersDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.problemsBS = new System.Windows.Forms.BindingSource(this.components);
             this.knapConditionsDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn37 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -151,12 +157,8 @@ namespace GAForm
             this.knapSolTA = new GADB.GADataSetTableAdapters.KnapSolutionsTableAdapter();
             this.problemsTA = new GADB.GADataSetTableAdapters.ProblemsTableAdapter();
             this.dataGridViewTextBoxColumn34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.problemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.labelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.minSizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maxSizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itersDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.statsbtn = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.knapDataBindingNavigator)).BeginInit();
             this.knapDataBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.knapDataBS)).BeginInit();
@@ -206,7 +208,9 @@ namespace GAForm
             this.toolStripSeparator6,
             this.stopbtn,
             this.toolStripSeparator5,
-            this.resumebtn});
+            this.resumebtn,
+            this.toolStripSeparator7,
+            this.statsbtn});
             this.knapDataBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.knapDataBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.knapDataBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -929,6 +933,50 @@ namespace GAForm
             this.problemsDataGridView.TabIndex = 5;
             this.problemsDataGridView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDoubleMouseclick);
             // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Visible = false;
+            this.iDDataGridViewTextBoxColumn.Width = 49;
+            // 
+            // problemIDDataGridViewTextBoxColumn
+            // 
+            this.problemIDDataGridViewTextBoxColumn.DataPropertyName = "ProblemID";
+            this.problemIDDataGridViewTextBoxColumn.HeaderText = "ProblemID";
+            this.problemIDDataGridViewTextBoxColumn.Name = "problemIDDataGridViewTextBoxColumn";
+            this.problemIDDataGridViewTextBoxColumn.Width = 105;
+            // 
+            // labelDataGridViewTextBoxColumn
+            // 
+            this.labelDataGridViewTextBoxColumn.DataPropertyName = "Label";
+            this.labelDataGridViewTextBoxColumn.HeaderText = "Label";
+            this.labelDataGridViewTextBoxColumn.Name = "labelDataGridViewTextBoxColumn";
+            this.labelDataGridViewTextBoxColumn.Width = 70;
+            // 
+            // minSizeDataGridViewTextBoxColumn
+            // 
+            this.minSizeDataGridViewTextBoxColumn.DataPropertyName = "MinSize";
+            this.minSizeDataGridViewTextBoxColumn.HeaderText = "MinSize";
+            this.minSizeDataGridViewTextBoxColumn.Name = "minSizeDataGridViewTextBoxColumn";
+            this.minSizeDataGridViewTextBoxColumn.Width = 86;
+            // 
+            // maxSizeDataGridViewTextBoxColumn
+            // 
+            this.maxSizeDataGridViewTextBoxColumn.DataPropertyName = "MaxSize";
+            this.maxSizeDataGridViewTextBoxColumn.HeaderText = "MaxSize";
+            this.maxSizeDataGridViewTextBoxColumn.Name = "maxSizeDataGridViewTextBoxColumn";
+            this.maxSizeDataGridViewTextBoxColumn.Width = 89;
+            // 
+            // itersDataGridViewTextBoxColumn
+            // 
+            this.itersDataGridViewTextBoxColumn.DataPropertyName = "Iters";
+            this.itersDataGridViewTextBoxColumn.HeaderText = "Iters";
+            this.itersDataGridViewTextBoxColumn.Name = "itersDataGridViewTextBoxColumn";
+            this.itersDataGridViewTextBoxColumn.Width = 62;
+            // 
             // problemsBS
             // 
             this.problemsBS.DataMember = "Problems";
@@ -1097,49 +1145,20 @@ namespace GAForm
             this.dataGridViewTextBoxColumn34.Visible = false;
             this.dataGridViewTextBoxColumn34.Width = 49;
             // 
-            // iDDataGridViewTextBoxColumn
+            // toolStripSeparator7
             // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Visible = false;
-            this.iDDataGridViewTextBoxColumn.Width = 49;
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 29);
             // 
-            // problemIDDataGridViewTextBoxColumn
+            // statsbtn
             // 
-            this.problemIDDataGridViewTextBoxColumn.DataPropertyName = "ProblemID";
-            this.problemIDDataGridViewTextBoxColumn.HeaderText = "ProblemID";
-            this.problemIDDataGridViewTextBoxColumn.Name = "problemIDDataGridViewTextBoxColumn";
-            this.problemIDDataGridViewTextBoxColumn.Width = 105;
-            // 
-            // labelDataGridViewTextBoxColumn
-            // 
-            this.labelDataGridViewTextBoxColumn.DataPropertyName = "Label";
-            this.labelDataGridViewTextBoxColumn.HeaderText = "Label";
-            this.labelDataGridViewTextBoxColumn.Name = "labelDataGridViewTextBoxColumn";
-            this.labelDataGridViewTextBoxColumn.Width = 70;
-            // 
-            // minSizeDataGridViewTextBoxColumn
-            // 
-            this.minSizeDataGridViewTextBoxColumn.DataPropertyName = "MinSize";
-            this.minSizeDataGridViewTextBoxColumn.HeaderText = "MinSize";
-            this.minSizeDataGridViewTextBoxColumn.Name = "minSizeDataGridViewTextBoxColumn";
-            this.minSizeDataGridViewTextBoxColumn.Width = 86;
-            // 
-            // maxSizeDataGridViewTextBoxColumn
-            // 
-            this.maxSizeDataGridViewTextBoxColumn.DataPropertyName = "MaxSize";
-            this.maxSizeDataGridViewTextBoxColumn.HeaderText = "MaxSize";
-            this.maxSizeDataGridViewTextBoxColumn.Name = "maxSizeDataGridViewTextBoxColumn";
-            this.maxSizeDataGridViewTextBoxColumn.Width = 89;
-            // 
-            // itersDataGridViewTextBoxColumn
-            // 
-            this.itersDataGridViewTextBoxColumn.DataPropertyName = "Iters";
-            this.itersDataGridViewTextBoxColumn.HeaderText = "Iters";
-            this.itersDataGridViewTextBoxColumn.Name = "itersDataGridViewTextBoxColumn";
-            this.itersDataGridViewTextBoxColumn.Width = 62;
+            this.statsbtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.statsbtn.Image = ((System.Drawing.Image)(resources.GetObject("statsbtn.Image")));
+            this.statsbtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.statsbtn.Name = "statsbtn";
+            this.statsbtn.Size = new System.Drawing.Size(56, 26);
+            this.statsbtn.Text = "STATS";
+            this.statsbtn.Click += new System.EventHandler(this.statsbtn_Click);
             // 
             // KnapForm
             // 
@@ -1286,6 +1305,8 @@ namespace GAForm
         private System.Windows.Forms.DataGridViewTextBoxColumn maxSizeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn itersDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn34;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripButton statsbtn;
     }
 }
 

@@ -133,7 +133,7 @@
     </MonoDevelop>
   </ProjectExtensions>
   <ItemGroup>
-    <None Include="Chromosomes\Chromosomes.cd" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Crossovers\Crossovers.cd" />
     <None Include="Fitnesses\Fitnesses.cd" />
     <None Include="GeneticSharp.snk" />

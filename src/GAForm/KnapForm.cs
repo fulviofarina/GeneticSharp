@@ -12,30 +12,18 @@ namespace GAForm
     public partial class KnapForm : Form
     {
 
-        static MouseEventArgs a = new MouseEventArgs(MouseButtons.Left, 2, 0, 0, 0);
-        static DataGridViewCellMouseEventArgs arg = new DataGridViewCellMouseEventArgs(0, 0, 0, 0, a);
+        /// <summary>
+        /// A MOUSE EVENT ARGUMENT
+        /// </summary>
+        private static MouseEventArgs MOUSEVENT = new MouseEventArgs(MouseButtons.Left, 2, 0, 0, 0);
+        /// <summary>
+        /// A DATAGRID SELECTED ROW CALL
+        /// </summary>
+       private static DataGridViewCellMouseEventArgs DGVARGUMENTDUMMY = new DataGridViewCellMouseEventArgs(0, 0, 0, 0, MOUSEVENT);
 
 
+       private GeneticAlgorithm geneticAlgo = null; //object engine
 
-
-      
-        private KnapsackSampleController controller = null;
-
-
-        public GeneticAlgorithm ga = null; //object engine
-        private ISampleController sampleController = null;
-
-
-        int MINPOP=10; //dummy value
-        int MAXPOP=20 ; //dummy value
-        float MUTPROB =0.1f; //dummy value
-        float CROSSPROB =0.75f; //dummy value
-        int MINSIZE=8; //dummy value
-        int MAXSIZE = 16; //dummy value
-        int ITERS = 5;
-       
-        private GADataSet.KnapSolutionsRow currentSolution = null;
-        private GADataSet.GARow currentGARow = null;
         private GADataSet.ProblemsRow currentProblem;
        
 
@@ -53,15 +41,18 @@ namespace GAForm
 
             this.Validate();
 
+         
+            int MINSIZE = 8; //dummy value
+            int MAXSIZE = 16; //dummy value
+            int ITERS = 5;
             //MIN SIZE OF CHROMOSOME TO ITERATE
             MINSIZE = this.currentProblem.MinSize;
             //MAX SIZE OF CHROMOSOME TO ITERATE
             MAXSIZE = this.currentProblem.MaxSize ;
-
             ITERS = this.currentProblem.Iters;
 
 
-            int iterCounter=1;
+            int ITERCOUNTER =1;
 
             do
             {
@@ -71,6 +62,10 @@ namespace GAForm
                 this.gobtn.Enabled = false;
                 this.stopbtn.Enabled = true;
 
+                int MINPOP = 10; //dummy value
+                int MAXPOP = 20; //dummy value
+                float MUTPROB = 0.1f; //dummy value
+                float CROSSPROB = 0.75f; //dummy value
 
                 MINPOP = int.Parse(minPopbox.Text);
                 MAXPOP = int.Parse(maxPopBox.Text);
@@ -83,6 +78,7 @@ namespace GAForm
                 this.toolStripProgressBar1.Minimum = 0;
 
                 //genetic algorithRow
+                GADataSet.GARow currentGARow = null;
                 currentGARow = this.gADataSet.GA.NewGARow();
                 this.gADataSet.GA.AddGARow(currentGARow);
                 currentGARow.ProblemID = currentProblem.ProblemID;
@@ -92,16 +88,16 @@ namespace GAForm
                 this.gATA.Update(this.gADataSet.GA);
 
                 this.knapSolBS.Filter = this.gADataSet.KnapSolutions.GAIDColumn.ColumnName + "=" + currentGARow.ID;
-             //   this.knapSolBS.Sort = this.gADataSet.KnapSolutions.TimeSpanColumn.ColumnName + " desc";
 
 
                 ///CUT HERE
+                KnapsackSampleController knapController = null;
+                knapController = new KnapsackSampleController(ref currentProblem, MINSIZE);
+                ISampleController IsampleControl = null;
+                IsampleControl = knapController;
 
-
-                controller = new KnapsackSampleController(ref currentProblem, MINSIZE);
-                sampleController = controller;
-                sampleController.ConfigGA(ref ga, MINPOP, MAXPOP, MUTPROB, CROSSPROB);
-
+          
+                IsampleControl.ConfigGA(ref geneticAlgo, MINPOP, MAXPOP, MUTPROB, CROSSPROB);
 
 
                 Application.DoEvents();
@@ -115,17 +111,19 @@ namespace GAForm
                 generationRan = delegate
                 {
 
-                    IChromosome bestChromosome = ga.Population.BestChromosome;
-                    currentGARow.Fill(ref ga); //report GA stuff
+                    IChromosome bestChromosome = geneticAlgo.Population.BestChromosome;
+                    currentGARow.Fill(ref geneticAlgo); //report GA stuff
 
                     Application.DoEvents();
+                    GADataSet.KnapSolutionsRow currentSolution = null;
                     currentSolution = this.gADataSet.KnapSolutions.NewKnapSolutionsRow();
-                    controller.FillBasic(ref currentSolution, ref bestChromosome);
-                    controller.FillGAData(ref currentSolution, ref  currentGARow);
-                    controller.FillStrings(ref currentSolution);
+                    knapController.FillBasic(ref currentSolution, ref bestChromosome);
+                    knapController.FillGAData(ref currentSolution, ref  currentGARow);
+                    knapController.FillStrings(ref currentSolution);
 
                     //IF NOT PRESENT IN THE LIST IS A NEW CHROMOSOME
-                    if (hgenotypes.Add(currentSolution.Genotype)) //add to hashShet
+                    string genotype = currentSolution.Genotype;
+                    if (hgenotypes.Add(genotype)) //add to hashShet
                     {
                         this.gADataSet.KnapSolutions.AddKnapSolutionsRow(currentSolution);
                        
@@ -133,12 +131,11 @@ namespace GAForm
                     }
                     else
                     {
-                        int i = sols.FindIndex(o => o.Genotype.Equals(currentSolution.Genotype));
+                        int i = sols.FindIndex(o => o.Genotype.Equals(genotype));
                         sols[i].Frequency++;
-                        currentSolution = null;
+                       // currentSolution = null;
                     }
 
-                    //  sampleController.Add(bestChromosome); //report CHROMOSOME stuff
 
                     this.toolStripProgressBar1.PerformStep();
                     Application.DoEvents();
@@ -146,7 +143,7 @@ namespace GAForm
                 };
 
 
-                ga.GenerationRan += generationRan;
+                geneticAlgo.GenerationRan += generationRan;
 
                 Run();
 
@@ -159,8 +156,9 @@ namespace GAForm
                 sols = null;
 
 
-                ga = null; // clean
-
+                geneticAlgo = null; // clean
+                knapController = null;
+                IsampleControl = null;
 
                 //ABORT IF STOPPED
                 if (!stopbtn.Enabled) break;
@@ -171,17 +169,23 @@ namespace GAForm
                 this.stopbtn.Enabled = false;
 
 
-                if (iterCounter < ITERS)
+                if (ITERCOUNTER < ITERS)
                 {
-                    iterCounter++;
+                    ITERCOUNTER++;
                 }
                 else
                 {
-                    iterCounter = 1;
+                    ITERCOUNTER = 1;
                     MINSIZE++; //ADD SIZE OF CHROMOSOME NEXT GENETIC ALGORITHM
                 }
 
-            } while (MINSIZE <= MAXSIZE);
+
+               
+
+
+
+            }
+            while (MINSIZE <= MAXSIZE);
 
             
          
@@ -192,7 +196,7 @@ namespace GAForm
         {
             try
             {
-                ga.Start();
+                geneticAlgo.Start();
 
             }
             catch (Exception ex)
@@ -233,7 +237,7 @@ namespace GAForm
 
           
 
-            dgvDoubleMouseclick(this.problemsDataGridView, arg);
+            dgvDoubleMouseclick(this.problemsDataGridView, DGVARGUMENTDUMMY);
         }
 
         private void stopbtn_Click(object sender, EventArgs e)
@@ -241,7 +245,7 @@ namespace GAForm
             this.gobtn.Enabled = true;
             this.resumebtn.Enabled = true;
             this.stopbtn.Enabled = false;
-            ga.Stop();
+            geneticAlgo.Stop();
 
         }
 
@@ -250,7 +254,7 @@ namespace GAForm
             this.resumebtn.Enabled = false;
             this.stopbtn.Enabled = true;
             this.gobtn.Enabled = false;
-            ga.Resume();
+            geneticAlgo.Resume();
            
         }
 
@@ -280,30 +284,120 @@ namespace GAForm
                 int count = datas.Count;
                 datas = null;
 
-              //  chsizebox.Text = count.ToString();
-              //  chSizeMaxbox.Text = (count * 2).ToString();
 
                 this.gABS.Filter = this.gADataSet.GA.ProblemIDColumn.ColumnName + "="+currentProblem.ProblemID;
 
                 this.knapSolBS.Filter = this.gADataSet.KnapSolutions.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
              
-                //  dgvDoubleMouseclick(this.gADataGridView,arg);
+              
 
 
             }
             else if (sender.Equals(this.gADataGridView))
             {
-
-                currentGARow = dgvr.Row as GADataSet.GARow;
+                GADataSet.GARow currentGARow = null;
+        currentGARow = dgvr.Row as GADataSet.GARow;
 
                 this.knapSolBS.Filter = this.gADataSet.KnapSolutions.GAIDColumn.ColumnName + "=" + currentGARow.ID;
 
-           //     this.knapSolBS.Sort = this.gADataSet.KnapSolutions.FitnessColumn.ColumnName + "," + this.gADataSet.KnapSolutions.TimeSpanColumn.ColumnName + "," + this.gADataSet.KnapSolutions.FrequencyColumn.ColumnName + " desc";
-
-                //this.knapSolBS.Sort = this.gADataSet.KnapSolutions.TimeSpanColumn.ColumnName + " desc";
-
+         
 
             }
+
+
+        }
+
+        private void statsbtn_Click(object sender, EventArgs e)
+        {
+           IEnumerable<GADataSet.GARow> gasrows = this.currentProblem.GetGARows();
+
+            int min =  gasrows.Min(o => o.ChromosomeLength);
+            int max = gasrows.Max(o => o.ChromosomeLength);
+
+            HashSet<string> hash = new HashSet<string>();
+            List<GADataSet.KnapSolutionsRow> list = new List<GADataSet.KnapSolutionsRow>();
+
+           // int counter = 1;
+            Func<GADataSet.KnapSolutionsRow, bool> funcion;
+
+            funcion = o =>
+            {
+                string genotype = o.Genotype;
+                if (hash.Add(genotype)) //add to hashShet
+                {
+                    // this.gADataSet.KnapSolutions.AddKnapSolutionsRow(currentSolution);
+
+                    list.Add(o);//add to indexed list
+                }
+                else
+                {
+                    int i = list.FindIndex(r => r.Genotype.Equals(genotype));
+                    list[i].Frequency+=o.Frequency;
+                 //   list[i].TimeSpan += o.TimeSpan;
+                  //  list[i].Fitness += o.Fitness;
+                  //  list[i].TotalValue += o.TotalValue;
+                  //  list[i].TotalWeight += o.TotalWeight;
+                  //  list[i].TotalVolume += o.TotalVolume;
+                  //  counter++;
+                }
+                return true;
+            };
+
+
+            //iterate min max chromosome lenght for all genetic algorithms
+            for (int j = min; j<= max; j++)
+            {
+
+                gasrows = this.currentProblem.GetGARows();
+
+                IEnumerable<GADataSet.GARow> subs = gasrows.Where(o => o.ChromosomeLength == j).ToList();
+
+                GADataSet.GARow subFirst = subs.FirstOrDefault();
+                subFirst.GenerationCurrent = Convert.ToInt32(subs.Average(o => o.GenerationCurrent));
+                subFirst.GenerationTotal = Convert.ToInt32(subs.Average(o => o.GenerationTotal));
+                subFirst.MutationProb = subs.Average(o => o.MutationProb);
+                subFirst.CrossProbability = subs.Average(o => o.CrossProbability);
+                subFirst.TimeStamp = subs.Average(o => o.TimeStamp);
+
+
+
+
+                //select GARow childrens
+                IEnumerable<GADataSet.KnapSolutionsRow> knaprows = subs.SelectMany(o => o.GetKnapSolutionsRows());
+
+                hash.Clear(); //clear
+                list.Clear();//clear
+             //   counter = currentProblem.Iters;
+
+                knaprows = knaprows.Where(funcion).ToList(); //evaluate the filter function
+
+
+                int count = knaprows.Count();
+                for (int d = 0; d < count; d++)
+                {
+                   if (!list.Contains( knaprows.ElementAt(d)) )  knaprows.ElementAt(d).Delete();
+
+                }
+                count = list.Count;
+                for (int d = 0; d < count; d++)
+                {
+
+                  //  list.ElementAt(d).Frequency /= counter;
+                  //  list.ElementAt(d).TimeSpan /= counter;
+                   // list.ElementAt(d).Fitness /= counter;
+                   // list.ElementAt(d).TotalValue /= counter;
+                  //  list.ElementAt(d).TotalWeight /= counter;
+                  //  list.ElementAt(d).TotalVolume /= counter;
+                }
+                count = subs.Count();
+                for (int d = 1; d < count; d++)
+                {
+                    subs.ElementAt(d).Delete();
+                }
+            }
+
+            this.TAM.UpdateAll(this.gADataSet);
+            this.gADataSet.WriteXml("dataset.xml", XmlWriteMode.WriteSchema);
 
 
         }

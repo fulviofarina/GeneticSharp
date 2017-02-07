@@ -3,7 +3,7 @@
   <Class Name="GeneticSharp.Domain.Mutations.MutationBase" Collapsed="true">
     <Position X="3.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABACAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAABACAAAAAAAAIA=</HashCode>
       <FileName>Mutations\MutationBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -16,7 +16,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="GeneticSharp.Domain.Mutations.MutationService">
-    <Position X="7.25" Y="0.5" Width="2" />
+    <Position X="5.5" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAIAAAAAAQAAAAgAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Mutations\MutationService.cs</FileName>

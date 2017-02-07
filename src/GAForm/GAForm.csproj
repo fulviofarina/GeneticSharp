@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="GAFormClassDiagram.cd" />
     <None Include="Properties\DataSources\GADB.GADataSet.datasource" />
   </ItemGroup>
   <ItemGroup>

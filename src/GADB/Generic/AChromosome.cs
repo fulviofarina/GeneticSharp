@@ -25,14 +25,42 @@ namespace GADB
                 ReplaceGene(i, GenerateGene(i));
             }
         }
-
-      
-
+        
         /// <summary>
-        /// Generates the gene for the specified index.
+        /// METODO B
+        /// </summary>
+        /// <param name="geneIndex"></param>
+        /// <returns></returns>
+        public override Gene GenerateGene(int geneIndex)
+        {
+            //makes 1 gene with a random index from 0 to m_values as MAX
+            int randIndex = RandomizationProvider.Current.GetInt(0, numberOfGenes);
+            // int extra = randIndex - numberOfGenes;
+            // if (extra > 0) randIndex = -1;
+            if (randIndex == 0) randIndex = -1;
+            return new Gene(randIndex);
+        }
+        
+        /*
+        /// <summary>
+        /// Generates the gene for the specified index. METODO A
         /// </summary>
         /// <returns>The gene.</returns>
         /// <param name="geneIndex">Gene index.</param>
+        public override Gene GenerateGene(int geneIndex)
+        {
+            //makes 1 gene with a random index from 0 to m_values as MAX
+            int randIndex = RandomizationProvider.Current.GetInt(1, numberOfGenes);
+            int extra = randIndex - numberOfGenes;
+            if (extra > 0) randIndex = -1;
+
+            return new Gene(randIndex);
+        }
+
+        */
+
+/*
+     //  metdodo C
         public override Gene GenerateGene(int geneIndex)
         {
             //makes 1 gene with a random index from 0 to m_values as MAX
@@ -40,9 +68,9 @@ namespace GADB
             int extra = randIndex - numberOfGenes;
             if (extra >= 0) randIndex = -2;
 
-            return new Gene(randIndex+1);
+            return new Gene(randIndex + 1);
         }
-
+        */
         /// <summary>
         /// Creates a new chromosome using the same structure of this.
         /// </summary>
