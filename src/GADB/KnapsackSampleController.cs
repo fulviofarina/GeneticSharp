@@ -17,51 +17,59 @@ namespace GADB
         private List<double> m_values;
         private List<double> m_weights;
         private List<double> m_volumes;
-
+        private  GADataSet.KnapConditionsRow[] conditions = null;
         private int SIZE = 6;
-       // private double PESO_MAX = 10; //en kilos
-     //   private double TARIFA = 10; //10 bolos
-      //  private double VOL_MAX = 20;
+     
         private  double NORMA;
 
-        private GADataSet.KnapConditionsRow conditions;
+        private int PROBLEMID = 0; //important!!!
 
-        /// <summary>
-        /// Algo for finding fitness
-        /// </summary>
-        /// <param name="PESO_MAX"></param>
-        /// <param name="VOL_MAX"></param>
-        /// <param name="TARIFA"></param>
-        /// <returns></returns>
-        public void FindFitness(ref GADataSet.KnapSolutionsRow r,  double norm)
+       
+        private void findFines(ref GADataSet.KnapSolutionsRow r,  ref GADataSet.KnapConditionsRow conditions)
         {
 
-            double VOLFINE = conditions.VolumeFine; //IN CASE EXCEEDS VOLUME, 1 MILLION PENALTY
-            double WEIGHTFINE = conditions.WeightFine;
-            double maxWeight = conditions.MaxWeight;
-            double maxVolume = conditions.MaxVolume;
+                
 
-            if (r.TotalWeight <= maxWeight && r.TotalVolume <= maxVolume)
+            bool weightOk = (r.TotalWeight <= conditions.MaxWeight);
+            weightOk = weightOk && ( r.TotalWeight >= conditions.MinWeight);
+
+            bool volOk = (r.TotalVolume <= conditions.MaxVolume);
+            volOk = volOk && (r.TotalVolume >= conditions.MinVolume);
+
+            bool valueOk = (r.TotalValue <= conditions.MaxValue);
+            valueOk = valueOk && (r.TotalValue >= conditions.MinValue);
+
+            //FIRST LETER T OR F
+            r.Okays += weightOk.ToString()[0] + " ";
+            r.Okays += volOk.ToString()[0] + " ";
+            r.Okays +=  valueOk.ToString()[0] + " * ";
+
+
+            if (weightOk && volOk && valueOk)
             {
-                r.Fine = 0;
+                r.Fine += 0;
             }
             else
             {
-                r.Fine = 0;
-                if (r.TotalWeight > maxWeight)
+              //  r.Fine += 0;
+                if (!weightOk)
                 {
-                    r.Fine += (r.TotalWeight - maxWeight)* WEIGHTFINE; //excess weight
+                    r.Fine += (r.TotalWeight - conditions.MaxWeight) * conditions.WeightFine; //excess weight
                 
                 }
-                if (r.TotalVolume > maxVolume)
+                if (!volOk)
                 {
-                    r.Fine += (r.TotalVolume - maxVolume) * VOLFINE; //excess volume NEVER!
+                    r.Fine += (r.TotalVolume - conditions.MaxVolume) * conditions.VolumeFine; //excess volume NEVER!
                 }
-             
+                //this does not matter since ValueFine can be 0
+                if (!valueOk)
+                {
+                    r.Fine += (r.TotalValue - conditions.MaxValue) * conditions.ValueFine; //excess volume NEVER!
+                }
+
             }
-            //ahora calculo el fitness, o valor neto, en función del ValorTotal y la Penalizacion
-            r.Fitness = r.TotalValue;
-            r.Fitness /= norm * (1 + r.Fine); //max vol, max value * (1+fine)
+           
+         
         }
 
 
@@ -70,7 +78,7 @@ namespace GADB
         /// </summary>
         /// <param name="r"></param>
         /// <param name="c"></param>
-        public void FillRow(ref GADataSet.KnapSolutionsRow r ,ref IChromosome c)
+        public void FillBasic(ref GADataSet.KnapSolutionsRow r ,ref IChromosome c)
         {
             r.Knap(ref c);
 
@@ -78,16 +86,27 @@ namespace GADB
             r.TotalWeight = Aid.SetBasic(r.GenesAsInts, m_weights); //first
             r.TotalVolume = Aid.SetBasic(r.GenesAsInts, m_volumes); //first
 
-            FindFitness(ref r,  NORMA);
+            r.ProblemID = PROBLEMID;
 
-         
+            r.Fine = 0; //initialize the FINE
+            r.Okays = string.Empty;
+            for (int i = 0; i< conditions.Length; i++)
+            {
+                GADataSet.KnapConditionsRow cond = conditions[i];
+              
+                findFines(ref r, ref cond); //
+                r.Fitness = r.TotalValue;
+                r.Fitness /= NORMA * (1 + r.Fine); //max vol, max value * (1+fine)
+            }
+
+
         }
 
         /// <summary>
         /// POST CALCULATION TO DECODE
         /// </summary>
         /// <param name="r"></param>
-        public void DecodeRow(ref GADataSet.KnapSolutionsRow r)
+        public void FillStrings(ref GADataSet.KnapSolutionsRow r)
         {
             r.Genotype = Aid.SetStrings(r.GenesAsInts);
 
@@ -97,7 +116,7 @@ namespace GADB
         }
 
 
-        public void FillRow(ref GADataSet.KnapSolutionsRow r,  ref GADataSet.GARow ga)
+        public void FillGAData(ref GADataSet.KnapSolutionsRow r,  ref GADataSet.GARow ga)
         {
 
             r.GAID = ga.ID;
@@ -118,34 +137,38 @@ namespace GADB
         {
 
 
-            if (p == null) throw new Exception("No problem ID given");
+            if (p == null) throw new Exception("No Problem ID given");
+            //DETERMINE CONDITIONS from PROBLEM ID
+            conditions = p.GetKnapConditionsRows();
+            if (conditions == null )
+            {
+                throw new Exception("No Problem Conditions given");
+            }
 
-     
+
             m_values = new List<double>();
             m_weights = new List<double>();
             m_volumes = new List<double>();
 
             //fill arrays of values, wieghts and volumes
             List<GADataSet.KnapDataRow> list =  p.GetKnapDataRows().ToList();
+
+            if (list.Count == 0)
+            {
+                throw new Exception("No Problem Variables and Values given");
+            }
             m_values = list.Select(o => o.Value).ToList();
             m_weights = list.Select(o => o.Weight).ToList();
             m_volumes = list.Select(o => o.Volume).ToList();
 
-      
+           
 
             //determine norm to normalize on fitness
             NORMA = m_values.Max() * m_values.Count;
 
-
-            //DETERMINE CONDITIONS from PROBLEM ID
-            conditions  =p.GetKnapConditionsRows().FirstOrDefault();
-
-            if (conditions == null)
-            {
-                throw new Exception("No conditions given");
-            }
-
             SIZE = size;
+
+            PROBLEMID = p.ProblemID;
 
         }
 
@@ -161,7 +184,7 @@ namespace GADB
                  GADataSet.KnapSolutionsRow nap = dt.NewKnapSolutionsRow();
 
 
-                 FillRow(ref nap, ref c); //basic calculation
+                 FillBasic(ref nap, ref c); //basic calculation
 
                  double fit = nap.Fitness;
 

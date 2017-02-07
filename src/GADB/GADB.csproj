@@ -62,6 +62,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="GADBClassDiagram.cd" />
     <None Include="GADataSet.xsc">
       <DependentUpon>GADataSet.xsd</DependentUpon>
     </None>

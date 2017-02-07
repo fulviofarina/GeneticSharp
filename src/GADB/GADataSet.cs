@@ -56,6 +56,8 @@ namespace GADB
                 Frequency = 1;
                 //  ChromosomeLength = c.Length;
                 DateTime = DateTime.Now;
+
+
             }
 
             private IChromosome chromosome = null;

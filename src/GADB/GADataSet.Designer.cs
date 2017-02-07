@@ -821,6 +821,12 @@ namespace GADB {
             
             private global::System.Data.DataColumn columnFrequency;
             
+            private global::System.Data.DataColumn columnSchOrder;
+            
+            private global::System.Data.DataColumn columnOkays;
+            
+            private global::System.Data.DataColumn columnChromosome;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public KnapSolutionsDataTable() : 
@@ -1001,6 +1007,30 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SchOrderColumn {
+                get {
+                    return this.columnSchOrder;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn OkaysColumn {
+                get {
+                    return this.columnOkays;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ChromosomeColumn {
+                get {
+                    return this.columnChromosome;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1052,7 +1082,10 @@ namespace GADB {
                         int ChromosomeLength, 
                         int Generations, 
                         GARow parentGARowByGA_KnapSolutions, 
-                        int Frequency) {
+                        int Frequency, 
+                        int SchOrder, 
+                        string Okays, 
+                        byte[] Chromosome) {
                 KnapSolutionsRow rowKnapSolutionsRow = ((KnapSolutionsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1071,7 +1104,10 @@ namespace GADB {
                         ChromosomeLength,
                         Generations,
                         null,
-                        Frequency};
+                        Frequency,
+                        SchOrder,
+                        Okays,
+                        Chromosome};
                 if ((parentProblemsRowByProblems_KnapSolutions != null)) {
                     columnValuesArray[1] = parentProblemsRowByProblems_KnapSolutions[1];
                 }
@@ -1085,7 +1121,25 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapSolutionsRow AddKnapSolutionsRow(ProblemsRow parentProblemsRowByProblems_KnapSolutions, double TotalWeight, double TotalVolume, double TotalValue, string WeightString, string VolumeString, string ValueString, string Genotype, double Fine, double Fitness, System.DateTime DateTime, double TimeSpan, int Generations, GARow parentGARowByGA_KnapSolutions, int Frequency) {
+            public KnapSolutionsRow AddKnapSolutionsRow(
+                        ProblemsRow parentProblemsRowByProblems_KnapSolutions, 
+                        double TotalWeight, 
+                        double TotalVolume, 
+                        double TotalValue, 
+                        string WeightString, 
+                        string VolumeString, 
+                        string ValueString, 
+                        string Genotype, 
+                        double Fine, 
+                        double Fitness, 
+                        System.DateTime DateTime, 
+                        double TimeSpan, 
+                        int Generations, 
+                        GARow parentGARowByGA_KnapSolutions, 
+                        int Frequency, 
+                        int SchOrder, 
+                        string Okays, 
+                        byte[] Chromosome) {
                 KnapSolutionsRow rowKnapSolutionsRow = ((KnapSolutionsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1104,7 +1158,10 @@ namespace GADB {
                         null,
                         Generations,
                         null,
-                        Frequency};
+                        Frequency,
+                        SchOrder,
+                        Okays,
+                        Chromosome};
                 if ((parentProblemsRowByProblems_KnapSolutions != null)) {
                     columnValuesArray[1] = parentProblemsRowByProblems_KnapSolutions[1];
                 }
@@ -1157,6 +1214,9 @@ namespace GADB {
                 this.columnGenerations = base.Columns["Generations"];
                 this.columnGAID = base.Columns["GAID"];
                 this.columnFrequency = base.Columns["Frequency"];
+                this.columnSchOrder = base.Columns["SchOrder"];
+                this.columnOkays = base.Columns["Okays"];
+                this.columnChromosome = base.Columns["Chromosome"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1196,6 +1256,12 @@ namespace GADB {
                 base.Columns.Add(this.columnGAID);
                 this.columnFrequency = new global::System.Data.DataColumn("Frequency", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFrequency);
+                this.columnSchOrder = new global::System.Data.DataColumn("SchOrder", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSchOrder);
+                this.columnOkays = new global::System.Data.DataColumn("Okays", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOkays);
+                this.columnChromosome = new global::System.Data.DataColumn("Chromosome", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnChromosome);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -1214,6 +1280,7 @@ namespace GADB {
                 this.columnFine.DefaultValue = ((double)(0D));
                 this.columnFitness.DefaultValue = ((double)(0D));
                 this.columnChromosomeLength.ReadOnly = true;
+                this.columnOkays.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1883,6 +1950,12 @@ namespace GADB {
             
             private global::System.Data.DataColumn columnLabel;
             
+            private global::System.Data.DataColumn columnMinSize;
+            
+            private global::System.Data.DataColumn columnMaxSize;
+            
+            private global::System.Data.DataColumn columnIters;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ProblemsDataTable() {
@@ -1942,6 +2015,30 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MinSizeColumn {
+                get {
+                    return this.columnMinSize;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MaxSizeColumn {
+                get {
+                    return this.columnMaxSize;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ItersColumn {
+                get {
+                    return this.columnIters;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1977,12 +2074,15 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ProblemsRow AddProblemsRow(int ProblemID, string Label) {
+            public ProblemsRow AddProblemsRow(int ProblemID, string Label, int MinSize, int MaxSize, int Iters) {
                 ProblemsRow rowProblemsRow = ((ProblemsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         ProblemID,
-                        Label};
+                        Label,
+                        MinSize,
+                        MaxSize,
+                        Iters};
                 rowProblemsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowProblemsRow);
                 return rowProblemsRow;
@@ -2015,6 +2115,9 @@ namespace GADB {
                 this.columnID = base.Columns["ID"];
                 this.columnProblemID = base.Columns["ProblemID"];
                 this.columnLabel = base.Columns["Label"];
+                this.columnMinSize = base.Columns["MinSize"];
+                this.columnMaxSize = base.Columns["MaxSize"];
+                this.columnIters = base.Columns["Iters"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2026,6 +2129,12 @@ namespace GADB {
                 base.Columns.Add(this.columnProblemID);
                 this.columnLabel = new global::System.Data.DataColumn("Label", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLabel);
+                this.columnMinSize = new global::System.Data.DataColumn("MinSize", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMinSize);
+                this.columnMaxSize = new global::System.Data.DataColumn("MaxSize", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMaxSize);
+                this.columnIters = new global::System.Data.DataColumn("Iters", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIters);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -2998,6 +3107,54 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int SchOrder {
+                get {
+                    try {
+                        return ((int)(this[this.tableKnapSolutions.SchOrderColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SchOrder\' in table \'KnapSolutions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableKnapSolutions.SchOrderColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Okays {
+                get {
+                    try {
+                        return ((string)(this[this.tableKnapSolutions.OkaysColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Okays\' in table \'KnapSolutions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableKnapSolutions.OkaysColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte[] Chromosome {
+                get {
+                    try {
+                        return ((byte[])(this[this.tableKnapSolutions.ChromosomeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Chromosome\' in table \'KnapSolutions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableKnapSolutions.ChromosomeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public GARow GARow {
                 get {
                     return ((GARow)(this.GetParentRow(this.Table.ParentRelations["GA_KnapSolutions"])));
@@ -3208,6 +3365,42 @@ namespace GADB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFrequencyNull() {
                 this[this.tableKnapSolutions.FrequencyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSchOrderNull() {
+                return this.IsNull(this.tableKnapSolutions.SchOrderColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSchOrderNull() {
+                this[this.tableKnapSolutions.SchOrderColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsOkaysNull() {
+                return this.IsNull(this.tableKnapSolutions.OkaysColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetOkaysNull() {
+                this[this.tableKnapSolutions.OkaysColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsChromosomeNull() {
+                return this.IsNull(this.tableKnapSolutions.ChromosomeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetChromosomeNull() {
+                this[this.tableKnapSolutions.ChromosomeColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3794,6 +3987,54 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int MinSize {
+                get {
+                    try {
+                        return ((int)(this[this.tableProblems.MinSizeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MinSize\' in table \'Problems\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProblems.MinSizeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int MaxSize {
+                get {
+                    try {
+                        return ((int)(this[this.tableProblems.MaxSizeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MaxSize\' in table \'Problems\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProblems.MaxSizeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Iters {
+                get {
+                    try {
+                        return ((int)(this[this.tableProblems.ItersColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Iters\' in table \'Problems\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProblems.ItersColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsProblemIDNull() {
                 return this.IsNull(this.tableProblems.ProblemIDColumn);
             }
@@ -3814,6 +4055,42 @@ namespace GADB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetLabelNull() {
                 this[this.tableProblems.LabelColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMinSizeNull() {
+                return this.IsNull(this.tableProblems.MinSizeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMinSizeNull() {
+                this[this.tableProblems.MinSizeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMaxSizeNull() {
+                return this.IsNull(this.tableProblems.MaxSizeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMaxSizeNull() {
+                this[this.tableProblems.MaxSizeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsItersNull() {
+                return this.IsNull(this.tableProblems.ItersColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetItersNull() {
+                this[this.tableProblems.ItersColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4917,10 +5194,13 @@ SELECT ID, ProblemID, Weight, Volume, Value FROM KnapData WHERE (ID = @ID)";
             tableMapping.ColumnMappings.Add("Generations", "Generations");
             tableMapping.ColumnMappings.Add("GAID", "GAID");
             tableMapping.ColumnMappings.Add("Frequency", "Frequency");
+            tableMapping.ColumnMappings.Add("SchOrder", "SchOrder");
+            tableMapping.ColumnMappings.Add("Okays", "Okays");
+            tableMapping.ColumnMappings.Add("Chromosome", "Chromosome");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [KnapSolutions] WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_TotalWeight = 1 AND [TotalWeight] IS NULL) OR ([TotalWeight] = @Original_TotalWeight)) AND ((@IsNull_TotalVolume = 1 AND [TotalVolume] IS NULL) OR ([TotalVolume] = @Original_TotalVolume)) AND ((@IsNull_TotalValue = 1 AND [TotalValue] IS NULL) OR ([TotalValue] = @Original_TotalValue)) AND ((@IsNull_Fine = 1 AND [Fine] IS NULL) OR ([Fine] = @Original_Fine)) AND ((@IsNull_Fitness = 1 AND [Fitness] IS NULL) OR ([Fitness] = @Original_Fitness)) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ((@IsNull_TimeSpan = 1 AND [TimeSpan] IS NULL) OR ([TimeSpan] = @Original_TimeSpan)) AND ((@IsNull_Generations = 1 AND [Generations] IS NULL) OR ([Generations] = @Original_Generations)) AND ((@IsNull_GAID = 1 AND [GAID] IS NULL) OR ([GAID] = @Original_GAID)) AND ((@IsNull_Frequency = 1 AND [Frequency] IS NULL) OR ([Frequency] = @Original_Frequency)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [KnapSolutions] WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_TotalWeight = 1 AND [TotalWeight] IS NULL) OR ([TotalWeight] = @Original_TotalWeight)) AND ((@IsNull_TotalVolume = 1 AND [TotalVolume] IS NULL) OR ([TotalVolume] = @Original_TotalVolume)) AND ((@IsNull_TotalValue = 1 AND [TotalValue] IS NULL) OR ([TotalValue] = @Original_TotalValue)) AND ((@IsNull_Fine = 1 AND [Fine] IS NULL) OR ([Fine] = @Original_Fine)) AND ((@IsNull_Fitness = 1 AND [Fitness] IS NULL) OR ([Fitness] = @Original_Fitness)) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ((@IsNull_TimeSpan = 1 AND [TimeSpan] IS NULL) OR ([TimeSpan] = @Original_TimeSpan)) AND ((@IsNull_Generations = 1 AND [Generations] IS NULL) OR ([Generations] = @Original_Generations)) AND ((@IsNull_GAID = 1 AND [GAID] IS NULL) OR ([GAID] = @Original_GAID)) AND ((@IsNull_Frequency = 1 AND [Frequency] IS NULL) OR ([Frequency] = @Original_Frequency)) AND ((@IsNull_SchOrder = 1 AND [SchOrder] IS NULL) OR ([SchOrder] = @Original_SchOrder)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -4945,10 +5225,12 @@ SELECT ID, ProblemID, Weight, Volume, Value FROM KnapData WHERE (ID = @ID)";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GAID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GAID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Frequency", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Frequency", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Frequency", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Frequency", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SchOrder", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SchOrder", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SchOrder", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SchOrder", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [KnapSolutions] ([ProblemID], [TotalWeight], [TotalVolume], [TotalValue], [WeightString], [VolumeString], [ValueString], [Genotype], [Fine], [Fitness], [DateTime], [TimeSpan], [Generations], [GAID], [Frequency]) VALUES (@ProblemID, @TotalWeight, @TotalVolume, @TotalValue, @WeightString, @VolumeString, @ValueString, @Genotype, @Fine, @Fitness, @DateTime, @TimeSpan, @Generations, @GAID, @Frequency);
-SELECT ID, ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, VolumeString, ValueString, Genotype, Fine, Fitness, DateTime, TimeSpan, Generations, GAID, Frequency FROM KnapSolutions WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [KnapSolutions] ([ProblemID], [TotalWeight], [TotalVolume], [TotalValue], [WeightString], [VolumeString], [ValueString], [Genotype], [Fine], [Fitness], [DateTime], [TimeSpan], [Generations], [GAID], [Frequency], [SchOrder], [Okays], [Chromosome]) VALUES (@ProblemID, @TotalWeight, @TotalVolume, @TotalValue, @WeightString, @VolumeString, @ValueString, @Genotype, @Fine, @Fitness, @DateTime, @TimeSpan, @Generations, @GAID, @Frequency, @SchOrder, @Okays, @Chromosome);
+SELECT ID, ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, VolumeString, ValueString, Genotype, Fine, Fitness, DateTime, TimeSpan, Generations, GAID, Frequency, SchOrder, Okays, Chromosome FROM KnapSolutions WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TotalWeight", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TotalWeight", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -4965,6 +5247,9 @@ SELECT ID, ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, Volume
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Generations", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Generations", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GAID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GAID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Frequency", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Frequency", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SchOrder", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SchOrder", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Okays", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Okays", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Chromosome", global::System.Data.SqlDbType.Image, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Chromosome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [KnapSolutions] SET [ProblemID] = @ProblemID, [TotalWeight] = @TotalWeight" +
@@ -4972,22 +5257,25 @@ SELECT ID, ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, Volume
                 "ightString, [VolumeString] = @VolumeString, [ValueString] = @ValueString, [Genot" +
                 "ype] = @Genotype, [Fine] = @Fine, [Fitness] = @Fitness, [DateTime] = @DateTime, " +
                 "[TimeSpan] = @TimeSpan, [Generations] = @Generations, [GAID] = @GAID, [Frequency" +
-                "] = @Frequency WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [Pro" +
-                "blemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_TotalWeig" +
-                "ht = 1 AND [TotalWeight] IS NULL) OR ([TotalWeight] = @Original_TotalWeight)) AN" +
-                "D ((@IsNull_TotalVolume = 1 AND [TotalVolume] IS NULL) OR ([TotalVolume] = @Orig" +
-                "inal_TotalVolume)) AND ((@IsNull_TotalValue = 1 AND [TotalValue] IS NULL) OR ([T" +
-                "otalValue] = @Original_TotalValue)) AND ((@IsNull_Fine = 1 AND [Fine] IS NULL) O" +
-                "R ([Fine] = @Original_Fine)) AND ((@IsNull_Fitness = 1 AND [Fitness] IS NULL) OR" +
-                " ([Fitness] = @Original_Fitness)) AND ((@IsNull_DateTime = 1 AND [DateTime] IS N" +
-                "ULL) OR ([DateTime] = @Original_DateTime)) AND ((@IsNull_TimeSpan = 1 AND [TimeS" +
-                "pan] IS NULL) OR ([TimeSpan] = @Original_TimeSpan)) AND ((@IsNull_Generations = " +
-                "1 AND [Generations] IS NULL) OR ([Generations] = @Original_Generations)) AND ((@" +
-                "IsNull_GAID = 1 AND [GAID] IS NULL) OR ([GAID] = @Original_GAID)) AND ((@IsNull_" +
-                "Frequency = 1 AND [Frequency] IS NULL) OR ([Frequency] = @Original_Frequency)));" +
-                "\r\nSELECT ID, ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, Volu" +
-                "meString, ValueString, Genotype, Fine, Fitness, DateTime, TimeSpan, Generations," +
-                " GAID, Frequency FROM KnapSolutions WHERE (ID = @ID)";
+                "] = @Frequency, [SchOrder] = @SchOrder, [Okays] = @Okays, [Chromosome] = @Chromo" +
+                "some WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS" +
+                " NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_TotalWeight = 1 AND" +
+                " [TotalWeight] IS NULL) OR ([TotalWeight] = @Original_TotalWeight)) AND ((@IsNul" +
+                "l_TotalVolume = 1 AND [TotalVolume] IS NULL) OR ([TotalVolume] = @Original_Total" +
+                "Volume)) AND ((@IsNull_TotalValue = 1 AND [TotalValue] IS NULL) OR ([TotalValue]" +
+                " = @Original_TotalValue)) AND ((@IsNull_Fine = 1 AND [Fine] IS NULL) OR ([Fine] " +
+                "= @Original_Fine)) AND ((@IsNull_Fitness = 1 AND [Fitness] IS NULL) OR ([Fitness" +
+                "] = @Original_Fitness)) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([" +
+                "DateTime] = @Original_DateTime)) AND ((@IsNull_TimeSpan = 1 AND [TimeSpan] IS NU" +
+                "LL) OR ([TimeSpan] = @Original_TimeSpan)) AND ((@IsNull_Generations = 1 AND [Gen" +
+                "erations] IS NULL) OR ([Generations] = @Original_Generations)) AND ((@IsNull_GAI" +
+                "D = 1 AND [GAID] IS NULL) OR ([GAID] = @Original_GAID)) AND ((@IsNull_Frequency " +
+                "= 1 AND [Frequency] IS NULL) OR ([Frequency] = @Original_Frequency)) AND ((@IsNu" +
+                "ll_SchOrder = 1 AND [SchOrder] IS NULL) OR ([SchOrder] = @Original_SchOrder)));\r" +
+                "\nSELECT ID, ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, Volum" +
+                "eString, ValueString, Genotype, Fine, Fitness, DateTime, TimeSpan, Generations, " +
+                "GAID, Frequency, SchOrder, Okays, Chromosome FROM KnapSolutions WHERE (ID = @ID)" +
+                "";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TotalWeight", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TotalWeight", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5004,6 +5292,9 @@ SELECT ID, ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, Volume
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Generations", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Generations", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GAID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GAID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Frequency", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Frequency", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SchOrder", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SchOrder", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Okays", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Okays", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Chromosome", global::System.Data.SqlDbType.Image, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Chromosome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -5027,6 +5318,8 @@ SELECT ID, ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, Volume
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GAID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GAID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Frequency", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Frequency", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Frequency", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Frequency", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SchOrder", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SchOrder", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SchOrder", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SchOrder", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -5043,9 +5336,7 @@ SELECT ID, ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, Volume
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT      ID, ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, Vo" +
-                "lumeString, ValueString, Genotype, Fine, Fitness, DateTime, TimeSpan, Generation" +
-                "s, GAID, Frequency\r\nFROM         KnapSolutions";
+            this._commandCollection[0].CommandText = "SELECT * FROM KnapSolutions";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5106,7 +5397,7 @@ SELECT ID, ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, Volume
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, global::System.Nullable<int> Original_ProblemID, global::System.Nullable<double> Original_TotalWeight, global::System.Nullable<double> Original_TotalVolume, global::System.Nullable<double> Original_TotalValue, global::System.Nullable<double> Original_Fine, global::System.Nullable<double> Original_Fitness, global::System.Nullable<global::System.DateTime> Original_DateTime, global::System.Nullable<double> Original_TimeSpan, global::System.Nullable<int> Original_Generations, global::System.Nullable<int> Original_GAID, global::System.Nullable<int> Original_Frequency) {
+        public virtual int Delete(int Original_ID, global::System.Nullable<int> Original_ProblemID, global::System.Nullable<double> Original_TotalWeight, global::System.Nullable<double> Original_TotalVolume, global::System.Nullable<double> Original_TotalValue, global::System.Nullable<double> Original_Fine, global::System.Nullable<double> Original_Fitness, global::System.Nullable<global::System.DateTime> Original_DateTime, global::System.Nullable<double> Original_TimeSpan, global::System.Nullable<int> Original_Generations, global::System.Nullable<int> Original_GAID, global::System.Nullable<int> Original_Frequency, global::System.Nullable<int> Original_SchOrder) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             if ((Original_ProblemID.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -5196,6 +5487,14 @@ SELECT ID, ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, Volume
                 this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
+            if ((Original_SchOrder.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[24].Value = ((int)(Original_SchOrder.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[23].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[24].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5216,7 +5515,25 @@ SELECT ID, ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, Volume
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> ProblemID, global::System.Nullable<double> TotalWeight, global::System.Nullable<double> TotalVolume, global::System.Nullable<double> TotalValue, string WeightString, string VolumeString, string ValueString, string Genotype, global::System.Nullable<double> Fine, global::System.Nullable<double> Fitness, global::System.Nullable<global::System.DateTime> DateTime, global::System.Nullable<double> TimeSpan, global::System.Nullable<int> Generations, global::System.Nullable<int> GAID, global::System.Nullable<int> Frequency) {
+        public virtual int Insert(
+                    global::System.Nullable<int> ProblemID, 
+                    global::System.Nullable<double> TotalWeight, 
+                    global::System.Nullable<double> TotalVolume, 
+                    global::System.Nullable<double> TotalValue, 
+                    string WeightString, 
+                    string VolumeString, 
+                    string ValueString, 
+                    string Genotype, 
+                    global::System.Nullable<double> Fine, 
+                    global::System.Nullable<double> Fitness, 
+                    global::System.Nullable<global::System.DateTime> DateTime, 
+                    global::System.Nullable<double> TimeSpan, 
+                    global::System.Nullable<int> Generations, 
+                    global::System.Nullable<int> GAID, 
+                    global::System.Nullable<int> Frequency, 
+                    global::System.Nullable<int> SchOrder, 
+                    string Okays, 
+                    byte[] Chromosome) {
             if ((ProblemID.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ProblemID.Value));
             }
@@ -5307,6 +5624,24 @@ SELECT ID, ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, Volume
             else {
                 this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
+            if ((SchOrder.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[15].Value = ((int)(SchOrder.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            if ((Okays == null)) {
+                this.Adapter.InsertCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[16].Value = ((string)(Okays));
+            }
+            if ((Chromosome == null)) {
+                this.Adapter.InsertCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[17].Value = ((byte[])(Chromosome));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5343,6 +5678,9 @@ SELECT ID, ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, Volume
                     global::System.Nullable<int> Generations, 
                     global::System.Nullable<int> GAID, 
                     global::System.Nullable<int> Frequency, 
+                    global::System.Nullable<int> SchOrder, 
+                    string Okays, 
+                    byte[] Chromosome, 
                     int Original_ID, 
                     global::System.Nullable<int> Original_ProblemID, 
                     global::System.Nullable<double> Original_TotalWeight, 
@@ -5355,6 +5693,7 @@ SELECT ID, ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, Volume
                     global::System.Nullable<int> Original_Generations, 
                     global::System.Nullable<int> Original_GAID, 
                     global::System.Nullable<int> Original_Frequency, 
+                    global::System.Nullable<int> Original_SchOrder, 
                     int ID) {
             if ((ProblemID.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ProblemID.Value));
@@ -5446,96 +5785,122 @@ SELECT ID, ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, Volume
             else {
                 this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_ID));
-            if ((Original_ProblemID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(Original_ProblemID.Value));
+            if ((SchOrder.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(SchOrder.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            if ((Okays == null)) {
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Okays));
+            }
+            if ((Chromosome == null)) {
                 this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
-            if ((Original_TotalWeight.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((double)(Original_TotalWeight.Value));
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((byte[])(Chromosome));
+            }
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((int)(Original_ID));
+            if ((Original_ProblemID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(Original_ProblemID.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+            }
+            if ((Original_TotalWeight.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((double)(Original_TotalWeight.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
             if ((Original_TotalVolume.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((double)(Original_TotalVolume.Value));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((double)(Original_TotalVolume.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
             }
             if ((Original_TotalValue.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((double)(Original_TotalValue.Value));
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((double)(Original_TotalValue.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
             }
             if ((Original_Fine.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((double)(Original_Fine.Value));
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((double)(Original_Fine.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
             }
             if ((Original_Fitness.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((double)(Original_Fitness.Value));
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((double)(Original_Fitness.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[30].Value = global::System.DBNull.Value;
             }
             if ((Original_DateTime.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[29].Value = ((System.DateTime)(Original_DateTime.Value));
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((System.DateTime)(Original_DateTime.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[32].Value = global::System.DBNull.Value;
             }
             if ((Original_TimeSpan.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[31].Value = ((double)(Original_TimeSpan.Value));
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[34].Value = ((double)(Original_TimeSpan.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[34].Value = global::System.DBNull.Value;
             }
             if ((Original_Generations.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[33].Value = ((int)(Original_Generations.Value));
+                this.Adapter.UpdateCommand.Parameters[35].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[36].Value = ((int)(Original_Generations.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[33].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[35].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[36].Value = global::System.DBNull.Value;
             }
             if ((Original_GAID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[35].Value = ((int)(Original_GAID.Value));
+                this.Adapter.UpdateCommand.Parameters[37].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[38].Value = ((int)(Original_GAID.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[35].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[37].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[38].Value = global::System.DBNull.Value;
             }
             if ((Original_Frequency.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[37].Value = ((int)(Original_Frequency.Value));
+                this.Adapter.UpdateCommand.Parameters[39].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[40].Value = ((int)(Original_Frequency.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[37].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[39].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[40].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[38].Value = ((int)(ID));
+            if ((Original_SchOrder.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[41].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[42].Value = ((int)(Original_SchOrder.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[41].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[42].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[43].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5572,6 +5937,9 @@ SELECT ID, ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, Volume
                     global::System.Nullable<int> Generations, 
                     global::System.Nullable<int> GAID, 
                     global::System.Nullable<int> Frequency, 
+                    global::System.Nullable<int> SchOrder, 
+                    string Okays, 
+                    byte[] Chromosome, 
                     int Original_ID, 
                     global::System.Nullable<int> Original_ProblemID, 
                     global::System.Nullable<double> Original_TotalWeight, 
@@ -5583,8 +5951,9 @@ SELECT ID, ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, Volume
                     global::System.Nullable<double> Original_TimeSpan, 
                     global::System.Nullable<int> Original_Generations, 
                     global::System.Nullable<int> Original_GAID, 
-                    global::System.Nullable<int> Original_Frequency) {
-            return this.Update(ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, VolumeString, ValueString, Genotype, Fine, Fitness, DateTime, TimeSpan, Generations, GAID, Frequency, Original_ID, Original_ProblemID, Original_TotalWeight, Original_TotalVolume, Original_TotalValue, Original_Fine, Original_Fitness, Original_DateTime, Original_TimeSpan, Original_Generations, Original_GAID, Original_Frequency, Original_ID);
+                    global::System.Nullable<int> Original_Frequency, 
+                    global::System.Nullable<int> Original_SchOrder) {
+            return this.Update(ProblemID, TotalWeight, TotalVolume, TotalValue, WeightString, VolumeString, ValueString, Genotype, Fine, Fitness, DateTime, TimeSpan, Generations, GAID, Frequency, SchOrder, Okays, Chromosome, Original_ID, Original_ProblemID, Original_TotalWeight, Original_TotalVolume, Original_TotalValue, Original_Fine, Original_Fitness, Original_DateTime, Original_TimeSpan, Original_Generations, Original_GAID, Original_Frequency, Original_SchOrder, Original_ID);
         }
     }
     
@@ -6621,34 +6990,53 @@ SELECT ID, Termination, Crossover, MutationProb, CrossParents, CrossChildren, Cr
             tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("ProblemID", "ProblemID");
             tableMapping.ColumnMappings.Add("Label", "Label");
+            tableMapping.ColumnMappings.Add("MinSize", "MinSize");
+            tableMapping.ColumnMappings.Add("MaxSize", "MaxSize");
+            tableMapping.ColumnMappings.Add("Iters", "Iters");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [Problems] WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 A" +
-                "ND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Problems] WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_MinSize = 1 AND [MinSize] IS NULL) OR ([MinSize] = @Original_MinSize)) AND ((@IsNull_MaxSize = 1 AND [MaxSize] IS NULL) OR ([MaxSize] = @Original_MaxSize)) AND ((@IsNull_Iters = 1 AND [Iters] IS NULL) OR ([Iters] = @Original_Iters)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MinSize", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MinSize", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MinSize", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MinSize", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MaxSize", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MaxSize", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MaxSize", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MaxSize", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Iters", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Iters", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Iters", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Iters", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [Problems] ([ProblemID], [Label]) VALUES (@ProblemID, @Label);\r\nSELEC" +
-                "T ID, ProblemID, Label FROM Problems WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [Problems] ([ProblemID], [Label], [MinSize], [MaxSize], [Iters]) VALU" +
+                "ES (@ProblemID, @Label, @MinSize, @MaxSize, @Iters);\r\nSELECT ID, ProblemID, Labe" +
+                "l, MinSize, MaxSize, Iters FROM Problems WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Label", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Label", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MinSize", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MinSize", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MaxSize", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MaxSize", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Iters", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Iters", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [Problems] SET [ProblemID] = @ProblemID, [Label] = @Label WHERE (([ID] = @" +
-                "Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID" +
-                "] = @Original_ProblemID)));\r\nSELECT ID, ProblemID, Label FROM Problems WHERE (ID" +
-                " = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Problems] SET [ProblemID] = @ProblemID, [Label] = @Label, [MinSize] = @MinSize, [MaxSize] = @MaxSize, [Iters] = @Iters WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_MinSize = 1 AND [MinSize] IS NULL) OR ([MinSize] = @Original_MinSize)) AND ((@IsNull_MaxSize = 1 AND [MaxSize] IS NULL) OR ([MaxSize] = @Original_MaxSize)) AND ((@IsNull_Iters = 1 AND [Iters] IS NULL) OR ([Iters] = @Original_Iters)));
+SELECT ID, ProblemID, Label, MinSize, MaxSize, Iters FROM Problems WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Label", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Label", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MinSize", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MinSize", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MaxSize", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MaxSize", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Iters", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Iters", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MinSize", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MinSize", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MinSize", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MinSize", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MaxSize", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MaxSize", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MaxSize", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MaxSize", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Iters", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Iters", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Iters", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Iters", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -6726,7 +7114,7 @@ SELECT ID, Termination, Crossover, MutationProb, CrossParents, CrossChildren, Cr
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, global::System.Nullable<int> Original_ProblemID) {
+        public virtual int Delete(int Original_ID, global::System.Nullable<int> Original_ProblemID, global::System.Nullable<int> Original_MinSize, global::System.Nullable<int> Original_MaxSize, global::System.Nullable<int> Original_Iters) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             if ((Original_ProblemID.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -6735,6 +7123,30 @@ SELECT ID, Termination, Crossover, MutationProb, CrossParents, CrossChildren, Cr
             else {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((Original_MinSize.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_MinSize.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((Original_MaxSize.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((int)(Original_MaxSize.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Iters.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((int)(Original_Iters.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -6756,7 +7168,7 @@ SELECT ID, Termination, Crossover, MutationProb, CrossParents, CrossChildren, Cr
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> ProblemID, string Label) {
+        public virtual int Insert(global::System.Nullable<int> ProblemID, string Label, global::System.Nullable<int> MinSize, global::System.Nullable<int> MaxSize, global::System.Nullable<int> Iters) {
             if ((ProblemID.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ProblemID.Value));
             }
@@ -6768,6 +7180,24 @@ SELECT ID, Termination, Crossover, MutationProb, CrossParents, CrossChildren, Cr
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Label));
+            }
+            if ((MinSize.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(MinSize.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((MaxSize.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(MaxSize.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((Iters.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((int)(Iters.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -6789,7 +7219,7 @@ SELECT ID, Termination, Crossover, MutationProb, CrossParents, CrossChildren, Cr
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> ProblemID, string Label, int Original_ID, global::System.Nullable<int> Original_ProblemID, int ID) {
+        public virtual int Update(global::System.Nullable<int> ProblemID, string Label, global::System.Nullable<int> MinSize, global::System.Nullable<int> MaxSize, global::System.Nullable<int> Iters, int Original_ID, global::System.Nullable<int> Original_ProblemID, global::System.Nullable<int> Original_MinSize, global::System.Nullable<int> Original_MaxSize, global::System.Nullable<int> Original_Iters, int ID) {
             if ((ProblemID.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ProblemID.Value));
             }
@@ -6802,16 +7232,58 @@ SELECT ID, Termination, Crossover, MutationProb, CrossParents, CrossChildren, Cr
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Label));
             }
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_ID));
-            if ((Original_ProblemID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_ProblemID.Value));
+            if ((MinSize.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(MinSize.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((MaxSize.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(MaxSize.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((Iters.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Iters.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(ID));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_ID));
+            if ((Original_ProblemID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_ProblemID.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((Original_MinSize.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_MinSize.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((Original_MaxSize.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_MaxSize.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Iters.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_Iters.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6832,8 +7304,8 @@ SELECT ID, Termination, Crossover, MutationProb, CrossParents, CrossChildren, Cr
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> ProblemID, string Label, int Original_ID, global::System.Nullable<int> Original_ProblemID) {
-            return this.Update(ProblemID, Label, Original_ID, Original_ProblemID, Original_ID);
+        public virtual int Update(global::System.Nullable<int> ProblemID, string Label, global::System.Nullable<int> MinSize, global::System.Nullable<int> MaxSize, global::System.Nullable<int> Iters, int Original_ID, global::System.Nullable<int> Original_ProblemID, global::System.Nullable<int> Original_MinSize, global::System.Nullable<int> Original_MaxSize, global::System.Nullable<int> Original_Iters) {
+            return this.Update(ProblemID, Label, MinSize, MaxSize, Iters, Original_ID, Original_ProblemID, Original_MinSize, Original_MaxSize, Original_Iters, Original_ID);
         }
     }
     

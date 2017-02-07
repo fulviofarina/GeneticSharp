@@ -32,10 +32,12 @@ namespace GAForm
         float CROSSPROB =0.75f; //dummy value
         int MINSIZE=8; //dummy value
         int MAXSIZE = 16; //dummy value
+        int ITERS = 5;
        
         private GADataSet.KnapSolutionsRow currentSolution = null;
         private GADataSet.GARow currentGARow = null;
         private GADataSet.ProblemsRow currentProblem;
+       
 
         public KnapForm()
         {
@@ -49,18 +51,23 @@ namespace GAForm
         public void Go(object sender, EventArgs e)
         {
 
-            //MIN SIZE OF CHROMOSOME TO ITERATE
-            MINSIZE = int.Parse(this.chsizebox.Text);
-            //MAX SIZE OF CHROMOSOME TO ITERATE
-            MAXSIZE = int.Parse(this.chSizeMaxbox.Text);
+            this.Validate();
 
-           
+            //MIN SIZE OF CHROMOSOME TO ITERATE
+            MINSIZE = this.currentProblem.MinSize;
+            //MAX SIZE OF CHROMOSOME TO ITERATE
+            MAXSIZE = this.currentProblem.MaxSize ;
+
+            ITERS = this.currentProblem.Iters;
+
+
+            int iterCounter=1;
+
             do
             {
 
               
-
-                this.Validate();
+              
                 this.gobtn.Enabled = false;
                 this.stopbtn.Enabled = true;
 
@@ -82,9 +89,10 @@ namespace GAForm
                 currentGARow.ChromosomeLength = MINSIZE;
                 //create knapRow
 
-                this.TAM.UpdateAll(this.gADataSet);
+                this.gATA.Update(this.gADataSet.GA);
+
                 this.knapSolBS.Filter = this.gADataSet.KnapSolutions.GAIDColumn.ColumnName + "=" + currentGARow.ID;
-                this.knapSolBS.Sort = this.gADataSet.KnapSolutions.TimeSpanColumn.ColumnName + " desc";
+             //   this.knapSolBS.Sort = this.gADataSet.KnapSolutions.TimeSpanColumn.ColumnName + " desc";
 
 
                 ///CUT HERE
@@ -112,9 +120,9 @@ namespace GAForm
 
                     Application.DoEvents();
                     currentSolution = this.gADataSet.KnapSolutions.NewKnapSolutionsRow();
-                    controller.FillRow(ref currentSolution, ref bestChromosome);
-                    controller.FillRow(ref currentSolution, ref  currentGARow);
-                    controller.DecodeRow(ref currentSolution);
+                    controller.FillBasic(ref currentSolution, ref bestChromosome);
+                    controller.FillGAData(ref currentSolution, ref  currentGARow);
+                    controller.FillStrings(ref currentSolution);
 
                     //IF NOT PRESENT IN THE LIST IS A NEW CHROMOSOME
                     if (hgenotypes.Add(currentSolution.Genotype)) //add to hashShet
@@ -163,8 +171,15 @@ namespace GAForm
                 this.stopbtn.Enabled = false;
 
 
-                MINSIZE++; //ADD SIZE OF CHROMOSOME NEXT GENETIC ALGORITHM
-
+                if (iterCounter < ITERS)
+                {
+                    iterCounter++;
+                }
+                else
+                {
+                    iterCounter = 1;
+                    MINSIZE++; //ADD SIZE OF CHROMOSOME NEXT GENETIC ALGORITHM
+                }
 
             } while (MINSIZE <= MAXSIZE);
 
@@ -203,6 +218,10 @@ namespace GAForm
 
         private void KnapForm_Load(object sender, EventArgs e)
         {
+
+            this.knapSolBS.Sort = this.gADataSet.KnapSolutions.ChromosomeLengthColumn.ColumnName + "," + this.gADataSet.KnapSolutions.FitnessColumn.ColumnName + "," + this.gADataSet.KnapSolutions.TimeSpanColumn.ColumnName + "," + this.gADataSet.KnapSolutions.FrequencyColumn.ColumnName + " desc";
+
+
             this.problemsTA.Fill(this.gADataSet.Problems);
             this.KnapConditionTA.Fill(this.gADataSet.KnapConditions);
             // TODO: This line of code loads data into the 'gADataSet.GA' table. You can move, or remove it, as needed.
@@ -211,6 +230,8 @@ namespace GAForm
             this.knapSolTA.Fill(this.gADataSet.KnapSolutions);
             // TODO: This line of code loads data into the 'gADataSet.KnapData' table. You can move, or remove it, as needed.
             this.knapDataTA.Fill(this.gADataSet.KnapData);
+
+          
 
             dgvDoubleMouseclick(this.problemsDataGridView, arg);
         }
@@ -259,14 +280,16 @@ namespace GAForm
                 int count = datas.Count;
                 datas = null;
 
-                chsizebox.Text = count.ToString();
-                chSizeMaxbox.Text = (count * 2).ToString();
+              //  chsizebox.Text = count.ToString();
+              //  chSizeMaxbox.Text = (count * 2).ToString();
 
                 this.gABS.Filter = this.gADataSet.GA.ProblemIDColumn.ColumnName + "="+currentProblem.ProblemID;
-             
-                dgvDoubleMouseclick(this.gADataGridView,arg);
 
-              
+                this.knapSolBS.Filter = this.gADataSet.KnapSolutions.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
+             
+                //  dgvDoubleMouseclick(this.gADataGridView,arg);
+
+
             }
             else if (sender.Equals(this.gADataGridView))
             {
@@ -274,7 +297,10 @@ namespace GAForm
                 currentGARow = dgvr.Row as GADataSet.GARow;
 
                 this.knapSolBS.Filter = this.gADataSet.KnapSolutions.GAIDColumn.ColumnName + "=" + currentGARow.ID;
-                this.knapSolBS.Sort = this.gADataSet.KnapSolutions.TimeSpanColumn.ColumnName + " desc";
+
+           //     this.knapSolBS.Sort = this.gADataSet.KnapSolutions.FitnessColumn.ColumnName + "," + this.gADataSet.KnapSolutions.TimeSpanColumn.ColumnName + "," + this.gADataSet.KnapSolutions.FrequencyColumn.ColumnName + " desc";
+
+                //this.knapSolBS.Sort = this.gADataSet.KnapSolutions.TimeSpanColumn.ColumnName + " desc";
 
 
             }
