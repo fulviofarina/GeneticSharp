@@ -14,32 +14,14 @@ namespace GADB
     {
 
 
-        private HashSet<string> hgenotypes = null;
-        private List<GADataSet.KnapSolutionsRow> sols = null;
-        private GADataSet.GARow gaRow = null;
-
-        public GADataSet.GARow GaRow
-        {
-            get
-            {
-                return gaRow;
-            }
-
-            set
-            {
-                gaRow = value;
-            }
-        }
-
-
-        private string[] variableNames;
+      
+     
         private DataRow[] conditions = null;
 
         private int SIZE = 6;
 
-        private int PROBLEMID = 0; //important!!!
+      
 
-        private DataRow[] problemData = null;
 
         /// <summary>
         /// Finds the fine for the given solution row, based on the conditions MAX, MIN and FINE TARIF
@@ -53,14 +35,14 @@ namespace GADB
             for (int j = 0; j < conditions.Length; j++)
             {
                 //find if all parameters are ok
-                bool[] varOk = new bool[variableNames.Length];
+                bool[] varOk = new bool[VariableNames.Length];
                 bool ANDS_OK = true;
-                for (int i = 0; i < variableNames.Length; i++)
+                for (int i = 0; i < VariableNames.Length; i++)
                 {
                     varOk[i] = false;
-                    string totalVarStr = "Total" + variableNames[i];
-                    string maxVarStr = "Max" + variableNames[i];
-                    string minVarStr = "Min" + variableNames[i];
+                    string totalVarStr = "Total" + VariableNames[i];
+                    string maxVarStr = "Max" + VariableNames[i];
+                    string minVarStr = "Min" + VariableNames[i];
                     //is the variable within the window given by the condition?
                     double a = r.Field<double>(totalVarStr);
                     double b = conditions[j].Field<double>(maxVarStr);
@@ -75,7 +57,7 @@ namespace GADB
                 //FIRST LETER T OR F
 
                 string actualStr = r.Field<string>("Okays");
-                for (int i = 0; i < variableNames.Length; i++)
+                for (int i = 0; i < VariableNames.Length; i++)
                 {
                     actualStr += varOk[i].ToString()[0] + " ";
                 }
@@ -89,14 +71,14 @@ namespace GADB
                 }
                 else
                 {
-                    for (int i = 0; i < variableNames.Length; i++)
+                    for (int i = 0; i < VariableNames.Length; i++)
                     {
                         if (!varOk[i])
                         {
                             //auxiliars
-                            string str = "Total" + variableNames[i];
-                            string maxCondstr = "Max" + variableNames[i];
-                            string fineCondstr = variableNames[i] + "Fine";
+                            string str = "Total" + VariableNames[i];
+                            string maxCondstr = "Max" + VariableNames[i];
+                            string fineCondstr = VariableNames[i] + "Fine";
 
                             //difference value less MAX_VALUE
                             double auxiliarDifference = r.Field<double>(str) - conditions[j].Field<double>(maxCondstr);
@@ -118,7 +100,7 @@ namespace GADB
         /// </summary>
         /// <param name="r"></param>
         /// <param name="c"></param>
-        private void fillBasic(ref GADataSet.KnapSolutionsRow r, ref GADataSet.KnapStringsRow s, ref IChromosome c)
+        private void fillBasic(ref GADataSet.SolutionsRow r, ref GADataSet.KnapStringsRow s, ref IChromosome c)
         {
             r.Knap(ref c);
 
@@ -130,10 +112,10 @@ namespace GADB
             s.Okays = string.Empty; //initialize the isOKStringArray //for info
 
 
-            for (int i = 0; i < variableNames.Length; i++)
+            for (int i = 0; i < VariableNames.Length; i++)
             {
-                double dummy = Aid.SetBasic(r.GenesAsInts, problemData, variableNames[i]);
-                s.SetField("Total" + variableNames[i], dummy); //first
+                double dummy = Aid.SetBasic(r.GenesAsInts, ProblemData, VariableNames[i]);
+                s.SetField("Total" + VariableNames[i], dummy); //first
             }
 
             r.ProblemID = PROBLEMID;
@@ -150,17 +132,7 @@ namespace GADB
         /// POST CALCULATION TO DECODE
         /// </summary>
         /// <param name="r"></param>
-        private void fillStrings(ref GADataSet.KnapSolutionsRow r, ref GADataSet.KnapStringsRow s)
-        {
-            r.Genotype = Aid.SetStrings(r.GenesAsInts);
-
-            for (int i = 0; i < variableNames.Length; i++)
-            {
-                string dummy = Aid.DecodeStrings(r.GenesAsInts, problemData, variableNames[i]);
-                string field = variableNames[i] + "String";
-                s.SetField(field, dummy); //first
-            }
-        }
+     
 
         // //// / / / / / //////// //////////////////////////// AQUI TEMPLATE
         /// <summary>
@@ -177,10 +149,9 @@ namespace GADB
                 throw new Exception("No Problem Conditions given");
             }
 
-            //fill arrays of values, wieghts and volumes
-            problemData = p.GetKnapDataRows();
+            ProblemData = p.GetKnapDataRows();
 
-            if (problemData.Length == 0)
+            if (ProblemData.Length == 0)
             {
                 throw new Exception("No Problem Variables and Values given");
             }
@@ -189,7 +160,7 @@ namespace GADB
 
             PROBLEMID = p.ProblemID;
 
-            variableNames = problemData.FirstOrDefault()
+            VariableNames = ProblemData.FirstOrDefault()
                 .Table.Columns.OfType<DataColumn>()
                 .Where(o => !o.ColumnName.Contains("ID"))
                 .Select(o => o.ColumnName).ToArray();
@@ -207,10 +178,10 @@ namespace GADB
         public override void PostScript( )
         {
             //LIST OF NON REPEATED VALUES
-            hgenotypes = new HashSet<string>();
+            HashListOfGenotypes = new HashSet<string>();
             //NORMAL LIST TO ACCOMPANY, BECAUSE  A LIST IS INDEXED
             //AND A HASHSET IS NOT
-            sols = new List<GADataSet.KnapSolutionsRow>();
+            ListOfSolutions = new List<GADataSet.SolutionsRow>();
 
 
             BackgroundWorker w = new BackgroundWorker();
@@ -231,7 +202,7 @@ namespace GADB
         {
             FinalCallBack.Invoke();
 
-           // throw new NotImplementedException();
+          
         }
 
         private void W_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -246,39 +217,40 @@ namespace GADB
                 GeneticAlgorithm ga = GA;
             IChromosome bestChromosome = GA.Population.BestChromosome;
 
-            gaRow.Fill(ref ga); //report GA stuff
+            GARow.Fill(ref ga); //report GA stuff
 
 
-            //    CallBack.Invoke();
-
-             //    Application.DoEvents();
-                GADataSet ds = gaRow.Table.DataSet as GADataSet;
-            GADataSet.KnapSolutionsRow currentSolution = null;
-            currentSolution = ds.KnapSolutions.NewKnapSolutionsRow();
+       
+                GADataSet ds = GARow.Table.DataSet as GADataSet;
+            GADataSet.SolutionsRow currentSolution = null;
+            currentSolution = ds.Solutions.NewSolutionsRow();
             GADataSet.KnapStringsRow currentString = null;
             currentString = ds.KnapStrings.NewKnapStringsRow();
 
                
 
             fillBasic(ref currentSolution, ref currentString, ref bestChromosome);
-            FillGAData(ref currentSolution, ref gaRow);
-            fillStrings(ref currentSolution, ref currentString);
+
+
+                FillGAData(ref currentSolution);
+             //   DataRow r = currentString;
+            FillStrings(ref currentSolution, ref currentString);
 
 
             //IF NOT PRESENT IN THE LIST IS A NEW CHROMOSOME
             string genotype = currentSolution.Genotype;
-            if (hgenotypes.Add(genotype)) //add to hashShet
+            if (HashListOfGenotypes.Add(genotype)) //add to hashShet
             {
-                ds.KnapSolutions.AddKnapSolutionsRow(currentSolution);
+                ds.Solutions.AddSolutionsRow(currentSolution);
                 currentString.GAID = currentSolution.GAID;
                 currentString.ProblemID = currentSolution.ProblemID;
                 ds.KnapStrings.AddKnapStringsRow(currentString);
-                sols.Add(currentSolution);//add to indexed list
+                ListOfSolutions.Add(currentSolution);//add to indexed list
             }
             else
             {
-                int i = sols.FindIndex(o => o.Genotype.Equals(genotype));
-                sols[i].Frequency++;
+                int i = ListOfSolutions.FindIndex(o => o.Genotype.Equals(genotype));
+                ListOfSolutions[i].Frequency++;
                 // currentSolution = null;
             }
 
@@ -288,12 +260,14 @@ namespace GADB
 
             currentString.SolutionID = currentSolution.ID;
 
+
+
+
             }
             catch (Exception ex)
             {
 
-                string text = ex.StackTrace;
-                string yo = ex.Message;
+                throw;
             }
 
 
@@ -329,10 +303,10 @@ namespace GADB
             int max = gasrows.Max(o => o.ChromosomeLength);
 
             HashSet<string> hash = new HashSet<string>();
-            List<GADataSet.KnapSolutionsRow> list = new List<GADataSet.KnapSolutionsRow>();
+            List<GADataSet.SolutionsRow> list = new List<GADataSet.SolutionsRow>();
 
             // int counter = 1;
-            Func<GADataSet.KnapSolutionsRow, bool> funcion;
+            Func<GADataSet.SolutionsRow, bool> funcion;
 
             funcion = o =>
             {
@@ -365,7 +339,7 @@ namespace GADB
                 subFirst.TimeStamp = subs.Average(o => o.TimeStamp);
 
                 //select GARow childrens
-                IEnumerable<GADataSet.KnapSolutionsRow> knaprows = subs.SelectMany(o => o.GetKnapSolutionsRows());
+                IEnumerable<GADataSet.SolutionsRow> knaprows = subs.SelectMany(o => o.GetSolutionsRows());
 
                 hash.Clear(); //clear
                 list.Clear();//clear

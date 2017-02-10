@@ -24,9 +24,9 @@ namespace GADB {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class GADataSet : global::System.Data.DataSet {
         
-        private KnapDataDataTable tableKnapData;
+        private DataDataTable tableData;
         
-        private KnapSolutionsDataTable tableKnapSolutions;
+        private SolutionsDataTable tableSolutions;
         
         private GADataTable tableGA;
         
@@ -36,9 +36,9 @@ namespace GADB {
         
         private KnapStringsDataTable tableKnapStrings;
         
-        private global::System.Data.DataRelation relationGA_KnapSolutions;
+        private global::System.Data.DataRelation relationGA_Solutions;
         
-        private global::System.Data.DataRelation relationProblems_KnapSolutions;
+        private global::System.Data.DataRelation relationProblems_Solutions;
         
         private global::System.Data.DataRelation relationProblems_KnapData;
         
@@ -46,7 +46,7 @@ namespace GADB {
         
         private global::System.Data.DataRelation relationProblems_GA;
         
-        private global::System.Data.DataRelation relationKnapStrings_KnapSolutions;
+        private global::System.Data.DataRelation relationKnapStrings_Solutions;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -80,11 +80,11 @@ namespace GADB {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["KnapData"] != null)) {
-                    base.Tables.Add(new KnapDataDataTable(ds.Tables["KnapData"]));
+                if ((ds.Tables["Data"] != null)) {
+                    base.Tables.Add(new DataDataTable(ds.Tables["Data"]));
                 }
-                if ((ds.Tables["KnapSolutions"] != null)) {
-                    base.Tables.Add(new KnapSolutionsDataTable(ds.Tables["KnapSolutions"]));
+                if ((ds.Tables["Solutions"] != null)) {
+                    base.Tables.Add(new SolutionsDataTable(ds.Tables["Solutions"]));
                 }
                 if ((ds.Tables["GA"] != null)) {
                     base.Tables.Add(new GADataTable(ds.Tables["GA"]));
@@ -121,9 +121,9 @@ namespace GADB {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public KnapDataDataTable KnapData {
+        public DataDataTable Data {
             get {
-                return this.tableKnapData;
+                return this.tableData;
             }
         }
         
@@ -131,9 +131,9 @@ namespace GADB {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public KnapSolutionsDataTable KnapSolutions {
+        public SolutionsDataTable Solutions {
             get {
-                return this.tableKnapSolutions;
+                return this.tableSolutions;
             }
         }
         
@@ -245,11 +245,11 @@ namespace GADB {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["KnapData"] != null)) {
-                    base.Tables.Add(new KnapDataDataTable(ds.Tables["KnapData"]));
+                if ((ds.Tables["Data"] != null)) {
+                    base.Tables.Add(new DataDataTable(ds.Tables["Data"]));
                 }
-                if ((ds.Tables["KnapSolutions"] != null)) {
-                    base.Tables.Add(new KnapSolutionsDataTable(ds.Tables["KnapSolutions"]));
+                if ((ds.Tables["Solutions"] != null)) {
+                    base.Tables.Add(new SolutionsDataTable(ds.Tables["Solutions"]));
                 }
                 if ((ds.Tables["GA"] != null)) {
                     base.Tables.Add(new GADataTable(ds.Tables["GA"]));
@@ -296,16 +296,16 @@ namespace GADB {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableKnapData = ((KnapDataDataTable)(base.Tables["KnapData"]));
+            this.tableData = ((DataDataTable)(base.Tables["Data"]));
             if ((initTable == true)) {
-                if ((this.tableKnapData != null)) {
-                    this.tableKnapData.InitVars();
+                if ((this.tableData != null)) {
+                    this.tableData.InitVars();
                 }
             }
-            this.tableKnapSolutions = ((KnapSolutionsDataTable)(base.Tables["KnapSolutions"]));
+            this.tableSolutions = ((SolutionsDataTable)(base.Tables["Solutions"]));
             if ((initTable == true)) {
-                if ((this.tableKnapSolutions != null)) {
-                    this.tableKnapSolutions.InitVars();
+                if ((this.tableSolutions != null)) {
+                    this.tableSolutions.InitVars();
                 }
             }
             this.tableGA = ((GADataTable)(base.Tables["GA"]));
@@ -332,12 +332,12 @@ namespace GADB {
                     this.tableKnapStrings.InitVars();
                 }
             }
-            this.relationGA_KnapSolutions = this.Relations["GA_KnapSolutions"];
-            this.relationProblems_KnapSolutions = this.Relations["Problems_KnapSolutions"];
+            this.relationGA_Solutions = this.Relations["GA_Solutions"];
+            this.relationProblems_Solutions = this.Relations["Problems_Solutions"];
             this.relationProblems_KnapData = this.Relations["Problems_KnapData"];
             this.relationProblems_KnapConditions = this.Relations["Problems_KnapConditions"];
             this.relationProblems_GA = this.Relations["Problems_GA"];
-            this.relationKnapStrings_KnapSolutions = this.Relations["KnapStrings_KnapSolutions"];
+            this.relationKnapStrings_Solutions = this.Relations["KnapStrings_Solutions"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -348,10 +348,10 @@ namespace GADB {
             this.Namespace = "http://tempuri.org/GADataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableKnapData = new KnapDataDataTable();
-            base.Tables.Add(this.tableKnapData);
-            this.tableKnapSolutions = new KnapSolutionsDataTable(false);
-            base.Tables.Add(this.tableKnapSolutions);
+            this.tableData = new DataDataTable();
+            base.Tables.Add(this.tableData);
+            this.tableSolutions = new SolutionsDataTable(false);
+            base.Tables.Add(this.tableSolutions);
             this.tableGA = new GADataTable();
             base.Tables.Add(this.tableGA);
             this.tableProblems = new ProblemsDataTable();
@@ -360,17 +360,17 @@ namespace GADB {
             base.Tables.Add(this.tableKnapConditions);
             this.tableKnapStrings = new KnapStringsDataTable();
             base.Tables.Add(this.tableKnapStrings);
-            this.relationGA_KnapSolutions = new global::System.Data.DataRelation("GA_KnapSolutions", new global::System.Data.DataColumn[] {
+            this.relationGA_Solutions = new global::System.Data.DataRelation("GA_Solutions", new global::System.Data.DataColumn[] {
                         this.tableGA.IDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableKnapSolutions.GAIDColumn}, false);
-            this.Relations.Add(this.relationGA_KnapSolutions);
-            this.relationProblems_KnapSolutions = new global::System.Data.DataRelation("Problems_KnapSolutions", new global::System.Data.DataColumn[] {
+                        this.tableSolutions.GAIDColumn}, false);
+            this.Relations.Add(this.relationGA_Solutions);
+            this.relationProblems_Solutions = new global::System.Data.DataRelation("Problems_Solutions", new global::System.Data.DataColumn[] {
                         this.tableProblems.ProblemIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableKnapSolutions.ProblemIDColumn}, false);
-            this.Relations.Add(this.relationProblems_KnapSolutions);
+                        this.tableSolutions.ProblemIDColumn}, false);
+            this.Relations.Add(this.relationProblems_Solutions);
             this.relationProblems_KnapData = new global::System.Data.DataRelation("Problems_KnapData", new global::System.Data.DataColumn[] {
                         this.tableProblems.ProblemIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableKnapData.ProblemIDColumn}, false);
+                        this.tableData.ProblemIDColumn}, false);
             this.Relations.Add(this.relationProblems_KnapData);
             this.relationProblems_KnapConditions = new global::System.Data.DataRelation("Problems_KnapConditions", new global::System.Data.DataColumn[] {
                         this.tableProblems.ProblemIDColumn}, new global::System.Data.DataColumn[] {
@@ -380,25 +380,25 @@ namespace GADB {
                         this.tableProblems.IDColumn}, new global::System.Data.DataColumn[] {
                         this.tableGA.ProblemIDColumn}, false);
             this.Relations.Add(this.relationProblems_GA);
-            this.relationKnapStrings_KnapSolutions = new global::System.Data.DataRelation("KnapStrings_KnapSolutions", new global::System.Data.DataColumn[] {
+            this.relationKnapStrings_Solutions = new global::System.Data.DataRelation("KnapStrings_Solutions", new global::System.Data.DataColumn[] {
                         this.tableKnapStrings.ProblemIDColumn,
                         this.tableKnapStrings.SolutionIDColumn,
                         this.tableKnapStrings.GAIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableKnapSolutions.ProblemIDColumn,
-                        this.tableKnapSolutions.IDColumn,
-                        this.tableKnapSolutions.GAIDColumn}, false);
-            this.Relations.Add(this.relationKnapStrings_KnapSolutions);
+                        this.tableSolutions.ProblemIDColumn,
+                        this.tableSolutions.IDColumn,
+                        this.tableSolutions.GAIDColumn}, false);
+            this.Relations.Add(this.relationKnapStrings_Solutions);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeKnapData() {
+        private bool ShouldSerializeData() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeKnapSolutions() {
+        private bool ShouldSerializeSolutions() {
             return false;
         }
         
@@ -484,14 +484,14 @@ namespace GADB {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitExpressions() {
-            this.KnapSolutions.ChromosomeLengthColumn.Expression = "Parent(GA_KnapSolutions).ChromosomeLength";
+            this.Solutions.ChromosomeLengthColumn.Expression = "Parent(GA_Solutions).ChromosomeLength";
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void KnapDataRowChangeEventHandler(object sender, KnapDataRowChangeEvent e);
+        public delegate void DataRowChangeEventHandler(object sender, DataRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void KnapSolutionsRowChangeEventHandler(object sender, KnapSolutionsRowChangeEvent e);
+        public delegate void SolutionsRowChangeEventHandler(object sender, SolutionsRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void GARowChangeEventHandler(object sender, GARowChangeEvent e);
@@ -510,7 +510,7 @@ namespace GADB {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class KnapDataDataTable : global::System.Data.TypedTableBase<KnapDataRow> {
+        public partial class DataDataTable : global::System.Data.TypedTableBase<DataRow> {
             
             private global::System.Data.DataColumn columnID;
             
@@ -524,8 +524,8 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapDataDataTable() {
-                this.TableName = "KnapData";
+            public DataDataTable() {
+                this.TableName = "Data";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -533,7 +533,7 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal KnapDataDataTable(global::System.Data.DataTable table) {
+            internal DataDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -550,7 +550,7 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected KnapDataDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected DataDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -606,34 +606,34 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapDataRow this[int index] {
+            public DataRow this[int index] {
                 get {
-                    return ((KnapDataRow)(this.Rows[index]));
+                    return ((DataRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event KnapDataRowChangeEventHandler KnapDataRowChanging;
+            public event DataRowChangeEventHandler DataRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event KnapDataRowChangeEventHandler KnapDataRowChanged;
+            public event DataRowChangeEventHandler DataRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event KnapDataRowChangeEventHandler KnapDataRowDeleting;
+            public event DataRowChangeEventHandler DataRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event KnapDataRowChangeEventHandler KnapDataRowDeleted;
+            public event DataRowChangeEventHandler DataRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddKnapDataRow(KnapDataRow row) {
+            public void AddDataRow(DataRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapDataRow AddKnapDataRow(ProblemsRow parentProblemsRowByProblems_KnapData, double Weight, double Volume, double Value) {
-                KnapDataRow rowKnapDataRow = ((KnapDataRow)(this.NewRow()));
+            public DataRow AddDataRow(ProblemsRow parentProblemsRowByProblems_KnapData, double Weight, double Volume, double Value) {
+                DataRow rowDataRow = ((DataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
@@ -643,22 +643,22 @@ namespace GADB {
                 if ((parentProblemsRowByProblems_KnapData != null)) {
                     columnValuesArray[1] = parentProblemsRowByProblems_KnapData[1];
                 }
-                rowKnapDataRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowKnapDataRow);
-                return rowKnapDataRow;
+                rowDataRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowDataRow);
+                return rowDataRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapDataRow FindByID(int ID) {
-                return ((KnapDataRow)(this.Rows.Find(new object[] {
+            public DataRow FindByID(int ID) {
+                return ((DataRow)(this.Rows.Find(new object[] {
                             ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                KnapDataDataTable cln = ((KnapDataDataTable)(base.Clone()));
+                DataDataTable cln = ((DataDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -666,7 +666,7 @@ namespace GADB {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new KnapDataDataTable();
+                return new DataDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -704,28 +704,28 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapDataRow NewKnapDataRow() {
-                return ((KnapDataRow)(this.NewRow()));
+            public DataRow NewDataRow() {
+                return ((DataRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new KnapDataRow(builder);
+                return new DataRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(KnapDataRow);
+                return typeof(DataRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.KnapDataRowChanged != null)) {
-                    this.KnapDataRowChanged(this, new KnapDataRowChangeEvent(((KnapDataRow)(e.Row)), e.Action));
+                if ((this.DataRowChanged != null)) {
+                    this.DataRowChanged(this, new DataRowChangeEvent(((DataRow)(e.Row)), e.Action));
                 }
             }
             
@@ -733,8 +733,8 @@ namespace GADB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.KnapDataRowChanging != null)) {
-                    this.KnapDataRowChanging(this, new KnapDataRowChangeEvent(((KnapDataRow)(e.Row)), e.Action));
+                if ((this.DataRowChanging != null)) {
+                    this.DataRowChanging(this, new DataRowChangeEvent(((DataRow)(e.Row)), e.Action));
                 }
             }
             
@@ -742,8 +742,8 @@ namespace GADB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.KnapDataRowDeleted != null)) {
-                    this.KnapDataRowDeleted(this, new KnapDataRowChangeEvent(((KnapDataRow)(e.Row)), e.Action));
+                if ((this.DataRowDeleted != null)) {
+                    this.DataRowDeleted(this, new DataRowChangeEvent(((DataRow)(e.Row)), e.Action));
                 }
             }
             
@@ -751,14 +751,14 @@ namespace GADB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.KnapDataRowDeleting != null)) {
-                    this.KnapDataRowDeleting(this, new KnapDataRowChangeEvent(((KnapDataRow)(e.Row)), e.Action));
+                if ((this.DataRowDeleting != null)) {
+                    this.DataRowDeleting(this, new DataRowChangeEvent(((DataRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveKnapDataRow(KnapDataRow row) {
+            public void RemoveDataRow(DataRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -785,7 +785,7 @@ namespace GADB {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "KnapDataDataTable";
+                attribute2.FixedValue = "DataDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -831,7 +831,7 @@ namespace GADB {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class KnapSolutionsDataTable : global::System.Data.TypedTableBase<KnapSolutionsRow> {
+        public partial class SolutionsDataTable : global::System.Data.TypedTableBase<SolutionsRow> {
             
             private global::System.Data.DataColumn columnID;
             
@@ -859,14 +859,14 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapSolutionsDataTable() : 
+            public SolutionsDataTable() : 
                     this(false) {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapSolutionsDataTable(bool initExpressions) {
-                this.TableName = "KnapSolutions";
+            public SolutionsDataTable(bool initExpressions) {
+                this.TableName = "Solutions";
                 this.BeginInit();
                 this.InitClass();
                 if ((initExpressions == true)) {
@@ -877,7 +877,7 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal KnapSolutionsDataTable(global::System.Data.DataTable table) {
+            internal SolutionsDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -894,7 +894,7 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected KnapSolutionsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected SolutionsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -1006,34 +1006,34 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapSolutionsRow this[int index] {
+            public SolutionsRow this[int index] {
                 get {
-                    return ((KnapSolutionsRow)(this.Rows[index]));
+                    return ((SolutionsRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event KnapSolutionsRowChangeEventHandler KnapSolutionsRowChanging;
+            public event SolutionsRowChangeEventHandler SolutionsRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event KnapSolutionsRowChangeEventHandler KnapSolutionsRowChanged;
+            public event SolutionsRowChangeEventHandler SolutionsRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event KnapSolutionsRowChangeEventHandler KnapSolutionsRowDeleting;
+            public event SolutionsRowChangeEventHandler SolutionsRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event KnapSolutionsRowChangeEventHandler KnapSolutionsRowDeleted;
+            public event SolutionsRowChangeEventHandler SolutionsRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddKnapSolutionsRow(KnapSolutionsRow row) {
+            public void AddSolutionsRow(SolutionsRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapSolutionsRow AddKnapSolutionsRow(ProblemsRow parentProblemsRowByProblems_KnapSolutions, string Genotype, double Fitness, System.DateTime DateTime, double TimeSpan, int ChromosomeLength, int Generations, GARow parentGARowByGA_KnapSolutions, int Frequency, int SchOrder, byte[] Chromosome) {
-                KnapSolutionsRow rowKnapSolutionsRow = ((KnapSolutionsRow)(this.NewRow()));
+            public SolutionsRow AddSolutionsRow(ProblemsRow parentProblemsRowByProblems_Solutions, string Genotype, double Fitness, System.DateTime DateTime, double TimeSpan, int ChromosomeLength, int Generations, GARow parentGARowByGA_Solutions, int Frequency, int SchOrder, byte[] Chromosome) {
+                SolutionsRow rowSolutionsRow = ((SolutionsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
@@ -1047,21 +1047,21 @@ namespace GADB {
                         Frequency,
                         SchOrder,
                         Chromosome};
-                if ((parentProblemsRowByProblems_KnapSolutions != null)) {
-                    columnValuesArray[1] = parentProblemsRowByProblems_KnapSolutions[1];
+                if ((parentProblemsRowByProblems_Solutions != null)) {
+                    columnValuesArray[1] = parentProblemsRowByProblems_Solutions[1];
                 }
-                if ((parentGARowByGA_KnapSolutions != null)) {
-                    columnValuesArray[8] = parentGARowByGA_KnapSolutions[0];
+                if ((parentGARowByGA_Solutions != null)) {
+                    columnValuesArray[8] = parentGARowByGA_Solutions[0];
                 }
-                rowKnapSolutionsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowKnapSolutionsRow);
-                return rowKnapSolutionsRow;
+                rowSolutionsRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSolutionsRow);
+                return rowSolutionsRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapSolutionsRow AddKnapSolutionsRow(ProblemsRow parentProblemsRowByProblems_KnapSolutions, string Genotype, double Fitness, System.DateTime DateTime, double TimeSpan, int Generations, GARow parentGARowByGA_KnapSolutions, int Frequency, int SchOrder, byte[] Chromosome) {
-                KnapSolutionsRow rowKnapSolutionsRow = ((KnapSolutionsRow)(this.NewRow()));
+            public SolutionsRow AddSolutionsRow(ProblemsRow parentProblemsRowByProblems_Solutions, string Genotype, double Fitness, System.DateTime DateTime, double TimeSpan, int Generations, GARow parentGARowByGA_Solutions, int Frequency, int SchOrder, byte[] Chromosome) {
+                SolutionsRow rowSolutionsRow = ((SolutionsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
@@ -1075,28 +1075,28 @@ namespace GADB {
                         Frequency,
                         SchOrder,
                         Chromosome};
-                if ((parentProblemsRowByProblems_KnapSolutions != null)) {
-                    columnValuesArray[1] = parentProblemsRowByProblems_KnapSolutions[1];
+                if ((parentProblemsRowByProblems_Solutions != null)) {
+                    columnValuesArray[1] = parentProblemsRowByProblems_Solutions[1];
                 }
-                if ((parentGARowByGA_KnapSolutions != null)) {
-                    columnValuesArray[8] = parentGARowByGA_KnapSolutions[0];
+                if ((parentGARowByGA_Solutions != null)) {
+                    columnValuesArray[8] = parentGARowByGA_Solutions[0];
                 }
-                rowKnapSolutionsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowKnapSolutionsRow);
-                return rowKnapSolutionsRow;
+                rowSolutionsRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSolutionsRow);
+                return rowSolutionsRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapSolutionsRow FindByID(int ID) {
-                return ((KnapSolutionsRow)(this.Rows.Find(new object[] {
+            public SolutionsRow FindByID(int ID) {
+                return ((SolutionsRow)(this.Rows.Find(new object[] {
                             ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                KnapSolutionsDataTable cln = ((KnapSolutionsDataTable)(base.Clone()));
+                SolutionsDataTable cln = ((SolutionsDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1104,7 +1104,7 @@ namespace GADB {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new KnapSolutionsDataTable();
+                return new SolutionsDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1166,34 +1166,34 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapSolutionsRow NewKnapSolutionsRow() {
-                return ((KnapSolutionsRow)(this.NewRow()));
+            public SolutionsRow NewSolutionsRow() {
+                return ((SolutionsRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new KnapSolutionsRow(builder);
+                return new SolutionsRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(KnapSolutionsRow);
+                return typeof(SolutionsRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitExpressions() {
-                this.ChromosomeLengthColumn.Expression = "Parent(GA_KnapSolutions).ChromosomeLength";
+                this.ChromosomeLengthColumn.Expression = "Parent(GA_Solutions).ChromosomeLength";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.KnapSolutionsRowChanged != null)) {
-                    this.KnapSolutionsRowChanged(this, new KnapSolutionsRowChangeEvent(((KnapSolutionsRow)(e.Row)), e.Action));
+                if ((this.SolutionsRowChanged != null)) {
+                    this.SolutionsRowChanged(this, new SolutionsRowChangeEvent(((SolutionsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1201,8 +1201,8 @@ namespace GADB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.KnapSolutionsRowChanging != null)) {
-                    this.KnapSolutionsRowChanging(this, new KnapSolutionsRowChangeEvent(((KnapSolutionsRow)(e.Row)), e.Action));
+                if ((this.SolutionsRowChanging != null)) {
+                    this.SolutionsRowChanging(this, new SolutionsRowChangeEvent(((SolutionsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1210,8 +1210,8 @@ namespace GADB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.KnapSolutionsRowDeleted != null)) {
-                    this.KnapSolutionsRowDeleted(this, new KnapSolutionsRowChangeEvent(((KnapSolutionsRow)(e.Row)), e.Action));
+                if ((this.SolutionsRowDeleted != null)) {
+                    this.SolutionsRowDeleted(this, new SolutionsRowChangeEvent(((SolutionsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1219,14 +1219,14 @@ namespace GADB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.KnapSolutionsRowDeleting != null)) {
-                    this.KnapSolutionsRowDeleting(this, new KnapSolutionsRowChangeEvent(((KnapSolutionsRow)(e.Row)), e.Action));
+                if ((this.SolutionsRowDeleting != null)) {
+                    this.SolutionsRowDeleting(this, new SolutionsRowChangeEvent(((SolutionsRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveKnapSolutionsRow(KnapSolutionsRow row) {
+            public void RemoveSolutionsRow(SolutionsRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1253,7 +1253,7 @@ namespace GADB {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "KnapSolutionsDataTable";
+                attribute2.FixedValue = "SolutionsDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2979,25 +2979,25 @@ namespace GADB {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class KnapDataRow : global::System.Data.DataRow {
+        public partial class DataRow : global::System.Data.DataRow {
             
-            private KnapDataDataTable tableKnapData;
+            private DataDataTable tableData;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal KnapDataRow(global::System.Data.DataRowBuilder rb) : 
+            internal DataRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableKnapData = ((KnapDataDataTable)(this.Table));
+                this.tableData = ((DataDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int ID {
                 get {
-                    return ((int)(this[this.tableKnapData.IDColumn]));
+                    return ((int)(this[this.tableData.IDColumn]));
                 }
                 set {
-                    this[this.tableKnapData.IDColumn] = value;
+                    this[this.tableData.IDColumn] = value;
                 }
             }
             
@@ -3006,14 +3006,14 @@ namespace GADB {
             public int ProblemID {
                 get {
                     try {
-                        return ((int)(this[this.tableKnapData.ProblemIDColumn]));
+                        return ((int)(this[this.tableData.ProblemIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ProblemID\' in table \'KnapData\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ProblemID\' in table \'Data\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKnapData.ProblemIDColumn] = value;
+                    this[this.tableData.ProblemIDColumn] = value;
                 }
             }
             
@@ -3022,14 +3022,14 @@ namespace GADB {
             public double Weight {
                 get {
                     try {
-                        return ((double)(this[this.tableKnapData.WeightColumn]));
+                        return ((double)(this[this.tableData.WeightColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Weight\' in table \'KnapData\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Weight\' in table \'Data\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKnapData.WeightColumn] = value;
+                    this[this.tableData.WeightColumn] = value;
                 }
             }
             
@@ -3038,14 +3038,14 @@ namespace GADB {
             public double Volume {
                 get {
                     try {
-                        return ((double)(this[this.tableKnapData.VolumeColumn]));
+                        return ((double)(this[this.tableData.VolumeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Volume\' in table \'KnapData\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Volume\' in table \'Data\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKnapData.VolumeColumn] = value;
+                    this[this.tableData.VolumeColumn] = value;
                 }
             }
             
@@ -3054,14 +3054,14 @@ namespace GADB {
             public double Value {
                 get {
                     try {
-                        return ((double)(this[this.tableKnapData.ValueColumn]));
+                        return ((double)(this[this.tableData.ValueColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Value\' in table \'KnapData\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Value\' in table \'Data\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKnapData.ValueColumn] = value;
+                    this[this.tableData.ValueColumn] = value;
                 }
             }
             
@@ -3079,74 +3079,74 @@ namespace GADB {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsProblemIDNull() {
-                return this.IsNull(this.tableKnapData.ProblemIDColumn);
+                return this.IsNull(this.tableData.ProblemIDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetProblemIDNull() {
-                this[this.tableKnapData.ProblemIDColumn] = global::System.Convert.DBNull;
+                this[this.tableData.ProblemIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsWeightNull() {
-                return this.IsNull(this.tableKnapData.WeightColumn);
+                return this.IsNull(this.tableData.WeightColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetWeightNull() {
-                this[this.tableKnapData.WeightColumn] = global::System.Convert.DBNull;
+                this[this.tableData.WeightColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsVolumeNull() {
-                return this.IsNull(this.tableKnapData.VolumeColumn);
+                return this.IsNull(this.tableData.VolumeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetVolumeNull() {
-                this[this.tableKnapData.VolumeColumn] = global::System.Convert.DBNull;
+                this[this.tableData.VolumeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsValueNull() {
-                return this.IsNull(this.tableKnapData.ValueColumn);
+                return this.IsNull(this.tableData.ValueColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetValueNull() {
-                this[this.tableKnapData.ValueColumn] = global::System.Convert.DBNull;
+                this[this.tableData.ValueColumn] = global::System.Convert.DBNull;
             }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class KnapSolutionsRow : global::System.Data.DataRow {
+        public partial class SolutionsRow : global::System.Data.DataRow {
             
-            private KnapSolutionsDataTable tableKnapSolutions;
+            private SolutionsDataTable tableSolutions;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal KnapSolutionsRow(global::System.Data.DataRowBuilder rb) : 
+            internal SolutionsRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableKnapSolutions = ((KnapSolutionsDataTable)(this.Table));
+                this.tableSolutions = ((SolutionsDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int ID {
                 get {
-                    return ((int)(this[this.tableKnapSolutions.IDColumn]));
+                    return ((int)(this[this.tableSolutions.IDColumn]));
                 }
                 set {
-                    this[this.tableKnapSolutions.IDColumn] = value;
+                    this[this.tableSolutions.IDColumn] = value;
                 }
             }
             
@@ -3155,14 +3155,14 @@ namespace GADB {
             public int ProblemID {
                 get {
                     try {
-                        return ((int)(this[this.tableKnapSolutions.ProblemIDColumn]));
+                        return ((int)(this[this.tableSolutions.ProblemIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ProblemID\' in table \'KnapSolutions\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ProblemID\' in table \'Solutions\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKnapSolutions.ProblemIDColumn] = value;
+                    this[this.tableSolutions.ProblemIDColumn] = value;
                 }
             }
             
@@ -3171,14 +3171,14 @@ namespace GADB {
             public string Genotype {
                 get {
                     try {
-                        return ((string)(this[this.tableKnapSolutions.GenotypeColumn]));
+                        return ((string)(this[this.tableSolutions.GenotypeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Genotype\' in table \'KnapSolutions\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Genotype\' in table \'Solutions\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKnapSolutions.GenotypeColumn] = value;
+                    this[this.tableSolutions.GenotypeColumn] = value;
                 }
             }
             
@@ -3187,14 +3187,14 @@ namespace GADB {
             public double Fitness {
                 get {
                     try {
-                        return ((double)(this[this.tableKnapSolutions.FitnessColumn]));
+                        return ((double)(this[this.tableSolutions.FitnessColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Fitness\' in table \'KnapSolutions\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Fitness\' in table \'Solutions\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKnapSolutions.FitnessColumn] = value;
+                    this[this.tableSolutions.FitnessColumn] = value;
                 }
             }
             
@@ -3203,14 +3203,14 @@ namespace GADB {
             public System.DateTime DateTime {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableKnapSolutions.DateTimeColumn]));
+                        return ((global::System.DateTime)(this[this.tableSolutions.DateTimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DateTime\' in table \'KnapSolutions\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'DateTime\' in table \'Solutions\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKnapSolutions.DateTimeColumn] = value;
+                    this[this.tableSolutions.DateTimeColumn] = value;
                 }
             }
             
@@ -3219,14 +3219,14 @@ namespace GADB {
             public double TimeSpan {
                 get {
                     try {
-                        return ((double)(this[this.tableKnapSolutions.TimeSpanColumn]));
+                        return ((double)(this[this.tableSolutions.TimeSpanColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TimeSpan\' in table \'KnapSolutions\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TimeSpan\' in table \'Solutions\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKnapSolutions.TimeSpanColumn] = value;
+                    this[this.tableSolutions.TimeSpanColumn] = value;
                 }
             }
             
@@ -3235,14 +3235,14 @@ namespace GADB {
             public int ChromosomeLength {
                 get {
                     try {
-                        return ((int)(this[this.tableKnapSolutions.ChromosomeLengthColumn]));
+                        return ((int)(this[this.tableSolutions.ChromosomeLengthColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ChromosomeLength\' in table \'KnapSolutions\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ChromosomeLength\' in table \'Solutions\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKnapSolutions.ChromosomeLengthColumn] = value;
+                    this[this.tableSolutions.ChromosomeLengthColumn] = value;
                 }
             }
             
@@ -3251,14 +3251,14 @@ namespace GADB {
             public int Generations {
                 get {
                     try {
-                        return ((int)(this[this.tableKnapSolutions.GenerationsColumn]));
+                        return ((int)(this[this.tableSolutions.GenerationsColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Generations\' in table \'KnapSolutions\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Generations\' in table \'Solutions\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKnapSolutions.GenerationsColumn] = value;
+                    this[this.tableSolutions.GenerationsColumn] = value;
                 }
             }
             
@@ -3267,14 +3267,14 @@ namespace GADB {
             public int GAID {
                 get {
                     try {
-                        return ((int)(this[this.tableKnapSolutions.GAIDColumn]));
+                        return ((int)(this[this.tableSolutions.GAIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'GAID\' in table \'KnapSolutions\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'GAID\' in table \'Solutions\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKnapSolutions.GAIDColumn] = value;
+                    this[this.tableSolutions.GAIDColumn] = value;
                 }
             }
             
@@ -3283,14 +3283,14 @@ namespace GADB {
             public int Frequency {
                 get {
                     try {
-                        return ((int)(this[this.tableKnapSolutions.FrequencyColumn]));
+                        return ((int)(this[this.tableSolutions.FrequencyColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Frequency\' in table \'KnapSolutions\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Frequency\' in table \'Solutions\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKnapSolutions.FrequencyColumn] = value;
+                    this[this.tableSolutions.FrequencyColumn] = value;
                 }
             }
             
@@ -3299,14 +3299,14 @@ namespace GADB {
             public int SchOrder {
                 get {
                     try {
-                        return ((int)(this[this.tableKnapSolutions.SchOrderColumn]));
+                        return ((int)(this[this.tableSolutions.SchOrderColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SchOrder\' in table \'KnapSolutions\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'SchOrder\' in table \'Solutions\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKnapSolutions.SchOrderColumn] = value;
+                    this[this.tableSolutions.SchOrderColumn] = value;
                 }
             }
             
@@ -3315,14 +3315,14 @@ namespace GADB {
             public byte[] Chromosome {
                 get {
                     try {
-                        return ((byte[])(this[this.tableKnapSolutions.ChromosomeColumn]));
+                        return ((byte[])(this[this.tableSolutions.ChromosomeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Chromosome\' in table \'KnapSolutions\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Chromosome\' in table \'Solutions\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableKnapSolutions.ChromosomeColumn] = value;
+                    this[this.tableSolutions.ChromosomeColumn] = value;
                 }
             }
             
@@ -3330,10 +3330,10 @@ namespace GADB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public GARow GARow {
                 get {
-                    return ((GARow)(this.GetParentRow(this.Table.ParentRelations["GA_KnapSolutions"])));
+                    return ((GARow)(this.GetParentRow(this.Table.ParentRelations["GA_Solutions"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["GA_KnapSolutions"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["GA_Solutions"]);
                 }
             }
             
@@ -3341,10 +3341,10 @@ namespace GADB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ProblemsRow ProblemsRow {
                 get {
-                    return ((ProblemsRow)(this.GetParentRow(this.Table.ParentRelations["Problems_KnapSolutions"])));
+                    return ((ProblemsRow)(this.GetParentRow(this.Table.ParentRelations["Problems_Solutions"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["Problems_KnapSolutions"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["Problems_Solutions"]);
                 }
             }
             
@@ -3352,143 +3352,143 @@ namespace GADB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public KnapStringsRow KnapStringsRowParent {
                 get {
-                    return ((KnapStringsRow)(this.GetParentRow(this.Table.ParentRelations["KnapStrings_KnapSolutions"])));
+                    return ((KnapStringsRow)(this.GetParentRow(this.Table.ParentRelations["KnapStrings_Solutions"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["KnapStrings_KnapSolutions"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["KnapStrings_Solutions"]);
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsProblemIDNull() {
-                return this.IsNull(this.tableKnapSolutions.ProblemIDColumn);
+                return this.IsNull(this.tableSolutions.ProblemIDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetProblemIDNull() {
-                this[this.tableKnapSolutions.ProblemIDColumn] = global::System.Convert.DBNull;
+                this[this.tableSolutions.ProblemIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsGenotypeNull() {
-                return this.IsNull(this.tableKnapSolutions.GenotypeColumn);
+                return this.IsNull(this.tableSolutions.GenotypeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetGenotypeNull() {
-                this[this.tableKnapSolutions.GenotypeColumn] = global::System.Convert.DBNull;
+                this[this.tableSolutions.GenotypeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFitnessNull() {
-                return this.IsNull(this.tableKnapSolutions.FitnessColumn);
+                return this.IsNull(this.tableSolutions.FitnessColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFitnessNull() {
-                this[this.tableKnapSolutions.FitnessColumn] = global::System.Convert.DBNull;
+                this[this.tableSolutions.FitnessColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsDateTimeNull() {
-                return this.IsNull(this.tableKnapSolutions.DateTimeColumn);
+                return this.IsNull(this.tableSolutions.DateTimeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetDateTimeNull() {
-                this[this.tableKnapSolutions.DateTimeColumn] = global::System.Convert.DBNull;
+                this[this.tableSolutions.DateTimeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTimeSpanNull() {
-                return this.IsNull(this.tableKnapSolutions.TimeSpanColumn);
+                return this.IsNull(this.tableSolutions.TimeSpanColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTimeSpanNull() {
-                this[this.tableKnapSolutions.TimeSpanColumn] = global::System.Convert.DBNull;
+                this[this.tableSolutions.TimeSpanColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsChromosomeLengthNull() {
-                return this.IsNull(this.tableKnapSolutions.ChromosomeLengthColumn);
+                return this.IsNull(this.tableSolutions.ChromosomeLengthColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetChromosomeLengthNull() {
-                this[this.tableKnapSolutions.ChromosomeLengthColumn] = global::System.Convert.DBNull;
+                this[this.tableSolutions.ChromosomeLengthColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsGenerationsNull() {
-                return this.IsNull(this.tableKnapSolutions.GenerationsColumn);
+                return this.IsNull(this.tableSolutions.GenerationsColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetGenerationsNull() {
-                this[this.tableKnapSolutions.GenerationsColumn] = global::System.Convert.DBNull;
+                this[this.tableSolutions.GenerationsColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsGAIDNull() {
-                return this.IsNull(this.tableKnapSolutions.GAIDColumn);
+                return this.IsNull(this.tableSolutions.GAIDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetGAIDNull() {
-                this[this.tableKnapSolutions.GAIDColumn] = global::System.Convert.DBNull;
+                this[this.tableSolutions.GAIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsFrequencyNull() {
-                return this.IsNull(this.tableKnapSolutions.FrequencyColumn);
+                return this.IsNull(this.tableSolutions.FrequencyColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetFrequencyNull() {
-                this[this.tableKnapSolutions.FrequencyColumn] = global::System.Convert.DBNull;
+                this[this.tableSolutions.FrequencyColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsSchOrderNull() {
-                return this.IsNull(this.tableKnapSolutions.SchOrderColumn);
+                return this.IsNull(this.tableSolutions.SchOrderColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetSchOrderNull() {
-                this[this.tableKnapSolutions.SchOrderColumn] = global::System.Convert.DBNull;
+                this[this.tableSolutions.SchOrderColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsChromosomeNull() {
-                return this.IsNull(this.tableKnapSolutions.ChromosomeColumn);
+                return this.IsNull(this.tableSolutions.ChromosomeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetChromosomeNull() {
-                this[this.tableKnapSolutions.ChromosomeColumn] = global::System.Convert.DBNull;
+                this[this.tableSolutions.ChromosomeColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -4006,12 +4006,12 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapSolutionsRow[] GetKnapSolutionsRows() {
-                if ((this.Table.ChildRelations["GA_KnapSolutions"] == null)) {
-                    return new KnapSolutionsRow[0];
+            public SolutionsRow[] GetSolutionsRows() {
+                if ((this.Table.ChildRelations["GA_Solutions"] == null)) {
+                    return new SolutionsRow[0];
                 }
                 else {
-                    return ((KnapSolutionsRow[])(base.GetChildRows(this.Table.ChildRelations["GA_KnapSolutions"])));
+                    return ((SolutionsRow[])(base.GetChildRows(this.Table.ChildRelations["GA_Solutions"])));
                 }
             }
         }
@@ -4183,23 +4183,23 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapSolutionsRow[] GetKnapSolutionsRows() {
-                if ((this.Table.ChildRelations["Problems_KnapSolutions"] == null)) {
-                    return new KnapSolutionsRow[0];
+            public SolutionsRow[] GetSolutionsRows() {
+                if ((this.Table.ChildRelations["Problems_Solutions"] == null)) {
+                    return new SolutionsRow[0];
                 }
                 else {
-                    return ((KnapSolutionsRow[])(base.GetChildRows(this.Table.ChildRelations["Problems_KnapSolutions"])));
+                    return ((SolutionsRow[])(base.GetChildRows(this.Table.ChildRelations["Problems_Solutions"])));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapDataRow[] GetKnapDataRows() {
+            public DataRow[] GetKnapDataRows() {
                 if ((this.Table.ChildRelations["Problems_KnapData"] == null)) {
-                    return new KnapDataRow[0];
+                    return new DataRow[0];
                 }
                 else {
-                    return ((KnapDataRow[])(base.GetChildRows(this.Table.ChildRelations["Problems_KnapData"])));
+                    return ((DataRow[])(base.GetChildRows(this.Table.ChildRelations["Problems_KnapData"])));
                 }
             }
             
@@ -4878,12 +4878,12 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapSolutionsRow[] GetKnapSolutionsRows() {
-                if ((this.Table.ChildRelations["KnapStrings_KnapSolutions"] == null)) {
-                    return new KnapSolutionsRow[0];
+            public SolutionsRow[] GetSolutionsRows() {
+                if ((this.Table.ChildRelations["KnapStrings_Solutions"] == null)) {
+                    return new SolutionsRow[0];
                 }
                 else {
-                    return ((KnapSolutionsRow[])(base.GetChildRows(this.Table.ChildRelations["KnapStrings_KnapSolutions"])));
+                    return ((SolutionsRow[])(base.GetChildRows(this.Table.ChildRelations["KnapStrings_Solutions"])));
                 }
             }
         }
@@ -4892,22 +4892,22 @@ namespace GADB {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class KnapDataRowChangeEvent : global::System.EventArgs {
+        public class DataRowChangeEvent : global::System.EventArgs {
             
-            private KnapDataRow eventRow;
+            private DataRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapDataRowChangeEvent(KnapDataRow row, global::System.Data.DataRowAction action) {
+            public DataRowChangeEvent(DataRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapDataRow Row {
+            public DataRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -4926,22 +4926,22 @@ namespace GADB {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class KnapSolutionsRowChangeEvent : global::System.EventArgs {
+        public class SolutionsRowChangeEvent : global::System.EventArgs {
             
-            private KnapSolutionsRow eventRow;
+            private SolutionsRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapSolutionsRowChangeEvent(KnapSolutionsRow row, global::System.Data.DataRowAction action) {
+            public SolutionsRowChangeEvent(SolutionsRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public KnapSolutionsRow Row {
+            public SolutionsRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -5105,7 +5105,7 @@ namespace GADB.GADataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class KnapDataTableAdapter : global::System.ComponentModel.Component {
+    public partial class DataTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -5119,7 +5119,7 @@ namespace GADB.GADataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public KnapDataTableAdapter() {
+        public DataTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -5216,7 +5216,7 @@ namespace GADB.GADataSetTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "KnapData";
+            tableMapping.DataSetTable = "Data";
             tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("ProblemID", "ProblemID");
             tableMapping.ColumnMappings.Add("Weight", "Weight");
@@ -5225,7 +5225,7 @@ namespace GADB.GADataSetTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[KnapData] WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_Weight = 1 AND [Weight] IS NULL) OR ([Weight] = @Original_Weight)) AND ((@IsNull_Volume = 1 AND [Volume] IS NULL) OR ([Volume] = @Original_Volume)) AND ((@IsNull_Value = 1 AND [Value] IS NULL) OR ([Value] = @Original_Value)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Data] WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_Weight = 1 AND [Weight] IS NULL) OR ([Weight] = @Original_Weight)) AND ((@IsNull_Volume = 1 AND [Volume] IS NULL) OR ([Volume] = @Original_Volume)) AND ((@IsNull_Value = 1 AND [Value] IS NULL) OR ([Value] = @Original_Value)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -5238,9 +5238,9 @@ namespace GADB.GADataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Value", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Value", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[KnapData] ([ProblemID], [Weight], [Volume], [Value]) VALUES (@" +
-                "ProblemID, @Weight, @Volume, @Value);\r\nSELECT ID, ProblemID, Weight, Volume, Val" +
-                "ue FROM KnapData WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Data] ([ProblemID], [Weight], [Volume], [Value]) VALUES (@Prob" +
+                "lemID, @Weight, @Volume, @Value);\r\nSELECT ID, ProblemID, Weight, Volume, Value F" +
+                "ROM Data WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Weight", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Weight", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5248,8 +5248,8 @@ namespace GADB.GADataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Value", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[KnapData] SET [ProblemID] = @ProblemID, [Weight] = @Weight, [Volume] = @Volume, [Value] = @Value WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_Weight = 1 AND [Weight] IS NULL) OR ([Weight] = @Original_Weight)) AND ((@IsNull_Volume = 1 AND [Volume] IS NULL) OR ([Volume] = @Original_Volume)) AND ((@IsNull_Value = 1 AND [Value] IS NULL) OR ([Value] = @Original_Value)));
-SELECT ID, ProblemID, Weight, Volume, Value FROM KnapData WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Data] SET [ProblemID] = @ProblemID, [Weight] = @Weight, [Volume] = @Volume, [Value] = @Value WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_Weight = 1 AND [Weight] IS NULL) OR ([Weight] = @Original_Weight)) AND ((@IsNull_Volume = 1 AND [Volume] IS NULL) OR ([Volume] = @Original_Volume)) AND ((@IsNull_Value = 1 AND [Value] IS NULL) OR ([Value] = @Original_Value)));
+SELECT ID, ProblemID, Weight, Volume, Value FROM Data WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Weight", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Weight", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5280,7 +5280,7 @@ SELECT ID, ProblemID, Weight, Volume, Value FROM KnapData WHERE (ID = @ID)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT * FROM dbo.KnapData";
+            this._commandCollection[0].CommandText = "SELECT * FROM dbo.Data";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5288,7 +5288,7 @@ SELECT ID, ProblemID, Weight, Volume, Value FROM KnapData WHERE (ID = @ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(GADataSet.KnapDataDataTable dataTable) {
+        public virtual int Fill(GADataSet.DataDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -5301,9 +5301,9 @@ SELECT ID, ProblemID, Weight, Volume, Value FROM KnapData WHERE (ID = @ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual GADataSet.KnapDataDataTable GetData() {
+        public virtual GADataSet.DataDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            GADataSet.KnapDataDataTable dataTable = new GADataSet.KnapDataDataTable();
+            GADataSet.DataDataTable dataTable = new GADataSet.DataDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -5311,7 +5311,7 @@ SELECT ID, ProblemID, Weight, Volume, Value FROM KnapData WHERE (ID = @ID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(GADataSet.KnapDataDataTable dataTable) {
+        public virtual int Update(GADataSet.DataDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
@@ -5319,7 +5319,7 @@ SELECT ID, ProblemID, Weight, Volume, Value FROM KnapData WHERE (ID = @ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(GADataSet dataSet) {
-            return this.Adapter.Update(dataSet, "KnapData");
+            return this.Adapter.Update(dataSet, "Data");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5336,192 +5336,6 @@ SELECT ID, ProblemID, Weight, Volume, Value FROM KnapData WHERE (ID = @ID)";
         public virtual int Update(global::System.Data.DataRow[] dataRows) {
             return this.Adapter.Update(dataRows);
         }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, global::System.Nullable<int> Original_ProblemID, global::System.Nullable<double> Original_Weight, global::System.Nullable<double> Original_Volume, global::System.Nullable<double> Original_Value) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
-            if ((Original_ProblemID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_ProblemID.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Weight.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((double)(Original_Weight.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Volume.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((double)(Original_Volume.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Value.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((double)(Original_Value.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> ProblemID, global::System.Nullable<double> Weight, global::System.Nullable<double> Volume, global::System.Nullable<double> Value) {
-            if ((ProblemID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ProblemID.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            if ((Weight.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((double)(Weight.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((Volume.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((double)(Volume.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((Value.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((double)(Value.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> ProblemID, global::System.Nullable<double> Weight, global::System.Nullable<double> Volume, global::System.Nullable<double> Value, int Original_ID, global::System.Nullable<int> Original_ProblemID, global::System.Nullable<double> Original_Weight, global::System.Nullable<double> Original_Volume, global::System.Nullable<double> Original_Value, int ID) {
-            if ((ProblemID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ProblemID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            if ((Weight.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((double)(Weight.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((Volume.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((double)(Volume.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((Value.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((double)(Value.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_ID));
-            if ((Original_ProblemID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_ProblemID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Weight.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((double)(Original_Weight.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Volume.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((double)(Original_Volume.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Value.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((double)(Original_Value.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(ID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> ProblemID, global::System.Nullable<double> Weight, global::System.Nullable<double> Volume, global::System.Nullable<double> Value, int Original_ID, global::System.Nullable<int> Original_ProblemID, global::System.Nullable<double> Original_Weight, global::System.Nullable<double> Original_Volume, global::System.Nullable<double> Original_Value) {
-            return this.Update(ProblemID, Weight, Volume, Value, Original_ID, Original_ProblemID, Original_Weight, Original_Volume, Original_Value, Original_ID);
-        }
     }
     
     /// <summary>
@@ -5533,7 +5347,7 @@ SELECT ID, ProblemID, Weight, Volume, Value FROM KnapData WHERE (ID = @ID)";
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class KnapSolutionsTableAdapter : global::System.ComponentModel.Component {
+    public partial class SolutionsTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -5547,7 +5361,7 @@ SELECT ID, ProblemID, Weight, Volume, Value FROM KnapData WHERE (ID = @ID)";
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public KnapSolutionsTableAdapter() {
+        public SolutionsTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -5644,7 +5458,7 @@ SELECT ID, ProblemID, Weight, Volume, Value FROM KnapData WHERE (ID = @ID)";
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "KnapSolutions";
+            tableMapping.DataSetTable = "Solutions";
             tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("ProblemID", "ProblemID");
             tableMapping.ColumnMappings.Add("Genotype", "Genotype");
@@ -5659,7 +5473,7 @@ SELECT ID, ProblemID, Weight, Volume, Value FROM KnapData WHERE (ID = @ID)";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [KnapSolutions] WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_Fitness = 1 AND [Fitness] IS NULL) OR ([Fitness] = @Original_Fitness)) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ((@IsNull_TimeSpan = 1 AND [TimeSpan] IS NULL) OR ([TimeSpan] = @Original_TimeSpan)) AND ((@IsNull_Generations = 1 AND [Generations] IS NULL) OR ([Generations] = @Original_Generations)) AND ((@IsNull_GAID = 1 AND [GAID] IS NULL) OR ([GAID] = @Original_GAID)) AND ((@IsNull_Frequency = 1 AND [Frequency] IS NULL) OR ([Frequency] = @Original_Frequency)) AND ((@IsNull_SchOrder = 1 AND [SchOrder] IS NULL) OR ([SchOrder] = @Original_SchOrder)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Solutions] WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_Fitness = 1 AND [Fitness] IS NULL) OR ([Fitness] = @Original_Fitness)) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ((@IsNull_TimeSpan = 1 AND [TimeSpan] IS NULL) OR ([TimeSpan] = @Original_TimeSpan)) AND ((@IsNull_Generations = 1 AND [Generations] IS NULL) OR ([Generations] = @Original_Generations)) AND ((@IsNull_GAID = 1 AND [GAID] IS NULL) OR ([GAID] = @Original_GAID)) AND ((@IsNull_Frequency = 1 AND [Frequency] IS NULL) OR ([Frequency] = @Original_Frequency)) AND ((@IsNull_SchOrder = 1 AND [SchOrder] IS NULL) OR ([SchOrder] = @Original_SchOrder)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -5680,8 +5494,8 @@ SELECT ID, ProblemID, Weight, Volume, Value FROM KnapData WHERE (ID = @ID)";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SchOrder", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SchOrder", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [KnapSolutions] ([ProblemID], [Genotype], [Fitness], [DateTime], [TimeSpan], [Generations], [GAID], [Frequency], [SchOrder], [Chromosome]) VALUES (@ProblemID, @Genotype, @Fitness, @DateTime, @TimeSpan, @Generations, @GAID, @Frequency, @SchOrder, @Chromosome);
-SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, Frequency, SchOrder, Chromosome FROM KnapSolutions WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Solutions] ([ProblemID], [Genotype], [Fitness], [DateTime], [TimeSpan], [Generations], [GAID], [Frequency], [SchOrder], [Chromosome]) VALUES (@ProblemID, @Genotype, @Fitness, @DateTime, @TimeSpan, @Generations, @GAID, @Frequency, @SchOrder, @Chromosome);
+SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, Frequency, SchOrder, Chromosome FROM Solutions WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Genotype", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Genotype", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5695,8 +5509,8 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Chromosome", global::System.Data.SqlDbType.Image, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Chromosome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [KnapSolutions] SET [ProblemID] = @ProblemID, [Genotype] = @Genotype, [Fitness] = @Fitness, [DateTime] = @DateTime, [TimeSpan] = @TimeSpan, [Generations] = @Generations, [GAID] = @GAID, [Frequency] = @Frequency, [SchOrder] = @SchOrder, [Chromosome] = @Chromosome WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_Fitness = 1 AND [Fitness] IS NULL) OR ([Fitness] = @Original_Fitness)) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ((@IsNull_TimeSpan = 1 AND [TimeSpan] IS NULL) OR ([TimeSpan] = @Original_TimeSpan)) AND ((@IsNull_Generations = 1 AND [Generations] IS NULL) OR ([Generations] = @Original_Generations)) AND ((@IsNull_GAID = 1 AND [GAID] IS NULL) OR ([GAID] = @Original_GAID)) AND ((@IsNull_Frequency = 1 AND [Frequency] IS NULL) OR ([Frequency] = @Original_Frequency)) AND ((@IsNull_SchOrder = 1 AND [SchOrder] IS NULL) OR ([SchOrder] = @Original_SchOrder)));
-SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, Frequency, SchOrder, Chromosome FROM KnapSolutions WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Solutions] SET [ProblemID] = @ProblemID, [Genotype] = @Genotype, [Fitness] = @Fitness, [DateTime] = @DateTime, [TimeSpan] = @TimeSpan, [Generations] = @Generations, [GAID] = @GAID, [Frequency] = @Frequency, [SchOrder] = @SchOrder, [Chromosome] = @Chromosome WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_Fitness = 1 AND [Fitness] IS NULL) OR ([Fitness] = @Original_Fitness)) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ((@IsNull_TimeSpan = 1 AND [TimeSpan] IS NULL) OR ([TimeSpan] = @Original_TimeSpan)) AND ((@IsNull_Generations = 1 AND [Generations] IS NULL) OR ([Generations] = @Original_Generations)) AND ((@IsNull_GAID = 1 AND [GAID] IS NULL) OR ([GAID] = @Original_GAID)) AND ((@IsNull_Frequency = 1 AND [Frequency] IS NULL) OR ([Frequency] = @Original_Frequency)) AND ((@IsNull_SchOrder = 1 AND [SchOrder] IS NULL) OR ([SchOrder] = @Original_SchOrder)));
+SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, Frequency, SchOrder, Chromosome FROM Solutions WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Genotype", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Genotype", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5742,7 +5556,7 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, F" +
-                "requency, SchOrder, Chromosome FROM KnapSolutions";
+                "requency, SchOrder, Chromosome FROM Solutions";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5750,7 +5564,7 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(GADataSet.KnapSolutionsDataTable dataTable) {
+        public virtual int Fill(GADataSet.SolutionsDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -5763,9 +5577,9 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual GADataSet.KnapSolutionsDataTable GetData() {
+        public virtual GADataSet.SolutionsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            GADataSet.KnapSolutionsDataTable dataTable = new GADataSet.KnapSolutionsDataTable(true);
+            GADataSet.SolutionsDataTable dataTable = new GADataSet.SolutionsDataTable(true);
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -5773,7 +5587,7 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(GADataSet.KnapSolutionsDataTable dataTable) {
+        public virtual int Update(GADataSet.SolutionsDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
@@ -5781,7 +5595,7 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(GADataSet dataSet) {
-            return this.Adapter.Update(dataSet, "KnapSolutions");
+            return this.Adapter.Update(dataSet, "Solutions");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8838,9 +8652,9 @@ SELECT ID, ProblemID, SolutionID, TotalWeight, TotalVolume, TotalValue, WeightSt
         
         private UpdateOrderOption _updateOrder;
         
-        private KnapDataTableAdapter _knapDataTableAdapter;
+        private DataTableAdapter _dataTableAdapter;
         
-        private KnapSolutionsTableAdapter _knapSolutionsTableAdapter;
+        private SolutionsTableAdapter _solutionsTableAdapter;
         
         private GATableAdapter _gATableAdapter;
         
@@ -8870,12 +8684,12 @@ SELECT ID, ProblemID, SolutionID, TotalWeight, TotalVolume, TotalValue, WeightSt
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public KnapDataTableAdapter KnapDataTableAdapter {
+        public DataTableAdapter DataTableAdapter {
             get {
-                return this._knapDataTableAdapter;
+                return this._dataTableAdapter;
             }
             set {
-                this._knapDataTableAdapter = value;
+                this._dataTableAdapter = value;
             }
         }
         
@@ -8884,12 +8698,12 @@ SELECT ID, ProblemID, SolutionID, TotalWeight, TotalVolume, TotalValue, WeightSt
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public KnapSolutionsTableAdapter KnapSolutionsTableAdapter {
+        public SolutionsTableAdapter SolutionsTableAdapter {
             get {
-                return this._knapSolutionsTableAdapter;
+                return this._solutionsTableAdapter;
             }
             set {
-                this._knapSolutionsTableAdapter = value;
+                this._solutionsTableAdapter = value;
             }
         }
         
@@ -8968,13 +8782,13 @@ SELECT ID, ProblemID, SolutionID, TotalWeight, TotalVolume, TotalValue, WeightSt
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._knapDataTableAdapter != null) 
-                            && (this._knapDataTableAdapter.Connection != null))) {
-                    return this._knapDataTableAdapter.Connection;
+                if (((this._dataTableAdapter != null) 
+                            && (this._dataTableAdapter.Connection != null))) {
+                    return this._dataTableAdapter.Connection;
                 }
-                if (((this._knapSolutionsTableAdapter != null) 
-                            && (this._knapSolutionsTableAdapter.Connection != null))) {
-                    return this._knapSolutionsTableAdapter.Connection;
+                if (((this._solutionsTableAdapter != null) 
+                            && (this._solutionsTableAdapter.Connection != null))) {
+                    return this._solutionsTableAdapter.Connection;
                 }
                 if (((this._gATableAdapter != null) 
                             && (this._gATableAdapter.Connection != null))) {
@@ -9005,10 +8819,10 @@ SELECT ID, ProblemID, SolutionID, TotalWeight, TotalVolume, TotalValue, WeightSt
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._knapDataTableAdapter != null)) {
+                if ((this._dataTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._knapSolutionsTableAdapter != null)) {
+                if ((this._solutionsTableAdapter != null)) {
                     count = (count + 1);
                 }
                 if ((this._gATableAdapter != null)) {
@@ -9061,21 +8875,21 @@ SELECT ID, ProblemID, SolutionID, TotalWeight, TotalVolume, TotalValue, WeightSt
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._knapDataTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.KnapData.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._dataTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Data.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._knapDataTableAdapter.Update(updatedRows));
+                    result = (result + this._dataTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._knapSolutionsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.KnapSolutions.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._solutionsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Solutions.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._knapSolutionsTableAdapter.Update(updatedRows));
+                    result = (result + this._solutionsTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -9122,19 +8936,19 @@ SELECT ID, ProblemID, SolutionID, TotalWeight, TotalVolume, TotalValue, WeightSt
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._knapDataTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.KnapData.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._dataTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Data.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._knapDataTableAdapter.Update(addedRows));
+                    result = (result + this._dataTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._knapSolutionsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.KnapSolutions.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._solutionsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Solutions.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._knapSolutionsTableAdapter.Update(addedRows));
+                    result = (result + this._solutionsTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -9164,19 +8978,19 @@ SELECT ID, ProblemID, SolutionID, TotalWeight, TotalVolume, TotalValue, WeightSt
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._knapSolutionsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.KnapSolutions.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._solutionsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Solutions.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._knapSolutionsTableAdapter.Update(deletedRows));
+                    result = (result + this._solutionsTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._knapDataTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.KnapData.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._dataTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Data.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._knapDataTableAdapter.Update(deletedRows));
+                    result = (result + this._dataTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -9243,13 +9057,13 @@ SELECT ID, ProblemID, SolutionID, TotalWeight, TotalVolume, TotalValue, WeightSt
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
-            if (((this._knapDataTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._knapDataTableAdapter.Connection) == false))) {
+            if (((this._dataTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._dataTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._knapSolutionsTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._knapSolutionsTableAdapter.Connection) == false))) {
+            if (((this._solutionsTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._solutionsTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -9305,22 +9119,22 @@ SELECT ID, ProblemID, SolutionID, TotalWeight, TotalVolume, TotalValue, WeightSt
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._knapDataTableAdapter != null)) {
-                    revertConnections.Add(this._knapDataTableAdapter, this._knapDataTableAdapter.Connection);
-                    this._knapDataTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._knapDataTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._knapDataTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._knapDataTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._knapDataTableAdapter.Adapter);
+                if ((this._dataTableAdapter != null)) {
+                    revertConnections.Add(this._dataTableAdapter, this._dataTableAdapter.Connection);
+                    this._dataTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._dataTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._dataTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._dataTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._dataTableAdapter.Adapter);
                     }
                 }
-                if ((this._knapSolutionsTableAdapter != null)) {
-                    revertConnections.Add(this._knapSolutionsTableAdapter, this._knapSolutionsTableAdapter.Connection);
-                    this._knapSolutionsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._knapSolutionsTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._knapSolutionsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._knapSolutionsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._knapSolutionsTableAdapter.Adapter);
+                if ((this._solutionsTableAdapter != null)) {
+                    revertConnections.Add(this._solutionsTableAdapter, this._solutionsTableAdapter.Connection);
+                    this._solutionsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._solutionsTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._solutionsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._solutionsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._solutionsTableAdapter.Adapter);
                     }
                 }
                 if ((this._gATableAdapter != null)) {
@@ -9417,13 +9231,13 @@ SELECT ID, ProblemID, SolutionID, TotalWeight, TotalVolume, TotalValue, WeightSt
                 if (workConnOpened) {
                     workConnection.Close();
                 }
-                if ((this._knapDataTableAdapter != null)) {
-                    this._knapDataTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._knapDataTableAdapter]));
-                    this._knapDataTableAdapter.Transaction = null;
+                if ((this._dataTableAdapter != null)) {
+                    this._dataTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._dataTableAdapter]));
+                    this._dataTableAdapter.Transaction = null;
                 }
-                if ((this._knapSolutionsTableAdapter != null)) {
-                    this._knapSolutionsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._knapSolutionsTableAdapter]));
-                    this._knapSolutionsTableAdapter.Transaction = null;
+                if ((this._solutionsTableAdapter != null)) {
+                    this._solutionsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._solutionsTableAdapter]));
+                    this._solutionsTableAdapter.Transaction = null;
                 }
                 if ((this._gATableAdapter != null)) {
                     this._gATableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._gATableAdapter]));

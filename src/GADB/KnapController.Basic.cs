@@ -24,8 +24,8 @@ namespace GADB
 
             f.FitnessFuncToPass = c =>
            {
-               GADataSet.KnapSolutionsDataTable dt = new GADataSet.KnapSolutionsDataTable();
-               GADataSet.KnapSolutionsRow nap = dt.NewKnapSolutionsRow();
+               GADataSet.SolutionsDataTable dt = new GADataSet.SolutionsDataTable();
+               GADataSet.SolutionsRow nap = dt.NewSolutionsRow();
                GADataSet.KnapStringsDataTable nstrings = new GADataSet.KnapStringsDataTable();
                GADataSet.KnapStringsRow n = nstrings.NewKnapStringsRow();
 
@@ -53,7 +53,7 @@ namespace GADB
         /// <returns></returns>
         public override IChromosome CreateChromosome()
         {
-            AChromosome c = new AChromosome(SIZE, problemData.Length);
+            AChromosome c = new AChromosome(SIZE, ProblemData.Length);
             return c;
         }
     }

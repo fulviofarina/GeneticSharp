@@ -37,11 +37,11 @@ namespace GADB
             }
         }
 
-        partial class KnapSolutionsDataTable
+        partial class SolutionsDataTable
         {
         }
 
-        partial class KnapSolutionsRow
+        partial class SolutionsRow
         {
             public void Knap(ref IChromosome c)
             {
@@ -77,7 +77,7 @@ namespace GADB
             }
         }
 
-        partial class KnapDataDataTable
+        partial class DataDataTable
         {
         }
     }

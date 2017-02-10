@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using GeneticSharp.Domain;
 using GeneticSharp.Domain.Chromosomes;
 using GeneticSharp.Domain.Crossovers;
@@ -13,6 +15,21 @@ namespace GADB
 {
     public abstract class ControllerBase : IController
     {
+        private GADataSet.GARow gARow = null;
+
+        public GADataSet.GARow GARow
+        {
+            get
+            {
+                return gARow;
+            }
+
+            set
+            {
+                gARow = value;
+            }
+        }
+
         private Action callBack = null;
         public Action CallBack
         {
@@ -39,12 +56,27 @@ namespace GADB
                 finalCallBack = value;
             }
         }
+        public int PROBLEMID = 0; //important!!!
+        private DataRow[] problemData = null;
+        private string[] variableNames;
 
-        public void FillGAData(ref GADataSet.KnapSolutionsRow r, ref GADataSet.GARow ga)
+        public void FillStrings<T>(ref GADataSet.SolutionsRow r, ref T s)
         {
-            r.GAID = ga.ID;
-            r.TimeSpan = ga.TimeStamp;
-            r.Generations = ga.GenerationCurrent;
+            r.Genotype = Aid.SetStrings(r.GenesAsInts);
+
+            for (int i = 0; i < variableNames.Length; i++)
+            {
+                string dummy = Aid.DecodeStrings(r.GenesAsInts, problemData, variableNames[i]);
+                string field = variableNames[i] + "String";
+                DataRow row = s as DataRow;
+                row.SetField(field, dummy); //first
+            }
+        }
+        public void FillGAData(ref GADataSet.SolutionsRow r)
+        {
+            r.GAID = gARow.ID;
+            r.TimeSpan = gARow.TimeStamp;
+            r.Generations = gARow.GenerationCurrent;
         }
 
         private Probabilities probabilities;
@@ -68,6 +100,61 @@ namespace GADB
                 probabilities = value;
             }
         }
+
+        public DataRow[] ProblemData
+        {
+            get
+            {
+                return problemData;
+            }
+
+            set
+            {
+                problemData = value;
+            }
+        }
+
+        public string[] VariableNames
+        {
+            get
+            {
+                return variableNames;
+            }
+
+            set
+            {
+                variableNames = value;
+            }
+        }
+
+        public HashSet<string> HashListOfGenotypes
+        {
+            get
+            {
+                return hashListOfGenotypes;
+            }
+
+            set
+            {
+                hashListOfGenotypes = value;
+            }
+        }
+
+        public List<GADataSet.SolutionsRow> ListOfSolutions
+        {
+            get
+            {
+                return listOfSolutions;
+            }
+
+            set
+            {
+                listOfSolutions = value;
+            }
+        }
+
+        private HashSet<string> hashListOfGenotypes = null;
+        private List<GADataSet.SolutionsRow> listOfSolutions = null;
 
         public virtual void DoStatistics<T>(object problema)
         {

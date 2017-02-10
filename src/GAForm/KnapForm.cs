@@ -65,9 +65,9 @@ namespace GAForm
 
                 this.gATA.Update(this.gADataSet.GA);
 
-                this.knapSolBS.Filter = this.gADataSet.KnapSolutions.GAIDColumn
+                this.knapSolBS.Filter = this.gADataSet.Solutions.GAIDColumn
                     .ColumnName + "=" + currentGARow.ID;
-                this.knapSolBS.Sort = this.gADataSet.KnapSolutions.TimeSpanColumn
+                this.knapSolBS.Sort = this.gADataSet.Solutions.TimeSpanColumn
                     .ColumnName + " desc";
 
                 ///CUT HERE
@@ -82,21 +82,27 @@ namespace GAForm
                 {
                     Application.DoEvents();
                     this.toolStripProgressBar1.PerformStep();
-                  //  this.knapSolTA.Update(this.gADataSet.KnapSolutions);
-                  //  this.gATA.Update(this.gADataSet.GA);
-                    this.TAM.UpdateAll(this.gADataSet);
+                    GADB.GADataSetTableAdapters.GATableAdapter gata = new GADB.GADataSetTableAdapters.GATableAdapter();
+                    gata.Update(this.gADataSet.GA);
+                    gata.Dispose();
+                    gata = null;
+                    GADB.GADataSetTableAdapters.SolutionsTableAdapter solta = new GADB.GADataSetTableAdapters.SolutionsTableAdapter();
+                    solta.Update(this.gADataSet.Solutions);
+                    solta.Dispose();
+                    solta = null;
                 };
                 
 
-                knapController.FinalCallBack = delegate
+                knapController.FinalCallBack = delegate 
                 {
-
-
-                    this.TAM.UpdateAll(this.gADataSet);
-
+                    GADB.GADataSetTableAdapters.KnapStringsTableAdapter sta = new GADB.GADataSetTableAdapters.KnapStringsTableAdapter();
+                    sta.Update(this.gADataSet.KnapStrings);
+                    sta.Dispose();
+                    sta = null;
                 };
 
-                knapController.GaRow = currentGARow;
+
+                knapController.GARow = currentGARow;
 
                 IsampleControl.PostScript();
               
@@ -159,30 +165,30 @@ namespace GAForm
 
         private void fillMissingColumns()
         {
-            string relation = "KnapStrings_KnapSolutions";
+            string relation = "KnapStrings_Solutions";
             foreach (DataColumn c in gADataSet.KnapStrings.Columns)
             {
                 if (!c.ColumnName.Contains("ID"))
                 {
                     string str = "Parent(" + relation + ")." + c.ColumnName;
-                    this.gADataSet.KnapSolutions.Columns.Add(new DataColumn(c.ColumnName, c.DataType, str));
+                    this.gADataSet.Solutions.Columns.Add(new DataColumn(c.ColumnName, c.DataType, str));
                 }
             }
         }
 
         private void KnapForm_Load(object sender, EventArgs e)
         {
-            //   this.knapSolBS.Sort =  this.gADataSet.KnapSolutions.FitnessColumn.ColumnName + ", " + this.gADataSet.KnapSolutions.TimeSpanColumn.ColumnName + ", " + this.gADataSet.KnapSolutions.FrequencyColumn.ColumnName + " asc";
+            //   this.knapSolBS.Sort =  this.gADataSet.Solutions.FitnessColumn.ColumnName + ", " + this.gADataSet.Solutions.TimeSpanColumn.ColumnName + ", " + this.gADataSet.Solutions.FrequencyColumn.ColumnName + " asc";
             fillMissingColumns();
 
             this.problemsTA.Fill(this.gADataSet.Problems);
             this.KnapConditionTA.Fill(this.gADataSet.KnapConditions);
             // TODO: This line of code loads data into the 'gADataSet.GA' table. You can move, or remove it, as needed.
             this.gATA.Fill(this.gADataSet.GA);
-            // TODO: This line of code loads data into the 'gADataSet.KnapSolutions' table. You can move, or remove it, as needed.
-            this.knapSolTA.Fill(this.gADataSet.KnapSolutions);
+            // TODO: This line of code loads data into the 'gADataSet.Solutions' table. You can move, or remove it, as needed.
+            this.knapSolTA.Fill(this.gADataSet.Solutions);
             // TODO: This line of code loads data into the 'gADataSet.KnapData' table. You can move, or remove it, as needed.
-            this.knapDataTA.Fill(this.gADataSet.KnapData);
+            this.knapDataTA.Fill(this.gADataSet.Data);
             this.knapStringsTableAdapter1.Fill(this.gADataSet.KnapStrings);
 
             dgvDoubleMouseclick(this.problemsDataGridView, DGVARGUMENTDUMMY);
@@ -220,22 +226,22 @@ namespace GAForm
 
                 this.knapConditionsBS.Filter = this.gADataSet.KnapConditions.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
 
-                this.knapDataBS.Filter = this.gADataSet.KnapData.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
+                this.knapDataBS.Filter = this.gADataSet.Data.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
 
                 this.gABS.Filter = this.gADataSet.GA.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
 
-                this.knapSolBS.Filter = this.gADataSet.KnapSolutions.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
+                this.knapSolBS.Filter = this.gADataSet.Solutions.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
 
-                this.knapSolBS.Sort = this.gADataSet.KnapSolutions.ChromosomeLengthColumn.ColumnName + " desc";
+                this.knapSolBS.Sort = this.gADataSet.Solutions.ChromosomeLengthColumn.ColumnName + " desc";
             }
             else if (sender.Equals(this.gADataGridView))
             {
                 GADataSet.GARow currentGARow = null;
                 currentGARow = dgvr.Row as GADataSet.GARow;
 
-                this.knapSolBS.Filter = this.gADataSet.KnapSolutions.GAIDColumn.ColumnName + "=" + currentGARow.ID;
+                this.knapSolBS.Filter = this.gADataSet.Solutions.GAIDColumn.ColumnName + "=" + currentGARow.ID;
 
-                this.knapSolBS.Sort = this.gADataSet.KnapSolutions.FitnessColumn.ColumnName + " desc";
+                this.knapSolBS.Sort = this.gADataSet.Solutions.FitnessColumn.ColumnName + " desc";
             }
         }
 

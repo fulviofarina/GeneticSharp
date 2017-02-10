@@ -19,7 +19,7 @@
       <Class Name="GADB.GADataSet.KnapConditionsRow" Collapsed="true">
         <TypeIdentifier />
       </Class>
-      <Class Name="GADB.GADataSet.KnapSolutionsRow" Collapsed="true">
+      <Class Name="GADB.GADataSet.SolutionsRow" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>GADataSet.cs</NewMemberFileName>
         </TypeIdentifier>
@@ -27,7 +27,7 @@
       <Class Name="GADB.GADataSet.GADataTable" Collapsed="true">
         <TypeIdentifier />
       </Class>
-      <Class Name="GADB.GADataSet.KnapSolutionsDataTable" Collapsed="true">
+      <Class Name="GADB.GADataSet.SolutionsDataTable" Collapsed="true">
         <TypeIdentifier>
           <NewMemberFileName>GADataSet.cs</NewMemberFileName>
         </TypeIdentifier>
@@ -48,7 +48,7 @@
           <NewMemberFileName>GADataSet.cs</NewMemberFileName>
         </TypeIdentifier>
       </Class>
-      <Delegate Name="GADB.GADataSet.KnapSolutionsRowChangeEventHandler" Collapsed="true">
+      <Delegate Name="GADB.GADataSet.SolutionsRowChangeEventHandler" Collapsed="true">
         <TypeIdentifier />
       </Delegate>
       <Class Name="GADB.GADataSet.KnapDataRowChangeEvent" Collapsed="true">
@@ -57,7 +57,7 @@
       <Class Name="GADB.GADataSet.ProblemsRow" Collapsed="true">
         <TypeIdentifier />
       </Class>
-      <Class Name="GADB.GADataSet.KnapSolutionsRowChangeEvent" Collapsed="true">
+      <Class Name="GADB.GADataSet.SolutionsRowChangeEvent" Collapsed="true">
         <TypeIdentifier />
       </Class>
       <Delegate Name="GADB.GADataSet.KnapConditionsRowChangeEventHandler" Collapsed="true">
