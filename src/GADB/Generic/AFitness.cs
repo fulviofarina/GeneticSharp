@@ -9,7 +9,7 @@ namespace GADB
     /// </summary>
     public class AFitness : IFitness
     {
-        public Func<IChromosome, double> FitnessFuncToPass { get; set; }
+        public Func<IChromosome, double> FitnessFuncToPass { private get ; set; }
 
         /// <summary>
         /// Performs the evaluation against the specified chromosome.

@@ -9,7 +9,9 @@ namespace GADB
 
         private int numberOfGenes;
 
-      
+
+
+      //  int method = 0;
 
         /// <summary>
         ///
@@ -24,53 +26,58 @@ namespace GADB
             {
                 ReplaceGene(i, GenerateGene(i));
             }
+
+          //  method = methodNum;
         }
         
-        /// <summary>
-        /// METODO B
-        /// </summary>
-        /// <param name="geneIndex"></param>
-        /// <returns></returns>
-        public override Gene GenerateGene(int geneIndex)
+      
+        public override  Gene GenerateGene(int geneIndex)
         {
-            //makes 1 gene with a random index from 0 to m_values as MAX
-            int randIndex = RandomizationProvider.Current.GetInt(0, numberOfGenes);
-            // int extra = randIndex - numberOfGenes;
-            // if (extra > 0) randIndex = -1;
-            if (randIndex == 0) randIndex = -1;
-            return new Gene(randIndex);
-        }
-        
-        /*
-        /// <summary>
-        /// Generates the gene for the specified index. METODO A
-        /// </summary>
-        /// <returns>The gene.</returns>
-        /// <param name="geneIndex">Gene index.</param>
-        public override Gene GenerateGene(int geneIndex)
-        {
-            //makes 1 gene with a random index from 0 to m_values as MAX
-            int randIndex = RandomizationProvider.Current.GetInt(1, numberOfGenes);
-            int extra = randIndex - numberOfGenes;
-            if (extra > 0) randIndex = -1;
+            int randIndex = 0;
+            int initial = 0;
+          
+          
+            randIndex = RandomizationProvider.Current.GetInt(initial, numberOfGenes*10);
+       
+          
+                if (randIndex > numberOfGenes || randIndex==0) randIndex = -1;
+
+
 
             return new Gene(randIndex);
         }
-
-        */
-
-/*
-     //  metdodo C
-        public override Gene GenerateGene(int geneIndex)
+        public  Gene GenerateGeneB(int geneIndex)
         {
-            //makes 1 gene with a random index from 0 to m_values as MAX
-            int randIndex = RandomizationProvider.Current.GetInt(0, this.Length);
-            int extra = randIndex - numberOfGenes;
-            if (extra >= 0) randIndex = -2;
+            int randIndex = 0;
+            int initial = 0;
+           
+            randIndex = RandomizationProvider.Current.GetInt(initial, numberOfGenes);
 
-            return new Gene(randIndex + 1);
+           
+
+                if (randIndex == 0) randIndex = -1;
+          
+
+            return new Gene(randIndex);
         }
-        */
+        public Gene GenerateGeneA(int geneIndex)
+        {
+            int randIndex = 0;
+            int initial = 0;
+           
+                //makes 1 gene with a random index from 0 to m_values as MAX
+                initial = 1;
+          
+            randIndex = RandomizationProvider.Current.GetInt(initial, numberOfGenes);
+
+      
+                if (randIndex > numberOfGenes) randIndex = -1;
+         
+
+
+            return new Gene(randIndex);
+        }
+
         /// <summary>
         /// Creates a new chromosome using the same structure of this.
         /// </summary>

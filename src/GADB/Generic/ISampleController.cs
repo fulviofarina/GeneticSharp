@@ -1,4 +1,5 @@
-﻿using GeneticSharp.Domain;
+﻿using System;
+using GeneticSharp.Domain;
 using GeneticSharp.Domain.Chromosomes;
 using GeneticSharp.Domain.Crossovers;
 using GeneticSharp.Domain.Fitnesses;
@@ -10,6 +11,8 @@ namespace GADB
 {
     public interface ISampleController
     {
+        void DoStatistics<T>(object problema);
+        GeneticAlgorithm GA { get; set; }
         /// <summary>
         /// Creates the fitness.
         /// </summary>
@@ -22,29 +25,15 @@ namespace GADB
         /// <returns>The chromosome.</returns>
         IChromosome CreateChromosome();
 
-        /// <summary>
-        /// Creates the termination.
-        /// </summary>
-        /// <returns>The termination.</returns>
-        ITermination CreateTermination(int expectedNumber);
+       
+        
 
-        /// <summary>
-        /// Creates the crossover.
-        /// </summary>
-        /// <returns>The crossover.</returns>
-        ICrossover CreateCrossover();
-
+        Probabilities Probabilities { set; get; }
         /// <summary>
         /// Creates the mutation.
         /// </summary>
         /// <returns>The mutation.</returns>
-        IMutation CreateMutation();
-
-        /// <summary>
-        /// Creates the selection.
-        /// </summary>
-        /// <returns>The selection.</returns>
-        ISelection CreateSelection();
+        
 
         /// <summary>
         /// Initializes this instance.
@@ -55,15 +44,9 @@ namespace GADB
         /// Configure the Genetic Algorithm.
         /// </summary>
         /// <param name="ga">The genetic algorithm.</param>
-        void ConfigGA(ref GeneticAlgorithm ga, int minPop, int maxPop, float mutationProb, float crossProb);
-
-       // void Add(IChromosome bestChromosome);
-
-        /// <summary>
-        /// Draws the sample.
-        /// </summary>
-        /// <param name="bestChromosome">The current best chromosome</param>
-
-        void Draw(IChromosome bestChromosome);
+        void ConfigGA( );
+        void PostScript(ref object param, ref Action callback);
+       
+       
     }
 }

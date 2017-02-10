@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using GeneticSharp.Domain;
 using GeneticSharp.Domain.Chromosomes;
 using GeneticSharp.Domain.Crossovers;
@@ -11,16 +13,51 @@ using GeneticSharp.Infrastructure.Threading;
 
 namespace GADB
 {
+
+   
+
     public abstract class SampleControllerBase : ISampleController
     {
-      //  public IList<IChromosome> Chromosomes;
 
+        public void FillGAData(ref GADataSet.KnapSolutionsRow r, ref GADataSet.GARow ga)
+        {
+
+            r.GAID = ga.ID;
+            r.TimeSpan = ga.TimeStamp;
+            r.Generations = ga.GenerationCurrent;
+
+            //r.SetField<int>("GAID", ga.ID);
+            //r.SetField<double>("TimeSpan",ga.TimeStamp);
+            //r.SetField<int>("Generations", ga.GenerationCurrent);
+
+        }
+
+
+        private Probabilities probabilities;
         /// <summary>
         /// Gets the Genetic Algorithm.
         /// </summary>
         /// <value>The Genetic Algorithm.</value>
-        protected GeneticAlgorithm GA { get; private set; }
+        /// 
+        public GeneticAlgorithm GA { get;  set; }
 
+        public Probabilities Probabilities
+        {
+            get
+            {
+                return probabilities;
+            }
+
+            set
+            {
+                probabilities = value;
+            }
+        }
+
+        public virtual void DoStatistics<T>(object problema)
+        {
+
+        }
         /// <summary>
         /// Creates the chromosome.
         /// </summary>
@@ -29,6 +66,7 @@ namespace GADB
         /// </returns>
         public abstract IChromosome CreateChromosome();
 
+       
         /// <summary>
         /// Creates the fitness.
         /// </summary>
@@ -50,26 +88,26 @@ namespace GADB
         /// </summary>
         /// <param name="ga">The genetic algorithm.</param>
 
-        public virtual void ConfigGA(ref GeneticAlgorithm ga, int minPop, int maxPop, float mutationProb, float crossProb)
+        public virtual void ConfigGA()
         {
             Initialize(); //IMPORTANT
 
-            ISelection selection = CreateSelection();
-            ICrossover crossover = CreateCrossover();
-            IMutation mutation = CreateMutation();
+            ISelection selection = new EliteSelection();
+            ICrossover crossover = new UniformCrossover();
+            IMutation mutation = new UniformMutation();
 
             IChromosome adam = CreateChromosome();
 
-            IPopulation population = new Population(minPop, maxPop, adam);
+            IPopulation population = new Population(probabilities.minPop, probabilities.maxPop, adam);
             population.GenerationStrategy = new PerformanceGenerationStrategy();
 
             IFitness fitness = CreateFitness();
-
+            GeneticAlgorithm ga;
             ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
-            ga.Termination = CreateTermination(maxPop);
-
-            ga.MutationProbability = mutationProb;
-            ga.CrossoverProbability = crossProb;
+            ga.Termination = new FitnessStagnationTermination(probabilities.maxPop);
+           
+            ga.MutationProbability = probabilities.mutationProb;
+            ga.CrossoverProbability = probabilities.crossProb;
 
             ga.TaskExecutor = new SmartThreadPoolTaskExecutor()
             {
@@ -80,59 +118,14 @@ namespace GADB
             GA = ga;
         }
 
-        /// <summary>
-        /// Draws the sample.
-        /// </summary>
-        /// <param name="bestChromosome">The current best chromosome</param>
-      //  public virtual void Add(IChromosome bestChromosome)
-      //  {
-      //      Chromosomes.Add(bestChromosome);
-      //  }
 
-        /// <summary>
-        /// Draws the sample.
-        /// </summary>
-        /// <param name="bestChromosome">The current best chromosome</param>
-        public virtual void Draw(IChromosome bestChromosome)
-        {
-        }
 
-        /// <summary>
-        /// Creates the termination.
-        /// </summary>
-        /// <returns>
-        /// The termination.
-        /// </returns>
-        public virtual ITermination CreateTermination(int expectedNumber)
+    
+        public virtual void PostScript(ref object param, ref Action callback)
         {
-            return new FitnessStagnationTermination(expectedNumber);
-        }
 
-        /// <summary>
-        /// Creates the crossover.
-        /// </summary>
-        /// <returns>The crossover.</returns>
-        public virtual ICrossover CreateCrossover()
-        {
-            return new UniformCrossover();
         }
+   
 
-        /// <summary>
-        /// Creates the mutation.
-        /// </summary>
-        /// <returns>The mutation.</returns>
-        public virtual IMutation CreateMutation()
-        {
-            return new UniformMutation(true);
-        }
-
-        /// <summary>
-        /// Creates the selection.
-        /// </summary>
-        /// <returns>The selection.</returns>
-        public virtual ISelection CreateSelection()
-        {
-            return new EliteSelection();
-        }
     }
 }

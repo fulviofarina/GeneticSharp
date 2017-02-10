@@ -1,11 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 
 namespace GADB
 {
     public static class Aid
     {
-        public static double SetBasic(IList<int> Genes, IList<double> values)
+
+       
+
+
+        public static double SetBasic(IList<int> Genes, DataRow[] values, string field)
         {
             double TotalValue = 0;
 
@@ -16,7 +22,7 @@ namespace GADB
                 //si está presente, entonces sumo el valor y el peso al contenedor
                 if (index != -1)
                 {
-                    TotalValue += values[index-1];
+                    TotalValue += values[index-1].Field<double>(field);
                 }
             }
 
@@ -48,7 +54,7 @@ namespace GADB
             return text;
         }
 
-        public static string DecodeStrings<T>(IList<int> Genes, IEnumerable<T> values)
+        public static string DecodeStrings(IList<int> Genes, DataRow[] values, string field)
         {
             string text = string.Empty;
 
@@ -61,7 +67,7 @@ namespace GADB
                 //si está presente, entonces sumo el valor y el peso al contenedor
                 if (index != -1)
                 {
-                    text += values.ElementAt(index-1).ToString();
+                    text += values[index-1].Field<double>(field).ToString();
                 }
                 else
                 {

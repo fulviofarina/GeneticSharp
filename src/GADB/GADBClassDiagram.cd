@@ -83,8 +83,15 @@
   </Class>
   <Class Name="GADB.AChromosome">
     <Position X="6.25" Y="0.5" Width="2" />
+    <NestedTypes>
+      <Enum Name="GADB.AChromosome.Methods" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Generic\AChromosome.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAIAAAAAAAAgAAAIAAAAAAAAAAAAAAABA=</HashCode>
+      <HashCode>AAAAAAAAAAAAICAAAAAAAgAAAIAAAAAAAAAAAAAAABA=</HashCode>
       <FileName>Generic\AChromosome.cs</FileName>
     </TypeIdentifier>
   </Class>
