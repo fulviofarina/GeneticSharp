@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using GeneticSharp.Domain;
 using GeneticSharp.Domain.Chromosomes;
 using GeneticSharp.Domain.Crossovers;
@@ -13,33 +11,23 @@ using GeneticSharp.Infrastructure.Threading;
 
 namespace GADB
 {
-
-   
-
-    public abstract class SampleControllerBase : ISampleController
+    public abstract class ControllerBase : IController
     {
-
         public void FillGAData(ref GADataSet.KnapSolutionsRow r, ref GADataSet.GARow ga)
         {
-
             r.GAID = ga.ID;
             r.TimeSpan = ga.TimeStamp;
             r.Generations = ga.GenerationCurrent;
-
-            //r.SetField<int>("GAID", ga.ID);
-            //r.SetField<double>("TimeSpan",ga.TimeStamp);
-            //r.SetField<int>("Generations", ga.GenerationCurrent);
-
         }
 
-
         private Probabilities probabilities;
+
         /// <summary>
         /// Gets the Genetic Algorithm.
         /// </summary>
         /// <value>The Genetic Algorithm.</value>
-        /// 
-        public GeneticAlgorithm GA { get;  set; }
+        ///
+        public GeneticAlgorithm GA { get; set; }
 
         public Probabilities Probabilities
         {
@@ -56,8 +44,8 @@ namespace GADB
 
         public virtual void DoStatistics<T>(object problema)
         {
-
         }
+
         /// <summary>
         /// Creates the chromosome.
         /// </summary>
@@ -66,7 +54,6 @@ namespace GADB
         /// </returns>
         public abstract IChromosome CreateChromosome();
 
-       
         /// <summary>
         /// Creates the fitness.
         /// </summary>
@@ -80,7 +67,6 @@ namespace GADB
         /// </summary>
         public virtual void Initialize()
         {
-           // Chromosomes = new List<IChromosome>();
         }
 
         /// <summary>
@@ -105,7 +91,7 @@ namespace GADB
             GeneticAlgorithm ga;
             ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
             ga.Termination = new FitnessStagnationTermination(probabilities.maxPop);
-           
+
             ga.MutationProbability = probabilities.mutationProb;
             ga.CrossoverProbability = probabilities.crossProb;
 
@@ -118,14 +104,8 @@ namespace GADB
             GA = ga;
         }
 
-
-
-    
         public virtual void PostScript(ref object param, ref Action callback)
         {
-
         }
-   
-
     }
 }

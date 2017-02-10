@@ -3,15 +3,9 @@ using GeneticSharp.Domain.Randomizations;
 
 namespace GADB
 {
-    
     public sealed class AChromosome : ChromosomeBase
     {
-
         private int numberOfGenes;
-
-
-
-      //  int method = 0;
 
         /// <summary>
         ///
@@ -27,53 +21,58 @@ namespace GADB
                 ReplaceGene(i, GenerateGene(i));
             }
 
-          //  method = methodNum;
+           
         }
-        
-      
-        public override  Gene GenerateGene(int geneIndex)
+
+        /// <summary>
+        /// THIS WORKS THE BEST, HIGH PROB OF JUNK GENE
+        /// </summary>
+        /// <param name="geneIndex"></param>
+        /// <returns></returns>
+        public override Gene GenerateGene(int geneIndex)
         {
             int randIndex = 0;
             int initial = 0;
-          
-          
-            randIndex = RandomizationProvider.Current.GetInt(initial, numberOfGenes*10);
-       
-          
-                if (randIndex > numberOfGenes || randIndex==0) randIndex = -1;
 
+            randIndex = RandomizationProvider.Current.GetInt(initial, numberOfGenes * 10);
 
+            if (randIndex > numberOfGenes || randIndex == 0) randIndex = -1;
 
             return new Gene(randIndex);
         }
-        public  Gene GenerateGeneB(int geneIndex)
+        /// <summary>
+        /// OPTION B
+        /// </summary>
+        /// <param name="geneIndex"></param>
+        /// <returns></returns>
+        public Gene GenerateGeneB(int geneIndex)
         {
             int randIndex = 0;
             int initial = 0;
-           
+
             randIndex = RandomizationProvider.Current.GetInt(initial, numberOfGenes);
 
-           
-
-                if (randIndex == 0) randIndex = -1;
-          
+            if (randIndex == 0) randIndex = -1;
 
             return new Gene(randIndex);
         }
+
+        /// <summary>
+        /// OPTION A
+        /// </summary>
+        /// <param name="geneIndex"></param>
+        /// <returns></returns>
         public Gene GenerateGeneA(int geneIndex)
         {
             int randIndex = 0;
             int initial = 0;
-           
-                //makes 1 gene with a random index from 0 to m_values as MAX
-                initial = 1;
-          
+
+            //makes 1 gene with a random index from 0 to m_values as MAX
+            initial = 1;
+
             randIndex = RandomizationProvider.Current.GetInt(initial, numberOfGenes);
 
-      
-                if (randIndex > numberOfGenes) randIndex = -1;
-         
-
+            if (randIndex > numberOfGenes) randIndex = -1;
 
             return new Gene(randIndex);
         }
@@ -95,9 +94,5 @@ namespace GADB
         {
             return base.Clone();
         }
-
-     
-
-       
     }
 }

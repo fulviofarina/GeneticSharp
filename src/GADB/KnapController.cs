@@ -1,34 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using GADB;
+using System.Data;
+using System.Linq;
 using GeneticSharp.Domain;
 using GeneticSharp.Domain.Chromosomes;
 using GeneticSharp.Domain.Fitnesses;
-using System.Data;
-using System.Linq;
-using System.Collections;
 
 namespace GADB
 {
-    [DisplayName("Knapsack")]
-    public class KnapsackSampleController : SampleControllerBase
+    
+    public partial class KnapController : ControllerBase
     {
-
-     
         private string[] variableNames;
-        private  DataRow[] conditions = null;
+        private DataRow[] conditions = null;
 
         private int SIZE = 6;
 
-        private int methodNumber=0;
-
-        private  double NORMA;
-
         private int PROBLEMID = 0; //important!!!
 
-
-       private DataRow[] problemData = null;
+        private DataRow[] problemData = null;
 
         /// <summary>
         /// Finds the fine for the given solution row, based on the conditions MAX, MIN and FINE TARIF
@@ -36,14 +27,13 @@ namespace GADB
         /// <param name="r"></param>
         /// <param name="conditions"></param>
         /// <param name="variableNames">array of variableNames of problem (columns of KnapData)</param>
-        public void FindFines(ref DataRow r)
+        private void findFines(ref DataRow r)
         {
             r.SetField("Fine", 0); //initialize the FINE
             r.SetField("Okays", string.Empty); //initialize the isOKStringArray //for info
 
             for (int j = 0; j < conditions.Length; j++)
             {
-
                 //find if all parameters are ok
                 bool[] varOk = new bool[variableNames.Length];
                 bool ANDS_OK = true;
@@ -53,22 +43,19 @@ namespace GADB
                     string totalVarStr = "Total" + variableNames[i];
                     string maxVarStr = "Max" + variableNames[i];
                     string minVarStr = "Min" + variableNames[i];
-
                     //is the variable within the window given by the condition?
                     double a = r.Field<double>(totalVarStr);
                     double b = conditions[j].Field<double>(maxVarStr);
                     varOk[i] = (a <= b);
-
                     a = r.Field<double>(totalVarStr);
                     b = conditions[j].Field<double>(minVarStr);
-
                     varOk[i] = varOk[i] && (a >= b);
-                   
+
                     ANDS_OK = ANDS_OK && varOk[i];
                 }
 
                 //FIRST LETER T OR F
-              
+
                 string actualStr = r.Field<string>("Okays");
                 for (int i = 0; i < variableNames.Length; i++)
                 {
@@ -80,7 +67,7 @@ namespace GADB
 
                 if (ANDS_OK)
                 {
-                    fine += 0;
+                    fine += 0; //not to be fined
                 }
                 else
                 {
@@ -102,48 +89,41 @@ namespace GADB
                             fine += (auxiliarDifference) * tariff; //excess weight
                         }
                     }
-
-
                 }
 
                 r.SetField("Fine", fine);
             }
-
         }
-
 
         /// <summary>
         /// BASIC CALCULATION NECESSARY FOR FITNESS
         /// </summary>
         /// <param name="r"></param>
         /// <param name="c"></param>
-        private void fillBasic(ref GADataSet.KnapSolutionsRow r ,ref IChromosome c)
+        private void fillBasic(ref GADataSet.KnapSolutionsRow r, ref GADataSet.KnapStringsRow strings, ref IChromosome c)
         {
             r.Knap(ref c);
-
 
             for (int i = 0; i < variableNames.Length; i++)
             {
                 double dummy = Aid.SetBasic(r.GenesAsInts, problemData, variableNames[i]);
-                r.SetField("Total"+variableNames[i], dummy); //first
+                r.SetField("Total" + variableNames[i], dummy); //first
             }
 
-               r.ProblemID = PROBLEMID;
+            r.ProblemID = PROBLEMID;
 
-      
-                DataRow row = r;
-                FindFines(ref row);
-
-                r.Fitness = r.TotalValue;
-                r.Fitness /= (1 + r.Fine); //max vol, max value * (1+fine)
-       
+            DataRow row = strings;
+            findFines(ref row);
+            r.Fine = strings.Fine;
+            r.Fitness = r.TotalValue;
+            r.Fitness /= (1 + r.Fine); //max vol, max value * (1+fine)
         }
 
         /// <summary>
         /// POST CALCULATION TO DECODE
         /// </summary>
         /// <param name="r"></param>
-        private void fillStrings(ref GADataSet.KnapSolutionsRow r)
+        private void fillStrings(ref GADataSet.KnapSolutionsRow r, ref GADataSet.KnapStringsRow s)
         {
             r.Genotype = Aid.SetStrings(r.GenesAsInts);
 
@@ -151,24 +131,17 @@ namespace GADB
             {
                 string dummy = Aid.DecodeStrings(r.GenesAsInts, problemData, variableNames[i]);
                 string field = variableNames[i] + "String";
-                r.SetField(field, dummy); //first
+                s.SetField(field, dummy); //first
             }
-        
         }
-
-
-
-
 
         // //// / / / / / //////// //////////////////////////// AQUI TEMPLATE
         /// <summary>
-        /// INITIALIZER 
+        /// INITIALIZER
         /// </summary>
         /// <param name="dt"></param>
-        public KnapsackSampleController(ref GADataSet.ProblemsRow p, int size, int methodNum)
+        public KnapController(ref GADataSet.ProblemsRow p, int size)
         {
-
-
             if (p == null) throw new Exception("No Problem ID given");
             //DETERMINE CONDITIONS from PROBLEM ID
             conditions = p.GetKnapConditionsRows();
@@ -177,48 +150,31 @@ namespace GADB
                 throw new Exception("No Problem Conditions given");
             }
 
-          //  List<List<double>> listsOfValues;
-
-         
             //fill arrays of values, wieghts and volumes
-             problemData = p.GetKnapDataRows();
+            problemData = p.GetKnapDataRows();
 
             if (problemData.Length == 0)
             {
                 throw new Exception("No Problem Variables and Values given");
             }
 
-
-
-
-            //determine norm to normalize on fitness
-
-         
-
             SIZE = size;
 
             PROBLEMID = p.ProblemID;
 
-            methodNumber = methodNum;
-
-
             variableNames = problemData.FirstOrDefault()
                 .Table.Columns.OfType<DataColumn>()
                 .Where(o => !o.ColumnName.Contains("ID"))
-                .Select(o=> o.ColumnName).ToArray();
-
-     
-
-
-        
-
-
-
+                .Select(o => o.ColumnName).ToArray();
         }
 
+        /// <summary>
+        /// To perform print process
+        /// </summary>
+        /// <param name="GaRow">Genetic Algorithm ROW</param>
+        /// <param name="callBack">FUNCTION TO CALL BACK TO UPDATE FORM/CONTROL</param>
         public override void PostScript(ref object GaRow, ref Action callBack)
         {
-
             Action a = callBack;
 
             // Application.DoEvents();
@@ -234,27 +190,31 @@ namespace GADB
 
             generationRan = delegate
             {
-
                 GeneticAlgorithm ga = GA;
                 IChromosome bestChromosome = GA.Population.BestChromosome;
 
                 gaRow.Fill(ref ga); //report GA stuff
 
                 // Application.DoEvents();
-
+                GADataSet ds = gaRow.Table.DataSet as GADataSet;
                 GADataSet.KnapSolutionsRow currentSolution = null;
-                currentSolution = (gaRow.Table.DataSet as GADataSet).KnapSolutions.NewKnapSolutionsRow();
+                currentSolution = ds.KnapSolutions.NewKnapSolutionsRow();
+                GADataSet.KnapStringsRow currentString = null;
+                currentString = ds.KnapStrings.NewKnapStringsRow();
 
-                fillBasic(ref currentSolution, ref bestChromosome);
+                fillBasic(ref currentSolution, ref currentString, ref bestChromosome);
                 FillGAData(ref currentSolution, ref gaRow);
-                fillStrings(ref currentSolution);
+                fillStrings(ref currentSolution, ref currentString);
 
                 //IF NOT PRESENT IN THE LIST IS A NEW CHROMOSOME
                 string genotype = currentSolution.Genotype;
                 if (hgenotypes.Add(genotype)) //add to hashShet
                 {
-                    (gaRow.Table.DataSet as GADataSet).KnapSolutions.AddKnapSolutionsRow(currentSolution);
-
+                    ds.KnapSolutions.AddKnapSolutionsRow(currentSolution);
+                    currentString.GAID = currentSolution.GAID;
+                    currentString.ProblemID = currentSolution.ProblemID;
+                    currentString.SolutionID = currentSolution.ID;
+                    ds.KnapStrings.AddKnapStringsRow(currentString);
                     sols.Add(currentSolution);//add to indexed list
                 }
                 else
@@ -264,22 +224,19 @@ namespace GADB
                     // currentSolution = null;
                 }
 
-
                 a.Invoke();
-
-
             };
 
-
             GA.GenerationRan += generationRan;
-
-
-
         }
-        public  override void DoStatistics<T>(object problema)
+
+        /// <summary>
+        /// FUNCTION TO PERFORM AVERAGE AND HISTOGRAM
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="problema"></param>
+        public override void DoStatistics<T>(object problema)
         {
-
-
             GADataSet.ProblemsRow currentProblem = problema as GADataSet.ProblemsRow;
 
             IEnumerable<GADataSet.GARow> gasrows = currentProblem.GetGARows();
@@ -314,11 +271,9 @@ namespace GADB
                 return true;
             };
 
-
             //iterate min max chromosome lenght for all genetic algorithms
             for (int j = min; j <= max; j++)
             {
-
                 gasrows = currentProblem.GetGARows();
 
                 IEnumerable<GADataSet.GARow> subs = gasrows.Where(o => o.ChromosomeLength == j).ToList();
@@ -339,17 +294,14 @@ namespace GADB
 
                 knaprows = knaprows.Where(funcion).ToList(); //evaluate the filter function
 
-
                 int count = knaprows.Count();
                 for (int d = 0; d < count; d++)
                 {
                     if (!list.Contains(knaprows.ElementAt(d))) knaprows.ElementAt(d).Delete();
-
                 }
                 count = list.Count;
                 for (int d = 0; d < count; d++)
                 {
-
                     //  list.ElementAt(d).Frequency /= counter;
                     //  list.ElementAt(d).TimeSpan /= counter;
                     // list.ElementAt(d).Fitness /= counter;
@@ -363,41 +315,9 @@ namespace GADB
                     subs.ElementAt(d).Delete();
                 }
             }
-
         }
 
-      
-        public override IFitness CreateFitness()
-        {
-            AFitness f = new AFitness();
 
-            f.FitnessFuncToPass =  c =>
-            {
-
-                GADataSet.KnapSolutionsDataTable dt = new GADataSet.KnapSolutionsDataTable();
-                GADataSet.KnapSolutionsRow nap = dt.NewKnapSolutionsRow();
-
-
-                fillBasic(ref nap, ref c); //basic calculation
-
-                double fit = nap.Fitness;
-
-                nap = null;
-                dt.Dispose();
-                dt = null;
-
-                return fit;
-
-            };
-
-            return f;
-        }
-
-        public override IChromosome CreateChromosome()
-        {
-
-            AChromosome c = new AChromosome(SIZE, problemData.Length);
-            return c;
-        }
+  
     }
 }

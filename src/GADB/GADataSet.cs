@@ -12,7 +12,6 @@ namespace GADB
         {
             public void Fill(ref GeneticAlgorithm ga)
             {
-
                 double? fitnessVal = ga.Population.BestChromosome.Fitness;
 
                 if (fitnessVal == null) fitnessVal = 0;
@@ -21,7 +20,6 @@ namespace GADB
 
                 //TimeSpan te = ga.TimeEvolving;
                 TimeStamp = ga.TimeEvolving.TotalSeconds;
-
 
                 CrossProbability = ga.CrossoverProbability;
                 CrossChromeMinLenght = ga.Crossover.MinChromosomeLength;
@@ -56,8 +54,6 @@ namespace GADB
                 Frequency = 1;
                 //  ChromosomeLength = c.Length;
                 DateTime = DateTime.Now;
-
-
             }
 
             private IChromosome chromosome = null;
@@ -79,8 +75,6 @@ namespace GADB
                     return Genes.Select(selector).ToList();
                 }
             }
-
-
         }
 
         partial class KnapDataDataTable

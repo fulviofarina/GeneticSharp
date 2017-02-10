@@ -1,18 +1,16 @@
 ﻿using System;
 using GeneticSharp.Domain;
 using GeneticSharp.Domain.Chromosomes;
-using GeneticSharp.Domain.Crossovers;
 using GeneticSharp.Domain.Fitnesses;
-using GeneticSharp.Domain.Mutations;
-using GeneticSharp.Domain.Selections;
-using GeneticSharp.Domain.Terminations;
 
 namespace GADB
 {
-    public interface ISampleController
+    public interface IController
     {
         void DoStatistics<T>(object problema);
+
         GeneticAlgorithm GA { get; set; }
+
         /// <summary>
         /// Creates the fitness.
         /// </summary>
@@ -25,15 +23,11 @@ namespace GADB
         /// <returns>The chromosome.</returns>
         IChromosome CreateChromosome();
 
-       
-        
-
         Probabilities Probabilities { set; get; }
         /// <summary>
         /// Creates the mutation.
         /// </summary>
         /// <returns>The mutation.</returns>
-        
 
         /// <summary>
         /// Initializes this instance.
@@ -44,9 +38,8 @@ namespace GADB
         /// Configure the Genetic Algorithm.
         /// </summary>
         /// <param name="ga">The genetic algorithm.</param>
-        void ConfigGA( );
+        void ConfigGA();
+
         void PostScript(ref object param, ref Action callback);
-       
-       
     }
 }
