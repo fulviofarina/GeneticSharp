@@ -5,13 +5,33 @@ using System.Data;
 using System.Linq;
 using GeneticSharp.Domain;
 using GeneticSharp.Domain.Chromosomes;
-using GeneticSharp.Domain.Fitnesses;
+
 
 namespace GADB
 {
     
     public partial class KnapController : ControllerBase
     {
+
+
+        private HashSet<string> hgenotypes = null;
+        private List<GADataSet.KnapSolutionsRow> sols = null;
+        private GADataSet.GARow gaRow = null;
+
+        public GADataSet.GARow GaRow
+        {
+            get
+            {
+                return gaRow;
+            }
+
+            set
+            {
+                gaRow = value;
+            }
+        }
+
+
         private string[] variableNames;
         private DataRow[] conditions = null;
 
@@ -29,9 +49,7 @@ namespace GADB
         /// <param name="variableNames">array of variableNames of problem (columns of KnapData)</param>
         private void findFines(ref DataRow r)
         {
-            r.SetField("Fine", 0); //initialize the FINE
-            r.SetField("Okays", string.Empty); //initialize the isOKStringArray //for info
-
+         
             for (int j = 0; j < conditions.Length; j++)
             {
                 //find if all parameters are ok
@@ -100,23 +118,32 @@ namespace GADB
         /// </summary>
         /// <param name="r"></param>
         /// <param name="c"></param>
-        private void fillBasic(ref GADataSet.KnapSolutionsRow r, ref GADataSet.KnapStringsRow strings, ref IChromosome c)
+        private void fillBasic(ref GADataSet.KnapSolutionsRow r, ref GADataSet.KnapStringsRow s, ref IChromosome c)
         {
             r.Knap(ref c);
+
+        
+            s.TotalValue = 0;
+            s.TotalWeight = 0;
+            s.TotalVolume = 0;
+            s.Fine = 0; //initialize the FINE
+            s.Okays = string.Empty; //initialize the isOKStringArray //for info
+
 
             for (int i = 0; i < variableNames.Length; i++)
             {
                 double dummy = Aid.SetBasic(r.GenesAsInts, problemData, variableNames[i]);
-                r.SetField("Total" + variableNames[i], dummy); //first
+                s.SetField("Total" + variableNames[i], dummy); //first
             }
 
             r.ProblemID = PROBLEMID;
 
-            DataRow row = strings;
+            DataRow row = s;
+    
             findFines(ref row);
-            r.Fine = strings.Fine;
-            r.Fitness = r.TotalValue;
-            r.Fitness /= (1 + r.Fine); //max vol, max value * (1+fine)
+        
+            r.Fitness = s.TotalValue;
+            r.Fitness /= (1 + s.Fine); //max vol, max value * (1+fine)
         }
 
         /// <summary>
@@ -168,66 +195,116 @@ namespace GADB
                 .Select(o => o.ColumnName).ToArray();
         }
 
+
+
+
+      
         /// <summary>
         /// To perform print process
         /// </summary>
         /// <param name="GaRow">Genetic Algorithm ROW</param>
         /// <param name="callBack">FUNCTION TO CALL BACK TO UPDATE FORM/CONTROL</param>
-        public override void PostScript(ref object GaRow, ref Action callBack)
+        public override void PostScript( )
         {
-            Action a = callBack;
-
-            // Application.DoEvents();
-            ///DEFAULT TEMPLATE for handler
-            EventHandler generationRan = null;
             //LIST OF NON REPEATED VALUES
-            HashSet<string> hgenotypes = new HashSet<string>();
+            hgenotypes = new HashSet<string>();
             //NORMAL LIST TO ACCOMPANY, BECAUSE  A LIST IS INDEXED
             //AND A HASHSET IS NOT
-            List<GADataSet.KnapSolutionsRow> sols = new List<GADataSet.KnapSolutionsRow>();
+            sols = new List<GADataSet.KnapSolutionsRow>();
 
-            GADataSet.GARow gaRow = GaRow as GADataSet.GARow;
 
-            generationRan = delegate
+            BackgroundWorker w = new BackgroundWorker();
+            w.DoWork += W_DoWork;
+          
+            w.WorkerReportsProgress = true;
+            w.ProgressChanged += W_ProgressChanged;
+
+            w.RunWorkerAsync();
+            
+
+           
+        }
+
+        private void W_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+            try
             {
+
+          
+
+
                 GeneticAlgorithm ga = GA;
-                IChromosome bestChromosome = GA.Population.BestChromosome;
+            IChromosome bestChromosome = GA.Population.BestChromosome;
 
-                gaRow.Fill(ref ga); //report GA stuff
+            gaRow.Fill(ref ga); //report GA stuff
 
-                // Application.DoEvents();
+
+            //    CallBack.Invoke();
+
+             //    Application.DoEvents();
                 GADataSet ds = gaRow.Table.DataSet as GADataSet;
-                GADataSet.KnapSolutionsRow currentSolution = null;
-                currentSolution = ds.KnapSolutions.NewKnapSolutionsRow();
-                GADataSet.KnapStringsRow currentString = null;
-                currentString = ds.KnapStrings.NewKnapStringsRow();
+            GADataSet.KnapSolutionsRow currentSolution = null;
+            currentSolution = ds.KnapSolutions.NewKnapSolutionsRow();
+            GADataSet.KnapStringsRow currentString = null;
+            currentString = ds.KnapStrings.NewKnapStringsRow();
 
-                fillBasic(ref currentSolution, ref currentString, ref bestChromosome);
-                FillGAData(ref currentSolution, ref gaRow);
-                fillStrings(ref currentSolution, ref currentString);
+               
 
-                //IF NOT PRESENT IN THE LIST IS A NEW CHROMOSOME
-                string genotype = currentSolution.Genotype;
-                if (hgenotypes.Add(genotype)) //add to hashShet
-                {
-                    ds.KnapSolutions.AddKnapSolutionsRow(currentSolution);
-                    currentString.GAID = currentSolution.GAID;
-                    currentString.ProblemID = currentSolution.ProblemID;
-                    currentString.SolutionID = currentSolution.ID;
-                    ds.KnapStrings.AddKnapStringsRow(currentString);
-                    sols.Add(currentSolution);//add to indexed list
-                }
-                else
-                {
-                    int i = sols.FindIndex(o => o.Genotype.Equals(genotype));
-                    sols[i].Frequency++;
-                    // currentSolution = null;
-                }
+            fillBasic(ref currentSolution, ref currentString, ref bestChromosome);
+            FillGAData(ref currentSolution, ref gaRow);
+            fillStrings(ref currentSolution, ref currentString);
 
-                a.Invoke();
+
+            //IF NOT PRESENT IN THE LIST IS A NEW CHROMOSOME
+            string genotype = currentSolution.Genotype;
+            if (hgenotypes.Add(genotype)) //add to hashShet
+            {
+                ds.KnapSolutions.AddKnapSolutionsRow(currentSolution);
+                currentString.GAID = currentSolution.GAID;
+                currentString.ProblemID = currentSolution.ProblemID;
+                ds.KnapStrings.AddKnapStringsRow(currentString);
+                sols.Add(currentSolution);//add to indexed list
+            }
+            else
+            {
+                int i = sols.FindIndex(o => o.Genotype.Equals(genotype));
+                sols[i].Frequency++;
+                // currentSolution = null;
+            }
+
+
+            CallBack.Invoke();
+
+
+            currentString.SolutionID = currentSolution.ID;
+
+            }
+            catch (Exception ex)
+            {
+
+                string text = ex.StackTrace;
+                string yo = ex.Message;
+            }
+
+
+        }
+
+      //  int i = 0;
+
+        private void W_DoWork(object sender, DoWorkEventArgs e)
+        {
+         
+            GA.GenerationRan += delegate
+            {
+
+                System.ComponentModel.BackgroundWorker w = sender as System.ComponentModel.BackgroundWorker;
+                w.ReportProgress(0);
+
+
             };
 
-            GA.GenerationRan += generationRan;
+            GA.Start();
         }
 
         /// <summary>

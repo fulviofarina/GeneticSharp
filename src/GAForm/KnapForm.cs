@@ -46,8 +46,13 @@ namespace GAForm
 
             do
             {
+
+
                 this.gobtn.Enabled = false;
                 this.stopbtn.Enabled = true;
+
+            
+
 
                 Probabilities prob = setProbabilities();
                 //genetic algorithRow
@@ -69,19 +74,21 @@ namespace GAForm
                 KnapController knapController = null;
                 knapController = new KnapController(ref currentProblem, MINSIZE);
                 IsampleControl = knapController;
-
-          
                 IsampleControl.Probabilities = prob;
                 IsampleControl.ConfigGA();
+              
 
-                object currentGAROW = currentGARow;
-                Action a; //para rgresar al form
-                a = Application.DoEvents;
-                a += this.toolStripProgressBar1.PerformStep;
+                knapController.CallBack = delegate
+                {
+                    Application.DoEvents();
+                    this.toolStripProgressBar1.PerformStep();
+                    this.knapSolTA.Update(this.gADataSet.KnapSolutions);
+                };
+             
+                knapController.GaRow = currentGARow;
 
-                IsampleControl.PostScript(ref currentGAROW, ref a);
-
-                IsampleControl.GA.Start();
+                IsampleControl.PostScript();
+              
 
                 //ABORT IF STOPPED
                 if (!stopbtn.Enabled) break;
@@ -103,6 +110,8 @@ namespace GAForm
             }
             while (MINSIZE <= MAXSIZE);
         }
+
+
 
         private Probabilities setProbabilities()
         {

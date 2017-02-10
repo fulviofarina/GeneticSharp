@@ -13,6 +13,20 @@ namespace GADB
 {
     public abstract class ControllerBase : IController
     {
+        Action callBack = null;
+        public Action CallBack
+        {
+            get
+            {
+                return callBack;
+            }
+
+            set
+            {
+                callBack = value;
+            }
+        }
+
         public void FillGAData(ref GADataSet.KnapSolutionsRow r, ref GADataSet.GARow ga)
         {
             r.GAID = ga.ID;
@@ -97,14 +111,14 @@ namespace GADB
 
             ga.TaskExecutor = new SmartThreadPoolTaskExecutor()
             {
-                MinThreads = 25,
-                MaxThreads = 70
+                MinThreads = 10,
+                MaxThreads = 50
             };
 
             GA = ga;
         }
 
-        public virtual void PostScript(ref object param, ref Action callback)
+        public virtual void PostScript()
         {
         }
     }

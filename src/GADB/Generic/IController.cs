@@ -8,7 +8,7 @@ namespace GADB
     public interface IController
     {
         void DoStatistics<T>(object problema);
-
+        Action CallBack { get; set; }
         GeneticAlgorithm GA { get; set; }
 
         /// <summary>
@@ -40,6 +40,6 @@ namespace GADB
         /// <param name="ga">The genetic algorithm.</param>
         void ConfigGA();
 
-        void PostScript(ref object param, ref Action callback);
+        void PostScript();
     }
 }

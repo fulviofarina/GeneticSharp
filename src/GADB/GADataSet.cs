@@ -46,10 +46,10 @@ namespace GADB
             public void Knap(ref IChromosome c)
             {
                 chromosome = c;
-                TotalValue = 0;
-                TotalVolume = 0;
-                TotalWeight = 0;
-                Fine = 0;
+                //TotalValue = 0;
+                // TotalVolume = 0;
+                // TotalWeight = 0;
+                // Fine = 0;
                 Fitness = 0;
                 Frequency = 1;
                 //  ChromosomeLength = c.Length;
