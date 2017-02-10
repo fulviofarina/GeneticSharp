@@ -219,10 +219,19 @@ namespace GADB
             w.WorkerReportsProgress = true;
             w.ProgressChanged += W_ProgressChanged;
 
-            w.RunWorkerAsync();
-            
+            w.RunWorkerCompleted += W_RunWorkerCompleted;
 
+            w.RunWorkerAsync();
+
+          
            
+        }
+
+        private void W_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            FinalCallBack.Invoke();
+
+           // throw new NotImplementedException();
         }
 
         private void W_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -290,8 +299,6 @@ namespace GADB
 
         }
 
-      //  int i = 0;
-
         private void W_DoWork(object sender, DoWorkEventArgs e)
         {
          
@@ -338,12 +345,7 @@ namespace GADB
                 {
                     int i = list.FindIndex(r => r.Genotype.Equals(genotype));
                     list[i].Frequency += o.Frequency;
-                    //   list[i].TimeSpan += o.TimeSpan;
-                    //  list[i].Fitness += o.Fitness;
-                    //  list[i].TotalValue += o.TotalValue;
-                    //  list[i].TotalWeight += o.TotalWeight;
-                    //  list[i].TotalVolume += o.TotalVolume;
-                    //  counter++;
+                
                 }
                 return true;
             };
@@ -367,8 +369,7 @@ namespace GADB
 
                 hash.Clear(); //clear
                 list.Clear();//clear
-                             //   counter = currentProblem.Iters;
-
+      
                 knaprows = knaprows.Where(funcion).ToList(); //evaluate the filter function
 
                 int count = knaprows.Count();
@@ -376,16 +377,7 @@ namespace GADB
                 {
                     if (!list.Contains(knaprows.ElementAt(d))) knaprows.ElementAt(d).Delete();
                 }
-                count = list.Count;
-                for (int d = 0; d < count; d++)
-                {
-                    //  list.ElementAt(d).Frequency /= counter;
-                    //  list.ElementAt(d).TimeSpan /= counter;
-                    // list.ElementAt(d).Fitness /= counter;
-                    // list.ElementAt(d).TotalValue /= counter;
-                    //  list.ElementAt(d).TotalWeight /= counter;
-                    //  list.ElementAt(d).TotalVolume /= counter;
-                }
+                             
                 count = subs.Count();
                 for (int d = 1; d < count; d++)
                 {

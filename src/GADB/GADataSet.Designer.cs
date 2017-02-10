@@ -8409,7 +8409,9 @@ SELECT ID, ProblemID, SolutionID, TotalWeight, TotalVolume, TotalValue, WeightSt
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT      KnapStrings.*\r\nFROM         KnapStrings";
+            this._commandCollection[0].CommandText = "SELECT      ID, ProblemID, SolutionID, TotalWeight, TotalVolume, TotalValue, Weig" +
+                "htString, VolumeString, ValueString, GAID, Okays, Fine\r\nFROM         KnapStrings" +
+                "";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

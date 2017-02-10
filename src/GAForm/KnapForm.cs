@@ -82,9 +82,20 @@ namespace GAForm
                 {
                     Application.DoEvents();
                     this.toolStripProgressBar1.PerformStep();
-                    this.knapSolTA.Update(this.gADataSet.KnapSolutions);
+                  //  this.knapSolTA.Update(this.gADataSet.KnapSolutions);
+                  //  this.gATA.Update(this.gADataSet.GA);
+                    this.TAM.UpdateAll(this.gADataSet);
                 };
-             
+                
+
+                knapController.FinalCallBack = delegate
+                {
+
+
+                    this.TAM.UpdateAll(this.gADataSet);
+
+                };
+
                 knapController.GaRow = currentGARow;
 
                 IsampleControl.PostScript();
@@ -94,7 +105,8 @@ namespace GAForm
                 if (!stopbtn.Enabled) break;
 
                 //UPDATE DATABASES
-                this.TAM.UpdateAll(this.gADataSet);
+
+
                 this.gobtn.Enabled = true;
                 this.stopbtn.Enabled = false;
 
@@ -144,9 +156,9 @@ namespace GAForm
             this.TAM.UpdateAll(this.gADataSet);
         }
 
-        private void KnapForm_Load(object sender, EventArgs e)
+
+        private void fillMissingColumns()
         {
-            //   this.knapSolBS.Sort =  this.gADataSet.KnapSolutions.FitnessColumn.ColumnName + ", " + this.gADataSet.KnapSolutions.TimeSpanColumn.ColumnName + ", " + this.gADataSet.KnapSolutions.FrequencyColumn.ColumnName + " asc";
             string relation = "KnapStrings_KnapSolutions";
             foreach (DataColumn c in gADataSet.KnapStrings.Columns)
             {
@@ -156,6 +168,12 @@ namespace GAForm
                     this.gADataSet.KnapSolutions.Columns.Add(new DataColumn(c.ColumnName, c.DataType, str));
                 }
             }
+        }
+
+        private void KnapForm_Load(object sender, EventArgs e)
+        {
+            //   this.knapSolBS.Sort =  this.gADataSet.KnapSolutions.FitnessColumn.ColumnName + ", " + this.gADataSet.KnapSolutions.TimeSpanColumn.ColumnName + ", " + this.gADataSet.KnapSolutions.FrequencyColumn.ColumnName + " asc";
+            fillMissingColumns();
 
             this.problemsTA.Fill(this.gADataSet.Problems);
             this.KnapConditionTA.Fill(this.gADataSet.KnapConditions);
@@ -166,6 +184,7 @@ namespace GAForm
             // TODO: This line of code loads data into the 'gADataSet.KnapData' table. You can move, or remove it, as needed.
             this.knapDataTA.Fill(this.gADataSet.KnapData);
             this.knapStringsTableAdapter1.Fill(this.gADataSet.KnapStrings);
+
             dgvDoubleMouseclick(this.problemsDataGridView, DGVARGUMENTDUMMY);
         }
 

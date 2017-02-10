@@ -9,6 +9,7 @@ namespace GADB
     {
         void DoStatistics<T>(object problema);
         Action CallBack { get; set; }
+        Action FinalCallBack { get; set; }
         GeneticAlgorithm GA { get; set; }
 
         /// <summary>

@@ -13,7 +13,7 @@ namespace GADB
 {
     public abstract class ControllerBase : IController
     {
-        Action callBack = null;
+        private Action callBack = null;
         public Action CallBack
         {
             get
@@ -24,6 +24,19 @@ namespace GADB
             set
             {
                 callBack = value;
+            }
+        }
+        private Action finalCallBack = null;
+        public Action FinalCallBack
+        {
+            get
+            {
+                return finalCallBack;
+            }
+
+            set
+            {
+                finalCallBack = value;
             }
         }
 
