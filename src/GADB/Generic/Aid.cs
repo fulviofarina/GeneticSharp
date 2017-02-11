@@ -13,8 +13,6 @@ namespace GADB
             for (int i = 0; i < Genes.Count; i++)
             {
                 int index = Genes.ElementAt(i);
-                //  int index = int.Parse(g.Value.ToString());
-                //si está presente, entonces sumo el valor y el peso al contenedor
                 if (index != -1)
                 {
                     TotalValue += values[index - 1].Field<double>(field);

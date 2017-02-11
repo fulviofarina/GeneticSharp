@@ -46,13 +46,8 @@ namespace GAForm
 
             do
             {
-
-
                 this.gobtn.Enabled = false;
                 this.stopbtn.Enabled = true;
-
-            
-
 
                 Probabilities prob = setProbabilities();
                 //genetic algorithRow
@@ -65,23 +60,24 @@ namespace GAForm
 
                 this.gATA.Update(this.gADataSet.GA);
 
-                this.knapSolBS.Filter = this.gADataSet.Solutions.GAIDColumn
+                this.SolBS.Filter = this.gADataSet.Solutions.GAIDColumn
                     .ColumnName + "=" + currentGARow.ID;
-                this.knapSolBS.Sort = this.gADataSet.Solutions.TimeSpanColumn
+                this.SolBS.Sort = this.gADataSet.Solutions.TimeSpanColumn
                     .ColumnName + " desc";
 
                 ///CUT HERE
                 KnapController knapController = null;
-                knapController = new KnapController(ref currentProblem, MINSIZE);
+                knapController = new KnapController();
                 IsampleControl = knapController;
+
+                IsampleControl.SetControllerFor(ref currentProblem, MINSIZE);
                 IsampleControl.Probabilities = prob;
                 IsampleControl.ConfigGA();
-              
 
-                knapController.CallBack = delegate
+                IsampleControl.CallBack = delegate
                 {
                     Application.DoEvents();
-                    this.toolStripProgressBar1.PerformStep();
+               //     this.toolStripProgressBar1.PerformStep();
                     GADB.GADataSetTableAdapters.GATableAdapter gata = new GADB.GADataSetTableAdapters.GATableAdapter();
                     gata.Update(this.gADataSet.GA);
                     gata.Dispose();
@@ -91,27 +87,23 @@ namespace GAForm
                     solta.Dispose();
                     solta = null;
                 };
-                
 
-                knapController.FinalCallBack = delegate 
+                IsampleControl.FinalCallBack = delegate
                 {
-                    GADB.GADataSetTableAdapters.KnapStringsTableAdapter sta = new GADB.GADataSetTableAdapters.KnapStringsTableAdapter();
-                    sta.Update(this.gADataSet.KnapStrings);
+                    GADB.GADataSetTableAdapters.StringsTableAdapter sta = new GADB.GADataSetTableAdapters.StringsTableAdapter();
+                    sta.Update(this.gADataSet.Strings);
                     sta.Dispose();
                     sta = null;
                 };
 
-
-                knapController.GARow = currentGARow;
+                IsampleControl.GARow = currentGARow;
 
                 IsampleControl.PostScript();
-              
 
                 //ABORT IF STOPPED
                 if (!stopbtn.Enabled) break;
 
                 //UPDATE DATABASES
-
 
                 this.gobtn.Enabled = true;
                 this.stopbtn.Enabled = false;
@@ -128,8 +120,6 @@ namespace GAForm
             }
             while (MINSIZE <= MAXSIZE);
         }
-
-
 
         private Probabilities setProbabilities()
         {
@@ -154,19 +144,18 @@ namespace GAForm
         private void knapDataBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
-            this.knapDataBS.EndEdit();
-            this.knapSolBS.EndEdit();
+            this.DataBS.EndEdit();
+            this.SolBS.EndEdit();
             this.gABS.EndEdit();
             this.problemsBS.EndEdit();
 
             this.TAM.UpdateAll(this.gADataSet);
         }
 
-
         private void fillMissingColumns()
         {
             string relation = "KnapStrings_Solutions";
-            foreach (DataColumn c in gADataSet.KnapStrings.Columns)
+            foreach (DataColumn c in gADataSet.Strings.Columns)
             {
                 if (!c.ColumnName.Contains("ID"))
                 {
@@ -182,14 +171,14 @@ namespace GAForm
             fillMissingColumns();
 
             this.problemsTA.Fill(this.gADataSet.Problems);
-            this.KnapConditionTA.Fill(this.gADataSet.KnapConditions);
+            this.ConditionTA.Fill(this.gADataSet.Conditions);
             // TODO: This line of code loads data into the 'gADataSet.GA' table. You can move, or remove it, as needed.
             this.gATA.Fill(this.gADataSet.GA);
             // TODO: This line of code loads data into the 'gADataSet.Solutions' table. You can move, or remove it, as needed.
-            this.knapSolTA.Fill(this.gADataSet.Solutions);
+            this.SolTA.Fill(this.gADataSet.Solutions);
             // TODO: This line of code loads data into the 'gADataSet.KnapData' table. You can move, or remove it, as needed.
-            this.knapDataTA.Fill(this.gADataSet.Data);
-            this.knapStringsTableAdapter1.Fill(this.gADataSet.KnapStrings);
+            this.DataTA.Fill(this.gADataSet.Data);
+            this.StringsTA.Fill(this.gADataSet.Strings);
 
             dgvDoubleMouseclick(this.problemsDataGridView, DGVARGUMENTDUMMY);
         }
@@ -224,24 +213,24 @@ namespace GAForm
             {
                 GADataSet.ProblemsRow currentProblem = dgvr.Row as GADataSet.ProblemsRow;
 
-                this.knapConditionsBS.Filter = this.gADataSet.KnapConditions.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
+                this.ConditionsBS.Filter = this.gADataSet.Conditions.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
 
-                this.knapDataBS.Filter = this.gADataSet.Data.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
+                this.DataBS.Filter = this.gADataSet.Data.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
 
                 this.gABS.Filter = this.gADataSet.GA.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
 
-                this.knapSolBS.Filter = this.gADataSet.Solutions.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
+                this.SolBS.Filter = this.gADataSet.Solutions.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
 
-                this.knapSolBS.Sort = this.gADataSet.Solutions.ChromosomeLengthColumn.ColumnName + " desc";
+                this.SolBS.Sort = this.gADataSet.Solutions.ChromosomeLengthColumn.ColumnName + " desc";
             }
             else if (sender.Equals(this.gADataGridView))
             {
                 GADataSet.GARow currentGARow = null;
                 currentGARow = dgvr.Row as GADataSet.GARow;
 
-                this.knapSolBS.Filter = this.gADataSet.Solutions.GAIDColumn.ColumnName + "=" + currentGARow.ID;
+                this.SolBS.Filter = this.gADataSet.Solutions.GAIDColumn.ColumnName + "=" + currentGARow.ID;
 
-                this.knapSolBS.Sort = this.gADataSet.Solutions.FitnessColumn.ColumnName + " desc";
+                this.SolBS.Sort = this.gADataSet.Solutions.FitnessColumn.ColumnName + " desc";
             }
         }
 

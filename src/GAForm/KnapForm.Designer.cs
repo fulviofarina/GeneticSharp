@@ -37,6 +37,8 @@ namespace GAForm
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -48,12 +50,10 @@ namespace GAForm
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.knapDataBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.DataBN = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
@@ -85,6 +85,12 @@ namespace GAForm
             this.statsbtn = new System.Windows.Forms.ToolStripButton();
             this.knapDataDataGridView = new System.Windows.Forms.DataGridView();
             this.SolutionsDataGridView = new System.Windows.Forms.DataGridView();
+            this.Generations = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Frequency = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Okays = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Chromosome = new System.Windows.Forms.DataGridViewImageColumn();
+            this.SchOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.gADataGridView = new System.Windows.Forms.DataGridView();
@@ -93,19 +99,22 @@ namespace GAForm
             this.CrossChromeMinLenght = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.problemsDataGridView = new System.Windows.Forms.DataGridView();
             this.knapConditionsDataGridView = new System.Windows.Forms.DataGridView();
-            this.MaxWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaxVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaxValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MinWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MinVolume = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MinValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WeightFine = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VolumeFine = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ValueFine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.A = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.B = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn37 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaxA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaxB = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaxC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MinA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MinB = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MinC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AFine = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BFine = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CFine = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn38 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.knapConditionsBS = new System.Windows.Forms.BindingSource(this.components);
+            this.ConditionsBS = new System.Windows.Forms.BindingSource(this.components);
             this.gADataSet = new GADB.GADataSet();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.problemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -129,55 +138,46 @@ namespace GAForm
             this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gABS = new System.Windows.Forms.BindingSource(this.components);
-            this.knapSolBS = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.knapDataBS = new System.Windows.Forms.BindingSource(this.components);
-            this.knapDataTA = new GADB.GADataSetTableAdapters.DataTableAdapter();
-            this.TAM = new GADB.GADataSetTableAdapters.TableAdapterManager();
-            this.gATA = new GADB.GADataSetTableAdapters.GATableAdapter();
-            this.KnapConditionTA = new GADB.GADataSetTableAdapters.KnapConditionsTableAdapter();
-            this.knapStringsTableAdapter1 = new GADB.GADataSetTableAdapters.KnapStringsTableAdapter();
-            this.problemsTA = new GADB.GADataSetTableAdapters.ProblemsTableAdapter();
-            this.knapSolTA = new GADB.GADataSetTableAdapters.SolutionsTableAdapter();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Generations = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Frequency = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Okays = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Chromosome = new System.Windows.Forms.DataGridViewImageColumn();
-            this.SchOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.knapDataBindingNavigator)).BeginInit();
-            this.knapDataBindingNavigator.SuspendLayout();
+            this.SolBS = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataBS = new System.Windows.Forms.BindingSource(this.components);
+            this.DataTA = new GADB.GADataSetTableAdapters.DataTableAdapter();
+            this.TAM = new GADB.GADataSetTableAdapters.TableAdapterManager();
+            this.ConditionTA = new GADB.GADataSetTableAdapters.ConditionsTableAdapter();
+            this.gATA = new GADB.GADataSetTableAdapters.GATableAdapter();
+            this.problemsTA = new GADB.GADataSetTableAdapters.ProblemsTableAdapter();
+            this.SolTA = new GADB.GADataSetTableAdapters.SolutionsTableAdapter();
+            this.StringsTA = new GADB.GADataSetTableAdapters.StringsTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.DataBN)).BeginInit();
+            this.DataBN.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.knapDataDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SolutionsDataGridView)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gADataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.problemsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.knapConditionsDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.knapConditionsBS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ConditionsBS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gADataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.problemsBS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gABS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.knapSolBS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.knapDataBS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SolBS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataBS)).BeginInit();
             this.SuspendLayout();
             // 
-            // knapDataBindingNavigator
+            // DataBN
             // 
-            this.knapDataBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.knapDataBindingNavigator.BindingSource = this.knapDataBS;
-            this.knapDataBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.knapDataBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.knapDataBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DataBN.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.DataBN.BindingSource = this.DataBS;
+            this.DataBN.CountItem = this.bindingNavigatorCountItem;
+            this.DataBN.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.DataBN.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
             this.bindingNavigatorSeparator,
@@ -207,16 +207,16 @@ namespace GAForm
             this.resumebtn,
             this.toolStripSeparator7,
             this.statsbtn});
-            this.knapDataBindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.knapDataBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.knapDataBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.knapDataBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.knapDataBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.knapDataBindingNavigator.Name = "knapDataBindingNavigator";
-            this.knapDataBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.knapDataBindingNavigator.Size = new System.Drawing.Size(1209, 29);
-            this.knapDataBindingNavigator.TabIndex = 0;
-            this.knapDataBindingNavigator.Text = "bindingNavigator1";
+            this.DataBN.Location = new System.Drawing.Point(0, 0);
+            this.DataBN.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.DataBN.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.DataBN.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.DataBN.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.DataBN.Name = "DataBN";
+            this.DataBN.PositionItem = this.bindingNavigatorPositionItem;
+            this.DataBN.Size = new System.Drawing.Size(1209, 29);
+            this.DataBN.TabIndex = 0;
+            this.DataBN.Text = "bindingNavigator1";
             // 
             // bindingNavigatorAddNewItem
             // 
@@ -448,10 +448,10 @@ namespace GAForm
             this.knapDataDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
-            this.knapDataDataGridView.DataSource = this.knapDataBS;
+            this.A,
+            this.B,
+            this.C});
+            this.knapDataDataGridView.DataSource = this.DataBS;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -494,7 +494,7 @@ namespace GAForm
             this.Chromosome,
             this.SchOrder,
             this.dataGridViewTextBoxColumn19});
-            this.SolutionsDataGridView.DataSource = this.knapSolBS;
+            this.SolutionsDataGridView.DataSource = this.SolBS;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -507,6 +507,59 @@ namespace GAForm
             this.SolutionsDataGridView.Name = "SolutionsDataGridView";
             this.SolutionsDataGridView.Size = new System.Drawing.Size(1177, 220);
             this.SolutionsDataGridView.TabIndex = 2;
+            // 
+            // Generations
+            // 
+            this.Generations.DataPropertyName = "Generations";
+            this.Generations.HeaderText = "Generations";
+            this.Generations.Name = "Generations";
+            this.Generations.Width = 113;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "ChromosomeLength";
+            this.dataGridViewTextBoxColumn7.HeaderText = "ChromosomeLength";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Width = 168;
+            // 
+            // Frequency
+            // 
+            this.Frequency.DataPropertyName = "Frequency";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Lime;
+            this.Frequency.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Frequency.HeaderText = "Frequency";
+            this.Frequency.Name = "Frequency";
+            this.Frequency.Width = 101;
+            // 
+            // Okays
+            // 
+            this.Okays.DataPropertyName = "Okays";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.Okays.DefaultCellStyle = dataGridViewCellStyle8;
+            this.Okays.HeaderText = "Okays";
+            this.Okays.Name = "Okays";
+            this.Okays.Width = 73;
+            // 
+            // Chromosome
+            // 
+            this.Chromosome.DataPropertyName = "Chromosome";
+            this.Chromosome.HeaderText = "Chromosome";
+            this.Chromosome.Name = "Chromosome";
+            this.Chromosome.Width = 104;
+            // 
+            // SchOrder
+            // 
+            this.SchOrder.DataPropertyName = "SchOrder";
+            this.SchOrder.HeaderText = "SchOrder";
+            this.SchOrder.Name = "SchOrder";
+            this.SchOrder.Width = 95;
             // 
             // statusStrip1
             // 
@@ -647,17 +700,17 @@ namespace GAForm
             this.knapConditionsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.knapConditionsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn37,
-            this.MaxWeight,
-            this.MaxVolume,
-            this.MaxValue,
-            this.MinWeight,
-            this.MinVolume,
-            this.MinValue,
-            this.WeightFine,
-            this.VolumeFine,
-            this.ValueFine,
+            this.MaxA,
+            this.MaxB,
+            this.MaxC,
+            this.MinA,
+            this.MinB,
+            this.MinC,
+            this.AFine,
+            this.BFine,
+            this.CFine,
             this.dataGridViewTextBoxColumn38});
-            this.knapConditionsDataGridView.DataSource = this.knapConditionsBS;
+            this.knapConditionsDataGridView.DataSource = this.ConditionsBS;
             dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -671,69 +724,6 @@ namespace GAForm
             this.knapConditionsDataGridView.Size = new System.Drawing.Size(606, 144);
             this.knapConditionsDataGridView.TabIndex = 6;
             // 
-            // MaxWeight
-            // 
-            this.MaxWeight.DataPropertyName = "MaxWeight";
-            this.MaxWeight.HeaderText = "MaxWeight";
-            this.MaxWeight.Name = "MaxWeight";
-            this.MaxWeight.Width = 109;
-            // 
-            // MaxVolume
-            // 
-            this.MaxVolume.DataPropertyName = "MaxVolume";
-            this.MaxVolume.HeaderText = "MaxVolume";
-            this.MaxVolume.Name = "MaxVolume";
-            this.MaxVolume.Width = 112;
-            // 
-            // MaxValue
-            // 
-            this.MaxValue.DataPropertyName = "MaxValue";
-            this.MaxValue.HeaderText = "MaxValue";
-            this.MaxValue.Name = "MaxValue";
-            this.MaxValue.Width = 98;
-            // 
-            // MinWeight
-            // 
-            this.MinWeight.DataPropertyName = "MinWeight";
-            this.MinWeight.HeaderText = "MinWeight";
-            this.MinWeight.Name = "MinWeight";
-            this.MinWeight.Width = 106;
-            // 
-            // MinVolume
-            // 
-            this.MinVolume.DataPropertyName = "MinVolume";
-            this.MinVolume.HeaderText = "MinVolume";
-            this.MinVolume.Name = "MinVolume";
-            this.MinVolume.Width = 109;
-            // 
-            // MinValue
-            // 
-            this.MinValue.DataPropertyName = "MinValue";
-            this.MinValue.HeaderText = "MinValue";
-            this.MinValue.Name = "MinValue";
-            this.MinValue.Width = 95;
-            // 
-            // WeightFine
-            // 
-            this.WeightFine.DataPropertyName = "WeightFine";
-            this.WeightFine.HeaderText = "WeightFine";
-            this.WeightFine.Name = "WeightFine";
-            this.WeightFine.Width = 108;
-            // 
-            // VolumeFine
-            // 
-            this.VolumeFine.DataPropertyName = "VolumeFine";
-            this.VolumeFine.HeaderText = "VolumeFine";
-            this.VolumeFine.Name = "VolumeFine";
-            this.VolumeFine.Width = 111;
-            // 
-            // ValueFine
-            // 
-            this.ValueFine.DataPropertyName = "ValueFine";
-            this.ValueFine.HeaderText = "ValueFine";
-            this.ValueFine.Name = "ValueFine";
-            this.ValueFine.Width = 97;
-            // 
             // dataGridViewTextBoxColumn34
             // 
             this.dataGridViewTextBoxColumn34.DataPropertyName = "ID";
@@ -742,6 +732,27 @@ namespace GAForm
             this.dataGridViewTextBoxColumn34.ReadOnly = true;
             this.dataGridViewTextBoxColumn34.Visible = false;
             this.dataGridViewTextBoxColumn34.Width = 49;
+            // 
+            // A
+            // 
+            this.A.DataPropertyName = "A";
+            this.A.HeaderText = "A";
+            this.A.Name = "A";
+            this.A.Width = 44;
+            // 
+            // B
+            // 
+            this.B.DataPropertyName = "B";
+            this.B.HeaderText = "B";
+            this.B.Name = "B";
+            this.B.Width = 43;
+            // 
+            // C
+            // 
+            this.C.DataPropertyName = "C";
+            this.C.HeaderText = "C";
+            this.C.Name = "C";
+            this.C.Width = 43;
             // 
             // dataGridViewTextBoxColumn37
             // 
@@ -752,6 +763,69 @@ namespace GAForm
             this.dataGridViewTextBoxColumn37.Visible = false;
             this.dataGridViewTextBoxColumn37.Width = 49;
             // 
+            // MaxA
+            // 
+            this.MaxA.DataPropertyName = "MaxA";
+            this.MaxA.HeaderText = "MaxA";
+            this.MaxA.Name = "MaxA";
+            this.MaxA.Width = 72;
+            // 
+            // MaxB
+            // 
+            this.MaxB.DataPropertyName = "MaxB";
+            this.MaxB.HeaderText = "MaxB";
+            this.MaxB.Name = "MaxB";
+            this.MaxB.Width = 71;
+            // 
+            // MaxC
+            // 
+            this.MaxC.DataPropertyName = "MaxC";
+            this.MaxC.HeaderText = "MaxC";
+            this.MaxC.Name = "MaxC";
+            this.MaxC.Width = 71;
+            // 
+            // MinA
+            // 
+            this.MinA.DataPropertyName = "MinA";
+            this.MinA.HeaderText = "MinA";
+            this.MinA.Name = "MinA";
+            this.MinA.Width = 69;
+            // 
+            // MinB
+            // 
+            this.MinB.DataPropertyName = "MinB";
+            this.MinB.HeaderText = "MinB";
+            this.MinB.Name = "MinB";
+            this.MinB.Width = 68;
+            // 
+            // MinC
+            // 
+            this.MinC.DataPropertyName = "MinC";
+            this.MinC.HeaderText = "MinC";
+            this.MinC.Name = "MinC";
+            this.MinC.Width = 68;
+            // 
+            // AFine
+            // 
+            this.AFine.DataPropertyName = "AFine";
+            this.AFine.HeaderText = "AFine";
+            this.AFine.Name = "AFine";
+            this.AFine.Width = 71;
+            // 
+            // BFine
+            // 
+            this.BFine.DataPropertyName = "BFine";
+            this.BFine.HeaderText = "BFine";
+            this.BFine.Name = "BFine";
+            this.BFine.Width = 70;
+            // 
+            // CFine
+            // 
+            this.CFine.DataPropertyName = "CFine";
+            this.CFine.HeaderText = "CFine";
+            this.CFine.Name = "CFine";
+            this.CFine.Width = 70;
+            // 
             // dataGridViewTextBoxColumn38
             // 
             this.dataGridViewTextBoxColumn38.DataPropertyName = "ProblemID";
@@ -759,10 +833,10 @@ namespace GAForm
             this.dataGridViewTextBoxColumn38.Name = "dataGridViewTextBoxColumn38";
             this.dataGridViewTextBoxColumn38.Width = 105;
             // 
-            // knapConditionsBS
+            // ConditionsBS
             // 
-            this.knapConditionsBS.DataMember = "KnapConditions";
-            this.knapConditionsBS.DataSource = this.gADataSet;
+            this.ConditionsBS.DataMember = "Conditions";
+            this.ConditionsBS.DataSource = this.gADataSet;
             // 
             // gADataSet
             // 
@@ -929,88 +1003,6 @@ namespace GAForm
             this.gABS.DataMember = "GA";
             this.gABS.DataSource = this.gADataSet;
             // 
-            // knapSolBS
-            // 
-            this.knapSolBS.DataMember = "Solutions";
-            this.knapSolBS.DataSource = this.gADataSet;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID";
-            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            this.dataGridViewTextBoxColumn1.Width = 49;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "ProblemID";
-            this.dataGridViewTextBoxColumn2.HeaderText = "ProblemID";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 105;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Weight";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Weight";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 81;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Volume";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Volume";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 84;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Value";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Value";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 70;
-            // 
-            // knapDataBS
-            // 
-            this.knapDataBS.DataMember = "Data";
-            this.knapDataBS.DataSource = this.gADataSet;
-            // 
-            // knapDataTA
-            // 
-            this.knapDataTA.ClearBeforeFill = true;
-            // 
-            // TAM
-            // 
-            this.TAM.BackupDataSetBeforeUpdate = false;
-            this.TAM.DataTableAdapter = this.knapDataTA;
-            this.TAM.GATableAdapter = this.gATA;
-            this.TAM.KnapConditionsTableAdapter = this.KnapConditionTA;
-            this.TAM.KnapStringsTableAdapter = this.knapStringsTableAdapter1;
-            this.TAM.ProblemsTableAdapter = this.problemsTA;
-            this.TAM.SolutionsTableAdapter = this.knapSolTA;
-            this.TAM.UpdateOrder = GADB.GADataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // gATA
-            // 
-            this.gATA.ClearBeforeFill = true;
-            // 
-            // KnapConditionTA
-            // 
-            this.KnapConditionTA.ClearBeforeFill = true;
-            // 
-            // knapStringsTableAdapter1
-            // 
-            this.knapStringsTableAdapter1.ClearBeforeFill = true;
-            // 
-            // problemsTA
-            // 
-            this.problemsTA.ClearBeforeFill = true;
-            // 
-            // knapSolTA
-            // 
-            this.knapSolTA.ClearBeforeFill = true;
-            // 
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.DataPropertyName = "ID";
@@ -1019,33 +1011,6 @@ namespace GAForm
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             this.dataGridViewTextBoxColumn6.Visible = false;
             this.dataGridViewTextBoxColumn6.Width = 49;
-            // 
-            // Generations
-            // 
-            this.Generations.DataPropertyName = "Generations";
-            this.Generations.HeaderText = "Generations";
-            this.Generations.Name = "Generations";
-            this.Generations.Width = 113;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "ChromosomeLength";
-            this.dataGridViewTextBoxColumn7.HeaderText = "ChromosomeLength";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Width = 168;
-            // 
-            // Frequency
-            // 
-            this.Frequency.DataPropertyName = "Frequency";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Lime;
-            this.Frequency.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Frequency.HeaderText = "Frequency";
-            this.Frequency.Name = "Frequency";
-            this.Frequency.Width = 101;
             // 
             // dataGridViewTextBoxColumn16
             // 
@@ -1092,32 +1057,6 @@ namespace GAForm
             this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
             this.dataGridViewTextBoxColumn17.Width = 66;
             // 
-            // Okays
-            // 
-            this.Okays.DataPropertyName = "Okays";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.Okays.DefaultCellStyle = dataGridViewCellStyle8;
-            this.Okays.HeaderText = "Okays";
-            this.Okays.Name = "Okays";
-            this.Okays.Width = 73;
-            // 
-            // Chromosome
-            // 
-            this.Chromosome.DataPropertyName = "Chromosome";
-            this.Chromosome.HeaderText = "Chromosome";
-            this.Chromosome.Name = "Chromosome";
-            this.Chromosome.Width = 104;
-            // 
-            // SchOrder
-            // 
-            this.SchOrder.DataPropertyName = "SchOrder";
-            this.SchOrder.HeaderText = "SchOrder";
-            this.SchOrder.Name = "SchOrder";
-            this.SchOrder.Width = 95;
-            // 
             // dataGridViewTextBoxColumn19
             // 
             this.dataGridViewTextBoxColumn19.DataPropertyName = "ProblemID";
@@ -1125,6 +1064,67 @@ namespace GAForm
             this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
             this.dataGridViewTextBoxColumn19.Visible = false;
             this.dataGridViewTextBoxColumn19.Width = 109;
+            // 
+            // SolBS
+            // 
+            this.SolBS.DataMember = "Solutions";
+            this.SolBS.DataSource = this.gADataSet;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID";
+            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            this.dataGridViewTextBoxColumn1.Width = 49;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "ProblemID";
+            this.dataGridViewTextBoxColumn2.HeaderText = "ProblemID";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 105;
+            // 
+            // DataBS
+            // 
+            this.DataBS.DataMember = "Data";
+            this.DataBS.DataSource = this.gADataSet;
+            // 
+            // DataTA
+            // 
+            this.DataTA.ClearBeforeFill = true;
+            // 
+            // TAM
+            // 
+            this.TAM.BackupDataSetBeforeUpdate = false;
+            this.TAM.ConditionsTableAdapter = this.ConditionTA;
+            this.TAM.DataTableAdapter = this.DataTA;
+            this.TAM.GATableAdapter = this.gATA;
+            this.TAM.ProblemsTableAdapter = this.problemsTA;
+            this.TAM.SolutionsTableAdapter = this.SolTA;
+            this.TAM.StringsTableAdapter = this.StringsTA;
+            this.TAM.UpdateOrder = GADB.GADataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // ConditionTA
+            // 
+            this.ConditionTA.ClearBeforeFill = true;
+            // 
+            // gATA
+            // 
+            this.gATA.ClearBeforeFill = true;
+            // 
+            // problemsTA
+            // 
+            this.problemsTA.ClearBeforeFill = true;
+            // 
+            // SolTA
+            // 
+            this.SolTA.ClearBeforeFill = true;
+            // 
+            // StringsTA
+            // 
+            this.StringsTA.ClearBeforeFill = true;
             // 
             // KnapForm
             // 
@@ -1137,13 +1137,13 @@ namespace GAForm
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.SolutionsDataGridView);
             this.Controls.Add(this.knapDataDataGridView);
-            this.Controls.Add(this.knapDataBindingNavigator);
+            this.Controls.Add(this.DataBN);
             this.Name = "KnapForm";
             this.Text = "Knapsack GA - Fulvio Farina";
             this.Load += new System.EventHandler(this.KnapForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.knapDataBindingNavigator)).EndInit();
-            this.knapDataBindingNavigator.ResumeLayout(false);
-            this.knapDataBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataBN)).EndInit();
+            this.DataBN.ResumeLayout(false);
+            this.DataBN.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.knapDataDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SolutionsDataGridView)).EndInit();
             this.statusStrip1.ResumeLayout(false);
@@ -1151,12 +1151,12 @@ namespace GAForm
             ((System.ComponentModel.ISupportInitialize)(this.gADataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.problemsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.knapConditionsDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.knapConditionsBS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ConditionsBS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gADataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.problemsBS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gABS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.knapSolBS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.knapDataBS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SolBS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataBS)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1165,10 +1165,10 @@ namespace GAForm
         #endregion
 
         private GADataSet gADataSet;
-        private System.Windows.Forms.BindingSource knapDataBS;
-        private DataTableAdapter knapDataTA;
+        private System.Windows.Forms.BindingSource DataBS;
+        private DataTableAdapter DataTA;
         private TableAdapterManager TAM;
-        private System.Windows.Forms.BindingNavigator knapDataBindingNavigator;
+        private System.Windows.Forms.BindingNavigator DataBN;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
@@ -1181,9 +1181,9 @@ namespace GAForm
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton knapDataBindingNavigatorSaveItem;
-        private SolutionsTableAdapter knapSolTA;
+        private SolutionsTableAdapter SolTA;
         private System.Windows.Forms.DataGridView knapDataDataGridView;
-        private System.Windows.Forms.BindingSource knapSolBS;
+        private System.Windows.Forms.BindingSource SolBS;
         private System.Windows.Forms.DataGridView SolutionsDataGridView;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.StatusStrip statusStrip1;
@@ -1202,8 +1202,6 @@ namespace GAForm
         private System.Windows.Forms.ToolStripTextBox crossProbbox;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
@@ -1214,9 +1212,9 @@ namespace GAForm
         private System.Windows.Forms.BindingSource problemsBS;
         private System.Windows.Forms.DataGridView problemsDataGridView;
         private ProblemsTableAdapter problemsTA;
-        private System.Windows.Forms.BindingSource knapConditionsBS;
+        private System.Windows.Forms.BindingSource ConditionsBS;
         private System.Windows.Forms.DataGridView knapConditionsDataGridView;
-        private KnapConditionsTableAdapter KnapConditionTA;
+        private ConditionsTableAdapter ConditionTA;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn33;
         private System.Windows.Forms.DataGridViewTextBoxColumn ChromosomeLength;
@@ -1235,15 +1233,15 @@ namespace GAForm
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn37;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaxWeight;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaxVolume;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaxValue;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MinWeight;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MinVolume;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MinValue;
-        private System.Windows.Forms.DataGridViewTextBoxColumn WeightFine;
-        private System.Windows.Forms.DataGridViewTextBoxColumn VolumeFine;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ValueFine;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaxA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaxB;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaxC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MinA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MinB;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MinC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AFine;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BFine;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CFine;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn38;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
@@ -1261,7 +1259,7 @@ namespace GAForm
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn34;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton statsbtn;
-        private KnapStringsTableAdapter knapStringsTableAdapter1;
+        private StringsTableAdapter StringsTA;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Generations;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
@@ -1274,6 +1272,11 @@ namespace GAForm
         private System.Windows.Forms.DataGridViewImageColumn Chromosome;
         private System.Windows.Forms.DataGridViewTextBoxColumn SchOrder;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn A;
+        private System.Windows.Forms.DataGridViewTextBoxColumn B;
+        private System.Windows.Forms.DataGridViewTextBoxColumn C;
     }
 }
 

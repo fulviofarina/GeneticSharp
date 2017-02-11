@@ -1,6 +1,5 @@
 ﻿namespace GADB
 {
-
     /// <summary>
     /// AUXILIAR CLASS TO STORE TEMPORARILY THE PREFERENCES
     /// </summary>

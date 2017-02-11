@@ -6,22 +6,11 @@ using System.Linq;
 using GeneticSharp.Domain;
 using GeneticSharp.Domain.Chromosomes;
 
-
 namespace GADB
 {
-    
     public partial class KnapController : ControllerBase
     {
-
-
-      
-     
-        private DataRow[] conditions = null;
-
-        private int SIZE = 6;
-
-      
-
+       
 
         /// <summary>
         /// Finds the fine for the given solution row, based on the conditions MAX, MIN and FINE TARIF
@@ -31,8 +20,7 @@ namespace GADB
         /// <param name="variableNames">array of variableNames of problem (columns of KnapData)</param>
         private void findFines(ref DataRow r)
         {
-         
-            for (int j = 0; j < conditions.Length; j++)
+            for (int j = 0; j < Conditions.Length; j++)
             {
                 //find if all parameters are ok
                 bool[] varOk = new bool[VariableNames.Length];
@@ -45,10 +33,10 @@ namespace GADB
                     string minVarStr = "Min" + VariableNames[i];
                     //is the variable within the window given by the condition?
                     double a = r.Field<double>(totalVarStr);
-                    double b = conditions[j].Field<double>(maxVarStr);
+                    double b = Conditions[j].Field<double>(maxVarStr);
                     varOk[i] = (a <= b);
                     a = r.Field<double>(totalVarStr);
-                    b = conditions[j].Field<double>(minVarStr);
+                    b = Conditions[j].Field<double>(minVarStr);
                     varOk[i] = varOk[i] && (a >= b);
 
                     ANDS_OK = ANDS_OK && varOk[i];
@@ -81,9 +69,9 @@ namespace GADB
                             string fineCondstr = VariableNames[i] + "Fine";
 
                             //difference value less MAX_VALUE
-                            double auxiliarDifference = r.Field<double>(str) - conditions[j].Field<double>(maxCondstr);
+                            double auxiliarDifference = r.Field<double>(str) - Conditions[j].Field<double>(maxCondstr);
                             //take TARIF
-                            double tariff = conditions[j].Field<double>(fineCondstr);
+                            double tariff = Conditions[j].Field<double>(fineCondstr);
 
                             //FINE i-esim = difference * tariff
                             fine += (auxiliarDifference) * tariff; //excess weight
@@ -100,17 +88,15 @@ namespace GADB
         /// </summary>
         /// <param name="r"></param>
         /// <param name="c"></param>
-        private void fillBasic(ref GADataSet.SolutionsRow r, ref GADataSet.KnapStringsRow s, ref IChromosome c)
+       public override void FillBasic(ref GADataSet.SolutionsRow r, ref GADataSet.StringsRow s, ref IChromosome c)
         {
             r.Knap(ref c);
 
-        
-            s.TotalValue = 0;
-            s.TotalWeight = 0;
-            s.TotalVolume = 0;
+            s.TotalC = 0;
+            s.TotalA = 0;
+            s.TotalB = 0;
             s.Fine = 0; //initialize the FINE
             s.Okays = string.Empty; //initialize the isOKStringArray //for info
-
 
             for (int i = 0; i < VariableNames.Length; i++)
             {
@@ -121,10 +107,10 @@ namespace GADB
             r.ProblemID = PROBLEMID;
 
             DataRow row = s;
-    
+
             findFines(ref row);
-        
-            r.Fitness = s.TotalValue;
+
+            r.Fitness = s.TotalC;
             r.Fitness /= (1 + s.Fine); //max vol, max value * (1+fine)
         }
 
@@ -132,161 +118,28 @@ namespace GADB
         /// POST CALCULATION TO DECODE
         /// </summary>
         /// <param name="r"></param>
-     
 
         // //// / / / / / //////// //////////////////////////// AQUI TEMPLATE
         /// <summary>
         /// INITIALIZER
         /// </summary>
         /// <param name="dt"></param>
-        public KnapController(ref GADataSet.ProblemsRow p, int size)
+        public KnapController() : base()
         {
-            if (p == null) throw new Exception("No Problem ID given");
-            //DETERMINE CONDITIONS from PROBLEM ID
-            conditions = p.GetKnapConditionsRows();
-            if (conditions == null)
-            {
-                throw new Exception("No Problem Conditions given");
-            }
-
-            ProblemData = p.GetKnapDataRows();
-
-            if (ProblemData.Length == 0)
-            {
-                throw new Exception("No Problem Variables and Values given");
-            }
-
-            SIZE = size;
-
-            PROBLEMID = p.ProblemID;
-
-            VariableNames = ProblemData.FirstOrDefault()
-                .Table.Columns.OfType<DataColumn>()
-                .Where(o => !o.ColumnName.Contains("ID"))
-                .Select(o => o.ColumnName).ToArray();
+          
         }
 
-
-
-
-      
         /// <summary>
-        /// To perform print process
+        /// NATURAL FUNCTION, COMPULSORY
         /// </summary>
-        /// <param name="GaRow">Genetic Algorithm ROW</param>
-        /// <param name="callBack">FUNCTION TO CALL BACK TO UPDATE FORM/CONTROL</param>
-        public override void PostScript( )
+        /// <returns></returns>
+        public override IChromosome CreateChromosome()
         {
-            //LIST OF NON REPEATED VALUES
-            HashListOfGenotypes = new HashSet<string>();
-            //NORMAL LIST TO ACCOMPANY, BECAUSE  A LIST IS INDEXED
-            //AND A HASHSET IS NOT
-            ListOfSolutions = new List<GADataSet.SolutionsRow>();
-
-
-            BackgroundWorker w = new BackgroundWorker();
-            w.DoWork += W_DoWork;
-          
-            w.WorkerReportsProgress = true;
-            w.ProgressChanged += W_ProgressChanged;
-
-            w.RunWorkerCompleted += W_RunWorkerCompleted;
-
-            w.RunWorkerAsync();
-
-          
-           
+            KnapChromosome c = new KnapChromosome(SIZE, ProblemData.Length);
+            return c;
         }
 
-        private void W_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            FinalCallBack.Invoke();
 
-          
-        }
-
-        private void W_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-
-            try
-            {
-
-          
-
-
-                GeneticAlgorithm ga = GA;
-            IChromosome bestChromosome = GA.Population.BestChromosome;
-
-            GARow.Fill(ref ga); //report GA stuff
-
-
-       
-                GADataSet ds = GARow.Table.DataSet as GADataSet;
-            GADataSet.SolutionsRow currentSolution = null;
-            currentSolution = ds.Solutions.NewSolutionsRow();
-            GADataSet.KnapStringsRow currentString = null;
-            currentString = ds.KnapStrings.NewKnapStringsRow();
-
-               
-
-            fillBasic(ref currentSolution, ref currentString, ref bestChromosome);
-
-
-                FillGAData(ref currentSolution);
-             //   DataRow r = currentString;
-            FillStrings(ref currentSolution, ref currentString);
-
-
-            //IF NOT PRESENT IN THE LIST IS A NEW CHROMOSOME
-            string genotype = currentSolution.Genotype;
-            if (HashListOfGenotypes.Add(genotype)) //add to hashShet
-            {
-                ds.Solutions.AddSolutionsRow(currentSolution);
-                currentString.GAID = currentSolution.GAID;
-                currentString.ProblemID = currentSolution.ProblemID;
-                ds.KnapStrings.AddKnapStringsRow(currentString);
-                ListOfSolutions.Add(currentSolution);//add to indexed list
-            }
-            else
-            {
-                int i = ListOfSolutions.FindIndex(o => o.Genotype.Equals(genotype));
-                ListOfSolutions[i].Frequency++;
-                // currentSolution = null;
-            }
-
-
-            CallBack.Invoke();
-
-
-            currentString.SolutionID = currentSolution.ID;
-
-
-
-
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-
-
-        }
-
-        private void W_DoWork(object sender, DoWorkEventArgs e)
-        {
-         
-            GA.GenerationRan += delegate
-            {
-
-                System.ComponentModel.BackgroundWorker w = sender as System.ComponentModel.BackgroundWorker;
-                w.ReportProgress(0);
-
-
-            };
-
-            GA.Start();
-        }
 
         /// <summary>
         /// FUNCTION TO PERFORM AVERAGE AND HISTOGRAM
@@ -319,7 +172,6 @@ namespace GADB
                 {
                     int i = list.FindIndex(r => r.Genotype.Equals(genotype));
                     list[i].Frequency += o.Frequency;
-                
                 }
                 return true;
             };
@@ -343,7 +195,7 @@ namespace GADB
 
                 hash.Clear(); //clear
                 list.Clear();//clear
-      
+
                 knaprows = knaprows.Where(funcion).ToList(); //evaluate the filter function
 
                 int count = knaprows.Count();
@@ -351,7 +203,7 @@ namespace GADB
                 {
                     if (!list.Contains(knaprows.ElementAt(d))) knaprows.ElementAt(d).Delete();
                 }
-                             
+
                 count = subs.Count();
                 for (int d = 1; d < count; d++)
                 {
@@ -359,8 +211,5 @@ namespace GADB
                 }
             }
         }
-
-
-  
     }
 }

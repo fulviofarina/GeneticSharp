@@ -7,7 +7,16 @@ namespace GADB
 {
     public interface IController
     {
+        void FillBasic(ref GADataSet.SolutionsRow r, ref GADataSet.StringsRow s, ref IChromosome c);
+        GADataSet.GARow GARow
+        {
+            get;
+
+            set;
+        }
+        void SetControllerFor(ref GADataSet.ProblemsRow p, int size);
         void DoStatistics<T>(object problema);
+
         Action CallBack { get; set; }
         Action FinalCallBack { get; set; }
         GeneticAlgorithm GA { get; set; }

@@ -3,7 +3,7 @@ using GeneticSharp.Domain.Randomizations;
 
 namespace GADB
 {
-    public sealed class AChromosome : ChromosomeBase
+    public sealed class KnapChromosome : ChromosomeBase
     {
         private int numberOfGenes;
 
@@ -12,7 +12,7 @@ namespace GADB
         /// </summary>
         /// <param name="sizeOfChromosome"></param>
         /// <param name="numOfGenes"></param>
-        public AChromosome(int sizeOfChromosome, int numOfGenes) : base(sizeOfChromosome)
+        public KnapChromosome(int sizeOfChromosome, int numOfGenes) : base(sizeOfChromosome)
         {
             numberOfGenes = numOfGenes; // do I need the values? nope I think, only indexes
 
@@ -20,8 +20,6 @@ namespace GADB
             {
                 ReplaceGene(i, GenerateGene(i));
             }
-
-           
         }
 
         /// <summary>
@@ -40,6 +38,7 @@ namespace GADB
 
             return new Gene(randIndex);
         }
+
         /// <summary>
         /// OPTION B
         /// </summary>
@@ -83,7 +82,7 @@ namespace GADB
         /// <returns>The new chromosome.</returns>
         public override IChromosome CreateNew()
         {
-            return new AChromosome(this.Length, numberOfGenes);
+            return new KnapChromosome(this.Length, numberOfGenes);
         }
 
         /// <summary>
