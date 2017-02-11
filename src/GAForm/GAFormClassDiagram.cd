@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="GAForm.KnapForm">
+  <Class Name="GAForm.Form">
     <Position X="3.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>iCAwDv/ShDCIFQ+BIACGoXAfEIpCAAAIjBIgAKBFCgc=</HashCode>
-      <FileName>KnapForm.cs</FileName>
+      <HashCode>iCASCP2WhDWMBQeDIQCMI2AfEJJCAAEojBIAoIUFCuU=</HashCode>
+      <FileName>Form.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GAForm.Program">

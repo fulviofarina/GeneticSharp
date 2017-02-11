@@ -5,7 +5,7 @@ using GADB;
 
 namespace GAForm
 {
-    public partial class KnapForm : Form
+    public partial class Form : System.Windows.Forms.Form
     {
         /// <summary>
         /// A MOUSE EVENT ARGUMENT
@@ -19,7 +19,7 @@ namespace GAForm
 
         private IController IsampleControl = null;
 
-        public KnapForm()
+        public Form()
         {
             InitializeComponent();
 

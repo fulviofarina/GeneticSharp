@@ -3,7 +3,7 @@ using GADB.GADataSetTableAdapters;
 
 namespace GAForm
 {
-    partial class KnapForm
+    partial class Form
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@ namespace GAForm
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KnapForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -1139,7 +1139,7 @@ namespace GAForm
             this.Controls.Add(this.knapDataDataGridView);
             this.Controls.Add(this.DataBN);
             this.Name = "KnapForm";
-            this.Text = "Knapsack GA - Fulvio Farina";
+            this.Text = "GA - Fulvio Farina";
             this.Load += new System.EventHandler(this.KnapForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataBN)).EndInit();
             this.DataBN.ResumeLayout(false);

@@ -13,7 +13,7 @@ namespace GAForm
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new KnapForm());
+            Application.Run(new Form());
         }
     }
 }
