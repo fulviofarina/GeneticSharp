@@ -62,13 +62,13 @@ namespace GAForm
 
                 this.SolBS.Filter = this.gADataSet.Solutions.GAIDColumn
                     .ColumnName + "=" + currentGARow.ID;
-                this.SolBS.Sort = this.gADataSet.Solutions.TimeSpanColumn
+                this.SolBS.Sort = this.gADataSet.Solutions.FitnessColumn
                     .ColumnName + " desc";
 
                 ///CUT HERE
-                KnapController knapController = null;
-                knapController = new KnapController();
-                IsampleControl = knapController;
+          // IsampleControl= new KnapController();
+
+                IsampleControl = new DroneController();
 
                 IsampleControl.SetControllerFor(ref currentProblem, MINSIZE);
                 IsampleControl.Probabilities = prob;
@@ -77,7 +77,7 @@ namespace GAForm
                 IsampleControl.CallBack = delegate
                 {
                     Application.DoEvents();
-               //     this.toolStripProgressBar1.PerformStep();
+                    this.toolStripProgressBar1.PerformStep();
                     GADB.GADataSetTableAdapters.GATableAdapter gata = new GADB.GADataSetTableAdapters.GATableAdapter();
                     gata.Update(this.gADataSet.GA);
                     gata.Dispose();
@@ -98,7 +98,8 @@ namespace GAForm
 
                 IsampleControl.GARow = currentGARow;
 
-                IsampleControl.PostScript();
+                //no BKG worker for now...
+                IsampleControl.PostScript(false);
 
                 //ABORT IF STOPPED
                 if (!stopbtn.Enabled) break;
@@ -163,6 +164,7 @@ namespace GAForm
                     this.gADataSet.Solutions.Columns.Add(new DataColumn(c.ColumnName, c.DataType, str));
                 }
             }
+            this.SolutionsDataGridView.AutoGenerateColumns = true;
         }
 
         private void KnapForm_Load(object sender, EventArgs e)
@@ -218,7 +220,7 @@ namespace GAForm
                 this.DataBS.Filter = this.gADataSet.Data.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
 
                 this.gABS.Filter = this.gADataSet.GA.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
-
+                this.gABS.Sort = this.gADataSet.GA.IDColumn.ColumnName + " desc";
                 this.SolBS.Filter = this.gADataSet.Solutions.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
 
                 this.SolBS.Sort = this.gADataSet.Solutions.ChromosomeLengthColumn.ColumnName + " desc";
@@ -236,7 +238,11 @@ namespace GAForm
 
         private void statsbtn_Click(object sender, EventArgs e)
         {
-            IsampleControl.DoStatistics<GADataSet.ProblemsRow>(this.problemsBS.Current);
+            DataRowView rv= this.problemsBS.Current as DataRowView;
+            GADataSet.ProblemsRow p = rv.Row as GADataSet.ProblemsRow;
+
+
+            Aid.DoStatistics<GADataSet.ProblemsRow>(p);
 
             this.TAM.UpdateAll(this.gADataSet);
             this.gADataSet.WriteXml("dataset.xml", XmlWriteMode.WriteSchema);

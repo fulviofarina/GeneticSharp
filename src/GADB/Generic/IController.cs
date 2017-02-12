@@ -7,15 +7,14 @@ namespace GADB
 {
     public interface IController
     {
-        void FillBasic(ref GADataSet.SolutionsRow r, ref GADataSet.StringsRow s, ref IChromosome c);
-        GADataSet.GARow GARow
+         GADataSet.GARow GARow
         {
             get;
 
             set;
         }
         void SetControllerFor(ref GADataSet.ProblemsRow p, int size);
-        void DoStatistics<T>(object problema);
+       // void DoStatistics<T>(T problema);
 
         Action CallBack { get; set; }
         Action FinalCallBack { get; set; }
@@ -34,22 +33,9 @@ namespace GADB
         IChromosome CreateChromosome();
 
         Probabilities Probabilities { set; get; }
-        /// <summary>
-        /// Creates the mutation.
-        /// </summary>
-        /// <returns>The mutation.</returns>
 
-        /// <summary>
-        /// Initializes this instance.
-        /// </summary>
-        void Initialize();
-
-        /// <summary>
-        /// Configure the Genetic Algorithm.
-        /// </summary>
-        /// <param name="ga">The genetic algorithm.</param>
         void ConfigGA();
 
-        void PostScript();
+        void PostScript(bool bkgWork);
     }
 }

@@ -382,11 +382,9 @@ namespace GADB {
             this.Relations.Add(this.relationProblems_GA);
             this.relationKnapStrings_Solutions = new global::System.Data.DataRelation("KnapStrings_Solutions", new global::System.Data.DataColumn[] {
                         this.tableStrings.ProblemIDColumn,
-                        this.tableStrings.SolutionIDColumn,
-                        this.tableStrings.GAIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableStrings.SolutionIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableSolutions.ProblemIDColumn,
-                        this.tableSolutions.IDColumn,
-                        this.tableSolutions.GAIDColumn}, false);
+                        this.tableSolutions.IDColumn}, false);
             this.Relations.Add(this.relationKnapStrings_Solutions);
         }
         

@@ -51,6 +51,8 @@
     </Compile>
     <Compile Include="Generic\ControllerBase.Fields.cs" />
     <Compile Include="Generic\IController.cs" />
+    <Compile Include="Drone\DroneChromosome.cs" />
+    <Compile Include="Drone\DroneController.cs" />
     <Compile Include="Knap\KnapChromosome.cs" />
     <Compile Include="Generic\AFitness.cs" />
     <Compile Include="Generic\Probabilities.cs" />

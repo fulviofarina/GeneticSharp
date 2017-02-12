@@ -8,9 +8,32 @@ namespace GADB
 {
     partial class GADataSet
     {
+        partial class StringsDataTable
+        {
+        }
+        partial class StringsRow
+        {
+            public void Initialize()
+            {
+                TotalC = 0;
+                TotalA = 0;
+                TotalB = 0;
+                AString = string.Empty;
+                BString = string.Empty;
+                CString = string.Empty;
+                Fine = 0; //initialize the FINE
+                Okays = string.Empty; //initialize the isOKStringArray //for info
+            }
+        }
         public partial class GARow
         {
-            public void Fill(ref GeneticAlgorithm ga)
+            public void FillGADataToSolution(ref SolutionsRow r)
+            {
+                r.GAID = ID;
+                r.TimeSpan = TimeStamp;
+                r.Generations = GenerationCurrent;
+            }
+            public void Initialize(ref GeneticAlgorithm ga)
             {
                 double? fitnessVal = ga.Population.BestChromosome.Fitness;
 
@@ -43,16 +66,12 @@ namespace GADB
 
         partial class SolutionsRow
         {
-            public void Knap(ref IChromosome c)
+            private GADataSet.DataDataTable dataAxuliar = new GADataSet.DataDataTable();
+            public void Initialize(ref IChromosome c)
             {
                 chromosome = c;
-                //TotalValue = 0;
-                // TotalVolume = 0;
-                // TotalWeight = 0;
-                // Fine = 0;
                 Fitness = 0;
                 Frequency = 1;
-                //  ChromosomeLength = c.Length;
                 DateTime = DateTime.Now;
             }
 
@@ -63,6 +82,7 @@ namespace GADB
                 get { return chromosome.GetGenes(); }
             }
 
+            IList<int> genesAsInts;
             public IList<int> GenesAsInts
             {
                 get
@@ -73,6 +93,23 @@ namespace GADB
                 };
 
                     return Genes.Select(selector).ToList();
+                }
+                set
+                {
+                    genesAsInts = value;
+                }
+            }
+
+            public DataDataTable DataAxuliar
+            {
+                get
+                {
+                    return dataAxuliar;
+                }
+
+                set
+                {
+                    dataAxuliar = value;
                 }
             }
         }

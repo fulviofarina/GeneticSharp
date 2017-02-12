@@ -16,7 +16,7 @@ namespace GADB
 {
     public abstract partial class ControllerBase : IController
     {
-        private DataRow[] conditions = null;
+        public int SIZE = 6;
         public DataRow[] Conditions
         {
             get
@@ -29,10 +29,6 @@ namespace GADB
                 conditions = value;
             }
         }
-
-        public int SIZE = 6;
-
-        private GADataSet.GARow gARow = null;
         public GADataSet.GARow GARow
         {
             get
@@ -45,7 +41,6 @@ namespace GADB
                 gARow = value;
             }
         }
-        private Action callBack = null;
         public Action CallBack
         {
             get
@@ -58,7 +53,6 @@ namespace GADB
                 callBack = value;
             }
         }
-        private Action finalCallBack = null;
         public Action FinalCallBack
         {
             get
@@ -71,20 +65,13 @@ namespace GADB
                 finalCallBack = value;
             }
         }
-
-        public int PROBLEMID = 0; //important!!!
-        private DataRow[] problemData = null;
-        private string[] variableNames;
-
-        private Probabilities probabilities;
-
+        private int PROBLEMID = 0; //important!!!
         /// <summary>
         /// Gets the Genetic Algorithm.
         /// </summary>
         /// <value>The Genetic Algorithm.</value>
         ///
         public GeneticAlgorithm GA { get; set; }
-
         public Probabilities Probabilities
         {
             get
@@ -97,7 +84,6 @@ namespace GADB
                 probabilities = value;
             }
         }
-
         public DataRow[] ProblemData
         {
             get
@@ -110,7 +96,6 @@ namespace GADB
                 problemData = value;
             }
         }
-
         public string[] VariableNames
         {
             get
@@ -123,40 +108,17 @@ namespace GADB
                 variableNames = value;
             }
         }
+      
+      
 
-        public HashSet<string> HashListOfGenotypes
-        {
-            get
-            {
-                return hashListOfGenotypes;
-            }
-
-            set
-            {
-                hashListOfGenotypes = value;
-            }
-        }
-
-        public List<GADataSet.SolutionsRow> ListOfSolutions
-        {
-            get
-            {
-                return listOfSolutions;
-            }
-
-            set
-            {
-                listOfSolutions = value;
-            }
-        }
-
-       
-
+        private DataRow[] problemData = null;
+        private string[] variableNames;
+        private Probabilities probabilities;
+        private Action finalCallBack = null;
         private HashSet<string> hashListOfGenotypes = null;
         private List<GADataSet.SolutionsRow> listOfSolutions = null;
-
-
-
-
+        private GADataSet.GARow gARow = null;
+        private DataRow[] conditions = null;
+        private Action callBack = null;
     }
 }

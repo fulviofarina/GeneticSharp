@@ -8,22 +8,28 @@ using GeneticSharp.Domain.Chromosomes;
 
 namespace GADB
 {
-    public partial class KnapController : ControllerBase
+    public partial class DroneController : ControllerBase
     {
 
-        public override void FillStrings<T>(ref GADataSet.SolutionsRow r, ref T s)
+        public override void FillStrings<T>(ref GADataSet.SolutionsRow r, ref T stringRow)
         {
             r.Genotype = Aid.SetStrings(r.GenesAsInts);
 
-            for (int i = 0; i < VariableNames.Length; i++)
-            {
-                string dummy = Aid.DecodeStrings(r.GenesAsInts, ProblemData, VariableNames[i]);
-                string field = VariableNames[i] + "String";
-                DataRow row = s as DataRow;
-                row.SetField(field, dummy); //first
-            }
-        }
+            GADataSet.StringsRow s = stringRow as GADataSet.StringsRow;
+            s.AString = String.Join(" ", r.DataAxuliar.Select(d => DecimalTxt(d.A)));
+            s.BString = String.Join(" ", r.DataAxuliar.Select(d => DecimalTxt(d.B)));
 
+       
+            s.CString = String.Join(" ", r.DataAxuliar.Select(d => DecimalTxt(d.C)));
+
+
+            r.DataAxuliar.WriteXml(r.ID.ToString(),false);
+
+            
+
+
+
+        }
 
         /// <summary>
         /// Finds the fine for the given solution row, based on the conditions MAX, MIN and FINE TARIF
@@ -33,6 +39,9 @@ namespace GADB
         /// <param name="variableNames">array of variableNames of problem (columns of KnapData)</param>
         private void findFines(ref DataRow r)
         {
+
+            /*
+
             for (int j = 0; j < Conditions.Length; j++)
             {
                 //find if all parameters are ok
@@ -94,31 +103,90 @@ namespace GADB
 
                 r.SetField("Fine", fine);
             }
+
+            */
         }
-     
+
         /// <summary>
         /// BASIC CALCULATION NECESSARY FOR FITNESS
         /// </summary>
         /// <param name="r"></param>
         /// <param name="c"></param>
-        public override void FillBasic(ref GADataSet.SolutionsRow r, ref GADataSet.StringsRow s, ref IChromosome c)
+       public override void FillBasic(ref GADataSet.SolutionsRow r, ref GADataSet.StringsRow s, ref IChromosome c)
         {
-            
-
-            for (int i = 0; i < VariableNames.Length; i++)
-            {
-                double dummy = Aid.SetBasic(r.GenesAsInts, ProblemData, VariableNames[i]);
-                s.SetField("Total" + VariableNames[i], dummy); //first
-            }
 
            
 
-            DataRow row = s;
+            HashSet<int>   nonRepeated = new HashSet<int>();
 
-            findFines(ref row);
+            r.GenesAsInts.Where(o => nonRepeated.Add(o)).ToList();
 
-            r.Fitness = s.TotalC;
-            r.Fitness /= (1 + s.Fine); //max vol, max value * (1+fine)
+            string e = string.Empty ;
+            s.Fine = 0;
+
+            if (nonRepeated.Count == ProblemData.Count())
+            {
+                try
+                {
+                    List<int> fullList = nonRepeated.ToList();
+                    fullList.Add(0); //adds origin to the end
+                    for (int j = 0; j < fullList.Count; j++)
+                    {
+                        GADataSet.DataRow d = r.DataAxuliar.NewDataRow();
+                        r.DataAxuliar.AddDataRow(d);
+                        for (int i = 0; i < VariableNames.Length; i++)
+                        {
+                            double var = Aid.SetDifferences(fullList, j, ProblemData, VariableNames[i]);
+                            if (i == 0)
+                            {
+                                d.A = var;
+                            }
+                            else if (i == 1)
+                            {
+                                d.B = var;
+                            }
+                        }
+                    }
+
+                    fullList.Clear();
+                    fullList = null;
+
+               
+                    foreach (GADataSet.DataRow item in r.DataAxuliar)
+                    {
+                        double a2 = Math.Pow(item.A, 2);
+                        double b2 = Math.Pow(item.B, 2);
+                        item.C = Math.Sqrt(a2 + b2);
+                    }
+                    s.TotalC = r.DataAxuliar.Sum(i => i.C);
+
+
+                }
+                catch (SystemException ex)
+                {
+                     e = ex.StackTrace;
+                }
+               
+
+            }
+            else s.Fine = 1e3; //a million
+
+            nonRepeated.Clear();
+            nonRepeated = null;
+         
+          
+            s.Fine = s.TotalC + s.Fine;
+            if (s.Fine != 0)   r.Fitness =100 / s.Fine; //max vol, max value * (1+fine)
+        }
+
+        private decimal  DecimalTxt(double varPower)
+        {
+         
+
+          
+            decimal deci1 = Decimal.Round(Convert.ToDecimal(varPower), 1);
+        
+            return deci1;
         }
 
         /// <summary>
@@ -131,7 +199,7 @@ namespace GADB
         /// INITIALIZER
         /// </summary>
         /// <param name="dt"></param>
-        public KnapController() : base()
+        public DroneController() : base()
         {
           
         }
@@ -142,10 +210,13 @@ namespace GADB
         /// <returns></returns>
         public override IChromosome CreateChromosome()
         {
-            KnapChromosome c = new KnapChromosome(SIZE, ProblemData.Length);
+            //no junk? last argument
+            DroneChromosome c = new DroneChromosome(SIZE, ProblemData.Length, 0);
             return c;
         }
 
 
+
+   
     }
 }
