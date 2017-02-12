@@ -104,26 +104,45 @@ namespace GADB
 
             return TotalValue;
         }
-        public static double SetDifferences(IList<int> Genes, int indexAt, DataRow[] values, string field)
+
+        /// <summary>
+        /// USED BY DRONE CONTROLLER
+        /// </summary>
+        /// <param name="conditions"></param>
+        /// <param name="Genes"></param>
+        /// <param name="indexAt"></param>
+        /// <param name="values"></param>
+        /// <param name="field"></param>
+        /// <returns></returns>
+        public static double SetDifferences(DataRow conditions, IList<int> Genes, int indexAt, DataRow[] values, string field)
         {
             double difference = 0;
-            double xo = 0;
-            double yo = 0;
-
+           
+          
+            //geneValue is index of Item in Table
             int geneValue = Genes.ElementAt(indexAt); //get first item
 
+            //first item
             if (indexAt == 0)
             {
+                //use value from MIN condition on A, B or C as start point
+                double xo = conditions.Field<double>("Min" + field);
                 difference = values[geneValue - 1].Field<double>(field)-xo;
             }
+            //last item
             else if (indexAt  == Genes.Count-1)
             {
+                //use value from MAX condition on A, B or C as end-point
+                double xf = conditions.Field<double>("Max" + field);
                 geneValue = Genes.ElementAt(indexAt-1); //get first item
-                difference = values[geneValue - 1].Field<double>(field)-yo;
+                difference = values[geneValue - 1].Field<double>(field)-xf;
             }
             else
             {
+                // when comparing items in the middle...
                 int nextGeneValue = Genes.ElementAt(indexAt -1); //get second item
+
+                //if not junk...
                 if (geneValue != -1 && nextGeneValue != -1)
                 {
                

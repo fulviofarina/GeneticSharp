@@ -14,6 +14,10 @@ using GeneticSharp.Infrastructure.Threading;
 
 namespace GADB
 {
+
+    /// <summary>
+    /// the generic fiels, works great
+    /// </summary>
     public abstract partial class ControllerBase : IController
     {
         public int SIZE = 6;

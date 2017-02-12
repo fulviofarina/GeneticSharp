@@ -49,6 +49,8 @@
     <Compile Include="GADataSet.cs">
       <DependentUpon>GADataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Generic\ControllerBase.Virtuals.cs" />
+    <Compile Include="Generic\ControllerBase.Engine.cs" />
     <Compile Include="Generic\ControllerBase.Fields.cs" />
     <Compile Include="Generic\IController.cs" />
     <Compile Include="Drone\DroneChromosome.cs" />
@@ -58,7 +60,7 @@
     <Compile Include="Generic\Probabilities.cs" />
     <Compile Include="Knap\KnapController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Generic\ControllerBase.cs" />
+    <Compile Include="Generic\ControllerBase.Abstracts.cs" />
     <Compile Include="Settings.Designer.cs">
       <DependentUpon>Settings.settings</DependentUpon>
       <AutoGen>True</AutoGen>

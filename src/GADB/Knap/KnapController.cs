@@ -13,7 +13,7 @@ namespace GADB
 
         public override void FillStrings<T>(ref GADataSet.SolutionsRow r, ref T s)
         {
-            r.Genotype = Aid.SetStrings(r.GenesAsInts);
+         
 
             for (int i = 0; i < VariableNames.Length; i++)
             {
@@ -101,7 +101,7 @@ namespace GADB
         /// </summary>
         /// <param name="r"></param>
         /// <param name="c"></param>
-        public override void FillBasic(ref GADataSet.SolutionsRow r, ref GADataSet.StringsRow s, ref IChromosome c)
+        public override void FillBasic(ref GADataSet.SolutionsRow r, ref GADataSet.StringsRow s)
         {
             
 

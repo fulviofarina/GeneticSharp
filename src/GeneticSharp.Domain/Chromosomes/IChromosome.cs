@@ -16,9 +16,9 @@ namespace GeneticSharp.Domain.Chromosomes
     public interface IChromosome : IComparable<IChromosome>
     {
 
+     
+       //object[] TagArray { set; get; }
 
-
-      
         #region Properties
         /// <summary>
         /// Gets or sets the fitness.

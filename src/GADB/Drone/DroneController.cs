@@ -13,7 +13,7 @@ namespace GADB
 
         public override void FillStrings<T>(ref GADataSet.SolutionsRow r, ref T stringRow)
         {
-            r.Genotype = Aid.SetStrings(r.GenesAsInts);
+          //  r.Genotype = Aid.SetStrings(r.GenesAsInts);
 
             GADataSet.StringsRow s = stringRow as GADataSet.StringsRow;
             s.AString = String.Join(" ", r.DataAxuliar.Select(d => DecimalTxt(d.A)));
@@ -23,7 +23,7 @@ namespace GADB
             s.CString = String.Join(" ", r.DataAxuliar.Select(d => DecimalTxt(d.C)));
 
 
-            r.DataAxuliar.WriteXml(r.ID.ToString(),false);
+            r.DataAxuliar.WriteXml(r.ID.ToString() + ".txt",true);
 
             
 
@@ -112,7 +112,7 @@ namespace GADB
         /// </summary>
         /// <param name="r"></param>
         /// <param name="c"></param>
-       public override void FillBasic(ref GADataSet.SolutionsRow r, ref GADataSet.StringsRow s, ref IChromosome c)
+       public override void FillBasic(ref GADataSet.SolutionsRow r, ref GADataSet.StringsRow s)
         {
 
            
@@ -123,6 +123,7 @@ namespace GADB
 
             string e = string.Empty ;
             s.Fine = 0;
+            DataRow cond = Conditions.FirstOrDefault();
 
             if (nonRepeated.Count == ProblemData.Count())
             {
@@ -134,24 +135,23 @@ namespace GADB
                     {
                         GADataSet.DataRow d = r.DataAxuliar.NewDataRow();
                         r.DataAxuliar.AddDataRow(d);
+
+           
+
                         for (int i = 0; i < VariableNames.Length; i++)
                         {
-                            double var = Aid.SetDifferences(fullList, j, ProblemData, VariableNames[i]);
-                            if (i == 0)
-                            {
-                                d.A = var;
-                            }
-                            else if (i == 1)
-                            {
-                                d.B = var;
-                            }
+                            //Field A, B or C
+                            string varField = VariableNames[i];
+                            double var = Aid.SetDifferences(cond, fullList, j, ProblemData, varField);
+                            d.SetField<double>(varField, var); //set Distance Differences for A or B
                         }
+                        
                     }
 
                     fullList.Clear();
                     fullList = null;
+                   
 
-               
                     foreach (GADataSet.DataRow item in r.DataAxuliar)
                     {
                         double a2 = Math.Pow(item.A, 2);
@@ -169,7 +169,7 @@ namespace GADB
                
 
             }
-            else s.Fine = 1e3; //a million
+            else s.Fine = cond.Field<double>("CFine"); //a million
 
             nonRepeated.Clear();
             nonRepeated = null;

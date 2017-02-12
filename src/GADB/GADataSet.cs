@@ -67,38 +67,34 @@ namespace GADB
         partial class SolutionsRow
         {
             private GADataSet.DataDataTable dataAxuliar = new GADataSet.DataDataTable();
-            public void Initialize(ref IChromosome c)
+            public void Initialize(Gene[] genes)
             {
-                chromosome = c;
+           
                 Fitness = 0;
                 Frequency = 1;
                 DateTime = DateTime.Now;
+                Func<Gene, int> selector = o =>
+                {
+                    return int.Parse(o.Value.ToString());
+                };
+
+                genesAsInts = genes.Select(selector).ToList();
             }
 
-            private IChromosome chromosome = null;
-
-            public IList<Gene> Genes
-            {
-                get { return chromosome.GetGenes(); }
-            }
-
+              //  private IChromosome chromosome = null;
             IList<int> genesAsInts;
             public IList<int> GenesAsInts
             {
                 get
                 {
-                    Func<Gene, int> selector = o =>
-                {
-                    return int.Parse(o.Value.ToString());
-                };
-
-                    return Genes.Select(selector).ToList();
+                    return genesAsInts;
                 }
                 set
                 {
                     genesAsInts = value;
                 }
             }
+
 
             public DataDataTable DataAxuliar
             {

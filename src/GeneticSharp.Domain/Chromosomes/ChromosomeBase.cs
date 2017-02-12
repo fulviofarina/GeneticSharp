@@ -6,6 +6,8 @@ using HelperSharp;
 
 namespace GeneticSharp.Domain.Chromosomes
 {
+
+
     /// <summary>
     /// A base class for chromosomes.
     /// </summary>
@@ -13,6 +15,14 @@ namespace GeneticSharp.Domain.Chromosomes
     [Serializable]
 	public abstract class ChromosomeBase : IChromosome
     {
+       
+
+       
+        /// <summary>
+        /// Array to put objects to pass later on for easy of use
+        /// </summary>
+      //  public object[] TagArray { set; get; }
+
         #region Fields
         private Gene[] m_genes;
         private int m_length;
