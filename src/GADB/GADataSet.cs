@@ -22,11 +22,22 @@ namespace GADB
                 BString = string.Empty;
                 CString = string.Empty;
                 Fine = 0; //initialize the FINE
-                Okays = string.Empty; //initialize the isOKStringArray //for info
+                          //  Okays = string.Empty; //initialize the isOKStringArray //for info
             }
         }
         public partial class GARow
         {
+            public void AverageGA(ref IEnumerable<GADataSet.GARow> subs)
+            {
+
+                this.GenerationCurrent = Convert.ToInt32(subs.Average(o => o.GenerationCurrent));
+                this.GenerationTotal = Convert.ToInt32(subs.Sum(o => o.GenerationTotal));
+                this.MutationProb = subs.Average(o => o.MutationProb);
+                this.CrossProbability = subs.Average(o => o.CrossProbability);
+                this.TimeStamp = subs.Average(o => o.TimeStamp);
+
+            }
+
             public void FillGADataToSolution(ref SolutionsRow r)
             {
                 r.GAID = ID;
@@ -66,10 +77,16 @@ namespace GADB
 
         partial class SolutionsRow
         {
+            public bool ShouldDelete = false;
+            // public int Counter = 1;
+
             private GADataSet.DataDataTable dataAxuliar = new GADataSet.DataDataTable();
             public void Initialize(Gene[] genes)
             {
-           
+                TimeSpan = 0;
+                Generations = 0;
+                Genotype = string.Empty;
+                Counter = 1;
                 Fitness = 0;
                 Frequency = 1;
                 DateTime = DateTime.Now;
@@ -81,7 +98,7 @@ namespace GADB
                 genesAsInts = genes.Select(selector).ToList();
             }
 
-              //  private IChromosome chromosome = null;
+            //  private IChromosome chromosome = null;
             IList<int> genesAsInts;
             public IList<int> GenesAsInts
             {

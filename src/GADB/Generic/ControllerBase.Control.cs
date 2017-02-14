@@ -63,19 +63,28 @@ namespace GADB
             //  Initialize(); //IMPORTANT
 
             ISelection selection = new EliteSelection();
+            //  selection = new RouletteWheelSelection();
+            selection = new TournamentSelection();//es buenisimoooo
+            //encontró mejores optimos en 3 iteraciones
             ICrossover crossover = new UniformCrossover();
-            IMutation mutation = new UniformMutation();
+          //  crossover = new PartiallyMappedCrossover();
+            //crossover = new CycleCrossover();
+            //crossover = new OrderedCrossover();
+          //  crossover = new ThreeParentCrossover();
+            IMutation mutation = new UniformMutation(true);
 
+           // crossover = new CycleCrossover();
             IChromosome adam = CreateChromosome();
+           
 
             IPopulation population = new Population(probabilities.minPop, probabilities.maxPop, adam);
             population.GenerationStrategy = new PerformanceGenerationStrategy();
-
+            //population.GenerationStrategy = new TrackingGenerationStrategy();
             IFitness fitness = CreateFitness();
             GeneticAlgorithm ga;
             ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
             ga.Termination = new FitnessStagnationTermination(probabilities.maxPop);
-
+         //   ga.Termination = new GenerationNumberTermination(probabilities.maxPop);
             ga.MutationProbability = probabilities.mutationProb;
             ga.CrossoverProbability = probabilities.crossProb;
 
@@ -98,6 +107,8 @@ namespace GADB
             //NORMAL LIST TO ACCOMPANY, BECAUSE  A LIST IS INDEXED
             //AND A HASHSET IS NOT
             listOfSolutions = new List<GADataSet.SolutionsRow>();
+
+            listOfStrings = new List<GADataSet.StringsRow>();
             if (bkgWorker)
             {
                 BackgroundWorker w = new BackgroundWorker();

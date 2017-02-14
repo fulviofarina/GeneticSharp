@@ -352,7 +352,7 @@ namespace GADB {
             base.Tables.Add(this.tableData);
             this.tableSolutions = new SolutionsDataTable(false);
             base.Tables.Add(this.tableSolutions);
-            this.tableGA = new GADataTable();
+            this.tableGA = new GADataTable(false);
             base.Tables.Add(this.tableGA);
             this.tableProblems = new ProblemsDataTable();
             base.Tables.Add(this.tableProblems);
@@ -483,6 +483,12 @@ namespace GADB {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitExpressions() {
             this.Solutions.ChromosomeLengthColumn.Expression = "Parent(GA_Solutions).ChromosomeLength";
+            this.Solutions.NormFreqColumn.Expression = "Frequency/Parent(GA_Solutions).GenerationTotal";
+            this.GA.FitnessAvgColumn.Expression = "Avg(Child(GA_Solutions).Fitness)";
+            this.GA.FitnessStDevColumn.Expression = "StDev(Child(GA_Solutions).Fitness)";
+            this.GA.TimeAvgColumn.Expression = "Avg(Child(GA_Solutions).TimeSpan)";
+            this.GA.TimeStDevColumn.Expression = "StDev(Child(GA_Solutions).TimeSpan)";
+            this.GA.MaxTimeColumn.Expression = "Max(Child(GA_Solutions).TimeSpan)";
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -853,7 +859,13 @@ namespace GADB {
             
             private global::System.Data.DataColumn columnSchOrder;
             
+            private global::System.Data.DataColumn columnNormFreq;
+            
             private global::System.Data.DataColumn columnChromosome;
+            
+            private global::System.Data.DataColumn columnOkays;
+            
+            private global::System.Data.DataColumn columnCounter;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -987,9 +999,33 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NormFreqColumn {
+                get {
+                    return this.columnNormFreq;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn ChromosomeColumn {
                 get {
                     return this.columnChromosome;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn OkaysColumn {
+                get {
+                    return this.columnOkays;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CounterColumn {
+                get {
+                    return this.columnCounter;
                 }
             }
             
@@ -1030,7 +1066,7 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SolutionsRow AddSolutionsRow(ProblemsRow parentProblemsRowByProblems_Solutions, string Genotype, double Fitness, System.DateTime DateTime, double TimeSpan, int ChromosomeLength, int Generations, GARow parentGARowByGA_Solutions, int Frequency, int SchOrder, byte[] Chromosome) {
+            public SolutionsRow AddSolutionsRow(ProblemsRow parentProblemsRowByProblems_Solutions, string Genotype, double Fitness, System.DateTime DateTime, double TimeSpan, int ChromosomeLength, int Generations, GARow parentGARowByGA_Solutions, int Frequency, int SchOrder, decimal NormFreq, byte[] Chromosome, string Okays, int Counter) {
                 SolutionsRow rowSolutionsRow = ((SolutionsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1044,7 +1080,10 @@ namespace GADB {
                         null,
                         Frequency,
                         SchOrder,
-                        Chromosome};
+                        NormFreq,
+                        Chromosome,
+                        Okays,
+                        Counter};
                 if ((parentProblemsRowByProblems_Solutions != null)) {
                     columnValuesArray[1] = parentProblemsRowByProblems_Solutions[1];
                 }
@@ -1058,7 +1097,7 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SolutionsRow AddSolutionsRow(ProblemsRow parentProblemsRowByProblems_Solutions, string Genotype, double Fitness, System.DateTime DateTime, double TimeSpan, int Generations, GARow parentGARowByGA_Solutions, int Frequency, int SchOrder, byte[] Chromosome) {
+            public SolutionsRow AddSolutionsRow(ProblemsRow parentProblemsRowByProblems_Solutions, string Genotype, double Fitness, System.DateTime DateTime, double TimeSpan, int Generations, GARow parentGARowByGA_Solutions, int Frequency, int SchOrder, byte[] Chromosome, string Okays, int Counter) {
                 SolutionsRow rowSolutionsRow = ((SolutionsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1072,7 +1111,10 @@ namespace GADB {
                         null,
                         Frequency,
                         SchOrder,
-                        Chromosome};
+                        null,
+                        Chromosome,
+                        Okays,
+                        Counter};
                 if ((parentProblemsRowByProblems_Solutions != null)) {
                     columnValuesArray[1] = parentProblemsRowByProblems_Solutions[1];
                 }
@@ -1119,7 +1161,10 @@ namespace GADB {
                 this.columnGAID = base.Columns["GAID"];
                 this.columnFrequency = base.Columns["Frequency"];
                 this.columnSchOrder = base.Columns["SchOrder"];
+                this.columnNormFreq = base.Columns["NormFreq"];
                 this.columnChromosome = base.Columns["Chromosome"];
+                this.columnOkays = base.Columns["Okays"];
+                this.columnCounter = base.Columns["Counter"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1147,8 +1192,14 @@ namespace GADB {
                 base.Columns.Add(this.columnFrequency);
                 this.columnSchOrder = new global::System.Data.DataColumn("SchOrder", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSchOrder);
+                this.columnNormFreq = new global::System.Data.DataColumn("NormFreq", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNormFreq);
                 this.columnChromosome = new global::System.Data.DataColumn("Chromosome", typeof(byte[]), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnChromosome);
+                this.columnOkays = new global::System.Data.DataColumn("Okays", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOkays);
+                this.columnCounter = new global::System.Data.DataColumn("Counter", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCounter);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -1160,6 +1211,8 @@ namespace GADB {
                 this.columnGenotype.MaxLength = 2147483647;
                 this.columnFitness.DefaultValue = ((double)(0D));
                 this.columnChromosomeLength.ReadOnly = true;
+                this.columnNormFreq.ReadOnly = true;
+                this.columnOkays.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1184,6 +1237,7 @@ namespace GADB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitExpressions() {
                 this.ChromosomeLengthColumn.Expression = "Parent(GA_Solutions).ChromosomeLength";
+                this.NormFreqColumn.Expression = "Frequency/Parent(GA_Solutions).GenerationTotal";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1333,14 +1387,33 @@ namespace GADB {
             
             private global::System.Data.DataColumn columnProblemID;
             
+            private global::System.Data.DataColumn columnFitnessAvg;
+            
+            private global::System.Data.DataColumn columnFitnessStDev;
+            
+            private global::System.Data.DataColumn columnTimeAvg;
+            
+            private global::System.Data.DataColumn columnTimeStDev;
+            
             private global::System.Data.DataColumn columnChromosomeLength;
+            
+            private global::System.Data.DataColumn columnMaxTime;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public GADataTable() {
+            public GADataTable() : 
+                    this(false) {
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GADataTable(bool initExpressions) {
                 this.TableName = "GA";
                 this.BeginInit();
                 this.InitClass();
+                if ((initExpressions == true)) {
+                    this.InitExpressions();
+                }
                 this.EndInit();
             }
             
@@ -1506,9 +1579,49 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FitnessAvgColumn {
+                get {
+                    return this.columnFitnessAvg;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn FitnessStDevColumn {
+                get {
+                    return this.columnFitnessStDev;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TimeAvgColumn {
+                get {
+                    return this.columnTimeAvg;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TimeStDevColumn {
+                get {
+                    return this.columnTimeStDev;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn ChromosomeLengthColumn {
                 get {
                     return this.columnChromosomeLength;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MaxTimeColumn {
+                get {
+                    return this.columnMaxTime;
                 }
             }
             
@@ -1566,6 +1679,64 @@ namespace GADB {
                         int CrossChromeMinLenght, 
                         double CrossProbability, 
                         ProblemsRow parentProblemsRowByProblems_GA, 
+                        double FitnessAvg, 
+                        double FitnessStDev, 
+                        double TimeAvg, 
+                        double TimeStDev, 
+                        int ChromosomeLength, 
+                        double MaxTime) {
+                GARow rowGARow = ((GARow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        Termination,
+                        Crossover,
+                        MutationProb,
+                        CrossParents,
+                        CrossChildren,
+                        Population,
+                        PopMin,
+                        PopMax,
+                        GenerationTotal,
+                        GenerationCurrent,
+                        GenerationStrategy,
+                        TimeStamp,
+                        Fitness,
+                        CrossChromeMinLenght,
+                        CrossProbability,
+                        null,
+                        FitnessAvg,
+                        FitnessStDev,
+                        TimeAvg,
+                        TimeStDev,
+                        ChromosomeLength,
+                        MaxTime};
+                if ((parentProblemsRowByProblems_GA != null)) {
+                    columnValuesArray[16] = parentProblemsRowByProblems_GA[0];
+                }
+                rowGARow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowGARow);
+                return rowGARow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public GARow AddGARow(
+                        string Termination, 
+                        string Crossover, 
+                        double MutationProb, 
+                        int CrossParents, 
+                        int CrossChildren, 
+                        string Population, 
+                        int PopMin, 
+                        int PopMax, 
+                        int GenerationTotal, 
+                        int GenerationCurrent, 
+                        string GenerationStrategy, 
+                        double TimeStamp, 
+                        double Fitness, 
+                        int CrossChromeMinLenght, 
+                        double CrossProbability, 
+                        ProblemsRow parentProblemsRowByProblems_GA, 
                         int ChromosomeLength) {
                 GARow rowGARow = ((GARow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
@@ -1586,7 +1757,12 @@ namespace GADB {
                         CrossChromeMinLenght,
                         CrossProbability,
                         null,
-                        ChromosomeLength};
+                        null,
+                        null,
+                        null,
+                        null,
+                        ChromosomeLength,
+                        null};
                 if ((parentProblemsRowByProblems_GA != null)) {
                     columnValuesArray[16] = parentProblemsRowByProblems_GA[0];
                 }
@@ -1636,7 +1812,12 @@ namespace GADB {
                 this.columnCrossChromeMinLenght = base.Columns["CrossChromeMinLenght"];
                 this.columnCrossProbability = base.Columns["CrossProbability"];
                 this.columnProblemID = base.Columns["ProblemID"];
+                this.columnFitnessAvg = base.Columns["FitnessAvg"];
+                this.columnFitnessStDev = base.Columns["FitnessStDev"];
+                this.columnTimeAvg = base.Columns["TimeAvg"];
+                this.columnTimeStDev = base.Columns["TimeStDev"];
                 this.columnChromosomeLength = base.Columns["ChromosomeLength"];
+                this.columnMaxTime = base.Columns["MaxTime"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1676,8 +1857,18 @@ namespace GADB {
                 base.Columns.Add(this.columnCrossProbability);
                 this.columnProblemID = new global::System.Data.DataColumn("ProblemID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProblemID);
+                this.columnFitnessAvg = new global::System.Data.DataColumn("FitnessAvg", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFitnessAvg);
+                this.columnFitnessStDev = new global::System.Data.DataColumn("FitnessStDev", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFitnessStDev);
+                this.columnTimeAvg = new global::System.Data.DataColumn("TimeAvg", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTimeAvg);
+                this.columnTimeStDev = new global::System.Data.DataColumn("TimeStDev", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTimeStDev);
                 this.columnChromosomeLength = new global::System.Data.DataColumn("ChromosomeLength", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnChromosomeLength);
+                this.columnMaxTime = new global::System.Data.DataColumn("MaxTime", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMaxTime);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -1690,6 +1881,11 @@ namespace GADB {
                 this.columnCrossover.MaxLength = 2147483647;
                 this.columnPopulation.MaxLength = 2147483647;
                 this.columnGenerationStrategy.MaxLength = 2147483647;
+                this.columnFitnessAvg.ReadOnly = true;
+                this.columnFitnessStDev.ReadOnly = true;
+                this.columnTimeAvg.ReadOnly = true;
+                this.columnTimeStDev.ReadOnly = true;
+                this.columnMaxTime.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1708,6 +1904,16 @@ namespace GADB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
                 return typeof(GARow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitExpressions() {
+                this.FitnessAvgColumn.Expression = "Avg(Child(GA_Solutions).Fitness)";
+                this.FitnessStDevColumn.Expression = "StDev(Child(GA_Solutions).Fitness)";
+                this.TimeAvgColumn.Expression = "Avg(Child(GA_Solutions).TimeSpan)";
+                this.TimeStDevColumn.Expression = "StDev(Child(GA_Solutions).TimeSpan)";
+                this.MaxTimeColumn.Expression = "Max(Child(GA_Solutions).TimeSpan)";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2569,8 +2775,6 @@ namespace GADB {
             
             private global::System.Data.DataColumn columnGAID;
             
-            private global::System.Data.DataColumn columnOkays;
-            
             private global::System.Data.DataColumn columnFine;
             
             private global::System.Data.DataColumn columnTotalA;
@@ -2647,14 +2851,6 @@ namespace GADB {
             public global::System.Data.DataColumn GAIDColumn {
                 get {
                     return this.columnGAID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OkaysColumn {
-                get {
-                    return this.columnOkays;
                 }
             }
             
@@ -2751,14 +2947,13 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public StringsRow AddStringsRow(int ProblemID, int SolutionID, int GAID, string Okays, double Fine, double TotalA, double TotalB, double TotalC, string AString, string BString, string CString) {
+            public StringsRow AddStringsRow(int ProblemID, int SolutionID, int GAID, double Fine, double TotalA, double TotalB, double TotalC, string AString, string BString, string CString) {
                 StringsRow rowStringsRow = ((StringsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         ProblemID,
                         SolutionID,
                         GAID,
-                        Okays,
                         Fine,
                         TotalA,
                         TotalB,
@@ -2799,7 +2994,6 @@ namespace GADB {
                 this.columnProblemID = base.Columns["ProblemID"];
                 this.columnSolutionID = base.Columns["SolutionID"];
                 this.columnGAID = base.Columns["GAID"];
-                this.columnOkays = base.Columns["Okays"];
                 this.columnFine = base.Columns["Fine"];
                 this.columnTotalA = base.Columns["TotalA"];
                 this.columnTotalB = base.Columns["TotalB"];
@@ -2820,8 +3014,6 @@ namespace GADB {
                 base.Columns.Add(this.columnSolutionID);
                 this.columnGAID = new global::System.Data.DataColumn("GAID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGAID);
-                this.columnOkays = new global::System.Data.DataColumn("Okays", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOkays);
                 this.columnFine = new global::System.Data.DataColumn("Fine", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFine);
                 this.columnTotalA = new global::System.Data.DataColumn("TotalA", typeof(double), null, global::System.Data.MappingType.Element);
@@ -2844,7 +3036,6 @@ namespace GADB {
                 this.columnID.AllowDBNull = false;
                 this.columnID.ReadOnly = true;
                 this.columnID.Unique = true;
-                this.columnOkays.MaxLength = 2147483647;
                 this.columnAString.MaxLength = 2147483647;
                 this.columnBString.MaxLength = 2147483647;
                 this.columnCString.MaxLength = 2147483647;
@@ -3310,6 +3501,22 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public decimal NormFreq {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSolutions.NormFreqColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NormFreq\' in table \'Solutions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSolutions.NormFreqColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public byte[] Chromosome {
                 get {
                     try {
@@ -3321,6 +3528,38 @@ namespace GADB {
                 }
                 set {
                     this[this.tableSolutions.ChromosomeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Okays {
+                get {
+                    try {
+                        return ((string)(this[this.tableSolutions.OkaysColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Okays\' in table \'Solutions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSolutions.OkaysColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int Counter {
+                get {
+                    try {
+                        return ((int)(this[this.tableSolutions.CounterColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Counter\' in table \'Solutions\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSolutions.CounterColumn] = value;
                 }
             }
             
@@ -3479,6 +3718,18 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNormFreqNull() {
+                return this.IsNull(this.tableSolutions.NormFreqColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNormFreqNull() {
+                this[this.tableSolutions.NormFreqColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsChromosomeNull() {
                 return this.IsNull(this.tableSolutions.ChromosomeColumn);
             }
@@ -3487,6 +3738,30 @@ namespace GADB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetChromosomeNull() {
                 this[this.tableSolutions.ChromosomeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsOkaysNull() {
+                return this.IsNull(this.tableSolutions.OkaysColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetOkaysNull() {
+                this[this.tableSolutions.OkaysColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCounterNull() {
+                return this.IsNull(this.tableSolutions.CounterColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCounterNull() {
+                this[this.tableSolutions.CounterColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3773,6 +4048,70 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double FitnessAvg {
+                get {
+                    try {
+                        return ((double)(this[this.tableGA.FitnessAvgColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FitnessAvg\' in table \'GA\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGA.FitnessAvgColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double FitnessStDev {
+                get {
+                    try {
+                        return ((double)(this[this.tableGA.FitnessStDevColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FitnessStDev\' in table \'GA\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGA.FitnessStDevColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double TimeAvg {
+                get {
+                    try {
+                        return ((double)(this[this.tableGA.TimeAvgColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TimeAvg\' in table \'GA\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGA.TimeAvgColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double TimeStDev {
+                get {
+                    try {
+                        return ((double)(this[this.tableGA.TimeStDevColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TimeStDev\' in table \'GA\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGA.TimeStDevColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int ChromosomeLength {
                 get {
                     try {
@@ -3784,6 +4123,22 @@ namespace GADB {
                 }
                 set {
                     this[this.tableGA.ChromosomeLengthColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double MaxTime {
+                get {
+                    try {
+                        return ((double)(this[this.tableGA.MaxTimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MaxTime\' in table \'GA\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGA.MaxTimeColumn] = value;
                 }
             }
             
@@ -3992,6 +4347,54 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFitnessAvgNull() {
+                return this.IsNull(this.tableGA.FitnessAvgColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFitnessAvgNull() {
+                this[this.tableGA.FitnessAvgColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsFitnessStDevNull() {
+                return this.IsNull(this.tableGA.FitnessStDevColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetFitnessStDevNull() {
+                this[this.tableGA.FitnessStDevColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTimeAvgNull() {
+                return this.IsNull(this.tableGA.TimeAvgColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTimeAvgNull() {
+                this[this.tableGA.TimeAvgColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTimeStDevNull() {
+                return this.IsNull(this.tableGA.TimeStDevColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTimeStDevNull() {
+                this[this.tableGA.TimeStDevColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsChromosomeLengthNull() {
                 return this.IsNull(this.tableGA.ChromosomeLengthColumn);
             }
@@ -4000,6 +4403,18 @@ namespace GADB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetChromosomeLengthNull() {
                 this[this.tableGA.ChromosomeLengthColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMaxTimeNull() {
+                return this.IsNull(this.tableGA.MaxTimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMaxTimeNull() {
+                this[this.tableGA.MaxTimeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4616,22 +5031,6 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Okays {
-                get {
-                    try {
-                        return ((string)(this[this.tableStrings.OkaysColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Okays\' in table \'Strings\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableStrings.OkaysColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public double Fine {
                 get {
                     try {
@@ -4776,18 +5175,6 @@ namespace GADB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetGAIDNull() {
                 this[this.tableStrings.GAIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsOkaysNull() {
-                return this.IsNull(this.tableStrings.OkaysColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetOkaysNull() {
-                this[this.tableStrings.OkaysColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5653,10 +6040,12 @@ SELECT ID, ProblemID, A, B, C FROM Data WHERE (ID = @ID)";
             tableMapping.ColumnMappings.Add("Frequency", "Frequency");
             tableMapping.ColumnMappings.Add("SchOrder", "SchOrder");
             tableMapping.ColumnMappings.Add("Chromosome", "Chromosome");
+            tableMapping.ColumnMappings.Add("Okays", "Okays");
+            tableMapping.ColumnMappings.Add("Counter", "Counter");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Solutions] WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_Fitness = 1 AND [Fitness] IS NULL) OR ([Fitness] = @Original_Fitness)) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ((@IsNull_TimeSpan = 1 AND [TimeSpan] IS NULL) OR ([TimeSpan] = @Original_TimeSpan)) AND ((@IsNull_Generations = 1 AND [Generations] IS NULL) OR ([Generations] = @Original_Generations)) AND ((@IsNull_GAID = 1 AND [GAID] IS NULL) OR ([GAID] = @Original_GAID)) AND ((@IsNull_Frequency = 1 AND [Frequency] IS NULL) OR ([Frequency] = @Original_Frequency)) AND ((@IsNull_SchOrder = 1 AND [SchOrder] IS NULL) OR ([SchOrder] = @Original_SchOrder)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Solutions] WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_Fitness = 1 AND [Fitness] IS NULL) OR ([Fitness] = @Original_Fitness)) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ((@IsNull_TimeSpan = 1 AND [TimeSpan] IS NULL) OR ([TimeSpan] = @Original_TimeSpan)) AND ((@IsNull_Generations = 1 AND [Generations] IS NULL) OR ([Generations] = @Original_Generations)) AND ((@IsNull_GAID = 1 AND [GAID] IS NULL) OR ([GAID] = @Original_GAID)) AND ((@IsNull_Frequency = 1 AND [Frequency] IS NULL) OR ([Frequency] = @Original_Frequency)) AND ((@IsNull_SchOrder = 1 AND [SchOrder] IS NULL) OR ([SchOrder] = @Original_SchOrder)) AND ((@IsNull_Counter = 1 AND [Counter] IS NULL) OR ([Counter] = @Original_Counter)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -5675,10 +6064,12 @@ SELECT ID, ProblemID, A, B, C FROM Data WHERE (ID = @ID)";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Frequency", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Frequency", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SchOrder", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SchOrder", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SchOrder", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SchOrder", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Counter", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Counter", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Counter", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Counter", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Solutions] ([ProblemID], [Genotype], [Fitness], [DateTime], [TimeSpan], [Generations], [GAID], [Frequency], [SchOrder], [Chromosome]) VALUES (@ProblemID, @Genotype, @Fitness, @DateTime, @TimeSpan, @Generations, @GAID, @Frequency, @SchOrder, @Chromosome);
-SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, Frequency, SchOrder, Chromosome FROM Solutions WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Solutions] ([ProblemID], [Genotype], [Fitness], [DateTime], [TimeSpan], [Generations], [GAID], [Frequency], [SchOrder], [Okays], [Chromosome], [Counter]) VALUES (@ProblemID, @Genotype, @Fitness, @DateTime, @TimeSpan, @Generations, @GAID, @Frequency, @SchOrder, @Okays, @Chromosome, @Counter);
+SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, Frequency, SchOrder, Okays, Chromosome, Counter FROM Solutions WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Genotype", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Genotype", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5689,11 +6080,13 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GAID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GAID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Frequency", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Frequency", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SchOrder", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SchOrder", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Okays", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Okays", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Chromosome", global::System.Data.SqlDbType.Image, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Chromosome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Counter", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Counter", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Solutions] SET [ProblemID] = @ProblemID, [Genotype] = @Genotype, [Fitness] = @Fitness, [DateTime] = @DateTime, [TimeSpan] = @TimeSpan, [Generations] = @Generations, [GAID] = @GAID, [Frequency] = @Frequency, [SchOrder] = @SchOrder, [Chromosome] = @Chromosome WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_Fitness = 1 AND [Fitness] IS NULL) OR ([Fitness] = @Original_Fitness)) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ((@IsNull_TimeSpan = 1 AND [TimeSpan] IS NULL) OR ([TimeSpan] = @Original_TimeSpan)) AND ((@IsNull_Generations = 1 AND [Generations] IS NULL) OR ([Generations] = @Original_Generations)) AND ((@IsNull_GAID = 1 AND [GAID] IS NULL) OR ([GAID] = @Original_GAID)) AND ((@IsNull_Frequency = 1 AND [Frequency] IS NULL) OR ([Frequency] = @Original_Frequency)) AND ((@IsNull_SchOrder = 1 AND [SchOrder] IS NULL) OR ([SchOrder] = @Original_SchOrder)));
-SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, Frequency, SchOrder, Chromosome FROM Solutions WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Solutions] SET [ProblemID] = @ProblemID, [Genotype] = @Genotype, [Fitness] = @Fitness, [DateTime] = @DateTime, [TimeSpan] = @TimeSpan, [Generations] = @Generations, [GAID] = @GAID, [Frequency] = @Frequency, [SchOrder] = @SchOrder, [Okays] = @Okays, [Chromosome] = @Chromosome, [Counter] = @Counter WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_Fitness = 1 AND [Fitness] IS NULL) OR ([Fitness] = @Original_Fitness)) AND ((@IsNull_DateTime = 1 AND [DateTime] IS NULL) OR ([DateTime] = @Original_DateTime)) AND ((@IsNull_TimeSpan = 1 AND [TimeSpan] IS NULL) OR ([TimeSpan] = @Original_TimeSpan)) AND ((@IsNull_Generations = 1 AND [Generations] IS NULL) OR ([Generations] = @Original_Generations)) AND ((@IsNull_GAID = 1 AND [GAID] IS NULL) OR ([GAID] = @Original_GAID)) AND ((@IsNull_Frequency = 1 AND [Frequency] IS NULL) OR ([Frequency] = @Original_Frequency)) AND ((@IsNull_SchOrder = 1 AND [SchOrder] IS NULL) OR ([SchOrder] = @Original_SchOrder)) AND ((@IsNull_Counter = 1 AND [Counter] IS NULL) OR ([Counter] = @Original_Counter)));
+SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, Frequency, SchOrder, Okays, Chromosome, Counter FROM Solutions WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Genotype", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Genotype", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -5704,7 +6097,9 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GAID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GAID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Frequency", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Frequency", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SchOrder", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SchOrder", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Okays", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Okays", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Chromosome", global::System.Data.SqlDbType.Image, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Chromosome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Counter", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Counter", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -5722,6 +6117,8 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Frequency", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Frequency", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SchOrder", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SchOrder", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SchOrder", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SchOrder", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Counter", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Counter", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Counter", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Counter", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -5738,8 +6135,7 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, F" +
-                "requency, SchOrder, Chromosome FROM Solutions";
+            this._commandCollection[0].CommandText = "SELECT * FROM Solutions";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5800,7 +6196,7 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, global::System.Nullable<int> Original_ProblemID, global::System.Nullable<double> Original_Fitness, global::System.Nullable<global::System.DateTime> Original_DateTime, global::System.Nullable<double> Original_TimeSpan, global::System.Nullable<int> Original_Generations, global::System.Nullable<int> Original_GAID, global::System.Nullable<int> Original_Frequency, global::System.Nullable<int> Original_SchOrder) {
+        public virtual int Delete(int Original_ID, global::System.Nullable<int> Original_ProblemID, global::System.Nullable<double> Original_Fitness, global::System.Nullable<global::System.DateTime> Original_DateTime, global::System.Nullable<double> Original_TimeSpan, global::System.Nullable<int> Original_Generations, global::System.Nullable<int> Original_GAID, global::System.Nullable<int> Original_Frequency, global::System.Nullable<int> Original_SchOrder, global::System.Nullable<int> Original_Counter) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             if ((Original_ProblemID.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -5866,6 +6262,14 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
                 this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
+            if ((Original_Counter.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((int)(Original_Counter.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -5886,7 +6290,7 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> ProblemID, string Genotype, global::System.Nullable<double> Fitness, global::System.Nullable<global::System.DateTime> DateTime, global::System.Nullable<double> TimeSpan, global::System.Nullable<int> Generations, global::System.Nullable<int> GAID, global::System.Nullable<int> Frequency, global::System.Nullable<int> SchOrder, byte[] Chromosome) {
+        public virtual int Insert(global::System.Nullable<int> ProblemID, string Genotype, global::System.Nullable<double> Fitness, global::System.Nullable<global::System.DateTime> DateTime, global::System.Nullable<double> TimeSpan, global::System.Nullable<int> Generations, global::System.Nullable<int> GAID, global::System.Nullable<int> Frequency, global::System.Nullable<int> SchOrder, string Okays, byte[] Chromosome, global::System.Nullable<int> Counter) {
             if ((ProblemID.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ProblemID.Value));
             }
@@ -5941,11 +6345,23 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
             else {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((Chromosome == null)) {
+            if ((Okays == null)) {
                 this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((byte[])(Chromosome));
+                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(Okays));
+            }
+            if ((Chromosome == null)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((byte[])(Chromosome));
+            }
+            if ((Counter.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((int)(Counter.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -5977,7 +6393,9 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
                     global::System.Nullable<int> GAID, 
                     global::System.Nullable<int> Frequency, 
                     global::System.Nullable<int> SchOrder, 
+                    string Okays, 
                     byte[] Chromosome, 
+                    global::System.Nullable<int> Counter, 
                     int Original_ID, 
                     global::System.Nullable<int> Original_ProblemID, 
                     global::System.Nullable<double> Original_Fitness, 
@@ -5987,6 +6405,7 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
                     global::System.Nullable<int> Original_GAID, 
                     global::System.Nullable<int> Original_Frequency, 
                     global::System.Nullable<int> Original_SchOrder, 
+                    global::System.Nullable<int> Original_Counter, 
                     int ID) {
             if ((ProblemID.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ProblemID.Value));
@@ -6042,78 +6461,98 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((Chromosome == null)) {
+            if ((Okays == null)) {
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((byte[])(Chromosome));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Okays));
             }
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_ID));
-            if ((Original_ProblemID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_ProblemID.Value));
+            if ((Chromosome == null)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((byte[])(Chromosome));
             }
-            if ((Original_Fitness.HasValue == true)) {
+            if ((Counter.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Counter.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_ID));
+            if ((Original_ProblemID.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((double)(Original_Fitness.Value));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_ProblemID.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
-            if ((Original_DateTime.HasValue == true)) {
+            if ((Original_Fitness.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((System.DateTime)(Original_DateTime.Value));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((double)(Original_Fitness.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
-            if ((Original_TimeSpan.HasValue == true)) {
+            if ((Original_DateTime.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((double)(Original_TimeSpan.Value));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((System.DateTime)(Original_DateTime.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
-            if ((Original_Generations.HasValue == true)) {
+            if ((Original_TimeSpan.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(Original_Generations.Value));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((double)(Original_TimeSpan.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
-            if ((Original_GAID.HasValue == true)) {
+            if ((Original_Generations.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((int)(Original_GAID.Value));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((int)(Original_Generations.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
-            if ((Original_Frequency.HasValue == true)) {
+            if ((Original_GAID.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(Original_Frequency.Value));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(Original_GAID.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
             }
-            if ((Original_SchOrder.HasValue == true)) {
+            if ((Original_Frequency.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((int)(Original_SchOrder.Value));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((int)(Original_Frequency.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[27].Value = ((int)(ID));
+            if ((Original_SchOrder.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((int)(Original_SchOrder.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Counter.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((int)(Original_Counter.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[30].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[31].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6144,7 +6583,9 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
                     global::System.Nullable<int> GAID, 
                     global::System.Nullable<int> Frequency, 
                     global::System.Nullable<int> SchOrder, 
+                    string Okays, 
                     byte[] Chromosome, 
+                    global::System.Nullable<int> Counter, 
                     int Original_ID, 
                     global::System.Nullable<int> Original_ProblemID, 
                     global::System.Nullable<double> Original_Fitness, 
@@ -6153,8 +6594,9 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
                     global::System.Nullable<int> Original_Generations, 
                     global::System.Nullable<int> Original_GAID, 
                     global::System.Nullable<int> Original_Frequency, 
-                    global::System.Nullable<int> Original_SchOrder) {
-            return this.Update(ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, Frequency, SchOrder, Chromosome, Original_ID, Original_ProblemID, Original_Fitness, Original_DateTime, Original_TimeSpan, Original_Generations, Original_GAID, Original_Frequency, Original_SchOrder, Original_ID);
+                    global::System.Nullable<int> Original_SchOrder, 
+                    global::System.Nullable<int> Original_Counter) {
+            return this.Update(ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, Frequency, SchOrder, Okays, Chromosome, Counter, Original_ID, Original_ProblemID, Original_Fitness, Original_DateTime, Original_TimeSpan, Original_Generations, Original_GAID, Original_Frequency, Original_SchOrder, Original_Counter, Original_ID);
         }
     }
     
@@ -6466,7 +6908,7 @@ SELECT ID, Termination, Crossover, MutationProb, CrossParents, CrossChildren, Cr
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual GADataSet.GADataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            GADataSet.GADataTable dataTable = new GADataSet.GADataTable();
+            GADataSet.GADataTable dataTable = new GADataSet.GADataTable(true);
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -8315,7 +8757,6 @@ SELECT ID, ProblemID, MaxA, MaxB, MaxC, MinA, MinB, MinC, AFine, BFine, CFine FR
             tableMapping.ColumnMappings.Add("ProblemID", "ProblemID");
             tableMapping.ColumnMappings.Add("SolutionID", "SolutionID");
             tableMapping.ColumnMappings.Add("GAID", "GAID");
-            tableMapping.ColumnMappings.Add("Okays", "Okays");
             tableMapping.ColumnMappings.Add("Fine", "Fine");
             tableMapping.ColumnMappings.Add("TotalA", "TotalA");
             tableMapping.ColumnMappings.Add("TotalB", "TotalB");
@@ -8345,8 +8786,8 @@ SELECT ID, ProblemID, MaxA, MaxB, MaxC, MinA, MinB, MinC, AFine, BFine, CFine FR
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Fine", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Fine", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Strings] ([ProblemID], [SolutionID], [TotalA], [TotalB], [TotalC], [AString], [BString], [CString], [GAID], [Okays], [Fine]) VALUES (@ProblemID, @SolutionID, @TotalA, @TotalB, @TotalC, @AString, @BString, @CString, @GAID, @Okays, @Fine);
-SELECT ID, ProblemID, SolutionID, TotalA, TotalB, TotalC, AString, BString, CString, GAID, Okays, Fine FROM Strings WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Strings] ([ProblemID], [SolutionID], [TotalA], [TotalB], [TotalC], [AString], [BString], [CString], [GAID], [Fine]) VALUES (@ProblemID, @SolutionID, @TotalA, @TotalB, @TotalC, @AString, @BString, @CString, @GAID, @Fine);
+SELECT ID, ProblemID, SolutionID, TotalA, TotalB, TotalC, AString, BString, CString, GAID, Fine FROM Strings WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SolutionID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SolutionID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -8357,12 +8798,11 @@ SELECT ID, ProblemID, SolutionID, TotalA, TotalB, TotalC, AString, BString, CStr
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BString", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BString", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CString", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CString", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GAID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GAID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Okays", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Okays", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Fine", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Fine", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Strings] SET [ProblemID] = @ProblemID, [SolutionID] = @SolutionID, [TotalA] = @TotalA, [TotalB] = @TotalB, [TotalC] = @TotalC, [AString] = @AString, [BString] = @BString, [CString] = @CString, [GAID] = @GAID, [Okays] = @Okays, [Fine] = @Fine WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_SolutionID = 1 AND [SolutionID] IS NULL) OR ([SolutionID] = @Original_SolutionID)) AND ((@IsNull_TotalA = 1 AND [TotalA] IS NULL) OR ([TotalA] = @Original_TotalA)) AND ((@IsNull_TotalB = 1 AND [TotalB] IS NULL) OR ([TotalB] = @Original_TotalB)) AND ((@IsNull_TotalC = 1 AND [TotalC] IS NULL) OR ([TotalC] = @Original_TotalC)) AND ((@IsNull_GAID = 1 AND [GAID] IS NULL) OR ([GAID] = @Original_GAID)) AND ((@IsNull_Fine = 1 AND [Fine] IS NULL) OR ([Fine] = @Original_Fine)));
-SELECT ID, ProblemID, SolutionID, TotalA, TotalB, TotalC, AString, BString, CString, GAID, Okays, Fine FROM Strings WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Strings] SET [ProblemID] = @ProblemID, [SolutionID] = @SolutionID, [TotalA] = @TotalA, [TotalB] = @TotalB, [TotalC] = @TotalC, [AString] = @AString, [BString] = @BString, [CString] = @CString, [GAID] = @GAID, [Fine] = @Fine WHERE (([ID] = @Original_ID) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_SolutionID = 1 AND [SolutionID] IS NULL) OR ([SolutionID] = @Original_SolutionID)) AND ((@IsNull_TotalA = 1 AND [TotalA] IS NULL) OR ([TotalA] = @Original_TotalA)) AND ((@IsNull_TotalB = 1 AND [TotalB] IS NULL) OR ([TotalB] = @Original_TotalB)) AND ((@IsNull_TotalC = 1 AND [TotalC] IS NULL) OR ([TotalC] = @Original_TotalC)) AND ((@IsNull_GAID = 1 AND [GAID] IS NULL) OR ([GAID] = @Original_GAID)) AND ((@IsNull_Fine = 1 AND [Fine] IS NULL) OR ([Fine] = @Original_Fine)));
+SELECT ID, ProblemID, SolutionID, TotalA, TotalB, TotalC, AString, BString, CString, GAID, Fine FROM Strings WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SolutionID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SolutionID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -8373,7 +8813,6 @@ SELECT ID, ProblemID, SolutionID, TotalA, TotalB, TotalC, AString, BString, CStr
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BString", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BString", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CString", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CString", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GAID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GAID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Okays", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Okays", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Fine", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Fine", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -8406,8 +8845,8 @@ SELECT ID, ProblemID, SolutionID, TotalA, TotalB, TotalC, AString, BString, CStr
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT      ID, ProblemID, SolutionID, TotalA, TotalB, TotalC, AString, BString, " +
-                "CString, GAID, Okays, Fine\r\nFROM         Strings";
+            this._commandCollection[0].CommandText = "SELECT ID, ProblemID, SolutionID, TotalA, TotalB, TotalC, AString, BString, CStri" +
+                "ng, GAID, Fine FROM Strings";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -8546,7 +8985,7 @@ SELECT ID, ProblemID, SolutionID, TotalA, TotalB, TotalC, AString, BString, CStr
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> ProblemID, global::System.Nullable<int> SolutionID, global::System.Nullable<double> TotalA, global::System.Nullable<double> TotalB, global::System.Nullable<double> TotalC, string AString, string BString, string CString, global::System.Nullable<int> GAID, string Okays, global::System.Nullable<double> Fine) {
+        public virtual int Insert(global::System.Nullable<int> ProblemID, global::System.Nullable<int> SolutionID, global::System.Nullable<double> TotalA, global::System.Nullable<double> TotalB, global::System.Nullable<double> TotalC, string AString, string BString, string CString, global::System.Nullable<int> GAID, global::System.Nullable<double> Fine) {
             if ((ProblemID.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ProblemID.Value));
             }
@@ -8601,17 +9040,11 @@ SELECT ID, ProblemID, SolutionID, TotalA, TotalB, TotalC, AString, BString, CStr
             else {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((Okays == null)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(Okays));
-            }
             if ((Fine.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((double)(Fine.Value));
+                this.Adapter.InsertCommand.Parameters[9].Value = ((double)(Fine.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
+                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -8643,7 +9076,6 @@ SELECT ID, ProblemID, SolutionID, TotalA, TotalB, TotalC, AString, BString, CStr
                     string BString, 
                     string CString, 
                     global::System.Nullable<int> GAID, 
-                    string Okays, 
                     global::System.Nullable<double> Fine, 
                     int Original_ID, 
                     global::System.Nullable<int> Original_ProblemID, 
@@ -8708,76 +9140,70 @@ SELECT ID, ProblemID, SolutionID, TotalA, TotalB, TotalC, AString, BString, CStr
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((Okays == null)) {
+            if ((Fine.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((double)(Fine.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Okays));
-            }
-            if ((Fine.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((double)(Fine.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_ID));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_ID));
             if ((Original_ProblemID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_ProblemID.Value));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_ProblemID.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             if ((Original_SolutionID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_SolutionID.Value));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_SolutionID.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
             if ((Original_TotalA.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((double)(Original_TotalA.Value));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((double)(Original_TotalA.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             if ((Original_TotalB.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((double)(Original_TotalB.Value));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((double)(Original_TotalB.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             if ((Original_TotalC.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((double)(Original_TotalC.Value));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((double)(Original_TotalC.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
             if ((Original_GAID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(Original_GAID.Value));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((int)(Original_GAID.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
             if ((Original_Fine.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((double)(Original_Fine.Value));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((double)(Original_Fine.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[26].Value = ((int)(ID));
+            this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -8808,7 +9234,6 @@ SELECT ID, ProblemID, SolutionID, TotalA, TotalB, TotalC, AString, BString, CStr
                     string BString, 
                     string CString, 
                     global::System.Nullable<int> GAID, 
-                    string Okays, 
                     global::System.Nullable<double> Fine, 
                     int Original_ID, 
                     global::System.Nullable<int> Original_ProblemID, 
@@ -8818,7 +9243,7 @@ SELECT ID, ProblemID, SolutionID, TotalA, TotalB, TotalC, AString, BString, CStr
                     global::System.Nullable<double> Original_TotalC, 
                     global::System.Nullable<int> Original_GAID, 
                     global::System.Nullable<double> Original_Fine) {
-            return this.Update(ProblemID, SolutionID, TotalA, TotalB, TotalC, AString, BString, CString, GAID, Okays, Fine, Original_ID, Original_ProblemID, Original_SolutionID, Original_TotalA, Original_TotalB, Original_TotalC, Original_GAID, Original_Fine, Original_ID);
+            return this.Update(ProblemID, SolutionID, TotalA, TotalB, TotalC, AString, BString, CString, GAID, Fine, Original_ID, Original_ProblemID, Original_SolutionID, Original_TotalA, Original_TotalB, Original_TotalC, Original_GAID, Original_Fine, Original_ID);
         }
     }
     

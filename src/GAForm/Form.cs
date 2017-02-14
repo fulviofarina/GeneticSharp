@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 using System.Windows.Forms;
 using GADB;
 
@@ -104,7 +105,13 @@ namespace GAForm
                 //ABORT IF STOPPED
                 if (!stopbtn.Enabled) break;
 
+
+                GADataSet.SolutionsRow[] sols = currentGARow.GetSolutionsRows();
+                //reset counters///
+                foreach (GADataSet.SolutionsRow s in sols) s.Counter = 1;
                 //UPDATE DATABASES
+
+                IsampleControl.ConfigGA();
 
                 this.gobtn.Enabled = true;
                 this.stopbtn.Enabled = false;
@@ -118,8 +125,16 @@ namespace GAForm
                     ITERCOUNTER = 1;
                     MINSIZE++; //ADD SIZE OF CHROMOSOME NEXT GENETIC ALGORITHM
                 }
+
+
+
             }
             while (MINSIZE <= MAXSIZE);
+
+            
+
+
+
         }
 
         private Probabilities setProbabilities()
@@ -156,6 +171,7 @@ namespace GAForm
         private void fillMissingColumns()
         {
             string relation = "KnapStrings_Solutions";
+            this.SolutionsDataGridView.AutoGenerateColumns = true;
             foreach (DataColumn c in gADataSet.Strings.Columns)
             {
                 if (!c.ColumnName.Contains("ID"))
@@ -164,7 +180,7 @@ namespace GAForm
                     this.gADataSet.Solutions.Columns.Add(new DataColumn(c.ColumnName, c.DataType, str));
                 }
             }
-            this.SolutionsDataGridView.AutoGenerateColumns = true;
+          
         }
 
         private void KnapForm_Load(object sender, EventArgs e)

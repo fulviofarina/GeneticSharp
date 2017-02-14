@@ -135,9 +135,6 @@ namespace GADB
                     {
                         GADataSet.DataRow d = r.DataAxuliar.NewDataRow();
                         r.DataAxuliar.AddDataRow(d);
-
-           
-
                         for (int i = 0; i < VariableNames.Length; i++)
                         {
                             //Field A, B or C

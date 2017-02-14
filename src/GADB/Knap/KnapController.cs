@@ -31,8 +31,11 @@ namespace GADB
         /// <param name="r"></param>
         /// <param name="conditions"></param>
         /// <param name="variableNames">array of variableNames of problem (columns of KnapData)</param>
-        private void findFines(ref DataRow r)
+        private string findFines(ref DataRow r)
         {
+
+            string actualStr = string.Empty;
+
             for (int j = 0; j < Conditions.Length; j++)
             {
                 //find if all parameters are ok
@@ -57,12 +60,12 @@ namespace GADB
 
                 //FIRST LETER T OR F
 
-                string actualStr = r.Field<string>("Okays");
+              //  actualStr = r.Field<string>("Okays");
                 for (int i = 0; i < VariableNames.Length; i++)
                 {
                     actualStr += varOk[i].ToString()[0] + " ";
                 }
-                r.SetField("Okays", actualStr);
+               // r.SetField("Okays", actualStr);
                 //NOW ASSIGN THE PENALTY / FINE
                 double fine = r.Field<double>("Fine");
 
@@ -94,6 +97,10 @@ namespace GADB
 
                 r.SetField("Fine", fine);
             }
+
+
+            return actualStr;
+
         }
      
         /// <summary>
@@ -114,8 +121,7 @@ namespace GADB
            
 
             DataRow row = s;
-
-            findFines(ref row);
+            r.Okays =  findFines(ref row);
 
             r.Fitness = s.TotalC;
             r.Fitness /= (1 + s.Fine); //max vol, max value * (1+fine)

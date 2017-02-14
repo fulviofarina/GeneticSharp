@@ -120,6 +120,7 @@ namespace GADB
         private Probabilities probabilities;
         private Action finalCallBack = null;
         private HashSet<string> hashListOfGenotypes = null;
+        private List<GADataSet.StringsRow> listOfStrings = null;
         private List<GADataSet.SolutionsRow> listOfSolutions = null;
         private GADataSet.GARow gARow = null;
         private DataRow[] conditions = null;

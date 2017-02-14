@@ -7,16 +7,26 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <NestedTypes>
-      <Class Name="GADB.GADataSet.KnapConditionsDataTable" Collapsed="true">
+      <Delegate Name="GADB.GADataSet.ConditionsRowChangeEventHandler" Collapsed="true">
         <TypeIdentifier />
-      </Class>
+      </Delegate>
       <Delegate Name="GADB.GADataSet.ProblemsRowChangeEventHandler" Collapsed="true">
         <TypeIdentifier />
       </Delegate>
-      <Delegate Name="GADB.GADataSet.KnapDataRowChangeEventHandler" Collapsed="true">
+      <Class Name="GADB.GADataSet.StringsRow" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>GADataSet.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="GADB.GADataSet.StringsDataTable" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>GADataSet.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Delegate Name="GADB.GADataSet.GARowChangeEventHandler" Collapsed="true">
         <TypeIdentifier />
       </Delegate>
-      <Class Name="GADB.GADataSet.KnapConditionsRow" Collapsed="true">
+      <Class Name="GADB.GADataSet.ConditionsRowChangeEvent" Collapsed="true">
         <TypeIdentifier />
       </Class>
       <Class Name="GADB.GADataSet.SolutionsRow" Collapsed="true">
@@ -24,7 +34,26 @@
           <NewMemberFileName>GADataSet.cs</NewMemberFileName>
         </TypeIdentifier>
       </Class>
+      <Class Name="GADB.GADataSet.SolutionsRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="GADB.GADataSet.ConditionsRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
       <Class Name="GADB.GADataSet.GADataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="GADB.GADataSet.GARow" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>GADataSet.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="GADB.GADataSet.DataDataTable" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>GADataSet.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="GADB.GADataSet.StringsRowChangeEvent" Collapsed="true">
         <TypeIdentifier />
       </Class>
       <Class Name="GADB.GADataSet.SolutionsDataTable" Collapsed="true">
@@ -32,71 +61,51 @@
           <NewMemberFileName>GADataSet.cs</NewMemberFileName>
         </TypeIdentifier>
       </Class>
+      <Class Name="GADB.GADataSet.ProblemsRow" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="GADB.GADataSet.DataRowChangeEvent" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
       <Class Name="GADB.GADataSet.GARowChangeEvent" Collapsed="true">
         <TypeIdentifier />
       </Class>
-      <Class Name="GADB.GADataSet.KnapConditionsRowChangeEvent" Collapsed="true">
+      <Class Name="GADB.GADataSet.ProblemsRowChangeEvent" Collapsed="true">
         <TypeIdentifier />
-      </Class>
-      <Class Name="GADB.GADataSet.KnapDataDataTable" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>GADataSet.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-      <Class Name="GADB.GADataSet.GARow" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>GADataSet.cs</NewMemberFileName>
-        </TypeIdentifier>
       </Class>
       <Delegate Name="GADB.GADataSet.SolutionsRowChangeEventHandler" Collapsed="true">
         <TypeIdentifier />
       </Delegate>
-      <Class Name="GADB.GADataSet.KnapDataRowChangeEvent" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-      <Class Name="GADB.GADataSet.ProblemsRow" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-      <Class Name="GADB.GADataSet.SolutionsRowChangeEvent" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-      <Delegate Name="GADB.GADataSet.KnapConditionsRowChangeEventHandler" Collapsed="true">
-        <TypeIdentifier />
-      </Delegate>
-      <Delegate Name="GADB.GADataSet.GARowChangeEventHandler" Collapsed="true">
-        <TypeIdentifier />
-      </Delegate>
-      <Class Name="GADB.GADataSet.ProblemsRowChangeEvent" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
       <Class Name="GADB.GADataSet.ProblemsDataTable" Collapsed="true">
         <TypeIdentifier />
       </Class>
-      <Class Name="GADB.GADataSet.KnapDataRow" Collapsed="true">
+      <Class Name="GADB.GADataSet.ConditionsDataTable" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Delegate Name="GADB.GADataSet.DataRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Delegate Name="GADB.GADataSet.StringsRowChangeEventHandler" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="GADB.GADataSet.DataRow" Collapsed="true">
         <TypeIdentifier />
       </Class>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>CBAAAKAkAwAAAgZAZABAwQAAQCiiSBgAAQAAQAEABRA=</HashCode>
+      <HashCode>AAgACJAkAwAACiJADBBAwgAAQAiGQBgIATAAQCEABBA=</HashCode>
       <FileName>GADataSet.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GADB.AChromosome">
-    <Position X="6.25" Y="0.5" Width="2" />
-    <NestedTypes>
-      <Enum Name="GADB.AChromosome.Methods" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Generic\AChromosome.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
+  <Class Name="GADB.KnapChromosome">
+    <Position X="6" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAICAAAAAAAgAAAIAAAAAAAAAAAAAAABA=</HashCode>
-      <FileName>Generic\AChromosome.cs</FileName>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAgAAAIAAABIAAAAAAAAAABA=</HashCode>
+      <FileName>Knap\KnapChromosome.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GADB.AFitness" BaseTypeListCollapsed="true">
-    <Position X="6.25" Y="3.25" Width="1.5" />
+    <Position X="6.25" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAAAAAA=</HashCode>
       <FileName>Generic\AFitness.cs</FileName>
@@ -104,29 +113,14 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="GADB.Aid">
-    <Position X="8" Y="3.75" Width="2.5" />
+    <Position X="8" Y="4.25" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <HashCode>gAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAIAAAAAADA=</HashCode>
       <FileName>Generic\Aid.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GADB.SampleControllerBase" Collapsed="true">
-    <Position X="0.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAACEAAAAAwAAAAAAAIAAQAAAAAACAQBAABAAAAA=</HashCode>
-      <FileName>Generic\SampleControllerBase.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
-  </Class>
-  <Class Name="GADB.KnapsackSampleController">
-    <Position X="0.5" Y="1.75" Width="2.75" />
-    <TypeIdentifier>
-      <HashCode>AAAIAAAQACAQEgCBAAAAAKAAQAAAAAAAABAAAAAAAgA=</HashCode>
-      <FileName>KnapsackSampleController.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="GADB.Properties.Settings">
-    <Position X="3.5" Y="4.5" Width="2.25" />
+    <Position X="3.5" Y="4.75" Width="2.25" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
@@ -134,11 +128,19 @@
       <HashCode>AAAAAIAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Interface Name="GADB.ISampleController">
+  <Class Name="GADB.ControllerBase">
+    <Position X="0.5" Y="0.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>BAEYAACFEAAAEECAABBgQYEAYBAgAAAAIBAAEQAAgjA=</HashCode>
+      <FileName>Generic\ControllerBase.Abstracts.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="GADB.IController">
     <Position X="8.5" Y="0.5" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAACAAAAAAwAAAAAAAIAAQAAAAAACAQBAABAAAAA=</HashCode>
-      <FileName>Generic\ISampleController.cs</FileName>
+      <HashCode>AAEAAACEEAAAAEAAAAAAAIEAYAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Generic\IController.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Font Name="Segoe UI" Size="10" />

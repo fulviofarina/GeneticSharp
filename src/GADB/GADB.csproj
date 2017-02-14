@@ -49,7 +49,7 @@
     <Compile Include="GADataSet.cs">
       <DependentUpon>GADataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Generic\ControllerBase.Virtuals.cs" />
+    <Compile Include="Generic\ControllerBase.Control.cs" />
     <Compile Include="Generic\ControllerBase.Engine.cs" />
     <Compile Include="Generic\ControllerBase.Fields.cs" />
     <Compile Include="Generic\IController.cs" />
@@ -60,7 +60,7 @@
     <Compile Include="Generic\Probabilities.cs" />
     <Compile Include="Knap\KnapController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Generic\ControllerBase.Abstracts.cs" />
+    <Compile Include="Generic\ControllerBase.Overrides.cs" />
     <Compile Include="Settings.Designer.cs">
       <DependentUpon>Settings.settings</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -68,17 +68,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="GADBClassDiagram.cd" />
     <None Include="GADataSet.xsc">
       <DependentUpon>GADataSet.xsd</DependentUpon>
     </None>
+    <None Include="GADataSet.xss">
+      <DependentUpon>GADataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GADBClassDiagram.cd" />
     <None Include="GADataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>GADataSet1.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="GADataSet.xss">
-      <DependentUpon>GADataSet.xsd</DependentUpon>
     </None>
     <None Include="Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -89,10 +89,6 @@
     <ProjectReference Include="..\GeneticSharp.Domain\GeneticSharp.Domain.csproj">
       <Project>{c76dc1ad-fc7e-4168-bd19-101ff84a43f7}</Project>
       <Name>GeneticSharp.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GeneticSharp.Extensions\GeneticSharp.Extensions.csproj">
-      <Project>{699af592-1e11-4084-b87e-9ac72ed7861b}</Project>
-      <Name>GeneticSharp.Extensions</Name>
     </ProjectReference>
     <ProjectReference Include="..\GeneticSharp.Infrastructure.Framework\GeneticSharp.Infrastructure.Framework.csproj">
       <Project>{1498d792-d02b-4a9e-8afc-24aeba0dee54}</Project>

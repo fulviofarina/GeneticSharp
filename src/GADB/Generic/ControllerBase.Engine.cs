@@ -129,11 +129,15 @@ namespace GADB
 
             currentSolution.Genotype = Aid.SetStrings(currentSolution.GenesAsInts);
 
-            //IF NOT PRESENT IN THE LIST IS A NEW CHROMOSOME
-            string genotype = currentSolution.Genotype;
-            if (hashListOfGenotypes.Add(genotype)) //add to hashShet
+
+            Func<GADataSet.SolutionsRow, GADataSet.StringsRow, bool> funcion;
+            funcion = Aid.FilterByGenotype(ref hashListOfGenotypes, ref listOfSolutions, ref listOfStrings);
+
+            funcion(currentSolution, currentString);
+
+            if (!currentSolution.ShouldDelete)
             {
-              
+                
                 ds.Solutions.AddSolutionsRow(currentSolution);
                 GARow.FillGADataToSolution(ref currentSolution);
                 ds.Strings.AddStringsRow(currentString);
@@ -141,15 +145,9 @@ namespace GADB
                 currentString.ProblemID = currentSolution.ProblemID;
                 //decode
                 FillStrings(ref currentSolution, ref currentString);
-
-                listOfSolutions.Add(currentSolution);//add to indexed list
             }
-            else
-            {
-                int i = listOfSolutions.FindIndex(o => o.Genotype.Equals(genotype));
-                listOfSolutions[i].Frequency++;
 
-            }
+
         }
 
 
