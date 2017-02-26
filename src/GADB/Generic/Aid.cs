@@ -9,6 +9,15 @@ namespace GADB
     {
 
 
+        public static decimal DecimalTxt(double varPower)
+        {
+
+
+
+            decimal deci1 = Decimal.Round(Convert.ToDecimal(varPower), 1);
+
+            return deci1;
+        }
         /// <summary>
         /// FUNCTION TO PERFORM AVERAGE AND HISTOGRAM
         /// </summary>
@@ -69,11 +78,15 @@ namespace GADB
                     GADataSet.SolutionsRow s = knaprows.ElementAt(d);
                     if (s.ShouldDelete)
                     {
-                        s.StringsRowParent.Delete();
+                        if (s.StringsRowParent != null) s.StringsRowParent.Delete();
                         s.Delete();
                     }
-                    else s.GAID = subFirst.ID;
-
+                    else
+                    {
+                        s.GAID = subFirst.ID;
+                        s.Generations /= s.Counter;
+                        s.TimeSpan /= s.Counter;
+                    }
                 }
 
 

@@ -1,147 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="GADB.GADataSet">
-    <Position X="3.5" Y="0.5" Width="2.25" />
-    <Compartments>
-      <Compartment Name="Fields" Collapsed="true" />
-      <Compartment Name="Methods" Collapsed="true" />
-    </Compartments>
-    <NestedTypes>
-      <Delegate Name="GADB.GADataSet.ConditionsRowChangeEventHandler" Collapsed="true">
-        <TypeIdentifier />
-      </Delegate>
-      <Delegate Name="GADB.GADataSet.ProblemsRowChangeEventHandler" Collapsed="true">
-        <TypeIdentifier />
-      </Delegate>
-      <Class Name="GADB.GADataSet.StringsRow" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>GADataSet.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-      <Class Name="GADB.GADataSet.StringsDataTable" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>GADataSet.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-      <Delegate Name="GADB.GADataSet.GARowChangeEventHandler" Collapsed="true">
-        <TypeIdentifier />
-      </Delegate>
-      <Class Name="GADB.GADataSet.ConditionsRowChangeEvent" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-      <Class Name="GADB.GADataSet.SolutionsRow" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>GADataSet.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-      <Class Name="GADB.GADataSet.SolutionsRowChangeEvent" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-      <Class Name="GADB.GADataSet.ConditionsRow" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-      <Class Name="GADB.GADataSet.GADataTable" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-      <Class Name="GADB.GADataSet.GARow" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>GADataSet.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-      <Class Name="GADB.GADataSet.DataDataTable" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>GADataSet.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-      <Class Name="GADB.GADataSet.StringsRowChangeEvent" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-      <Class Name="GADB.GADataSet.SolutionsDataTable" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>GADataSet.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Class>
-      <Class Name="GADB.GADataSet.ProblemsRow" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-      <Class Name="GADB.GADataSet.DataRowChangeEvent" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-      <Class Name="GADB.GADataSet.GARowChangeEvent" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-      <Class Name="GADB.GADataSet.ProblemsRowChangeEvent" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-      <Delegate Name="GADB.GADataSet.SolutionsRowChangeEventHandler" Collapsed="true">
-        <TypeIdentifier />
-      </Delegate>
-      <Class Name="GADB.GADataSet.ProblemsDataTable" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-      <Class Name="GADB.GADataSet.ConditionsDataTable" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-      <Delegate Name="GADB.GADataSet.DataRowChangeEventHandler" Collapsed="true">
-        <TypeIdentifier />
-      </Delegate>
-      <Delegate Name="GADB.GADataSet.StringsRowChangeEventHandler" Collapsed="true">
-        <TypeIdentifier />
-      </Delegate>
-      <Class Name="GADB.GADataSet.DataRow" Collapsed="true">
-        <TypeIdentifier />
-      </Class>
-    </NestedTypes>
-    <TypeIdentifier>
-      <HashCode>AAgACJAkAwAACiJADBBAwgAAQAiGQBgIATAAQCEABBA=</HashCode>
-      <FileName>GADataSet.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="GADB.KnapChromosome">
-    <Position X="6" Y="0.5" Width="2" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAIAAAAAAAAgAAAIAAABIAAAAAAAAAABA=</HashCode>
-      <FileName>Knap\KnapChromosome.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="GADB.AFitness" BaseTypeListCollapsed="true">
-    <Position X="6.25" Y="4" Width="1.5" />
+    <Position X="3.5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAAAAAA=</HashCode>
       <FileName>Generic\AFitness.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
+    <Lollipop Position="0.684" Collapsed="true" />
   </Class>
   <Class Name="GADB.Aid">
-    <Position X="8" Y="4.25" Width="2.5" />
+    <Position X="0.5" Y="2.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAIAAAAAADA=</HashCode>
+      <HashCode>gAAAAAAACAAAAACAAAAAAAAAAAAQAAAAAAIAAAAAADA=</HashCode>
       <FileName>Generic\Aid.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GADB.Properties.Settings">
-    <Position X="3.5" Y="4.75" Width="2.25" />
+  <Class Name="GADB.ControllerBase" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="2.75" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>BAEYAACFEAAAEMCAABBgQYEAYBAgAAIAIBAAEQAAgjA=</HashCode>
+      <FileName>Generic\ControllerBase.Control.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.332" />
+  </Class>
+  <Class Name="GADB.DroneChromosome" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIgAAAAAAAgAAAIAAABYAAAAAAAAAABA=</HashCode>
+      <FileName>Drone\DroneChromosome.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GADB.ControllerBase">
-    <Position X="0.5" Y="0.75" Width="2.75" />
+  <Class Name="GADB.DroneController">
+    <Position X="3.5" Y="0.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>BAEYAACFEAAAEECAABBgQYEAYBAgAAAAIBAAEQAAgjA=</HashCode>
-      <FileName>Generic\ControllerBase.Abstracts.cs</FileName>
+      <HashCode>AAAIAAAQAAAAAACAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Drone\DroneController.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
-  <Interface Name="GADB.IController">
-    <Position X="8.5" Y="0.5" Width="2.25" />
-    <TypeIdentifier>
-      <HashCode>AAEAAACEEAAAAEAAAAAAAIEAYAAAAAAAAAAAAAAAgAA=</HashCode>
-      <FileName>Generic\IController.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Font Name="Segoe UI" Size="10" />
 </ClassDiagram>

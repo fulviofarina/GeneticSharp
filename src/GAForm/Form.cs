@@ -69,7 +69,7 @@ namespace GAForm
                 ///CUT HERE
           // IsampleControl= new KnapController();
 
-                IsampleControl = new DroneController();
+                IsampleControl = new ExamController();
 
                 IsampleControl.SetControllerFor(ref currentProblem, MINSIZE);
                 IsampleControl.Probabilities = prob;
@@ -87,14 +87,29 @@ namespace GAForm
                     solta.Update(this.gADataSet.Solutions);
                     solta.Dispose();
                     solta = null;
+
+
+                
+
+
+
                 };
 
-                IsampleControl.FinalCallBack = delegate
+                IsampleControl.FinalCallBack = delegate 
                 {
                     GADB.GADataSetTableAdapters.StringsTableAdapter sta = new GADB.GADataSetTableAdapters.StringsTableAdapter();
                     sta.Update(this.gADataSet.Strings);
                     sta.Dispose();
                     sta = null;
+
+                    //    if (System.IO.File.Exists("DRONE.gif")) System.IO.File.Delete("DRONE.gif");
+
+                   // picBox.Refresh();
+                   // picBox.ImageLocation = "DRONE.gif";
+
+                    dgvDoubleMouseclick(this.SolutionsDataGridView,new DataGridViewCellMouseEventArgs(0,0,0,0, MOUSEVENT));
+
+
                 };
 
                 IsampleControl.GARow = currentGARow;
@@ -106,12 +121,14 @@ namespace GAForm
                 if (!stopbtn.Enabled) break;
 
 
-                GADataSet.SolutionsRow[] sols = currentGARow.GetSolutionsRows();
-                //reset counters///
-                foreach (GADataSet.SolutionsRow s in sols) s.Counter = 1;
                 //UPDATE DATABASES
 
                 IsampleControl.ConfigGA();
+
+                GADataSet.SolutionsRow[] sols = currentGARow.GetSolutionsRows();
+                //reset counters///
+                foreach (GADataSet.SolutionsRow s in sols) s.Counter = 1;
+
 
                 this.gobtn.Enabled = true;
                 this.stopbtn.Enabled = false;
@@ -199,6 +216,8 @@ namespace GAForm
             this.StringsTA.Fill(this.gADataSet.Strings);
 
             dgvDoubleMouseclick(this.problemsDataGridView, DGVARGUMENTDUMMY);
+
+          
         }
 
         private void stopbtn_Click(object sender, EventArgs e)
@@ -249,6 +268,14 @@ namespace GAForm
                 this.SolBS.Filter = this.gADataSet.Solutions.GAIDColumn.ColumnName + "=" + currentGARow.ID;
 
                 this.SolBS.Sort = this.gADataSet.Solutions.FitnessColumn.ColumnName + " desc";
+            }
+            else if (sender.Equals(this.SolutionsDataGridView))
+            {
+                GADataSet.SolutionsRow sol = dgvr.Row as GADataSet.SolutionsRow;
+                if (sol.IsChromosomeNull()) return;
+                System.IO.File.WriteAllBytes("current.gif", sol.Chromosome);
+                picBox.ImageLocation = "current.gif";
+                picBox.Refresh();
             }
         }
 

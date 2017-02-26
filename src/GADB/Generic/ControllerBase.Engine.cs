@@ -54,6 +54,9 @@ namespace GADB
             GA.Start();
         }
 
+        /// <summary>
+        /// Main postcript function to store best results
+        /// </summary>
         private void fillAll()
         {
 
@@ -83,6 +86,8 @@ namespace GADB
 
             //callBack MEthod to Form or User Control
             CallBack.Invoke();
+
+           
 
             //assign string ID... //this should be better
             currentString.SolutionID = currentSolution.ID;
@@ -129,28 +134,89 @@ namespace GADB
 
             currentSolution.Genotype = Aid.SetStrings(currentSolution.GenesAsInts);
 
-
+            //define filter function by genotype
             Func<GADataSet.SolutionsRow, GADataSet.StringsRow, bool> funcion;
             funcion = Aid.FilterByGenotype(ref hashListOfGenotypes, ref listOfSolutions, ref listOfStrings);
-
+//execute filter function by genotype
             funcion(currentSolution, currentString);
 
+            //the listOfSolutions contains the list of rows that need to be added
+            //these rows are flagged ShouldDelete = false
             if (!currentSolution.ShouldDelete)
             {
-                
+
                 ds.Solutions.AddSolutionsRow(currentSolution);
+
                 GARow.FillGADataToSolution(ref currentSolution);
+
                 ds.Strings.AddStringsRow(currentString);
                 currentString.GAID = currentSolution.GAID;
                 currentString.ProblemID = currentSolution.ProblemID;
                 //decode
                 FillStrings(ref currentSolution, ref currentString);
+
+                GNUPLOT(ref currentSolution);
+
             }
 
 
         }
 
+        private static void GNUPLOT(ref GADataSet.SolutionsRow s)
+        {
+            string script = "set grid\n";
+            script += "set title 'Trajectories'\n";
+            script += "set xlabel 'X'\n";
+            script += "set ylabel 'Y'\n";
 
 
+
+
+            GADataSet.DataRow[] data = s.ProblemsRow.GetKnapDataRows();
+            double min = data.Min(o => o.A);
+            double max = data.Max(o => o.A);
+
+            script += "set xrange[" + (min - 1) + ":" + (max + 1) + "]\n";
+            min = data.Min(o => o.B);
+            max = data.Max(o => o.B);
+            script += "set yrange[" + (min - 1) + ":" + (max + 1) + "]\n";
+
+            script += "set terminal gif animate delay 100\n";
+            script += "set output FILENAME\n";
+
+            //get genotype string
+            string[] a = s.Genotype.Split(' ');
+
+            //clean nulls
+            a = a.Where(o => !string.IsNullOrEmpty(o)).ToArray();
+
+            //make a data .txt file with A,B,C points
+            for (int i = 0; i < a.Length; i++)
+            {
+                // if (string.IsNullOrEmpty(a[i])) continue;
+                string aa = data.ElementAt(Convert.ToInt32(a[i]) - 1).A + "\t";
+                aa += data.ElementAt(Convert.ToInt32(a[i]) - 1).B + "\t";
+                aa += data.ElementAt(Convert.ToInt32(a[i]) - 1).C;
+                // string fileindex = i;
+                script += "plot '" + i + ".txt' using 1:2:3 with points palette pointsize 2 pointtype 5\n";
+                System.IO.File.WriteAllText(i + ".txt", aa);
+            }
+
+            //make gnuplot script file
+            string scriptFile = Guid.NewGuid().ToString().Substring(0, 6);
+            System.IO.File.WriteAllText(scriptFile + ".gp", script);
+
+
+            //execute gnuplot
+            System.Diagnostics.Process p = new System.Diagnostics.Process();
+            p.StartInfo.FileName = "gnuplot";
+            p.StartInfo.Arguments = "-e \"FILENAME='" + scriptFile + ".gif'\" " + scriptFile + ".gp";
+            p.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            p.Start();
+            p.WaitForExit();
+
+            //add image to Chromosome
+            s.Chromosome = System.IO.File.ReadAllBytes(scriptFile + ".gif");
+        }
     }
 }

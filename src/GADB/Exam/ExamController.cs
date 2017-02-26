@@ -8,7 +8,7 @@ using GeneticSharp.Domain.Chromosomes;
 
 namespace GADB
 {
-    public partial class DroneController : ControllerBase
+    public partial class ExamController : ControllerBase
     {
 
         public override void FillStrings<T>(ref GADataSet.SolutionsRow r, ref T stringRow)
@@ -217,7 +217,7 @@ namespace GADB
         /// INITIALIZER
         /// </summary>
         /// <param name="dt"></param>
-        public DroneController() : base()
+        public ExamController() : base()
         {
           
         }
@@ -229,7 +229,7 @@ namespace GADB
         public override IChromosome CreateChromosome()
         {
             //no junk? last argument
-            DroneChromosome c = new DroneChromosome(SIZE, ProblemData.Length, 0);
+            ExamChromosome c = new ExamChromosome(SIZE, ProblemData.Length, 0);
             return c;
         }
 

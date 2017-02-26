@@ -483,7 +483,7 @@ namespace GADB {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitExpressions() {
             this.Solutions.ChromosomeLengthColumn.Expression = "Parent(GA_Solutions).ChromosomeLength";
-            this.Solutions.NormFreqColumn.Expression = "Frequency/Parent(GA_Solutions).GenerationTotal";
+            this.Solutions.NormFreqColumn.Expression = "100*Frequency/Parent(GA_Solutions).GenerationTotal";
             this.GA.FitnessAvgColumn.Expression = "Avg(Child(GA_Solutions).Fitness)";
             this.GA.FitnessStDevColumn.Expression = "StDev(Child(GA_Solutions).Fitness)";
             this.GA.TimeAvgColumn.Expression = "Avg(Child(GA_Solutions).TimeSpan)";
@@ -1237,7 +1237,7 @@ namespace GADB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitExpressions() {
                 this.ChromosomeLengthColumn.Expression = "Parent(GA_Solutions).ChromosomeLength";
-                this.NormFreqColumn.Expression = "Frequency/Parent(GA_Solutions).GenerationTotal";
+                this.NormFreqColumn.Expression = "100*Frequency/Parent(GA_Solutions).GenerationTotal";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

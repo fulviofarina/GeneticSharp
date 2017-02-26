@@ -126,9 +126,13 @@ namespace GADB
                 GA.GenerationRan += delegate
                 {
                     workerProgressChanged(null, null);
+
                 };
 
                 GA.Start();
+
+
+                FinalCallBack();
             }
 
         }
