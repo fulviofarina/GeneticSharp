@@ -90,27 +90,44 @@ namespace GADB
                 Fitness = 0;
                 Frequency = 1;
                 DateTime = DateTime.Now;
-                Func<Gene, int> selector = o =>
-                {
-                    return int.Parse(o.Value.ToString());
-                };
 
-                genesAsInts = genes.Select(selector).ToList();
+
+                _genes = genes;
             }
 
             //  private IChromosome chromosome = null;
-            IList<int> genesAsInts;
+            //  IList<int> genesAsInts;
             public IList<int> GenesAsInts
             {
                 get
                 {
-                    return genesAsInts;
+                    Func<Gene, int> selector = o =>
+                    {
+                        return int.Parse(o.Value.ToString());
+                    };
+
+                    return _genes.Select(selector).ToList();
+
                 }
-                set
-                {
-                    genesAsInts = value;
-                }
+
             }
+            //  IList<int> genesAsInts;
+            public IList<double> GenesAsDoubles
+            {
+                get
+                {
+                    Func<Gene, double> selector = o =>
+                    {
+                        return double.Parse(o.Value.ToString());
+                    };
+
+                    return _genes.Select(selector).ToList();
+
+                }
+
+            }
+
+            Gene[] _genes;
 
 
             public DataDataTable DataAxuliar
@@ -124,6 +141,16 @@ namespace GADB
                 {
                     dataAxuliar = value;
                 }
+            }
+
+            public Gene[] Genes
+            {
+                get
+                {
+                    return _genes;
+                }
+
+
             }
         }
 

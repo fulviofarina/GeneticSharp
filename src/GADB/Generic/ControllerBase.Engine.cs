@@ -126,18 +126,16 @@ namespace GADB
         private void addDistinctToDataSet(ref GADataSet ds, ref GADataSet.SolutionsRow currentSolution, ref GADataSet.StringsRow currentString)
         {
 
-          
+
             //better this
-            if (currentSolution.Fitness <= 0.001) return;
+            //  if (currentSolution.Fitness <= 0.001) return;
 
-          
-
-            currentSolution.Genotype = Aid.SetStrings(currentSolution.GenesAsInts);
+        //    
 
             //define filter function by genotype
             Func<GADataSet.SolutionsRow, GADataSet.StringsRow, bool> funcion;
             funcion = Aid.FilterByGenotype(ref hashListOfGenotypes, ref listOfSolutions, ref listOfStrings);
-//execute filter function by genotype
+           //execute filter function by genotype
             funcion(currentSolution, currentString);
 
             //the listOfSolutions contains the list of rows that need to be added
@@ -155,7 +153,7 @@ namespace GADB
                 //decode
                 FillStrings(ref currentSolution, ref currentString);
 
-                GNUPLOT(ref currentSolution);
+              //  GNUPLOT(ref currentSolution);
 
             }
 

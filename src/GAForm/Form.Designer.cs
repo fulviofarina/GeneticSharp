@@ -34,31 +34,27 @@ namespace GAForm
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DataBN = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -89,14 +85,13 @@ namespace GAForm
             this.resumebtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.statsbtn = new System.Windows.Forms.ToolStripButton();
-            this.knapDataDataGridView = new System.Windows.Forms.DataGridView();
-            this.A = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.B = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.C = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SolutionsDataGridView = new System.Windows.Forms.DataGridView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.gADataGridView = new System.Windows.Forms.DataGridView();
+            this.problemsDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.picBox = new System.Windows.Forms.PictureBox();
             this.ChromosomeLength = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FitnessAvg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FitnessStDev = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -105,10 +100,6 @@ namespace GAForm
             this.MaxTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CrossProbability = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CrossChromeMinLenght = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.problemsDataGridView = new System.Windows.Forms.DataGridView();
-            this.knapConditionsDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.picBox = new System.Windows.Forms.PictureBox();
             this.Generations = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NormFreq = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Frequency = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -117,26 +108,9 @@ namespace GAForm
             this.SchOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Chromosome = new System.Windows.Forms.DataGridViewImageColumn();
             this.Counter = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn37 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaxA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaxB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaxC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MinA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MinB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MinC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AFine = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BFine = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CFine = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn38 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ConditionsBS = new System.Windows.Forms.BindingSource(this.components);
-            this.gADataSet = new GADB.GADataSet();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.problemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.labelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.minSizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maxSizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itersDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.taControl1 = new GAForm.TAControl();
             this.problemsBS = new System.Windows.Forms.BindingSource(this.components);
+            this.gADataSet = new GADB.GADataSet();
             this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -159,39 +133,32 @@ namespace GAForm
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SolBS = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataBS = new System.Windows.Forms.BindingSource(this.components);
-            this.DataTA = new GADB.GADataSetTableAdapters.DataTableAdapter();
-            this.TAM = new GADB.GADataSetTableAdapters.TableAdapterManager();
-            this.ConditionTA = new GADB.GADataSetTableAdapters.ConditionsTableAdapter();
-            this.gATA = new GADB.GADataSetTableAdapters.GATableAdapter();
-            this.problemsTA = new GADB.GADataSetTableAdapters.ProblemsTableAdapter();
-            this.SolTA = new GADB.GADataSetTableAdapters.SolutionsTableAdapter();
-            this.StringsTA = new GADB.GADataSetTableAdapters.StringsTableAdapter();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.problemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.minSizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maxSizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itersDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DataBN)).BeginInit();
             this.DataBN.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.knapDataDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SolutionsDataGridView)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gADataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.problemsDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.knapConditionsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ConditionsBS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gADataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.problemsBS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gADataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gABS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SolBS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataBS)).BeginInit();
             this.SuspendLayout();
             // 
             // DataBN
             // 
             this.DataBN.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.DataBN.BindingSource = this.DataBS;
+            this.DataBN.BindingSource = this.problemsBS;
             this.DataBN.CountItem = this.bindingNavigatorCountItem;
             this.DataBN.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.DataBN.Dock = System.Windows.Forms.DockStyle.None;
             this.DataBN.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
@@ -222,14 +189,14 @@ namespace GAForm
             this.resumebtn,
             this.toolStripSeparator7,
             this.statsbtn});
-            this.DataBN.Location = new System.Drawing.Point(0, 0);
+            this.DataBN.Location = new System.Drawing.Point(21, 58);
             this.DataBN.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.DataBN.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.DataBN.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.DataBN.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.DataBN.Name = "DataBN";
             this.DataBN.PositionItem = this.bindingNavigatorPositionItem;
-            this.DataBN.Size = new System.Drawing.Size(1565, 29);
+            this.DataBN.Size = new System.Drawing.Size(1005, 29);
             this.DataBN.TabIndex = 0;
             this.DataBN.Text = "bindingNavigator1";
             // 
@@ -446,62 +413,6 @@ namespace GAForm
             this.statsbtn.Text = "STATS";
             this.statsbtn.Click += new System.EventHandler(this.statsbtn_Click);
             // 
-            // knapDataDataGridView
-            // 
-            this.knapDataDataGridView.AutoGenerateColumns = false;
-            this.knapDataDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.knapDataDataGridView.BackgroundColor = System.Drawing.Color.IndianRed;
-            this.knapDataDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.knapDataDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.knapDataDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.knapDataDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.A,
-            this.B,
-            this.C});
-            this.knapDataDataGridView.DataSource = this.DataBS;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.knapDataDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
-            this.knapDataDataGridView.Location = new System.Drawing.Point(12, 195);
-            this.knapDataDataGridView.Name = "knapDataDataGridView";
-            this.knapDataDataGridView.Size = new System.Drawing.Size(402, 302);
-            this.knapDataDataGridView.TabIndex = 1;
-            // 
-            // A
-            // 
-            this.A.DataPropertyName = "A";
-            this.A.HeaderText = "A";
-            this.A.Name = "A";
-            this.A.Width = 44;
-            // 
-            // B
-            // 
-            this.B.DataPropertyName = "B";
-            this.B.HeaderText = "B";
-            this.B.Name = "B";
-            this.B.Width = 43;
-            // 
-            // C
-            // 
-            this.C.DataPropertyName = "C";
-            this.C.HeaderText = "C";
-            this.C.Name = "C";
-            this.C.Width = 43;
-            // 
             // SolutionsDataGridView
             // 
             this.SolutionsDataGridView.AllowUserToAddRows = false;
@@ -510,14 +421,14 @@ namespace GAForm
             this.SolutionsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.SolutionsDataGridView.BackgroundColor = System.Drawing.Color.Khaki;
             this.SolutionsDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SolutionsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SolutionsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.SolutionsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SolutionsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn6,
@@ -535,17 +446,17 @@ namespace GAForm
             this.Counter,
             this.dataGridViewTextBoxColumn19});
             this.SolutionsDataGridView.DataSource = this.SolBS;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.SolutionsDataGridView.DefaultCellStyle = dataGridViewCellStyle10;
-            this.SolutionsDataGridView.Location = new System.Drawing.Point(12, 503);
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.SolutionsDataGridView.DefaultCellStyle = dataGridViewCellStyle8;
+            this.SolutionsDataGridView.Location = new System.Drawing.Point(398, 409);
             this.SolutionsDataGridView.Name = "SolutionsDataGridView";
-            this.SolutionsDataGridView.Size = new System.Drawing.Size(1177, 220);
+            this.SolutionsDataGridView.Size = new System.Drawing.Size(1274, 489);
             this.SolutionsDataGridView.TabIndex = 2;
             this.SolutionsDataGridView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDoubleMouseclick);
             // 
@@ -553,9 +464,9 @@ namespace GAForm
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripProgressBar1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 743);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 945);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1565, 27);
+            this.statusStrip1.Size = new System.Drawing.Size(1621, 27);
             this.statusStrip1.TabIndex = 3;
             // 
             // toolStripProgressBar1
@@ -567,20 +478,20 @@ namespace GAForm
             // 
             this.gADataGridView.AllowUserToAddRows = false;
             this.gADataGridView.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Lavender;
-            this.gADataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Lavender;
+            this.gADataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.gADataGridView.AutoGenerateColumns = false;
             this.gADataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.gADataGridView.BackgroundColor = System.Drawing.Color.Thistle;
             this.gADataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gADataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gADataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.gADataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gADataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn20,
@@ -606,6 +517,42 @@ namespace GAForm
             this.dataGridViewTextBoxColumn26,
             this.dataGridViewTextBoxColumn22});
             this.gADataGridView.DataSource = this.gABS;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gADataGridView.DefaultCellStyle = dataGridViewCellStyle20;
+            this.gADataGridView.Location = new System.Drawing.Point(398, 90);
+            this.gADataGridView.Name = "gADataGridView";
+            this.gADataGridView.Size = new System.Drawing.Size(1155, 302);
+            this.gADataGridView.TabIndex = 4;
+            this.gADataGridView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDoubleMouseclick);
+            // 
+            // problemsDataGridView
+            // 
+            this.problemsDataGridView.AutoGenerateColumns = false;
+            this.problemsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.problemsDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.problemsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            this.problemsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.problemsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDDataGridViewTextBoxColumn,
+            this.problemIDDataGridViewTextBoxColumn,
+            this.labelDataGridViewTextBoxColumn,
+            this.minSizeDataGridViewTextBoxColumn,
+            this.maxSizeDataGridViewTextBoxColumn,
+            this.itersDataGridViewTextBoxColumn});
+            this.problemsDataGridView.DataSource = this.problemsBS;
             dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle22.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -613,48 +560,69 @@ namespace GAForm
             dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gADataGridView.DefaultCellStyle = dataGridViewCellStyle22;
-            this.gADataGridView.Location = new System.Drawing.Point(420, 195);
-            this.gADataGridView.Name = "gADataGridView";
-            this.gADataGridView.Size = new System.Drawing.Size(769, 302);
-            this.gADataGridView.TabIndex = 4;
-            this.gADataGridView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDoubleMouseclick);
+            this.problemsDataGridView.DefaultCellStyle = dataGridViewCellStyle22;
+            this.problemsDataGridView.Location = new System.Drawing.Point(12, 90);
+            this.problemsDataGridView.Name = "problemsDataGridView";
+            this.problemsDataGridView.Size = new System.Drawing.Size(380, 449);
+            this.problemsDataGridView.TabIndex = 5;
+            this.problemsDataGridView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDoubleMouseclick);
+            // 
+            // dataGridViewTextBoxColumn34
+            // 
+            this.dataGridViewTextBoxColumn34.DataPropertyName = "ID";
+            this.dataGridViewTextBoxColumn34.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn34.Name = "dataGridViewTextBoxColumn34";
+            this.dataGridViewTextBoxColumn34.ReadOnly = true;
+            this.dataGridViewTextBoxColumn34.Visible = false;
+            this.dataGridViewTextBoxColumn34.Width = 49;
+            // 
+            // picBox
+            // 
+            this.picBox.Location = new System.Drawing.Point(12, 545);
+            this.picBox.Name = "picBox";
+            this.picBox.Size = new System.Drawing.Size(340, 353);
+            this.picBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picBox.TabIndex = 7;
+            this.picBox.TabStop = false;
             // 
             // ChromosomeLength
             // 
             this.ChromosomeLength.DataPropertyName = "ChromosomeLength";
-            this.ChromosomeLength.HeaderText = "Chromosome Length";
+            this.ChromosomeLength.HeaderText = "CLength";
             this.ChromosomeLength.Name = "ChromosomeLength";
-            this.ChromosomeLength.Width = 157;
+            this.ChromosomeLength.Width = 88;
             // 
             // FitnessAvg
             // 
             this.FitnessAvg.DataPropertyName = "FitnessAvg";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.LavenderBlush;
-            this.FitnessAvg.DefaultCellStyle = dataGridViewCellStyle16;
-            this.FitnessAvg.HeaderText = "FitnessAvg";
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.LavenderBlush;
+            dataGridViewCellStyle14.Format = "N4";
+            this.FitnessAvg.DefaultCellStyle = dataGridViewCellStyle14;
+            this.FitnessAvg.HeaderText = "FAvg";
             this.FitnessAvg.Name = "FitnessAvg";
             this.FitnessAvg.ReadOnly = true;
-            this.FitnessAvg.Width = 104;
+            this.FitnessAvg.Width = 66;
             // 
             // FitnessStDev
             // 
             this.FitnessStDev.DataPropertyName = "FitnessStDev";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.LavenderBlush;
-            this.FitnessStDev.DefaultCellStyle = dataGridViewCellStyle17;
-            this.FitnessStDev.HeaderText = "FitnessStDev";
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.LavenderBlush;
+            dataGridViewCellStyle15.Format = "N4";
+            this.FitnessStDev.DefaultCellStyle = dataGridViewCellStyle15;
+            this.FitnessStDev.HeaderText = "FStDev";
             this.FitnessStDev.Name = "FitnessStDev";
             this.FitnessStDev.ReadOnly = true;
-            this.FitnessStDev.Width = 117;
+            this.FitnessStDev.Width = 80;
             // 
             // TimeAvg
             // 
             this.TimeAvg.DataPropertyName = "TimeAvg";
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.LavenderBlush;
-            this.TimeAvg.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.LavenderBlush;
+            dataGridViewCellStyle16.Format = "N1";
+            this.TimeAvg.DefaultCellStyle = dataGridViewCellStyle16;
             this.TimeAvg.HeaderText = "TimeAvg";
             this.TimeAvg.Name = "TimeAvg";
             this.TimeAvg.ReadOnly = true;
@@ -663,9 +631,10 @@ namespace GAForm
             // TimeStDev
             // 
             this.TimeStDev.DataPropertyName = "TimeStDev";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.LavenderBlush;
-            this.TimeStDev.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.LavenderBlush;
+            dataGridViewCellStyle17.Format = "N1";
+            this.TimeStDev.DefaultCellStyle = dataGridViewCellStyle17;
             this.TimeStDev.HeaderText = "TimeStDev";
             this.TimeStDev.Name = "TimeStDev";
             this.TimeStDev.ReadOnly = true;
@@ -674,9 +643,10 @@ namespace GAForm
             // MaxTime
             // 
             this.MaxTime.DataPropertyName = "MaxTime";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.LavenderBlush;
-            this.MaxTime.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.LavenderBlush;
+            dataGridViewCellStyle18.Format = "N1";
+            this.MaxTime.DefaultCellStyle = dataGridViewCellStyle18;
             this.MaxTime.HeaderText = "MaxTime";
             this.MaxTime.Name = "MaxTime";
             this.MaxTime.ReadOnly = true;
@@ -685,8 +655,8 @@ namespace GAForm
             // CrossProbability
             // 
             this.CrossProbability.DataPropertyName = "CrossProbability";
-            dataGridViewCellStyle21.Format = "N4";
-            this.CrossProbability.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle19.Format = "N4";
+            this.CrossProbability.DefaultCellStyle = dataGridViewCellStyle19;
             this.CrossProbability.HeaderText = "CProb";
             this.CrossProbability.Name = "CrossProbability";
             this.CrossProbability.ToolTipText = "Cross Probability";
@@ -700,101 +670,6 @@ namespace GAForm
             this.CrossChromeMinLenght.ToolTipText = "Cross Chromosome Min Length";
             this.CrossChromeMinLenght.Width = 122;
             // 
-            // problemsDataGridView
-            // 
-            this.problemsDataGridView.AutoGenerateColumns = false;
-            this.problemsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.problemsDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.problemsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
-            this.problemsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.problemsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDDataGridViewTextBoxColumn,
-            this.problemIDDataGridViewTextBoxColumn,
-            this.labelDataGridViewTextBoxColumn,
-            this.minSizeDataGridViewTextBoxColumn,
-            this.maxSizeDataGridViewTextBoxColumn,
-            this.itersDataGridViewTextBoxColumn});
-            this.problemsDataGridView.DataSource = this.problemsBS;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.problemsDataGridView.DefaultCellStyle = dataGridViewCellStyle24;
-            this.problemsDataGridView.Location = new System.Drawing.Point(12, 45);
-            this.problemsDataGridView.Name = "problemsDataGridView";
-            this.problemsDataGridView.Size = new System.Drawing.Size(542, 144);
-            this.problemsDataGridView.TabIndex = 5;
-            this.problemsDataGridView.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDoubleMouseclick);
-            // 
-            // knapConditionsDataGridView
-            // 
-            this.knapConditionsDataGridView.AutoGenerateColumns = false;
-            this.knapConditionsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.knapConditionsDataGridView.BackgroundColor = System.Drawing.Color.IndianRed;
-            this.knapConditionsDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText;
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle25.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.knapConditionsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle25;
-            this.knapConditionsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.knapConditionsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn37,
-            this.MaxA,
-            this.MaxB,
-            this.MaxC,
-            this.MinA,
-            this.MinB,
-            this.MinC,
-            this.AFine,
-            this.BFine,
-            this.CFine,
-            this.dataGridViewTextBoxColumn38});
-            this.knapConditionsDataGridView.DataSource = this.ConditionsBS;
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.knapConditionsDataGridView.DefaultCellStyle = dataGridViewCellStyle26;
-            this.knapConditionsDataGridView.Location = new System.Drawing.Point(573, 45);
-            this.knapConditionsDataGridView.Name = "knapConditionsDataGridView";
-            this.knapConditionsDataGridView.Size = new System.Drawing.Size(606, 144);
-            this.knapConditionsDataGridView.TabIndex = 6;
-            // 
-            // dataGridViewTextBoxColumn34
-            // 
-            this.dataGridViewTextBoxColumn34.DataPropertyName = "ID";
-            this.dataGridViewTextBoxColumn34.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn34.Name = "dataGridViewTextBoxColumn34";
-            this.dataGridViewTextBoxColumn34.ReadOnly = true;
-            this.dataGridViewTextBoxColumn34.Visible = false;
-            this.dataGridViewTextBoxColumn34.Width = 49;
-            // 
-            // picBox
-            // 
-            this.picBox.Location = new System.Drawing.Point(1213, 58);
-            this.picBox.Name = "picBox";
-            this.picBox.Size = new System.Drawing.Size(340, 353);
-            this.picBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picBox.TabIndex = 7;
-            this.picBox.TabStop = false;
-            // 
             // Generations
             // 
             this.Generations.DataPropertyName = "Generations";
@@ -805,10 +680,10 @@ namespace GAForm
             // NormFreq
             // 
             this.NormFreq.DataPropertyName = "NormFreq";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightGoldenrodYellow;
-            dataGridViewCellStyle6.Format = "N4";
-            this.NormFreq.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            dataGridViewCellStyle4.Format = "N4";
+            this.NormFreq.DefaultCellStyle = dataGridViewCellStyle4;
             this.NormFreq.HeaderText = "NormFreq";
             this.NormFreq.Name = "NormFreq";
             this.NormFreq.ReadOnly = true;
@@ -817,11 +692,11 @@ namespace GAForm
             // Frequency
             // 
             this.Frequency.DataPropertyName = "Frequency";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Lime;
-            this.Frequency.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Lime;
+            this.Frequency.DefaultCellStyle = dataGridViewCellStyle6;
             this.Frequency.HeaderText = "Frequency";
             this.Frequency.Name = "Frequency";
             this.Frequency.Width = 101;
@@ -829,11 +704,11 @@ namespace GAForm
             // Okays
             // 
             this.Okays.DataPropertyName = "Okays";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.Okays.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.Okays.DefaultCellStyle = dataGridViewCellStyle7;
             this.Okays.HeaderText = "Okays";
             this.Okays.Name = "Okays";
             this.Okays.Width = 73;
@@ -867,143 +742,22 @@ namespace GAForm
             this.Counter.Name = "Counter";
             this.Counter.Width = 86;
             // 
-            // dataGridViewTextBoxColumn37
+            // taControl1
             // 
-            this.dataGridViewTextBoxColumn37.DataPropertyName = "ID";
-            this.dataGridViewTextBoxColumn37.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn37.Name = "dataGridViewTextBoxColumn37";
-            this.dataGridViewTextBoxColumn37.ReadOnly = true;
-            this.dataGridViewTextBoxColumn37.Visible = false;
-            this.dataGridViewTextBoxColumn37.Width = 49;
-            // 
-            // MaxA
-            // 
-            this.MaxA.DataPropertyName = "MaxA";
-            this.MaxA.HeaderText = "MaxA";
-            this.MaxA.Name = "MaxA";
-            this.MaxA.Width = 72;
-            // 
-            // MaxB
-            // 
-            this.MaxB.DataPropertyName = "MaxB";
-            this.MaxB.HeaderText = "MaxB";
-            this.MaxB.Name = "MaxB";
-            this.MaxB.Width = 71;
-            // 
-            // MaxC
-            // 
-            this.MaxC.DataPropertyName = "MaxC";
-            this.MaxC.HeaderText = "MaxC";
-            this.MaxC.Name = "MaxC";
-            this.MaxC.Width = 71;
-            // 
-            // MinA
-            // 
-            this.MinA.DataPropertyName = "MinA";
-            this.MinA.HeaderText = "MinA";
-            this.MinA.Name = "MinA";
-            this.MinA.Width = 69;
-            // 
-            // MinB
-            // 
-            this.MinB.DataPropertyName = "MinB";
-            this.MinB.HeaderText = "MinB";
-            this.MinB.Name = "MinB";
-            this.MinB.Width = 68;
-            // 
-            // MinC
-            // 
-            this.MinC.DataPropertyName = "MinC";
-            this.MinC.HeaderText = "MinC";
-            this.MinC.Name = "MinC";
-            this.MinC.Width = 68;
-            // 
-            // AFine
-            // 
-            this.AFine.DataPropertyName = "AFine";
-            this.AFine.HeaderText = "AFine";
-            this.AFine.Name = "AFine";
-            this.AFine.Width = 71;
-            // 
-            // BFine
-            // 
-            this.BFine.DataPropertyName = "BFine";
-            this.BFine.HeaderText = "BFine";
-            this.BFine.Name = "BFine";
-            this.BFine.Width = 70;
-            // 
-            // CFine
-            // 
-            this.CFine.DataPropertyName = "CFine";
-            this.CFine.HeaderText = "CFine";
-            this.CFine.Name = "CFine";
-            this.CFine.Width = 70;
-            // 
-            // dataGridViewTextBoxColumn38
-            // 
-            this.dataGridViewTextBoxColumn38.DataPropertyName = "ProblemID";
-            this.dataGridViewTextBoxColumn38.HeaderText = "ProblemID";
-            this.dataGridViewTextBoxColumn38.Name = "dataGridViewTextBoxColumn38";
-            this.dataGridViewTextBoxColumn38.Width = 105;
-            // 
-            // ConditionsBS
-            // 
-            this.ConditionsBS.DataMember = "Conditions";
-            this.ConditionsBS.DataSource = this.gADataSet;
-            // 
-            // gADataSet
-            // 
-            this.gADataSet.DataSetName = "GADataSet";
-            this.gADataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Visible = false;
-            this.iDDataGridViewTextBoxColumn.Width = 49;
-            // 
-            // problemIDDataGridViewTextBoxColumn
-            // 
-            this.problemIDDataGridViewTextBoxColumn.DataPropertyName = "ProblemID";
-            this.problemIDDataGridViewTextBoxColumn.HeaderText = "ProblemID";
-            this.problemIDDataGridViewTextBoxColumn.Name = "problemIDDataGridViewTextBoxColumn";
-            this.problemIDDataGridViewTextBoxColumn.Width = 105;
-            // 
-            // labelDataGridViewTextBoxColumn
-            // 
-            this.labelDataGridViewTextBoxColumn.DataPropertyName = "Label";
-            this.labelDataGridViewTextBoxColumn.HeaderText = "Label";
-            this.labelDataGridViewTextBoxColumn.Name = "labelDataGridViewTextBoxColumn";
-            this.labelDataGridViewTextBoxColumn.Width = 70;
-            // 
-            // minSizeDataGridViewTextBoxColumn
-            // 
-            this.minSizeDataGridViewTextBoxColumn.DataPropertyName = "MinSize";
-            this.minSizeDataGridViewTextBoxColumn.HeaderText = "MinSize";
-            this.minSizeDataGridViewTextBoxColumn.Name = "minSizeDataGridViewTextBoxColumn";
-            this.minSizeDataGridViewTextBoxColumn.Width = 86;
-            // 
-            // maxSizeDataGridViewTextBoxColumn
-            // 
-            this.maxSizeDataGridViewTextBoxColumn.DataPropertyName = "MaxSize";
-            this.maxSizeDataGridViewTextBoxColumn.HeaderText = "MaxSize";
-            this.maxSizeDataGridViewTextBoxColumn.Name = "maxSizeDataGridViewTextBoxColumn";
-            this.maxSizeDataGridViewTextBoxColumn.Width = 89;
-            // 
-            // itersDataGridViewTextBoxColumn
-            // 
-            this.itersDataGridViewTextBoxColumn.DataPropertyName = "Iters";
-            this.itersDataGridViewTextBoxColumn.HeaderText = "Iters";
-            this.itersDataGridViewTextBoxColumn.Name = "itersDataGridViewTextBoxColumn";
-            this.itersDataGridViewTextBoxColumn.Width = 62;
+            this.taControl1.Location = new System.Drawing.Point(0, 3);
+            this.taControl1.Name = "taControl1";
+            this.taControl1.Size = new System.Drawing.Size(1097, 42);
+            this.taControl1.TabIndex = 8;
             // 
             // problemsBS
             // 
             this.problemsBS.DataMember = "Problems";
             this.problemsBS.DataSource = this.gADataSet;
+            // 
+            // gADataSet
+            // 
+            this.gADataSet.DataSetName = "GADataSet";
+            this.gADataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // dataGridViewTextBoxColumn20
             // 
@@ -1017,8 +771,8 @@ namespace GAForm
             // dataGridViewTextBoxColumn33
             // 
             this.dataGridViewTextBoxColumn33.DataPropertyName = "Fitness";
-            dataGridViewCellStyle13.Format = "N4";
-            this.dataGridViewTextBoxColumn33.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle11.Format = "N4";
+            this.dataGridViewTextBoxColumn33.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridViewTextBoxColumn33.HeaderText = "Fitness";
             this.dataGridViewTextBoxColumn33.Name = "dataGridViewTextBoxColumn33";
             this.dataGridViewTextBoxColumn33.ToolTipText = "Current fitness when Running, Best fitness when averaging";
@@ -1043,8 +797,8 @@ namespace GAForm
             // dataGridViewTextBoxColumn32
             // 
             this.dataGridViewTextBoxColumn32.DataPropertyName = "TimeStamp";
-            dataGridViewCellStyle14.Format = "N1";
-            this.dataGridViewTextBoxColumn32.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle12.Format = "N1";
+            this.dataGridViewTextBoxColumn32.DefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridViewTextBoxColumn32.HeaderText = "TS";
             this.dataGridViewTextBoxColumn32.Name = "dataGridViewTextBoxColumn32";
             this.dataGridViewTextBoxColumn32.ToolTipText = "Time Stamp";
@@ -1053,8 +807,8 @@ namespace GAForm
             // dataGridViewTextBoxColumn23
             // 
             this.dataGridViewTextBoxColumn23.DataPropertyName = "MutationProb";
-            dataGridViewCellStyle15.Format = "N4";
-            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle13.Format = "N4";
+            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridViewTextBoxColumn23.HeaderText = "MProb";
             this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
             this.dataGridViewTextBoxColumn23.ToolTipText = "Mutation Probability";
@@ -1141,12 +895,12 @@ namespace GAForm
             // dataGridViewTextBoxColumn18
             // 
             this.dataGridViewTextBoxColumn18.DataPropertyName = "TimeSpan";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle4.Format = "e2";
-            this.dataGridViewTextBoxColumn18.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle2.Format = "N1";
+            this.dataGridViewTextBoxColumn18.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn18.HeaderText = "Time";
             this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
             this.dataGridViewTextBoxColumn18.Width = 67;
@@ -1154,12 +908,12 @@ namespace GAForm
             // dataGridViewTextBoxColumn16
             // 
             this.dataGridViewTextBoxColumn16.DataPropertyName = "Fitness";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Cyan;
-            dataGridViewCellStyle5.Format = "N4";
-            this.dataGridViewTextBoxColumn16.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Cyan;
+            dataGridViewCellStyle3.Format = "N4";
+            this.dataGridViewTextBoxColumn16.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxColumn16.HeaderText = "Fitness";
             this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
             this.dataGridViewTextBoxColumn16.Width = 78;
@@ -1167,11 +921,11 @@ namespace GAForm
             // dataGridViewTextBoxColumn14
             // 
             this.dataGridViewTextBoxColumn14.DataPropertyName = "Genotype";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Snow;
-            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Snow;
+            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTextBoxColumn14.HeaderText = "Genotype";
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.Width = 98;
@@ -1196,75 +950,62 @@ namespace GAForm
             this.SolBS.DataMember = "Solutions";
             this.SolBS.DataSource = this.gADataSet;
             // 
-            // dataGridViewTextBoxColumn1
+            // iDDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID";
-            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            this.dataGridViewTextBoxColumn1.Width = 49;
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Visible = false;
+            this.iDDataGridViewTextBoxColumn.Width = 49;
             // 
-            // dataGridViewTextBoxColumn2
+            // problemIDDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "ProblemID";
-            this.dataGridViewTextBoxColumn2.HeaderText = "ProblemID";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            this.dataGridViewTextBoxColumn2.Width = 105;
+            this.problemIDDataGridViewTextBoxColumn.DataPropertyName = "ProblemID";
+            this.problemIDDataGridViewTextBoxColumn.HeaderText = "ProblemID";
+            this.problemIDDataGridViewTextBoxColumn.Name = "problemIDDataGridViewTextBoxColumn";
+            this.problemIDDataGridViewTextBoxColumn.Visible = false;
+            this.problemIDDataGridViewTextBoxColumn.Width = 105;
             // 
-            // DataBS
+            // labelDataGridViewTextBoxColumn
             // 
-            this.DataBS.DataMember = "Data";
-            this.DataBS.DataSource = this.gADataSet;
+            this.labelDataGridViewTextBoxColumn.DataPropertyName = "Label";
+            this.labelDataGridViewTextBoxColumn.HeaderText = "Label";
+            this.labelDataGridViewTextBoxColumn.Name = "labelDataGridViewTextBoxColumn";
+            this.labelDataGridViewTextBoxColumn.Width = 70;
             // 
-            // DataTA
+            // minSizeDataGridViewTextBoxColumn
             // 
-            this.DataTA.ClearBeforeFill = true;
+            this.minSizeDataGridViewTextBoxColumn.DataPropertyName = "MinSize";
+            this.minSizeDataGridViewTextBoxColumn.HeaderText = "MinSize";
+            this.minSizeDataGridViewTextBoxColumn.Name = "minSizeDataGridViewTextBoxColumn";
+            this.minSizeDataGridViewTextBoxColumn.Width = 86;
             // 
-            // TAM
+            // maxSizeDataGridViewTextBoxColumn
             // 
-            this.TAM.BackupDataSetBeforeUpdate = false;
-            this.TAM.ConditionsTableAdapter = this.ConditionTA;
-            this.TAM.DataTableAdapter = this.DataTA;
-            this.TAM.GATableAdapter = this.gATA;
-            this.TAM.ProblemsTableAdapter = this.problemsTA;
-            this.TAM.SolutionsTableAdapter = this.SolTA;
-            this.TAM.StringsTableAdapter = this.StringsTA;
-            this.TAM.UpdateOrder = GADB.GADataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.maxSizeDataGridViewTextBoxColumn.DataPropertyName = "MaxSize";
+            this.maxSizeDataGridViewTextBoxColumn.HeaderText = "MaxSize";
+            this.maxSizeDataGridViewTextBoxColumn.Name = "maxSizeDataGridViewTextBoxColumn";
+            this.maxSizeDataGridViewTextBoxColumn.Width = 89;
             // 
-            // ConditionTA
+            // itersDataGridViewTextBoxColumn
             // 
-            this.ConditionTA.ClearBeforeFill = true;
-            // 
-            // gATA
-            // 
-            this.gATA.ClearBeforeFill = true;
-            // 
-            // problemsTA
-            // 
-            this.problemsTA.ClearBeforeFill = true;
-            // 
-            // SolTA
-            // 
-            this.SolTA.ClearBeforeFill = true;
-            // 
-            // StringsTA
-            // 
-            this.StringsTA.ClearBeforeFill = true;
+            this.itersDataGridViewTextBoxColumn.DataPropertyName = "Iters";
+            this.itersDataGridViewTextBoxColumn.HeaderText = "Iters";
+            this.itersDataGridViewTextBoxColumn.Name = "itersDataGridViewTextBoxColumn";
+            this.itersDataGridViewTextBoxColumn.Width = 62;
             // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1565, 770);
+            this.ClientSize = new System.Drawing.Size(1621, 972);
+            this.Controls.Add(this.taControl1);
             this.Controls.Add(this.picBox);
-            this.Controls.Add(this.knapConditionsDataGridView);
             this.Controls.Add(this.problemsDataGridView);
             this.Controls.Add(this.gADataGridView);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.SolutionsDataGridView);
-            this.Controls.Add(this.knapDataDataGridView);
             this.Controls.Add(this.DataBN);
             this.Name = "Form";
             this.Text = "GA - Fulvio\'s Farina Program based on GeneticSharp Library";
@@ -1272,20 +1013,16 @@ namespace GAForm
             ((System.ComponentModel.ISupportInitialize)(this.DataBN)).EndInit();
             this.DataBN.ResumeLayout(false);
             this.DataBN.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.knapDataDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SolutionsDataGridView)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gADataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.problemsDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.knapConditionsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ConditionsBS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gADataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.problemsBS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gADataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gABS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SolBS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataBS)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1294,9 +1031,6 @@ namespace GAForm
         #endregion
 
         private GADataSet gADataSet;
-        private System.Windows.Forms.BindingSource DataBS;
-        private DataTableAdapter DataTA;
-        private TableAdapterManager TAM;
         private System.Windows.Forms.BindingNavigator DataBN;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
@@ -1310,8 +1044,6 @@ namespace GAForm
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton knapDataBindingNavigatorSaveItem;
-        private SolutionsTableAdapter SolTA;
-        private System.Windows.Forms.DataGridView knapDataDataGridView;
         private System.Windows.Forms.BindingSource SolBS;
         private System.Windows.Forms.DataGridView SolutionsDataGridView;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
@@ -1319,7 +1051,6 @@ namespace GAForm
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.ToolStripButton gobtn;
         private System.Windows.Forms.BindingSource gABS;
-        private GATableAdapter gATA;
         private System.Windows.Forms.DataGridView gADataGridView;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripTextBox minPopbox;
@@ -1340,21 +1071,6 @@ namespace GAForm
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.BindingSource problemsBS;
         private System.Windows.Forms.DataGridView problemsDataGridView;
-        private ProblemsTableAdapter problemsTA;
-        private System.Windows.Forms.BindingSource ConditionsBS;
-        private System.Windows.Forms.DataGridView knapConditionsDataGridView;
-        private ConditionsTableAdapter ConditionTA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn37;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaxA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaxB;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaxC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MinA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MinB;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MinC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AFine;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BFine;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CFine;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn38;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
@@ -1362,21 +1078,25 @@ namespace GAForm
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn problemIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn labelDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn minSizeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn maxSizeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itersDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn34;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton statsbtn;
-        private StringsTableAdapter StringsTA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn A;
-        private System.Windows.Forms.DataGridViewTextBoxColumn B;
-        private System.Windows.Forms.DataGridViewTextBoxColumn C;
+        private System.Windows.Forms.PictureBox picBox;
+        private TAControl taControl1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Generations;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NormFreq;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Frequency;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Okays;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SchOrder;
+        private System.Windows.Forms.DataGridViewImageColumn Chromosome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Counter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn33;
         private System.Windows.Forms.DataGridViewTextBoxColumn ChromosomeLength;
@@ -1399,21 +1119,12 @@ namespace GAForm
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn28;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
-        private System.Windows.Forms.PictureBox picBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Generations;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NormFreq;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Frequency;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Okays;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SchOrder;
-        private System.Windows.Forms.DataGridViewImageColumn Chromosome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Counter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn problemIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn labelDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn minSizeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maxSizeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn itersDataGridViewTextBoxColumn;
     }
 }
 

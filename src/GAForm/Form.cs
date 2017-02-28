@@ -20,12 +20,23 @@ namespace GAForm
 
         private IController IsampleControl = null;
 
+        ProblemForm pform;
+
         public Form()
         {
             InitializeComponent();
 
+           // taControl1 = new TAControl();
+            taControl1.Set(ref gADataSet);
+
             this.resumebtn.Enabled = false;
             this.stopbtn.Enabled = false;
+
+
+            pform = new ProblemForm();
+            pform.Set(ref this.gADataSet);
+            pform.FormClosing += this.knapDataBindingNavigatorSaveItem_Click;
+
         }
 
         public void Go(object sender, EventArgs e)
@@ -59,7 +70,7 @@ namespace GAForm
                 currentGARow.ChromosomeLength = MINSIZE;
                 //create knapRow
 
-                this.gATA.Update(this.gADataSet.GA);
+                taControl1.UpdateGA(sender, e);
 
                 this.SolBS.Filter = this.gADataSet.Solutions.GAIDColumn
                     .ColumnName + "=" + currentGARow.ID;
@@ -79,17 +90,10 @@ namespace GAForm
                 {
                     Application.DoEvents();
                     this.toolStripProgressBar1.PerformStep();
-                    GADB.GADataSetTableAdapters.GATableAdapter gata = new GADB.GADataSetTableAdapters.GATableAdapter();
-                    gata.Update(this.gADataSet.GA);
-                    gata.Dispose();
-                    gata = null;
-                    GADB.GADataSetTableAdapters.SolutionsTableAdapter solta = new GADB.GADataSetTableAdapters.SolutionsTableAdapter();
-                    solta.Update(this.gADataSet.Solutions);
-                    solta.Dispose();
-                    solta = null;
 
+                    taControl1.UpdateGA(sender, e);
 
-                
+                    taControl1.UpdateSolutions(sender, e);
 
 
 
@@ -97,18 +101,17 @@ namespace GAForm
 
                 IsampleControl.FinalCallBack = delegate 
                 {
-                    GADB.GADataSetTableAdapters.StringsTableAdapter sta = new GADB.GADataSetTableAdapters.StringsTableAdapter();
-                    sta.Update(this.gADataSet.Strings);
-                    sta.Dispose();
-                    sta = null;
 
-                    //    if (System.IO.File.Exists("DRONE.gif")) System.IO.File.Delete("DRONE.gif");
 
-                   // picBox.Refresh();
-                   // picBox.ImageLocation = "DRONE.gif";
+                    taControl1.UpdateStrings(sender,e);
+
+
+                    GADataSet.SolutionsRow[] sols = currentGARow.GetSolutionsRows();
+                    //reset counters///
+                    foreach (GADataSet.SolutionsRow s in sols) s.Counter = 1;
+
 
                     dgvDoubleMouseclick(this.SolutionsDataGridView,new DataGridViewCellMouseEventArgs(0,0,0,0, MOUSEVENT));
-
 
                 };
 
@@ -125,10 +128,7 @@ namespace GAForm
 
                 IsampleControl.ConfigGA();
 
-                GADataSet.SolutionsRow[] sols = currentGARow.GetSolutionsRows();
-                //reset counters///
-                foreach (GADataSet.SolutionsRow s in sols) s.Counter = 1;
-
+          
 
                 this.gobtn.Enabled = true;
                 this.stopbtn.Enabled = false;
@@ -177,12 +177,12 @@ namespace GAForm
         private void knapDataBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
-            this.DataBS.EndEdit();
+          
             this.SolBS.EndEdit();
             this.gABS.EndEdit();
             this.problemsBS.EndEdit();
 
-            this.TAM.UpdateAll(this.gADataSet);
+            taControl1.UpdateAll(sender, e);
         }
 
         private void fillMissingColumns()
@@ -205,15 +205,7 @@ namespace GAForm
             //   this.knapSolBS.Sort =  this.gADataSet.Solutions.FitnessColumn.ColumnName + ", " + this.gADataSet.Solutions.TimeSpanColumn.ColumnName + ", " + this.gADataSet.Solutions.FrequencyColumn.ColumnName + " asc";
             fillMissingColumns();
 
-            this.problemsTA.Fill(this.gADataSet.Problems);
-            this.ConditionTA.Fill(this.gADataSet.Conditions);
-            // TODO: This line of code loads data into the 'gADataSet.GA' table. You can move, or remove it, as needed.
-            this.gATA.Fill(this.gADataSet.GA);
-            // TODO: This line of code loads data into the 'gADataSet.Solutions' table. You can move, or remove it, as needed.
-            this.SolTA.Fill(this.gADataSet.Solutions);
-            // TODO: This line of code loads data into the 'gADataSet.KnapData' table. You can move, or remove it, as needed.
-            this.DataTA.Fill(this.gADataSet.Data);
-            this.StringsTA.Fill(this.gADataSet.Strings);
+            taControl1.LoadDatabase(sender, e);
 
             dgvDoubleMouseclick(this.problemsDataGridView, DGVARGUMENTDUMMY);
 
@@ -250,15 +242,37 @@ namespace GAForm
             {
                 GADataSet.ProblemsRow currentProblem = dgvr.Row as GADataSet.ProblemsRow;
 
-                this.ConditionsBS.Filter = this.gADataSet.Conditions.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
+                //   this.ConditionsBS.Filter = this.gADataSet.Conditions.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
 
-                this.DataBS.Filter = this.gADataSet.Data.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
+                //   this.DataBS.Filter = this.gADataSet.Data.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
+
+
+
+                this.gABS.SuspendBinding();
+
+                this.SolBS.SuspendBinding();
+
+                taControl1.FillProblemData(currentProblem.ProblemID);
+
+
 
                 this.gABS.Filter = this.gADataSet.GA.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
                 this.gABS.Sort = this.gADataSet.GA.IDColumn.ColumnName + " desc";
+
+
                 this.SolBS.Filter = this.gADataSet.Solutions.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
 
                 this.SolBS.Sort = this.gADataSet.Solutions.ChromosomeLengthColumn.ColumnName + " desc";
+
+                this.gABS.ResumeBinding();
+                this.SolBS.ResumeBinding();
+
+           
+                pform.Find(currentProblem.ProblemID);
+                pform.Show();
+
+
+
             }
             else if (sender.Equals(this.gADataGridView))
             {
@@ -287,8 +301,7 @@ namespace GAForm
 
             Aid.DoStatistics<GADataSet.ProblemsRow>(p);
 
-            this.TAM.UpdateAll(this.gADataSet);
-            this.gADataSet.WriteXml("dataset.xml", XmlWriteMode.WriteSchema);
+            taControl1.UpdateAll(sender, e);
         }
     }
 }

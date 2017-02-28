@@ -20,7 +20,7 @@ namespace GADB
 
             numberOfGenes = numOfGenes; // do I need the values? nope I think, only indexes
 
-            maxJunk = maxEmpty;
+            maxEmpty=maxJunk ;
 /*
             int geneCounter = 0;
             while (geneCounter<sizeOfChromosome)

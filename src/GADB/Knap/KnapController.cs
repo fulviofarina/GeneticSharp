@@ -125,6 +125,9 @@ namespace GADB
 
             r.Fitness = s.TotalC;
             r.Fitness /= (1 + s.Fine); //max vol, max value * (1+fine)
+
+            r.Genotype = Aid.SetStrings(r.GenesAsInts);
+
         }
 
         /// <summary>

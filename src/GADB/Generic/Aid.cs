@@ -240,6 +240,20 @@ namespace GADB
 
             return text;
         }
+        public static string SetStrings(IList<double> Genes, int rounding)
+        {
+           
+
+            string text = string.Empty;
+            for (int i = 0; i < Genes.Count; i++)
+            {
+                double value = Genes.ElementAt(i);
+                text += (Decimal.Round(Convert.ToDecimal(value), rounding)).ToString();
+                text += "  ";
+            }
+
+            return text;
+        }
 
         public static string DecodeStrings(IList<int> Genes, DataRow[] values, string field)
         {

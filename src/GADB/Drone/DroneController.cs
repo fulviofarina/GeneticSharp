@@ -203,7 +203,12 @@ namespace GADB
             r.Fitness = 1 - s.Fine; //max vol, max value * (1+fine)
 
             r.Fitness /= badRoute;
-      
+
+
+            r.Genotype = Aid.SetStrings(r.GenesAsInts);
+
+
+
         }
 
 

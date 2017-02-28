@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TAControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TAControl.Designer.cs">
+      <DependentUpon>TAControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProblemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProblemForm.Designer.cs">
+      <DependentUpon>ProblemForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +66,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="TAControl.resx">
+      <DependentUpon>TAControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProblemForm.resx">
+      <DependentUpon>ProblemForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form.resx">
       <DependentUpon>Form.cs</DependentUpon>
     </EmbeddedResource>
