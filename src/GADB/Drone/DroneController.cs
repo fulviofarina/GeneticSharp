@@ -112,7 +112,7 @@ namespace GADB
         /// </summary>
         /// <param name="r"></param>
         /// <param name="c"></param>
-        public override void FillBasic(ref GADataSet.SolutionsRow r, ref GADataSet.StringsRow s)
+        public override void FillBasic(ref GADataSet.SolutionsRow r)
         {
 
             int badRoute = 1;
@@ -122,7 +122,7 @@ namespace GADB
             r.GenesAsInts.Where(o => nonRepeated.Add(o)).ToList();
 
           //  string e = string.Empty;
-            s.Fine = 0;
+            double Fine = 0;
             DataRow cond = Conditions.FirstOrDefault();
 
             //if non-repeated list counts to number of variables.. OK!
@@ -159,9 +159,9 @@ namespace GADB
                         item.C = Math.Sqrt(a2 + b2); //distance = sqrt (x^2,y^2)
                     }
                     //put total distance parcourred 
-                    s.TotalC = r.DataAxuliar.Sum(i => i.C);
+                   double totalDistance = r.DataAxuliar.Sum(i => i.C);
 
-                    s.Fine = s.TotalC / (r.DataAxuliar.Count * 10);
+                    Fine = totalDistance / (r.DataAxuliar.Count * 10);
 
                  
                     fullList.Insert(0, 0);
@@ -177,7 +177,7 @@ namespace GADB
                     }
 
                  //   if (s.Fine > 1 && badRoute>1) s.Fine = 0.80;
-                    if (s.Fine > 1) s.Fine = 0.90;
+                    if (Fine > 1) Fine = 0.90;
 
                   
 
@@ -192,15 +192,15 @@ namespace GADB
 
 
             }
-            else s.Fine = cond.Field<double>("CFine"); //a million
+            else Fine = cond.Field<double>("CFine"); //a million
 
             nonRepeated.Clear();
             nonRepeated = null;
 
-            r.Okays = badRoute.ToString();
+            r.Okays = badRoute.ToString() + " " +  Decimal.Round(Convert.ToDecimal(Fine),3);
 
 
-            r.Fitness = 1 - s.Fine; //max vol, max value * (1+fine)
+            r.Fitness = 1 - Fine; //max vol, max value * (1+fine)
 
             r.Fitness /= badRoute;
 

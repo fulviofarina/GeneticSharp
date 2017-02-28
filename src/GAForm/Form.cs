@@ -62,6 +62,12 @@ namespace GAForm
                 this.stopbtn.Enabled = true;
 
                 Probabilities prob = setProbabilities();
+
+                this.toolStripProgressBar1.Maximum = prob.maxPop;
+                this.toolStripProgressBar1.Step = 1;
+                this.toolStripProgressBar1.Value = 0;
+                this.toolStripProgressBar1.Minimum = 0;
+
                 //genetic algorithRow
                 GADataSet.GARow currentGARow = null;
                 currentGARow = this.gADataSet.GA.NewGARow();
@@ -80,7 +86,7 @@ namespace GAForm
                 ///CUT HERE
           // IsampleControl= new KnapController();
 
-                IsampleControl = new ExamController();
+                IsampleControl = new DroneController();
 
                 IsampleControl.SetControllerFor(ref currentProblem, MINSIZE);
                 IsampleControl.Probabilities = prob;
@@ -91,10 +97,14 @@ namespace GAForm
                     Application.DoEvents();
                     this.toolStripProgressBar1.PerformStep();
 
+                };
+                IsampleControl.SaveCallBack = delegate
+                {
+                 
+
                     taControl1.UpdateGA(sender, e);
 
                     taControl1.UpdateSolutions(sender, e);
-
 
 
                 };
@@ -104,11 +114,6 @@ namespace GAForm
 
 
                     taControl1.UpdateStrings(sender,e);
-
-
-                    GADataSet.SolutionsRow[] sols = currentGARow.GetSolutionsRows();
-                    //reset counters///
-                    foreach (GADataSet.SolutionsRow s in sols) s.Counter = 1;
 
 
                     dgvDoubleMouseclick(this.SolutionsDataGridView,new DataGridViewCellMouseEventArgs(0,0,0,0, MOUSEVENT));
@@ -166,10 +171,7 @@ namespace GAForm
             MUTPROB = float.Parse(mutProbbox.Text);
             CROSSPROB = float.Parse(crossProbbox.Text);
 
-            this.toolStripProgressBar1.Maximum = MAXPOP;
-            this.toolStripProgressBar1.Step = 1;
-            this.toolStripProgressBar1.Value = 0;
-            this.toolStripProgressBar1.Minimum = 0;
+         
 
             return new Probabilities(MINPOP, MAXPOP, MUTPROB, CROSSPROB);
         }

@@ -31,7 +31,7 @@ namespace GADB
         /// <param name="r"></param>
         /// <param name="s"></param>
         /// <param name="c"></param>
-        public abstract void FillBasic(ref GADataSet.SolutionsRow r, ref GADataSet.StringsRow s);
+        public abstract void FillBasic(ref GADataSet.SolutionsRow r);
         /// <summary>
         /// DECODES THE CHROMOSOME DATA CALCULATIONS INTO STRINGS OF TEXT
         /// Fills the Strings Table based on the variableNames

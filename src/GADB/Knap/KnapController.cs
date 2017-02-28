@@ -31,9 +31,9 @@ namespace GADB
         /// <param name="r"></param>
         /// <param name="conditions"></param>
         /// <param name="variableNames">array of variableNames of problem (columns of KnapData)</param>
-        private string findFines(ref DataRow r)
+        private object[] findFines(ref DataRow r)
         {
-
+            double fine = 0;
             string actualStr = string.Empty;
 
             for (int j = 0; j < Conditions.Length; j++)
@@ -44,7 +44,7 @@ namespace GADB
                 for (int i = 0; i < VariableNames.Length; i++)
                 {
                     varOk[i] = false;
-                    string totalVarStr = "Total" + VariableNames[i];
+                    string totalVarStr =  VariableNames[i];
                     string maxVarStr = "Max" + VariableNames[i];
                     string minVarStr = "Min" + VariableNames[i];
                     //is the variable within the window given by the condition?
@@ -67,7 +67,7 @@ namespace GADB
                 }
                // r.SetField("Okays", actualStr);
                 //NOW ASSIGN THE PENALTY / FINE
-                double fine = r.Field<double>("Fine");
+          
 
                 if (ANDS_OK)
                 {
@@ -80,12 +80,12 @@ namespace GADB
                         if (!varOk[i])
                         {
                             //auxiliars
-                            string str = "Total" + VariableNames[i];
-                            string maxCondstr = "Max" + VariableNames[i];
+                          //  string str =  VariableNames[i]; //dataRow.A B or C
+                            string maxCondstr = "Max" + VariableNames[i]; //on condition row
                             string fineCondstr = VariableNames[i] + "Fine";
 
                             //difference value less MAX_VALUE
-                            double auxiliarDifference = r.Field<double>(str) - Conditions[j].Field<double>(maxCondstr);
+                            double auxiliarDifference = r.Field<double>(VariableNames[i]) - Conditions[j].Field<double>(maxCondstr);
                             //take TARIF
                             double tariff = Conditions[j].Field<double>(fineCondstr);
 
@@ -95,11 +95,11 @@ namespace GADB
                     }
                 }
 
-                r.SetField("Fine", fine);
+              
             }
+        
 
-
-            return actualStr;
+            return new object[] { actualStr, fine };
 
         }
      
@@ -108,23 +108,32 @@ namespace GADB
         /// </summary>
         /// <param name="r"></param>
         /// <param name="c"></param>
-        public override void FillBasic(ref GADataSet.SolutionsRow r, ref GADataSet.StringsRow s)
+        public override void FillBasic(ref GADataSet.SolutionsRow r)
         {
             
 
+          
+
+            GADataSet.DataRow d = r.DataAxuliar.NewDataRow();
+            r.DataAxuliar.AddDataRow(d);
+            //auxiliar data row
             for (int i = 0; i < VariableNames.Length; i++)
             {
+                //Field A, B or C
                 double dummy = Aid.SetBasic(r.GenesAsInts, ProblemData, VariableNames[i]);
-                s.SetField("Total" + VariableNames[i], dummy); //first
+                d.SetField(VariableNames[i], dummy); //first
+               //save total in a dataauxiliar Row
             }
 
-           
 
-            DataRow row = s;
-            r.Okays =  findFines(ref row);
-
-            r.Fitness = s.TotalC;
-            r.Fitness /= (1 + s.Fine); //max vol, max value * (1+fine)
+            DataRow row = d;
+          
+            object[] results = findFines(ref row);
+            r.Okays = results[0] as string;
+            double fine = Convert.ToDouble(results[1]);
+            r.Okays += " " + Decimal.Round(Convert.ToDecimal(fine), 3);
+            r.Fitness = d.C;
+            r.Fitness /= (1 + fine); //max vol, max value * (1+fine)
 
             r.Genotype = Aid.SetStrings(r.GenesAsInts);
 

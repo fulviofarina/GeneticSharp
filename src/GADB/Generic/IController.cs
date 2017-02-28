@@ -14,7 +14,7 @@ namespace GADB
             set;
         }
         void SetControllerFor(ref GADataSet.ProblemsRow p, int size);
-      
+        Action SaveCallBack { get; set; }
         Action CallBack { get; set; }
         Action FinalCallBack { get; set; }
         GeneticAlgorithm GA { get; set; }

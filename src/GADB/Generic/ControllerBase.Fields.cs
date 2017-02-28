@@ -69,6 +69,18 @@ namespace GADB
                 finalCallBack = value;
             }
         }
+        public Action SaveCallBack
+        {
+            get
+            {
+                return saveCallBack;
+            }
+
+            set
+            {
+                saveCallBack = value;
+            }
+        }
         private int PROBLEMID = 0; //important!!!
         /// <summary>
         /// Gets the Genetic Algorithm.
@@ -120,10 +132,11 @@ namespace GADB
         private Probabilities probabilities;
         private Action finalCallBack = null;
         private HashSet<string> hashListOfGenotypes = null;
-        private List<GADataSet.StringsRow> listOfStrings = null;
+     //   private List<GADataSet.StringsRow> listOfStrings = null;
         private List<GADataSet.SolutionsRow> listOfSolutions = null;
         private GADataSet.GARow gARow = null;
         private DataRow[] conditions = null;
         private Action callBack = null;
+        private Action saveCallBack = null;
     }
 }

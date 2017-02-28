@@ -34,14 +34,14 @@ namespace GADB
 
             HashSet<string> hash;
             List<GADataSet.SolutionsRow> list;
-            List<GADataSet.StringsRow> strs;
+        //    List<GADataSet.StringsRow> strs;
             hash = new HashSet<string>();
             list = new List<GADataSet.SolutionsRow>();
-            strs = new List<GADataSet.StringsRow>();
+        //    strs = new List<GADataSet.StringsRow>();
 
             //create lamda expression to filter
-            Func<GADataSet.SolutionsRow, GADataSet.StringsRow, bool> funcion;
-            funcion = FilterByGenotype(ref hash, ref list, ref strs);
+            Func<GADataSet.SolutionsRow,  bool> funcion;
+            funcion = FilterByGenotype(ref hash, ref list);
 
             //iterate min max chromosome lenght for all genetic algorithms
             for (int j = min; j <= max; j++)
@@ -64,7 +64,7 @@ namespace GADB
 
                 foreach (GADataSet.SolutionsRow item in knaprows)
                 {
-                  funcion(item, item.StringsRowParent);
+                  funcion(item);
                 }
 
                 double bestFitness = list.Max(o => o.Fitness);
@@ -100,22 +100,22 @@ namespace GADB
 
      
 
-        public static Func<GADataSet.SolutionsRow,GADataSet.StringsRow,bool> FilterByGenotype(ref HashSet<string> hs, ref List<GADataSet.SolutionsRow> l, ref List<GADataSet.StringsRow> strs)
+        public static Func<GADataSet.SolutionsRow,bool> FilterByGenotype(ref HashSet<string> hs, ref List<GADataSet.SolutionsRow> l)
         {
-            Func<GADataSet.SolutionsRow, GADataSet.StringsRow, bool> funcion;
+            Func<GADataSet.SolutionsRow,  bool> funcion;
 
             HashSet<string> genotypesNonRepeated = hs;
             List<GADataSet.SolutionsRow> solutions = l;
-            List<GADataSet.StringsRow> strings = strs;
+      
 
-            funcion = (o,s) =>
+            funcion = (o) =>
             {
                 string genotype = o.Genotype;
                 if (genotypesNonRepeated.Add(genotype)) //add to hashShet
                 {
                   
                     solutions.Add(o);//add to indexed list
-                    strings.Add(s);
+                 //   strings.Add(s);
                     return true;
                 }
                 else

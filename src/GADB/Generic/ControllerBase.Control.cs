@@ -38,17 +38,17 @@ namespace GADB
             f.FitnessFuncToPass = c =>
             {
                 GADataSet.SolutionsDataTable sols = new GADataSet.SolutionsDataTable();
-                GADataSet.StringsDataTable strs = new GADataSet.StringsDataTable();
+               // GADataSet.StringsDataTable strs = new GADataSet.StringsDataTable();
                 GADataSet.SolutionsRow currentSolution = sols.NewSolutionsRow();
-                GADataSet.StringsRow currentString = strs.NewStringsRow(); 
+           //     GADataSet.StringsRow currentString = strs.NewStringsRow(); 
               
-                initializeRows(ref currentSolution, ref currentString, ref c);
+                initializeRows(ref currentSolution, ref c);
 
-                FillBasic(ref currentSolution, ref currentString);
+                FillBasic(ref currentSolution);
 
                 double fit = currentSolution.Fitness; //STORE THE VALUE OF FITNESS
                 sols.Dispose();
-                strs.Dispose();
+              //  strs.Dispose();
                 
                 return fit;
             };
@@ -108,7 +108,7 @@ namespace GADB
             //AND A HASHSET IS NOT
             listOfSolutions = new List<GADataSet.SolutionsRow>();
 
-            listOfStrings = new List<GADataSet.StringsRow>();
+            //listOfStrings = new List<GADataSet.StringsRow>();
             if (bkgWorker)
             {
                 BackgroundWorker w = new BackgroundWorker();
@@ -131,12 +131,14 @@ namespace GADB
 
                 GA.Start();
 
+                workerRunWorkerCompleted(null, null);
 
-                FinalCallBack();
+
             }
 
         }
 
+     
 
         public virtual void SetControllerFor(ref GADataSet.ProblemsRow p, int size)
         {

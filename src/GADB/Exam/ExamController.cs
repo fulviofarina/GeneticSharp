@@ -116,7 +116,7 @@ namespace GADB
         /// </summary>
         /// <param name="r"></param>
         /// <param name="c"></param>
-        public override void FillBasic(ref GADataSet.SolutionsRow r, ref GADataSet.StringsRow s)
+        public override void FillBasic(ref GADataSet.SolutionsRow r)
         {
 
 
@@ -139,7 +139,7 @@ namespace GADB
             //  r.GenesAsInts.Where(o => nonRepeated.Add(o)).ToList();
 
             //  string e = string.Empty;
-            s.Fine = 0;
+            double Fine = 0;
 
             double[] ai = r.GenesAsDoubles.ToArray();
 
@@ -190,9 +190,9 @@ namespace GADB
                 }
             }
             */
-            s.Fine = Math.Sqrt(di[0]);
-            r.Okays = ai[0] + " " + Decimal.Round(Convert.ToDecimal(s.Fine), 3);
-            r.Fitness = 1/ (1+ s.Fine); //max vol, max value * (1+fine)
+            Fine = Math.Sqrt(di[0]);
+            r.Okays = ai[0] + " " + Decimal.Round(Convert.ToDecimal(Fine), 3);
+            r.Fitness = 1/ (1+ Fine); //max vol, max value * (1+fine)
 
 
 

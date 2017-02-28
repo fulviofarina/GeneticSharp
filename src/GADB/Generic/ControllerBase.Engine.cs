@@ -21,13 +21,83 @@ namespace GADB
     /// </summary>
     public abstract partial class ControllerBase : IController
     {
+        private void fillStrings()
+        {
 
 
+            GADataSet ds = GARow.Table.DataSet as GADataSet;
+
+            for (int i = 0; i < listOfSolutions.Count; i++)
+            {
+                GADataSet.SolutionsRow currentSolution = listOfSolutions.ElementAt(i);
+
+
+                GADataSet.StringsRow currentString;
+                currentString = ds.Strings.NewStringsRow();
+                currentString.Initialize();
+                ds.Strings.AddStringsRow(currentString);
+
+                currentString.GAID = currentSolution.GAID;
+                currentString.ProblemID = currentSolution.ProblemID;
+                currentString.SolutionID = currentSolution.ID;
+
+                currentSolution.Counter = 1;
+
+                //decode
+                FillStrings(ref currentSolution, ref currentString);
+
+                //  GNUPLOT(ref currentSolution);
+                //assign string ID... //this should be better
+
+            }
+
+
+
+        }
+
+        /// <summary>
+        /// Main postcript function to store best results
+        /// </summary>
         private void workerProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             try
             {
-                fillAll();
+
+                IChromosome bestChromosome = GA.Population.BestChromosome;
+
+
+                //BASIC
+                GADataSet ds = GARow.Table.DataSet as GADataSet;
+                GADataSet.SolutionsRow currentSolution;
+                currentSolution = ds.Solutions.NewSolutionsRow();
+                initializeRows(ref currentSolution, ref bestChromosome);
+                //this is the most important function to override, does the fitness calc
+                FillBasic(ref currentSolution);
+
+
+
+                GeneticAlgorithm ga = GA;
+                //fill GA data to row
+                GARow.Initialize(ref ga); //report GA stuff
+
+
+                //define filter function by genotype
+                Func<GADataSet.SolutionsRow, bool> funcion;
+                funcion = Aid.FilterByGenotype(ref hashListOfGenotypes, ref listOfSolutions);
+                //execute filter function by genotype
+                funcion(currentSolution);
+                //the listOfSolutions contains the list of rows that need to be added
+                //these rows are flagged ShouldDelete = false
+                if (!currentSolution.ShouldDelete)
+                {
+                    ds.Solutions.AddSolutionsRow(currentSolution);
+                    GARow.FillGADataToSolution(ref currentSolution);
+
+                }
+
+                //callBack MEthod to Form or User Control
+
+                 CallBack.Invoke();
             }
             catch (Exception ex)
             {
@@ -36,6 +106,12 @@ namespace GADB
         }
         private void workerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+
+            SaveCallBack();
+
+            fillStrings();
+
+
             FinalCallBack.Invoke();
         }
         /// <summary>
@@ -54,45 +130,8 @@ namespace GADB
             GA.Start();
         }
 
-        /// <summary>
-        /// Main postcript function to store best results
-        /// </summary>
-        private void fillAll()
-        {
-
-            IChromosome bestChromosome = GA.Population.BestChromosome;
-
-
-            //BASIC
-            GADataSet ds = GARow.Table.DataSet as GADataSet;
-
-            GADataSet.SolutionsRow currentSolution;
-            GADataSet.StringsRow currentString;
-            currentSolution = ds.Solutions.NewSolutionsRow();
-            currentString = ds.Strings.NewStringsRow();
-
-            initializeRows(ref currentSolution, ref currentString, ref bestChromosome);
-
-
-            //this is the most important function to override, does the fitness calc
-            FillBasic(ref currentSolution, ref currentString);
-
-            GeneticAlgorithm ga = GA;
-            //fill GA data to row
-            GARow.Initialize(ref ga); //report GA stuff
-
-            //adt solutions and decoding to dataset
-            addDistinctToDataSet(ref ds, ref currentSolution, ref currentString);
-
-            //callBack MEthod to Form or User Control
-            CallBack.Invoke();
-
-           
-
-            //assign string ID... //this should be better
-            currentString.SolutionID = currentSolution.ID;
-        }
-
+      
+      
         /// <summary>
         /// Generic RunWorker Completed for the background worker
         /// </summary>
@@ -106,59 +145,17 @@ namespace GADB
         /// <param name="r"></param>
         /// <param name="s"></param>
         /// <param name="c"></param>
-        private void initializeRows(ref GADataSet.SolutionsRow r, ref GADataSet.StringsRow s, ref IChromosome c)
+        private void initializeRows(ref GADataSet.SolutionsRow r, ref IChromosome c)
         {
             r.Initialize( c.GetGenes());
             r.ProblemID = PROBLEMID;
-            s.Initialize();
+       
 
-          //  c.TagArray = new object[] { r.ItemArray, s.ItemArray }; //save the arrays of rows to later fill in
-            //speeds up everything!
+        
         }
 
 
-        /// <summary>
-        /// adds the rows to the given dataset
-        /// </summary>
-        /// <param name="ds"></param>
-        /// <param name="currentSolution"></param>
-        /// <param name="currentString"></param>
-        private void addDistinctToDataSet(ref GADataSet ds, ref GADataSet.SolutionsRow currentSolution, ref GADataSet.StringsRow currentString)
-        {
-
-
-            //better this
-            //  if (currentSolution.Fitness <= 0.001) return;
-
-        //    
-
-            //define filter function by genotype
-            Func<GADataSet.SolutionsRow, GADataSet.StringsRow, bool> funcion;
-            funcion = Aid.FilterByGenotype(ref hashListOfGenotypes, ref listOfSolutions, ref listOfStrings);
-           //execute filter function by genotype
-            funcion(currentSolution, currentString);
-
-            //the listOfSolutions contains the list of rows that need to be added
-            //these rows are flagged ShouldDelete = false
-            if (!currentSolution.ShouldDelete)
-            {
-
-                ds.Solutions.AddSolutionsRow(currentSolution);
-
-                GARow.FillGADataToSolution(ref currentSolution);
-
-                ds.Strings.AddStringsRow(currentString);
-                currentString.GAID = currentSolution.GAID;
-                currentString.ProblemID = currentSolution.ProblemID;
-                //decode
-                FillStrings(ref currentSolution, ref currentString);
-
-              //  GNUPLOT(ref currentSolution);
-
-            }
-
-
-        }
+      
 
         private static void GNUPLOT(ref GADataSet.SolutionsRow s)
         {
