@@ -15,15 +15,11 @@ using GeneticSharp.Infrastructure.Threading;
 
 namespace GADB
 {
-
     /// <summary>
     /// THESE WORK BY DEFAULT BUT THE USER CAN OVERRIDE THEM
     /// </summary>
     public abstract partial class ControllerBase : IController
     {
-
-     
-
         /// <summary>
         /// Creates the fitness. Must be overriden
         /// </summary>
@@ -32,59 +28,58 @@ namespace GADB
         /// </returns>
         public virtual IFitness CreateFitness()
         {
-
             AFitness f = new AFitness();
+
 
             f.FitnessFuncToPass = c =>
             {
+
+
+
                 GADataSet.SolutionsDataTable sols = new GADataSet.SolutionsDataTable();
-               // GADataSet.StringsDataTable strs = new GADataSet.StringsDataTable();
                 GADataSet.SolutionsRow currentSolution = sols.NewSolutionsRow();
-           //     GADataSet.StringsRow currentString = strs.NewStringsRow(); 
-              
-                initializeRows(ref currentSolution, ref c);
+                // GADataSet.SolutionsDataTable sols = new GADataSet.SolutionsDataTable();
+
+                // GADataSet.SolutionsRow currentSolution = sols.NewSolutionsRow();
+
+                currentSolution.Initialize(c.GetGenes());
+                currentSolution.ProblemID = PROBLEMID;
+
+              //  initializeRows(ref currentSolution, ref c);
 
                 FillBasic(ref currentSolution);
 
                 double fit = currentSolution.Fitness; //STORE THE VALUE OF FITNESS
                 sols.Dispose();
-              //  strs.Dispose();
-                
+             
+
                 return fit;
             };
 
             return f;
         }
+
         /// <summary>
         /// Configure the Genetic Algorithm
         /// </summary>
-        public virtual void ConfigGA()
+        public virtual void RunConfiguration()
         {
             //  Initialize(); //IMPORTANT
 
-            ISelection selection = new EliteSelection();
-            //  selection = new RouletteWheelSelection();
-            selection = new TournamentSelection();//es buenisimoooo
-            //encontró mejores optimos en 3 iteraciones
-            ICrossover crossover = new UniformCrossover();
-          //  crossover = new PartiallyMappedCrossover();
-            //crossover = new CycleCrossover();
-            //crossover = new OrderedCrossover();
-          //  crossover = new ThreeParentCrossover();
-            IMutation mutation = new UniformMutation(true);
-
-           // crossover = new CycleCrossover();
+        
+            // crossover = new CycleCrossover();
             IChromosome adam = CreateChromosome();
-           
 
             IPopulation population = new Population(probabilities.minPop, probabilities.maxPop, adam);
             population.GenerationStrategy = new PerformanceGenerationStrategy();
             //population.GenerationStrategy = new TrackingGenerationStrategy();
             IFitness fitness = CreateFitness();
             GeneticAlgorithm ga;
-            ga = new GeneticAlgorithm(population, fitness, selection, crossover, mutation);
-            ga.Termination = new FitnessStagnationTermination(probabilities.maxPop);
-         //   ga.Termination = new GenerationNumberTermination(probabilities.maxPop);
+            ga = new GeneticAlgorithm(population, fitness, config.Selection, config.Crossover, config.Mutation);
+                      
+            ga.Termination = config.Termination;
+            if (config.Reinsertion!=null) ga.Reinsertion = config.Reinsertion;
+            //   ga.Termination = new GenerationNumberTermination(probabilities.maxPop);
             ga.MutationProbability = probabilities.mutationProb;
             ga.CrossoverProbability = probabilities.crossProb;
 
@@ -94,8 +89,15 @@ namespace GADB
                 MaxThreads = 70
             };
 
+
+            GARow.Initialize(ref ga); //initialize
+            GARow.ConfigTypes(ref config); // types ids
+            GARow.ConfigTypesNames(ref ga); // types names, change with ids only
+      
+
             GA = ga;
         }
+
         /// <summary>
         /// Does Post processing stuff after configuration
         /// Like stablishing the background worker
@@ -126,19 +128,13 @@ namespace GADB
                 GA.GenerationRan += delegate
                 {
                     workerProgressChanged(null, null);
-
                 };
 
                 GA.Start();
 
                 workerRunWorkerCompleted(null, null);
-
-
             }
-
         }
-
-     
 
         public virtual void SetControllerFor(ref GADataSet.ProblemsRow p, int size)
         {
@@ -166,9 +162,5 @@ namespace GADB
                 .Where(o => !o.ColumnName.Contains("ID"))
                 .Select(o => o.ColumnName).ToArray();
         }
-
-
-
-
     }
 }

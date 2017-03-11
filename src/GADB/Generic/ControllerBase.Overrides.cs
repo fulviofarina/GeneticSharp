@@ -1,27 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Linq;
-using GeneticSharp.Domain;
-using GeneticSharp.Domain.Chromosomes;
-using GeneticSharp.Domain.Crossovers;
-using GeneticSharp.Domain.Fitnesses;
-using GeneticSharp.Domain.Mutations;
-using GeneticSharp.Domain.Populations;
-using GeneticSharp.Domain.Selections;
-using GeneticSharp.Domain.Terminations;
-using GeneticSharp.Infrastructure.Threading;
+﻿using GeneticSharp.Domain.Chromosomes;
 
 namespace GADB
 {
-
     /// <summary>
     /// METHODS TO OVERRIDE
     /// </summary>
     public abstract partial class ControllerBase : IController
     {
-
         /// <summary>
         /// Finds the fitness and Fine for the chromosome
         /// Function necessary during Fitness.Evaluation()
@@ -32,6 +17,7 @@ namespace GADB
         /// <param name="s"></param>
         /// <param name="c"></param>
         public abstract void FillBasic(ref GADataSet.SolutionsRow r);
+
         /// <summary>
         /// DECODES THE CHROMOSOME DATA CALCULATIONS INTO STRINGS OF TEXT
         /// Fills the Strings Table based on the variableNames
@@ -47,10 +33,5 @@ namespace GADB
         /// </summary>
         /// <returns></returns>
         public abstract IChromosome CreateChromosome();
-
-     
-
-     
-
     }
 }

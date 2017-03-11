@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Linq;
 using System.Windows.Forms;
 using GADB;
 
@@ -20,23 +19,21 @@ namespace GAForm
 
         private IController IsampleControl = null;
 
-        ProblemForm pform;
+        private ProblemForm pform;
 
         public Form()
         {
             InitializeComponent();
 
-           // taControl1 = new TAControl();
+            // taControl1 = new TAControl();
             taControl1.Set(ref gADataSet);
 
             this.resumebtn.Enabled = false;
             this.stopbtn.Enabled = false;
 
-
             pform = new ProblemForm();
             pform.Set(ref this.gADataSet);
             pform.FormClosing += this.knapDataBindingNavigatorSaveItem_Click;
-
         }
 
         public void Go(object sender, EventArgs e)
@@ -72,6 +69,8 @@ namespace GAForm
                 GADataSet.GARow currentGARow = null;
                 currentGARow = this.gADataSet.GA.NewGARow();
                 this.gADataSet.GA.AddGARow(currentGARow);
+              
+
                 currentGARow.ProblemID = currentProblem.ProblemID;
                 currentGARow.ChromosomeLength = MINSIZE;
                 //create knapRow
@@ -83,44 +82,46 @@ namespace GAForm
                 this.SolBS.Sort = this.gADataSet.Solutions.FitnessColumn
                     .ColumnName + " desc";
 
+
+
+                int[] selection = taControl1.GetSelection();
+                Configuration Configuration = new Configuration(selection[0], selection[1], selection[2], selection[3], selection[4]);
                 ///CUT HERE
           // IsampleControl= new KnapController();
 
-                IsampleControl = new DroneController();
+                IsampleControl = new FuncControl();
 
                 IsampleControl.SetControllerFor(ref currentProblem, MINSIZE);
                 IsampleControl.Probabilities = prob;
-                IsampleControl.ConfigGA();
+                IsampleControl.Config = Configuration;
+                IsampleControl.GARow = currentGARow;
 
+                IsampleControl.RunConfiguration();
+              
+
+
+                //refresh progress bar
                 IsampleControl.CallBack = delegate
                 {
                     Application.DoEvents();
                     this.toolStripProgressBar1.PerformStep();
-
                 };
+
+                //UPDATE DATABASES
                 IsampleControl.SaveCallBack = delegate
                 {
-                 
-
                     taControl1.UpdateGA(sender, e);
-
                     taControl1.UpdateSolutions(sender, e);
-
-
                 };
-
-                IsampleControl.FinalCallBack = delegate 
+                //UPDATE DATABASES
+                IsampleControl.FinalCallBack = delegate
                 {
-
-
-                    taControl1.UpdateStrings(sender,e);
-
-
-                    dgvDoubleMouseclick(this.SolutionsDataGridView,new DataGridViewCellMouseEventArgs(0,0,0,0, MOUSEVENT));
-
+                    taControl1.UpdateStrings(sender, e);
+                    dgvDoubleMouseclick(this.SolutionsDataGridView, new DataGridViewCellMouseEventArgs(0, 0, 0, 0, MOUSEVENT));
                 };
 
-                IsampleControl.GARow = currentGARow;
+
+             //   IsampleControl.ConfigGA();
 
                 //no BKG worker for now...
                 IsampleControl.PostScript(false);
@@ -128,12 +129,7 @@ namespace GAForm
                 //ABORT IF STOPPED
                 if (!stopbtn.Enabled) break;
 
-
-                //UPDATE DATABASES
-
-                IsampleControl.ConfigGA();
-
-          
+           
 
                 this.gobtn.Enabled = true;
                 this.stopbtn.Enabled = false;
@@ -147,16 +143,8 @@ namespace GAForm
                     ITERCOUNTER = 1;
                     MINSIZE++; //ADD SIZE OF CHROMOSOME NEXT GENETIC ALGORITHM
                 }
-
-
-
             }
             while (MINSIZE <= MAXSIZE);
-
-            
-
-
-
         }
 
         private Probabilities setProbabilities()
@@ -171,15 +159,13 @@ namespace GAForm
             MUTPROB = float.Parse(mutProbbox.Text);
             CROSSPROB = float.Parse(crossProbbox.Text);
 
-         
-
             return new Probabilities(MINPOP, MAXPOP, MUTPROB, CROSSPROB);
         }
 
         private void knapDataBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
-          
+
             this.SolBS.EndEdit();
             this.gABS.EndEdit();
             this.problemsBS.EndEdit();
@@ -199,7 +185,6 @@ namespace GAForm
                     this.gADataSet.Solutions.Columns.Add(new DataColumn(c.ColumnName, c.DataType, str));
                 }
             }
-          
         }
 
         private void KnapForm_Load(object sender, EventArgs e)
@@ -210,8 +195,6 @@ namespace GAForm
             taControl1.LoadDatabase(sender, e);
 
             dgvDoubleMouseclick(this.problemsDataGridView, DGVARGUMENTDUMMY);
-
-          
         }
 
         private void stopbtn_Click(object sender, EventArgs e)
@@ -248,19 +231,14 @@ namespace GAForm
 
                 //   this.DataBS.Filter = this.gADataSet.Data.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
 
-
-
                 this.gABS.SuspendBinding();
 
                 this.SolBS.SuspendBinding();
 
                 taControl1.FillProblemData(currentProblem.ProblemID);
 
-
-
                 this.gABS.Filter = this.gADataSet.GA.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
                 this.gABS.Sort = this.gADataSet.GA.IDColumn.ColumnName + " desc";
-
 
                 this.SolBS.Filter = this.gADataSet.Solutions.ProblemIDColumn.ColumnName + "=" + currentProblem.ProblemID;
 
@@ -269,12 +247,8 @@ namespace GAForm
                 this.gABS.ResumeBinding();
                 this.SolBS.ResumeBinding();
 
-           
                 pform.Find(currentProblem.ProblemID);
                 pform.Show();
-
-
-
             }
             else if (sender.Equals(this.gADataGridView))
             {
@@ -297,13 +271,28 @@ namespace GAForm
 
         private void statsbtn_Click(object sender, EventArgs e)
         {
-            DataRowView rv= this.problemsBS.Current as DataRowView;
+            DataRowView rv = this.problemsBS.Current as DataRowView;
             GADataSet.ProblemsRow p = rv.Row as GADataSet.ProblemsRow;
 
-
             Aid.DoStatistics<GADataSet.ProblemsRow>(p);
-
+            Application.DoEvents();
             taControl1.UpdateAll(sender, e);
+
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            if (this.toolStripButton1.Text.CompareTo("Faster")==0)
+            {
+                this.SolutionsDataGridView.Visible = false;
+                this.toolStripButton1.Text = ("Slower");
+            } 
+            else
+            {
+                this.toolStripButton1.Text = ("Faster");
+                this.SolutionsDataGridView.Visible = true;
+
+            }
         }
     }
 }

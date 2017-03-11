@@ -7,17 +7,13 @@ namespace GADB
 {
     public static class Aid
     {
-
-
         public static decimal DecimalTxt(double varPower)
         {
-
-
-
             decimal deci1 = Decimal.Round(Convert.ToDecimal(varPower), 1);
 
             return deci1;
         }
+
         /// <summary>
         /// FUNCTION TO PERFORM AVERAGE AND HISTOGRAM
         /// </summary>
@@ -34,13 +30,13 @@ namespace GADB
 
             HashSet<string> hash;
             List<GADataSet.SolutionsRow> list;
-        //    List<GADataSet.StringsRow> strs;
+            //    List<GADataSet.StringsRow> strs;
             hash = new HashSet<string>();
             list = new List<GADataSet.SolutionsRow>();
-        //    strs = new List<GADataSet.StringsRow>();
+            //    strs = new List<GADataSet.StringsRow>();
 
             //create lamda expression to filter
-            Func<GADataSet.SolutionsRow,  bool> funcion;
+            Func<GADataSet.SolutionsRow, bool> funcion;
             funcion = FilterByGenotype(ref hash, ref list);
 
             //iterate min max chromosome lenght for all genetic algorithms
@@ -64,16 +60,15 @@ namespace GADB
 
                 foreach (GADataSet.SolutionsRow item in knaprows)
                 {
-                  funcion(item);
+                    funcion(item);
                 }
 
                 double bestFitness = list.Max(o => o.Fitness);
                 subFirst.Fitness = bestFitness;
 
-               
                 int count = knaprows.Count();
 
-                for (int d = knaprows.Count()-1; d >= 0; d--)
+                for (int d = knaprows.Count() - 1; d >= 0; d--)
                 {
                     GADataSet.SolutionsRow s = knaprows.ElementAt(d);
                     if (s.ShouldDelete)
@@ -89,33 +84,28 @@ namespace GADB
                     }
                 }
 
-
                 count = subs.Count();
-                for (int d = subs.Count()-1; d >=1; d--)
+                for (int d = subs.Count() - 1; d >= 1; d--)
                 {
                     subs.ElementAt(d).Delete();
                 }
             }
         }
 
-     
-
-        public static Func<GADataSet.SolutionsRow,bool> FilterByGenotype(ref HashSet<string> hs, ref List<GADataSet.SolutionsRow> l)
+        public static Func<GADataSet.SolutionsRow, bool> FilterByGenotype(ref HashSet<string> hs, ref List<GADataSet.SolutionsRow> l)
         {
-            Func<GADataSet.SolutionsRow,  bool> funcion;
+            Func<GADataSet.SolutionsRow, bool> funcion;
 
             HashSet<string> genotypesNonRepeated = hs;
             List<GADataSet.SolutionsRow> solutions = l;
-      
 
             funcion = (o) =>
             {
                 string genotype = o.Genotype;
                 if (genotypesNonRepeated.Add(genotype)) //add to hashShet
                 {
-                  
                     solutions.Add(o);//add to indexed list
-                 //   strings.Add(s);
+                                     //   strings.Add(s);
                     return true;
                 }
                 else
@@ -124,29 +114,26 @@ namespace GADB
 
                     double ts = solutions[i].TimeSpan;
                     int gen = solutions[i].Generations;
-                  //  int cnt = solutions[i].Counter;
-               
-                 
+                    //  int cnt = solutions[i].Counter;
+
                     ts += o.TimeSpan;
-                 
+
                     gen += o.Generations;
 
-                  //  cnt++;
+                    //  cnt++;
                     solutions[i].Counter++;
 
-                    solutions[i].Frequency +=o.Frequency;
-                    solutions[i].TimeSpan=ts;
-                    solutions[i].Generations=gen;
+                    solutions[i].Frequency += o.Frequency;
+                    solutions[i].TimeSpan = ts;
+                    solutions[i].Generations = gen;
 
                     o.ShouldDelete = true;
                     return false;
                 }
-               
             };
 
             return funcion;
         }
-
 
         public static double SetBasic(IList<int> Genes, DataRow[] values, string field)
         {
@@ -176,8 +163,7 @@ namespace GADB
         public static double SetDifferences(DataRow conditions, IList<int> Genes, int indexAt, DataRow[] values, string field)
         {
             double difference = 0;
-           
-          
+
             //geneValue is index of Item in Table
             int geneValue = Genes.ElementAt(indexAt); //get first item
 
@@ -186,32 +172,30 @@ namespace GADB
             {
                 //use value from MIN condition on A, B or C as start point
                 double xo = conditions.Field<double>("Min" + field);
-                difference = values[geneValue - 1].Field<double>(field)-xo;
+                difference = values[geneValue - 1].Field<double>(field) - xo;
             }
             //last item
-            else if (indexAt  == Genes.Count-1)
+            else if (indexAt == Genes.Count - 1)
             {
                 //use value from MAX condition on A, B or C as end-point
                 double xf = conditions.Field<double>("Max" + field);
-                geneValue = Genes.ElementAt(indexAt-1); //get first item
-                difference = values[geneValue - 1].Field<double>(field)-xf;
+                geneValue = Genes.ElementAt(indexAt - 1); //get first item
+                difference = values[geneValue - 1].Field<double>(field) - xf;
             }
             else
             {
                 // when comparing items in the middle...
-                int nextGeneValue = Genes.ElementAt(indexAt -1); //get second item
+                int nextGeneValue = Genes.ElementAt(indexAt - 1); //get second item
 
                 //if not junk...
                 if (geneValue != -1 && nextGeneValue != -1)
                 {
-               
                     difference = values[geneValue - 1].Field<double>(field); //value at index
                     difference -= values[nextGeneValue - 1].Field<double>(field); //value at next
                 }
-                
             }
-            
-        //    }
+
+            //    }
 
             return difference;
         }
@@ -240,10 +224,9 @@ namespace GADB
 
             return text;
         }
+
         public static string SetStrings(IList<double> Genes, int rounding)
         {
-           
-
             string text = string.Empty;
             for (int i = 0; i < Genes.Count; i++)
             {

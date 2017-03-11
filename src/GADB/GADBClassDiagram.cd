@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="GADB.AFitness" BaseTypeListCollapsed="true">
-    <Position X="3.5" Y="3" Width="1.5" />
+    <Position X="3.75" Y="4.5" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAAAAAA=</HashCode>
       <FileName>Generic\AFitness.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.684" Collapsed="true" />
+    <Lollipop Orientation="Right" Position="0.1" Collapsed="true" />
   </Class>
   <Class Name="GADB.Aid">
-    <Position X="0.5" Y="2.5" Width="2.5" />
+    <Position X="0.5" Y="4" Width="2.5" />
     <TypeIdentifier>
       <HashCode>gAAAAAAACAAAAACAAAAAAAAAAAAQAAAAAAIAAAAAADA=</HashCode>
       <FileName>Generic\Aid.cs</FileName>
@@ -21,26 +21,33 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>BAEYAACFEAAAEMCAABBgQYEAYBAgAAIAIBAAEQAAgjA=</HashCode>
+      <HashCode>RAEaAEAFGgAAEMCAABBgQYEAYAAgAAAAIBAAEAQAghA=</HashCode>
       <FileName>Generic\ControllerBase.Control.cs</FileName>
     </TypeIdentifier>
     <Lollipop Orientation="Bottom" Position="0.332" />
   </Class>
-  <Class Name="GADB.DroneChromosome" Collapsed="true">
-    <Position X="0.5" Y="1.5" Width="2.5" />
+  <Class Name="GADB.FuncChromo">
+    <Position X="0.5" Y="1.25" Width="2.75" />
     <Compartments>
-      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAIgAAAAAAAgAAAIAAABYAAAAAAAAAABA=</HashCode>
-      <FileName>Drone\DroneChromosome.cs</FileName>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAgAAAIAAAAAAAAAAAgAAABA=</HashCode>
+      <FileName>Exam\FuncChromosome.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GADB.DroneController">
-    <Position X="3.5" Y="0.5" Width="2.5" />
+  <Class Name="GADB.FuncControl">
+    <Position X="3.75" Y="0.5" Width="2.75" />
+    <NestedTypes>
+      <Delegate Name="GADB.FuncControl.y" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Exam\FuncControl.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAIAAAQAAAAAACAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Drone\DroneController.cs</FileName>
+      <HashCode>AAQIAAAAAAAAAACAAAAAAAAAQgAAEAAAAQAAAACAgAA=</HashCode>
+      <FileName>Exam\FuncControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="10" />

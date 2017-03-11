@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exam\ExamChromosome.cs" />
-    <Compile Include="Exam\ExamController.cs" />
+    <Compile Include="Exam\FuncChromosome.cs" />
+    <Compile Include="Exam\FuncControl.cs" />
     <Compile Include="GADataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

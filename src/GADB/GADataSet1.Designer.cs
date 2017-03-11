@@ -1574,6 +1574,24 @@ namespace GADB {
             
             private global::System.Data.DataColumn columnMaxTime;
             
+            private global::System.Data.DataColumn columnReinsertion;
+            
+            private global::System.Data.DataColumn columnMutation;
+            
+            private global::System.Data.DataColumn columnSelection;
+            
+            private global::System.Data.DataColumn columnCrossID;
+            
+            private global::System.Data.DataColumn columnTermID;
+            
+            private global::System.Data.DataColumn columnReinsID;
+            
+            private global::System.Data.DataColumn columnSelectID;
+            
+            private global::System.Data.DataColumn columnMutaID;
+            
+            private global::System.Data.DataColumn columnGenStrategyID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public GADataTable() : 
@@ -1802,6 +1820,78 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ReinsertionColumn {
+                get {
+                    return this.columnReinsertion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MutationColumn {
+                get {
+                    return this.columnMutation;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SelectionColumn {
+                get {
+                    return this.columnSelection;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CrossIDColumn {
+                get {
+                    return this.columnCrossID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TermIDColumn {
+                get {
+                    return this.columnTermID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ReinsIDColumn {
+                get {
+                    return this.columnReinsID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SelectIDColumn {
+                get {
+                    return this.columnSelectID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn MutaIDColumn {
+                get {
+                    return this.columnMutaID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn GenStrategyIDColumn {
+                get {
+                    return this.columnGenStrategyID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1859,7 +1949,16 @@ namespace GADB {
                         double TimeAvg, 
                         double TimeStDev, 
                         int ChromosomeLength, 
-                        double MaxTime) {
+                        double MaxTime, 
+                        string Reinsertion, 
+                        string Mutation, 
+                        string Selection, 
+                        int CrossID, 
+                        int TermID, 
+                        int ReinsID, 
+                        int SelectID, 
+                        int MutaID, 
+                        int GenStrategyID) {
                 GARow rowGARow = ((GARow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1884,7 +1983,16 @@ namespace GADB {
                         TimeAvg,
                         TimeStDev,
                         ChromosomeLength,
-                        MaxTime};
+                        MaxTime,
+                        Reinsertion,
+                        Mutation,
+                        Selection,
+                        CrossID,
+                        TermID,
+                        ReinsID,
+                        SelectID,
+                        MutaID,
+                        GenStrategyID};
                 if ((parentProblemsRowByProblems_GA != null)) {
                     columnValuesArray[16] = parentProblemsRowByProblems_GA[0];
                 }
@@ -1912,7 +2020,16 @@ namespace GADB {
                         int CrossChromeMinLenght, 
                         double CrossProbability, 
                         ProblemsRow parentProblemsRowByProblems_GA, 
-                        int ChromosomeLength) {
+                        int ChromosomeLength, 
+                        string Reinsertion, 
+                        string Mutation, 
+                        string Selection, 
+                        int CrossID, 
+                        int TermID, 
+                        int ReinsID, 
+                        int SelectID, 
+                        int MutaID, 
+                        int GenStrategyID) {
                 GARow rowGARow = ((GARow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1937,7 +2054,16 @@ namespace GADB {
                         null,
                         null,
                         ChromosomeLength,
-                        null};
+                        null,
+                        Reinsertion,
+                        Mutation,
+                        Selection,
+                        CrossID,
+                        TermID,
+                        ReinsID,
+                        SelectID,
+                        MutaID,
+                        GenStrategyID};
                 if ((parentProblemsRowByProblems_GA != null)) {
                     columnValuesArray[16] = parentProblemsRowByProblems_GA[0];
                 }
@@ -1993,6 +2119,15 @@ namespace GADB {
                 this.columnTimeStDev = base.Columns["TimeStDev"];
                 this.columnChromosomeLength = base.Columns["ChromosomeLength"];
                 this.columnMaxTime = base.Columns["MaxTime"];
+                this.columnReinsertion = base.Columns["Reinsertion"];
+                this.columnMutation = base.Columns["Mutation"];
+                this.columnSelection = base.Columns["Selection"];
+                this.columnCrossID = base.Columns["CrossID"];
+                this.columnTermID = base.Columns["TermID"];
+                this.columnReinsID = base.Columns["ReinsID"];
+                this.columnSelectID = base.Columns["SelectID"];
+                this.columnMutaID = base.Columns["MutaID"];
+                this.columnGenStrategyID = base.Columns["GenStrategyID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2044,6 +2179,24 @@ namespace GADB {
                 base.Columns.Add(this.columnChromosomeLength);
                 this.columnMaxTime = new global::System.Data.DataColumn("MaxTime", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMaxTime);
+                this.columnReinsertion = new global::System.Data.DataColumn("Reinsertion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReinsertion);
+                this.columnMutation = new global::System.Data.DataColumn("Mutation", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMutation);
+                this.columnSelection = new global::System.Data.DataColumn("Selection", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSelection);
+                this.columnCrossID = new global::System.Data.DataColumn("CrossID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCrossID);
+                this.columnTermID = new global::System.Data.DataColumn("TermID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTermID);
+                this.columnReinsID = new global::System.Data.DataColumn("ReinsID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnReinsID);
+                this.columnSelectID = new global::System.Data.DataColumn("SelectID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSelectID);
+                this.columnMutaID = new global::System.Data.DataColumn("MutaID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMutaID);
+                this.columnGenStrategyID = new global::System.Data.DataColumn("GenStrategyID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGenStrategyID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnID}, true));
                 this.columnID.AutoIncrement = true;
@@ -2061,6 +2214,9 @@ namespace GADB {
                 this.columnTimeAvg.ReadOnly = true;
                 this.columnTimeStDev.ReadOnly = true;
                 this.columnMaxTime.ReadOnly = true;
+                this.columnReinsertion.MaxLength = 2147483647;
+                this.columnMutation.MaxLength = 2147483647;
+                this.columnSelection.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5774,6 +5930,150 @@ namespace GADB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Reinsertion {
+                get {
+                    try {
+                        return ((string)(this[this.tableGA.ReinsertionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Reinsertion\' in table \'GA\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGA.ReinsertionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Mutation {
+                get {
+                    try {
+                        return ((string)(this[this.tableGA.MutationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Mutation\' in table \'GA\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGA.MutationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Selection {
+                get {
+                    try {
+                        return ((string)(this[this.tableGA.SelectionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Selection\' in table \'GA\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGA.SelectionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int CrossID {
+                get {
+                    try {
+                        return ((int)(this[this.tableGA.CrossIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CrossID\' in table \'GA\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGA.CrossIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int TermID {
+                get {
+                    try {
+                        return ((int)(this[this.tableGA.TermIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TermID\' in table \'GA\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGA.TermIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ReinsID {
+                get {
+                    try {
+                        return ((int)(this[this.tableGA.ReinsIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ReinsID\' in table \'GA\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGA.ReinsIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int SelectID {
+                get {
+                    try {
+                        return ((int)(this[this.tableGA.SelectIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SelectID\' in table \'GA\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGA.SelectIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int MutaID {
+                get {
+                    try {
+                        return ((int)(this[this.tableGA.MutaIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'MutaID\' in table \'GA\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGA.MutaIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int GenStrategyID {
+                get {
+                    try {
+                        return ((int)(this[this.tableGA.GenStrategyIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'GenStrategyID\' in table \'GA\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableGA.GenStrategyIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ProblemsRow ProblemsRow {
                 get {
                     return ((ProblemsRow)(this.GetParentRow(this.Table.ParentRelations["Problems_GA"])));
@@ -6045,6 +6345,114 @@ namespace GADB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetMaxTimeNull() {
                 this[this.tableGA.MaxTimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsReinsertionNull() {
+                return this.IsNull(this.tableGA.ReinsertionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetReinsertionNull() {
+                this[this.tableGA.ReinsertionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMutationNull() {
+                return this.IsNull(this.tableGA.MutationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMutationNull() {
+                this[this.tableGA.MutationColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSelectionNull() {
+                return this.IsNull(this.tableGA.SelectionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSelectionNull() {
+                this[this.tableGA.SelectionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCrossIDNull() {
+                return this.IsNull(this.tableGA.CrossIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCrossIDNull() {
+                this[this.tableGA.CrossIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTermIDNull() {
+                return this.IsNull(this.tableGA.TermIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTermIDNull() {
+                this[this.tableGA.TermIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsReinsIDNull() {
+                return this.IsNull(this.tableGA.ReinsIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetReinsIDNull() {
+                this[this.tableGA.ReinsIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSelectIDNull() {
+                return this.IsNull(this.tableGA.SelectIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSelectIDNull() {
+                this[this.tableGA.SelectIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMutaIDNull() {
+                return this.IsNull(this.tableGA.MutaIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMutaIDNull() {
+                this[this.tableGA.MutaIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsGenStrategyIDNull() {
+                return this.IsNull(this.tableGA.GenStrategyIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetGenStrategyIDNull() {
+                this[this.tableGA.GenStrategyIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9034,10 +9442,43 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
             tableMapping.ColumnMappings.Add("CrossProbability", "CrossProbability");
             tableMapping.ColumnMappings.Add("ProblemID", "ProblemID");
             tableMapping.ColumnMappings.Add("ChromosomeLength", "ChromosomeLength");
+            tableMapping.ColumnMappings.Add("Reinsertion", "Reinsertion");
+            tableMapping.ColumnMappings.Add("Mutation", "Mutation");
+            tableMapping.ColumnMappings.Add("Selection", "Selection");
+            tableMapping.ColumnMappings.Add("CrossID", "CrossID");
+            tableMapping.ColumnMappings.Add("TermID", "TermID");
+            tableMapping.ColumnMappings.Add("ReinsID", "ReinsID");
+            tableMapping.ColumnMappings.Add("SelectID", "SelectID");
+            tableMapping.ColumnMappings.Add("MutaID", "MutaID");
+            tableMapping.ColumnMappings.Add("GenStrategyID", "GenStrategyID");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [GA] WHERE (([ID] = @Original_ID) AND ((@IsNull_MutationProb = 1 AND [MutationProb] IS NULL) OR ([MutationProb] = @Original_MutationProb)) AND ((@IsNull_CrossParents = 1 AND [CrossParents] IS NULL) OR ([CrossParents] = @Original_CrossParents)) AND ((@IsNull_CrossChildren = 1 AND [CrossChildren] IS NULL) OR ([CrossChildren] = @Original_CrossChildren)) AND ((@IsNull_CrossChromeMinLenght = 1 AND [CrossChromeMinLenght] IS NULL) OR ([CrossChromeMinLenght] = @Original_CrossChromeMinLenght)) AND ((@IsNull_CrossProbability = 1 AND [CrossProbability] IS NULL) OR ([CrossProbability] = @Original_CrossProbability)) AND ((@IsNull_PopMin = 1 AND [PopMin] IS NULL) OR ([PopMin] = @Original_PopMin)) AND ((@IsNull_PopMax = 1 AND [PopMax] IS NULL) OR ([PopMax] = @Original_PopMax)) AND ((@IsNull_GenerationTotal = 1 AND [GenerationTotal] IS NULL) OR ([GenerationTotal] = @Original_GenerationTotal)) AND ((@IsNull_GenerationCurrent = 1 AND [GenerationCurrent] IS NULL) OR ([GenerationCurrent] = @Original_GenerationCurrent)) AND ((@IsNull_TimeStamp = 1 AND [TimeStamp] IS NULL) OR ([TimeStamp] = @Original_TimeStamp)) AND ((@IsNull_Fitness = 1 AND [Fitness] IS NULL) OR ([Fitness] = @Original_Fitness)) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID)) AND ((@IsNull_ChromosomeLength = 1 AND [ChromosomeLength] IS NULL) OR ([ChromosomeLength] = @Original_ChromosomeLength)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [GA] WHERE (([ID] = @Original_ID) AND ((@IsNull_MutationProb = 1 AND " +
+                "[MutationProb] IS NULL) OR ([MutationProb] = @Original_MutationProb)) AND ((@IsN" +
+                "ull_CrossParents = 1 AND [CrossParents] IS NULL) OR ([CrossParents] = @Original_" +
+                "CrossParents)) AND ((@IsNull_CrossChildren = 1 AND [CrossChildren] IS NULL) OR (" +
+                "[CrossChildren] = @Original_CrossChildren)) AND ((@IsNull_CrossChromeMinLenght =" +
+                " 1 AND [CrossChromeMinLenght] IS NULL) OR ([CrossChromeMinLenght] = @Original_Cr" +
+                "ossChromeMinLenght)) AND ((@IsNull_CrossProbability = 1 AND [CrossProbability] I" +
+                "S NULL) OR ([CrossProbability] = @Original_CrossProbability)) AND ((@IsNull_PopM" +
+                "in = 1 AND [PopMin] IS NULL) OR ([PopMin] = @Original_PopMin)) AND ((@IsNull_Pop" +
+                "Max = 1 AND [PopMax] IS NULL) OR ([PopMax] = @Original_PopMax)) AND ((@IsNull_Ge" +
+                "nerationTotal = 1 AND [GenerationTotal] IS NULL) OR ([GenerationTotal] = @Origin" +
+                "al_GenerationTotal)) AND ((@IsNull_GenerationCurrent = 1 AND [GenerationCurrent]" +
+                " IS NULL) OR ([GenerationCurrent] = @Original_GenerationCurrent)) AND ((@IsNull_" +
+                "TimeStamp = 1 AND [TimeStamp] IS NULL) OR ([TimeStamp] = @Original_TimeStamp)) A" +
+                "ND ((@IsNull_Fitness = 1 AND [Fitness] IS NULL) OR ([Fitness] = @Original_Fitnes" +
+                "s)) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Orig" +
+                "inal_ProblemID)) AND ((@IsNull_ChromosomeLength = 1 AND [ChromosomeLength] IS NU" +
+                "LL) OR ([ChromosomeLength] = @Original_ChromosomeLength)) AND ((@IsNull_CrossID " +
+                "= 1 AND [CrossID] IS NULL) OR ([CrossID] = @Original_CrossID)) AND ((@IsNull_Ter" +
+                "mID = 1 AND [TermID] IS NULL) OR ([TermID] = @Original_TermID)) AND ((@IsNull_Re" +
+                "insID = 1 AND [ReinsID] IS NULL) OR ([ReinsID] = @Original_ReinsID)) AND ((@IsNu" +
+                "ll_SelectID = 1 AND [SelectID] IS NULL) OR ([SelectID] = @Original_SelectID)) AN" +
+                "D ((@IsNull_MutaID = 1 AND [MutaID] IS NULL) OR ([MutaID] = @Original_MutaID)) A" +
+                "ND ((@IsNull_GenStrategyID = 1 AND [GenStrategyID] IS NULL) OR ([GenStrategyID] " +
+                "= @Original_GenStrategyID)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MutationProb", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MutationProb", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -9066,77 +9507,115 @@ SELECT ID, ProblemID, Genotype, Fitness, DateTime, TimeSpan, Generations, GAID, 
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ChromosomeLength", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ChromosomeLength", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ChromosomeLength", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ChromosomeLength", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CrossID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CrossID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CrossID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CrossID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_TermID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TermID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TermID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TermID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ReinsID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReinsID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ReinsID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReinsID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SelectID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SelectID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SelectID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SelectID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MutaID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MutaID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MutaID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MutaID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_GenStrategyID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GenStrategyID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GenStrategyID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GenStrategyID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [GA] ([Termination], [Crossover], [MutationProb], [CrossParents], [CrossChildren], [CrossChromeMinLenght], [CrossProbability], [Population], [PopMin], [PopMax], [GenerationTotal], [GenerationCurrent], [GenerationStrategy], [TimeStamp], [Fitness], [ProblemID], [ChromosomeLength]) VALUES (@Termination, @Crossover, @MutationProb, @CrossParents, @CrossChildren, @CrossChromeMinLenght, @CrossProbability, @Population, @PopMin, @PopMax, @GenerationTotal, @GenerationCurrent, @GenerationStrategy, @TimeStamp, @Fitness, @ProblemID, @ChromosomeLength);
-SELECT ID, Termination, Crossover, MutationProb, CrossParents, CrossChildren, CrossChromeMinLenght, CrossProbability, Population, PopMin, PopMax, GenerationTotal, GenerationCurrent, GenerationStrategy, TimeStamp, Fitness, ProblemID, ChromosomeLength FROM GA WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [GA] ([MutationProb], [CrossParents], [CrossChildren], [CrossChromeMinLenght], [CrossProbability], [PopMin], [PopMax], [GenerationTotal], [GenerationCurrent], [TimeStamp], [Fitness], [ProblemID], [ChromosomeLength], [GenerationStrategy], [Crossover], [Termination], [Reinsertion], [Mutation], [Selection], [CrossID], [TermID], [ReinsID], [SelectID], [MutaID], [GenStrategyID]) VALUES (@MutationProb, @CrossParents, @CrossChildren, @CrossChromeMinLenght, @CrossProbability, @PopMin, @PopMax, @GenerationTotal, @GenerationCurrent, @TimeStamp, @Fitness, @ProblemID, @ChromosomeLength, @GenerationStrategy, @Crossover, @Termination, @Reinsertion, @Mutation, @Selection, @CrossID, @TermID, @ReinsID, @SelectID, @MutaID, @GenStrategyID);
+SELECT ID, MutationProb, CrossParents, CrossChildren, CrossChromeMinLenght, CrossProbability, PopMin, PopMax, GenerationTotal, GenerationCurrent, TimeStamp, Fitness, ProblemID, ChromosomeLength, GenerationStrategy, Crossover, Termination, Reinsertion, Mutation, Selection, CrossID, TermID, ReinsID, SelectID, MutaID, GenStrategyID FROM GA WHERE (ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Termination", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Termination", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Crossover", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Crossover", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MutationProb", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MutationProb", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CrossParents", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CrossParents", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CrossChildren", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CrossChildren", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CrossChromeMinLenght", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CrossChromeMinLenght", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CrossProbability", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CrossProbability", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Population", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Population", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PopMin", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PopMin", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PopMax", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PopMax", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GenerationTotal", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GenerationTotal", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GenerationCurrent", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GenerationCurrent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GenerationStrategy", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GenerationStrategy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TimeStamp", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TimeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Fitness", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Fitness", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ChromosomeLength", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ChromosomeLength", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GenerationStrategy", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GenerationStrategy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Crossover", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Crossover", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Termination", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Termination", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Reinsertion", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reinsertion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Mutation", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Mutation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Selection", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Selection", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CrossID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CrossID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TermID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TermID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ReinsID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReinsID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SelectID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SelectID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MutaID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MutaID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GenStrategyID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GenStrategyID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [GA] SET [Termination] = @Termination, [Crossover] = @Crossover, [Mutation" +
-                "Prob] = @MutationProb, [CrossParents] = @CrossParents, [CrossChildren] = @CrossC" +
-                "hildren, [CrossChromeMinLenght] = @CrossChromeMinLenght, [CrossProbability] = @C" +
-                "rossProbability, [Population] = @Population, [PopMin] = @PopMin, [PopMax] = @Pop" +
-                "Max, [GenerationTotal] = @GenerationTotal, [GenerationCurrent] = @GenerationCurr" +
-                "ent, [GenerationStrategy] = @GenerationStrategy, [TimeStamp] = @TimeStamp, [Fitn" +
-                "ess] = @Fitness, [ProblemID] = @ProblemID, [ChromosomeLength] = @ChromosomeLengt" +
-                "h WHERE (([ID] = @Original_ID) AND ((@IsNull_MutationProb = 1 AND [MutationProb]" +
-                " IS NULL) OR ([MutationProb] = @Original_MutationProb)) AND ((@IsNull_CrossParen" +
-                "ts = 1 AND [CrossParents] IS NULL) OR ([CrossParents] = @Original_CrossParents))" +
-                " AND ((@IsNull_CrossChildren = 1 AND [CrossChildren] IS NULL) OR ([CrossChildren" +
-                "] = @Original_CrossChildren)) AND ((@IsNull_CrossChromeMinLenght = 1 AND [CrossC" +
-                "hromeMinLenght] IS NULL) OR ([CrossChromeMinLenght] = @Original_CrossChromeMinLe" +
-                "nght)) AND ((@IsNull_CrossProbability = 1 AND [CrossProbability] IS NULL) OR ([C" +
-                "rossProbability] = @Original_CrossProbability)) AND ((@IsNull_PopMin = 1 AND [Po" +
-                "pMin] IS NULL) OR ([PopMin] = @Original_PopMin)) AND ((@IsNull_PopMax = 1 AND [P" +
-                "opMax] IS NULL) OR ([PopMax] = @Original_PopMax)) AND ((@IsNull_GenerationTotal " +
-                "= 1 AND [GenerationTotal] IS NULL) OR ([GenerationTotal] = @Original_GenerationT" +
-                "otal)) AND ((@IsNull_GenerationCurrent = 1 AND [GenerationCurrent] IS NULL) OR (" +
-                "[GenerationCurrent] = @Original_GenerationCurrent)) AND ((@IsNull_TimeStamp = 1 " +
-                "AND [TimeStamp] IS NULL) OR ([TimeStamp] = @Original_TimeStamp)) AND ((@IsNull_F" +
-                "itness = 1 AND [Fitness] IS NULL) OR ([Fitness] = @Original_Fitness)) AND ((@IsN" +
-                "ull_ProblemID = 1 AND [ProblemID] IS NULL) OR ([ProblemID] = @Original_ProblemID" +
-                ")) AND ((@IsNull_ChromosomeLength = 1 AND [ChromosomeLength] IS NULL) OR ([Chrom" +
-                "osomeLength] = @Original_ChromosomeLength)));\r\nSELECT ID, Termination, Crossover" +
-                ", MutationProb, CrossParents, CrossChildren, CrossChromeMinLenght, CrossProbabil" +
-                "ity, Population, PopMin, PopMax, GenerationTotal, GenerationCurrent, GenerationS" +
-                "trategy, TimeStamp, Fitness, ProblemID, ChromosomeLength FROM GA WHERE (ID = @ID" +
-                ")";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [GA] SET [MutationProb] = @MutationProb, [CrossParents] = @CrossParents, [" +
+                "CrossChildren] = @CrossChildren, [CrossChromeMinLenght] = @CrossChromeMinLenght," +
+                " [CrossProbability] = @CrossProbability, [PopMin] = @PopMin, [PopMax] = @PopMax," +
+                " [GenerationTotal] = @GenerationTotal, [GenerationCurrent] = @GenerationCurrent," +
+                " [TimeStamp] = @TimeStamp, [Fitness] = @Fitness, [ProblemID] = @ProblemID, [Chro" +
+                "mosomeLength] = @ChromosomeLength, [GenerationStrategy] = @GenerationStrategy, [" +
+                "Crossover] = @Crossover, [Termination] = @Termination, [Reinsertion] = @Reinsert" +
+                "ion, [Mutation] = @Mutation, [Selection] = @Selection, [CrossID] = @CrossID, [Te" +
+                "rmID] = @TermID, [ReinsID] = @ReinsID, [SelectID] = @SelectID, [MutaID] = @MutaI" +
+                "D, [GenStrategyID] = @GenStrategyID WHERE (([ID] = @Original_ID) AND ((@IsNull_M" +
+                "utationProb = 1 AND [MutationProb] IS NULL) OR ([MutationProb] = @Original_Mutat" +
+                "ionProb)) AND ((@IsNull_CrossParents = 1 AND [CrossParents] IS NULL) OR ([CrossP" +
+                "arents] = @Original_CrossParents)) AND ((@IsNull_CrossChildren = 1 AND [CrossChi" +
+                "ldren] IS NULL) OR ([CrossChildren] = @Original_CrossChildren)) AND ((@IsNull_Cr" +
+                "ossChromeMinLenght = 1 AND [CrossChromeMinLenght] IS NULL) OR ([CrossChromeMinLe" +
+                "nght] = @Original_CrossChromeMinLenght)) AND ((@IsNull_CrossProbability = 1 AND " +
+                "[CrossProbability] IS NULL) OR ([CrossProbability] = @Original_CrossProbability)" +
+                ") AND ((@IsNull_PopMin = 1 AND [PopMin] IS NULL) OR ([PopMin] = @Original_PopMin" +
+                ")) AND ((@IsNull_PopMax = 1 AND [PopMax] IS NULL) OR ([PopMax] = @Original_PopMa" +
+                "x)) AND ((@IsNull_GenerationTotal = 1 AND [GenerationTotal] IS NULL) OR ([Genera" +
+                "tionTotal] = @Original_GenerationTotal)) AND ((@IsNull_GenerationCurrent = 1 AND" +
+                " [GenerationCurrent] IS NULL) OR ([GenerationCurrent] = @Original_GenerationCurr" +
+                "ent)) AND ((@IsNull_TimeStamp = 1 AND [TimeStamp] IS NULL) OR ([TimeStamp] = @Or" +
+                "iginal_TimeStamp)) AND ((@IsNull_Fitness = 1 AND [Fitness] IS NULL) OR ([Fitness" +
+                "] = @Original_Fitness)) AND ((@IsNull_ProblemID = 1 AND [ProblemID] IS NULL) OR " +
+                "([ProblemID] = @Original_ProblemID)) AND ((@IsNull_ChromosomeLength = 1 AND [Chr" +
+                "omosomeLength] IS NULL) OR ([ChromosomeLength] = @Original_ChromosomeLength)) AN" +
+                "D ((@IsNull_CrossID = 1 AND [CrossID] IS NULL) OR ([CrossID] = @Original_CrossID" +
+                ")) AND ((@IsNull_TermID = 1 AND [TermID] IS NULL) OR ([TermID] = @Original_TermI" +
+                "D)) AND ((@IsNull_ReinsID = 1 AND [ReinsID] IS NULL) OR ([ReinsID] = @Original_R" +
+                "einsID)) AND ((@IsNull_SelectID = 1 AND [SelectID] IS NULL) OR ([SelectID] = @Or" +
+                "iginal_SelectID)) AND ((@IsNull_MutaID = 1 AND [MutaID] IS NULL) OR ([MutaID] = " +
+                "@Original_MutaID)) AND ((@IsNull_GenStrategyID = 1 AND [GenStrategyID] IS NULL) " +
+                "OR ([GenStrategyID] = @Original_GenStrategyID)));\r\nSELECT ID, MutationProb, Cros" +
+                "sParents, CrossChildren, CrossChromeMinLenght, CrossProbability, PopMin, PopMax," +
+                " GenerationTotal, GenerationCurrent, TimeStamp, Fitness, ProblemID, ChromosomeLe" +
+                "ngth, GenerationStrategy, Crossover, Termination, Reinsertion, Mutation, Selecti" +
+                "on, CrossID, TermID, ReinsID, SelectID, MutaID, GenStrategyID FROM GA WHERE (ID " +
+                "= @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Termination", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Termination", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Crossover", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Crossover", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MutationProb", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MutationProb", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CrossParents", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CrossParents", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CrossChildren", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CrossChildren", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CrossChromeMinLenght", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CrossChromeMinLenght", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CrossProbability", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CrossProbability", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Population", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Population", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PopMin", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PopMin", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PopMax", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PopMax", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GenerationTotal", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GenerationTotal", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GenerationCurrent", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GenerationCurrent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GenerationStrategy", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GenerationStrategy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TimeStamp", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TimeStamp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Fitness", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Fitness", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ChromosomeLength", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ChromosomeLength", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GenerationStrategy", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GenerationStrategy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Crossover", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Crossover", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Termination", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Termination", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Reinsertion", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reinsertion", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Mutation", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Mutation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Selection", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Selection", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CrossID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CrossID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TermID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TermID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ReinsID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReinsID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SelectID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SelectID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MutaID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MutaID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GenStrategyID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GenStrategyID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MutationProb", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MutationProb", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MutationProb", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MutationProb", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -9164,6 +9643,18 @@ SELECT ID, Termination, Crossover, MutationProb, CrossParents, CrossChildren, Cr
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ProblemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ChromosomeLength", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ChromosomeLength", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ChromosomeLength", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ChromosomeLength", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_CrossID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CrossID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CrossID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CrossID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_TermID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TermID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TermID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "TermID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ReinsID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReinsID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ReinsID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReinsID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SelectID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SelectID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SelectID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SelectID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_MutaID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MutaID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_MutaID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "MutaID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_GenStrategyID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GenStrategyID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_GenStrategyID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "GenStrategyID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -9184,9 +9675,7 @@ SELECT ID, Termination, Crossover, MutationProb, CrossParents, CrossChildren, Cr
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT      ID, Termination, Crossover, MutationProb, CrossParents, CrossChildren, CrossChromeMinLenght, CrossProbability, Population, PopMin, PopMax, GenerationTotal, GenerationCurrent, GenerationStrategy, TimeStamp, Fitness, ProblemID, ChromosomeLength
-FROM         GA
-WHERE      (ProblemID = @problemID)";
+            this._commandCollection[1].CommandText = @"SELECT ChromosomeLength, CrossChildren, CrossChromeMinLenght, CrossID, CrossParents, CrossProbability, Crossover, Fitness, GenStrategyID, GenerationCurrent, GenerationStrategy, GenerationTotal, ID, MutaID, Mutation, MutationProb, PopMax, PopMin, ProblemID, ReinsID, Reinsertion, SelectID, Selection, TermID, Termination, TimeStamp FROM GA WHERE (ProblemID = @problemID)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@problemID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ProblemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -9284,7 +9773,27 @@ WHERE      (ProblemID = @problemID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, global::System.Nullable<double> Original_MutationProb, global::System.Nullable<int> Original_CrossParents, global::System.Nullable<int> Original_CrossChildren, global::System.Nullable<int> Original_CrossChromeMinLenght, global::System.Nullable<double> Original_CrossProbability, global::System.Nullable<int> Original_PopMin, global::System.Nullable<int> Original_PopMax, global::System.Nullable<int> Original_GenerationTotal, global::System.Nullable<int> Original_GenerationCurrent, global::System.Nullable<double> Original_TimeStamp, global::System.Nullable<double> Original_Fitness, global::System.Nullable<int> Original_ProblemID, global::System.Nullable<int> Original_ChromosomeLength) {
+        public virtual int Delete(
+                    int Original_ID, 
+                    global::System.Nullable<double> Original_MutationProb, 
+                    global::System.Nullable<int> Original_CrossParents, 
+                    global::System.Nullable<int> Original_CrossChildren, 
+                    global::System.Nullable<int> Original_CrossChromeMinLenght, 
+                    global::System.Nullable<double> Original_CrossProbability, 
+                    global::System.Nullable<int> Original_PopMin, 
+                    global::System.Nullable<int> Original_PopMax, 
+                    global::System.Nullable<int> Original_GenerationTotal, 
+                    global::System.Nullable<int> Original_GenerationCurrent, 
+                    global::System.Nullable<double> Original_TimeStamp, 
+                    global::System.Nullable<double> Original_Fitness, 
+                    global::System.Nullable<int> Original_ProblemID, 
+                    global::System.Nullable<int> Original_ChromosomeLength, 
+                    int Original_CrossID, 
+                    int Original_TermID, 
+                    int Original_ReinsID, 
+                    int Original_SelectID, 
+                    int Original_MutaID, 
+                    int Original_GenStrategyID) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
             if ((Original_MutationProb.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -9390,6 +9899,18 @@ WHERE      (ProblemID = @problemID)";
                 this.Adapter.DeleteCommand.Parameters[25].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[26].Value = global::System.DBNull.Value;
             }
+            this.Adapter.DeleteCommand.Parameters[27].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[28].Value = ((int)(Original_CrossID));
+            this.Adapter.DeleteCommand.Parameters[29].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[30].Value = ((int)(Original_TermID));
+            this.Adapter.DeleteCommand.Parameters[31].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[32].Value = ((int)(Original_ReinsID));
+            this.Adapter.DeleteCommand.Parameters[33].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[34].Value = ((int)(Original_SelectID));
+            this.Adapter.DeleteCommand.Parameters[35].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[36].Value = ((int)(Original_MutaID));
+            this.Adapter.DeleteCommand.Parameters[37].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[38].Value = ((int)(Original_GenStrategyID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -9411,125 +9932,151 @@ WHERE      (ProblemID = @problemID)";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
         public virtual int Insert(
-                    string Termination, 
-                    string Crossover, 
                     global::System.Nullable<double> MutationProb, 
                     global::System.Nullable<int> CrossParents, 
                     global::System.Nullable<int> CrossChildren, 
                     global::System.Nullable<int> CrossChromeMinLenght, 
                     global::System.Nullable<double> CrossProbability, 
-                    string Population, 
                     global::System.Nullable<int> PopMin, 
                     global::System.Nullable<int> PopMax, 
                     global::System.Nullable<int> GenerationTotal, 
                     global::System.Nullable<int> GenerationCurrent, 
-                    string GenerationStrategy, 
                     global::System.Nullable<double> TimeStamp, 
                     global::System.Nullable<double> Fitness, 
                     global::System.Nullable<int> ProblemID, 
-                    global::System.Nullable<int> ChromosomeLength) {
-            if ((Termination == null)) {
+                    global::System.Nullable<int> ChromosomeLength, 
+                    string GenerationStrategy, 
+                    string Crossover, 
+                    string Termination, 
+                    string Reinsertion, 
+                    string Mutation, 
+                    string Selection, 
+                    int CrossID, 
+                    int TermID, 
+                    int ReinsID, 
+                    int SelectID, 
+                    int MutaID, 
+                    int GenStrategyID) {
+            if ((MutationProb.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((double)(MutationProb.Value));
+            }
+            else {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Termination));
+            if ((CrossParents.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(CrossParents.Value));
             }
-            if ((Crossover == null)) {
+            else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Crossover));
-            }
-            if ((MutationProb.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((double)(MutationProb.Value));
+            if ((CrossChildren.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(CrossChildren.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((CrossParents.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(CrossParents.Value));
+            if ((CrossChromeMinLenght.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(CrossChromeMinLenght.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((CrossChildren.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((int)(CrossChildren.Value));
+            if ((CrossProbability.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((double)(CrossProbability.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((CrossChromeMinLenght.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((int)(CrossChromeMinLenght.Value));
+            if ((PopMin.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((int)(PopMin.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((CrossProbability.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((double)(CrossProbability.Value));
+            if ((PopMax.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((int)(PopMax.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((Population == null)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+            if ((GenerationTotal.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((int)(GenerationTotal.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(Population));
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((PopMin.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((int)(PopMin.Value));
+            if ((GenerationCurrent.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((int)(GenerationCurrent.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((PopMax.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((int)(PopMax.Value));
+            if ((TimeStamp.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((double)(TimeStamp.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((GenerationTotal.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((int)(GenerationTotal.Value));
+            if ((Fitness.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((double)(Fitness.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((GenerationCurrent.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((int)(GenerationCurrent.Value));
+            if ((ProblemID.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((int)(ProblemID.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            if ((GenerationStrategy == null)) {
+            if ((ChromosomeLength.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((int)(ChromosomeLength.Value));
+            }
+            else {
                 this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(GenerationStrategy));
-            }
-            if ((TimeStamp.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[13].Value = ((double)(TimeStamp.Value));
-            }
-            else {
+            if ((GenerationStrategy == null)) {
                 this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
-            if ((Fitness.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[14].Value = ((double)(Fitness.Value));
-            }
             else {
+                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(GenerationStrategy));
+            }
+            if ((Crossover == null)) {
                 this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
-            if ((ProblemID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[15].Value = ((int)(ProblemID.Value));
-            }
             else {
+                this.Adapter.InsertCommand.Parameters[14].Value = ((string)(Crossover));
+            }
+            if ((Termination == null)) {
                 this.Adapter.InsertCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
-            if ((ChromosomeLength.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[16].Value = ((int)(ChromosomeLength.Value));
-            }
             else {
+                this.Adapter.InsertCommand.Parameters[15].Value = ((string)(Termination));
+            }
+            if ((Reinsertion == null)) {
                 this.Adapter.InsertCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
+            else {
+                this.Adapter.InsertCommand.Parameters[16].Value = ((string)(Reinsertion));
+            }
+            if ((Mutation == null)) {
+                this.Adapter.InsertCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[17].Value = ((string)(Mutation));
+            }
+            if ((Selection == null)) {
+                this.Adapter.InsertCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[18].Value = ((string)(Selection));
+            }
+            this.Adapter.InsertCommand.Parameters[19].Value = ((int)(CrossID));
+            this.Adapter.InsertCommand.Parameters[20].Value = ((int)(TermID));
+            this.Adapter.InsertCommand.Parameters[21].Value = ((int)(ReinsID));
+            this.Adapter.InsertCommand.Parameters[22].Value = ((int)(SelectID));
+            this.Adapter.InsertCommand.Parameters[23].Value = ((int)(MutaID));
+            this.Adapter.InsertCommand.Parameters[24].Value = ((int)(GenStrategyID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -9551,23 +10098,31 @@ WHERE      (ProblemID = @problemID)";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(
-                    string Termination, 
-                    string Crossover, 
                     global::System.Nullable<double> MutationProb, 
                     global::System.Nullable<int> CrossParents, 
                     global::System.Nullable<int> CrossChildren, 
                     global::System.Nullable<int> CrossChromeMinLenght, 
                     global::System.Nullable<double> CrossProbability, 
-                    string Population, 
                     global::System.Nullable<int> PopMin, 
                     global::System.Nullable<int> PopMax, 
                     global::System.Nullable<int> GenerationTotal, 
                     global::System.Nullable<int> GenerationCurrent, 
-                    string GenerationStrategy, 
                     global::System.Nullable<double> TimeStamp, 
                     global::System.Nullable<double> Fitness, 
                     global::System.Nullable<int> ProblemID, 
                     global::System.Nullable<int> ChromosomeLength, 
+                    string GenerationStrategy, 
+                    string Crossover, 
+                    string Termination, 
+                    string Reinsertion, 
+                    string Mutation, 
+                    string Selection, 
+                    int CrossID, 
+                    int TermID, 
+                    int ReinsID, 
+                    int SelectID, 
+                    int MutaID, 
+                    int GenStrategyID, 
                     int Original_ID, 
                     global::System.Nullable<double> Original_MutationProb, 
                     global::System.Nullable<int> Original_CrossParents, 
@@ -9582,215 +10137,251 @@ WHERE      (ProblemID = @problemID)";
                     global::System.Nullable<double> Original_Fitness, 
                     global::System.Nullable<int> Original_ProblemID, 
                     global::System.Nullable<int> Original_ChromosomeLength, 
+                    int Original_CrossID, 
+                    int Original_TermID, 
+                    int Original_ReinsID, 
+                    int Original_SelectID, 
+                    int Original_MutaID, 
+                    int Original_GenStrategyID, 
                     int ID) {
-            if ((Termination == null)) {
+            if ((MutationProb.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((double)(MutationProb.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Termination));
+            if ((CrossParents.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(CrossParents.Value));
             }
-            if ((Crossover == null)) {
+            else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Crossover));
-            }
-            if ((MutationProb.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((double)(MutationProb.Value));
+            if ((CrossChildren.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(CrossChildren.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((CrossParents.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(CrossParents.Value));
+            if ((CrossChromeMinLenght.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(CrossChromeMinLenght.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((CrossChildren.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(CrossChildren.Value));
+            if ((CrossProbability.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((double)(CrossProbability.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((CrossChromeMinLenght.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(CrossChromeMinLenght.Value));
+            if ((PopMin.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(PopMin.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((CrossProbability.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((double)(CrossProbability.Value));
+            if ((PopMax.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(PopMax.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((Population == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            if ((GenerationTotal.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(GenerationTotal.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Population));
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((PopMin.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(PopMin.Value));
+            if ((GenerationCurrent.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(GenerationCurrent.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((PopMax.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(PopMax.Value));
+            if ((TimeStamp.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((double)(TimeStamp.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((GenerationTotal.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(GenerationTotal.Value));
+            if ((Fitness.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((double)(Fitness.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((GenerationCurrent.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(GenerationCurrent.Value));
+            if ((ProblemID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(ProblemID.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            if ((GenerationStrategy == null)) {
+            if ((ChromosomeLength.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(ChromosomeLength.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(GenerationStrategy));
-            }
-            if ((TimeStamp.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((double)(TimeStamp.Value));
-            }
-            else {
+            if ((GenerationStrategy == null)) {
                 this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
-            if ((Fitness.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((double)(Fitness.Value));
-            }
             else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(GenerationStrategy));
+            }
+            if ((Crossover == null)) {
                 this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
-            if ((ProblemID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(ProblemID.Value));
-            }
             else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Crossover));
+            }
+            if ((Termination == null)) {
                 this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
-            if ((ChromosomeLength.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(ChromosomeLength.Value));
-            }
             else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Termination));
+            }
+            if ((Reinsertion == null)) {
                 this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[17].Value = ((int)(Original_ID));
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Reinsertion));
+            }
+            if ((Mutation == null)) {
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Mutation));
+            }
+            if ((Selection == null)) {
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Selection));
+            }
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(CrossID));
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(TermID));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((int)(ReinsID));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((int)(SelectID));
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(MutaID));
+            this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(GenStrategyID));
+            this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(Original_ID));
             if ((Original_MutationProb.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((double)(Original_MutationProb.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
-            }
-            if ((Original_CrossParents.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((int)(Original_CrossParents.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
-            }
-            if ((Original_CrossChildren.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(Original_CrossChildren.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
-            }
-            if ((Original_CrossChromeMinLenght.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(Original_CrossChromeMinLenght.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
-            }
-            if ((Original_CrossProbability.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((double)(Original_CrossProbability.Value));
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((double)(Original_MutationProb.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
             }
-            if ((Original_PopMin.HasValue == true)) {
+            if ((Original_CrossParents.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[29].Value = ((int)(Original_PopMin.Value));
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((int)(Original_CrossParents.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
             }
-            if ((Original_PopMax.HasValue == true)) {
+            if ((Original_CrossChildren.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[31].Value = ((int)(Original_PopMax.Value));
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((int)(Original_CrossChildren.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
             }
-            if ((Original_GenerationTotal.HasValue == true)) {
+            if ((Original_CrossChromeMinLenght.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[33].Value = ((int)(Original_GenerationTotal.Value));
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((int)(Original_CrossChromeMinLenght.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[33].Value = global::System.DBNull.Value;
             }
-            if ((Original_GenerationCurrent.HasValue == true)) {
+            if ((Original_CrossProbability.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[35].Value = ((int)(Original_GenerationCurrent.Value));
+                this.Adapter.UpdateCommand.Parameters[35].Value = ((double)(Original_CrossProbability.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[35].Value = global::System.DBNull.Value;
             }
-            if ((Original_TimeStamp.HasValue == true)) {
+            if ((Original_PopMin.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[37].Value = ((double)(Original_TimeStamp.Value));
+                this.Adapter.UpdateCommand.Parameters[37].Value = ((int)(Original_PopMin.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[37].Value = global::System.DBNull.Value;
             }
-            if ((Original_Fitness.HasValue == true)) {
+            if ((Original_PopMax.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[38].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[39].Value = ((double)(Original_Fitness.Value));
+                this.Adapter.UpdateCommand.Parameters[39].Value = ((int)(Original_PopMax.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[38].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[39].Value = global::System.DBNull.Value;
             }
-            if ((Original_ProblemID.HasValue == true)) {
+            if ((Original_GenerationTotal.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[40].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[41].Value = ((int)(Original_ProblemID.Value));
+                this.Adapter.UpdateCommand.Parameters[41].Value = ((int)(Original_GenerationTotal.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[40].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[41].Value = global::System.DBNull.Value;
             }
-            if ((Original_ChromosomeLength.HasValue == true)) {
+            if ((Original_GenerationCurrent.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[42].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[43].Value = ((int)(Original_ChromosomeLength.Value));
+                this.Adapter.UpdateCommand.Parameters[43].Value = ((int)(Original_GenerationCurrent.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[42].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[43].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[44].Value = ((int)(ID));
+            if ((Original_TimeStamp.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[44].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[45].Value = ((double)(Original_TimeStamp.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[44].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[45].Value = global::System.DBNull.Value;
+            }
+            if ((Original_Fitness.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[46].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[47].Value = ((double)(Original_Fitness.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[46].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[47].Value = global::System.DBNull.Value;
+            }
+            if ((Original_ProblemID.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[48].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[49].Value = ((int)(Original_ProblemID.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[48].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[49].Value = global::System.DBNull.Value;
+            }
+            if ((Original_ChromosomeLength.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[50].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[51].Value = ((int)(Original_ChromosomeLength.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[50].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[51].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[52].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[53].Value = ((int)(Original_CrossID));
+            this.Adapter.UpdateCommand.Parameters[54].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[55].Value = ((int)(Original_TermID));
+            this.Adapter.UpdateCommand.Parameters[56].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[57].Value = ((int)(Original_ReinsID));
+            this.Adapter.UpdateCommand.Parameters[58].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[59].Value = ((int)(Original_SelectID));
+            this.Adapter.UpdateCommand.Parameters[60].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[61].Value = ((int)(Original_MutaID));
+            this.Adapter.UpdateCommand.Parameters[62].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[63].Value = ((int)(Original_GenStrategyID));
+            this.Adapter.UpdateCommand.Parameters[64].Value = ((int)(ID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -9812,23 +10403,31 @@ WHERE      (ProblemID = @problemID)";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(
-                    string Termination, 
-                    string Crossover, 
                     global::System.Nullable<double> MutationProb, 
                     global::System.Nullable<int> CrossParents, 
                     global::System.Nullable<int> CrossChildren, 
                     global::System.Nullable<int> CrossChromeMinLenght, 
                     global::System.Nullable<double> CrossProbability, 
-                    string Population, 
                     global::System.Nullable<int> PopMin, 
                     global::System.Nullable<int> PopMax, 
                     global::System.Nullable<int> GenerationTotal, 
                     global::System.Nullable<int> GenerationCurrent, 
-                    string GenerationStrategy, 
                     global::System.Nullable<double> TimeStamp, 
                     global::System.Nullable<double> Fitness, 
                     global::System.Nullable<int> ProblemID, 
                     global::System.Nullable<int> ChromosomeLength, 
+                    string GenerationStrategy, 
+                    string Crossover, 
+                    string Termination, 
+                    string Reinsertion, 
+                    string Mutation, 
+                    string Selection, 
+                    int CrossID, 
+                    int TermID, 
+                    int ReinsID, 
+                    int SelectID, 
+                    int MutaID, 
+                    int GenStrategyID, 
                     int Original_ID, 
                     global::System.Nullable<double> Original_MutationProb, 
                     global::System.Nullable<int> Original_CrossParents, 
@@ -9842,8 +10441,14 @@ WHERE      (ProblemID = @problemID)";
                     global::System.Nullable<double> Original_TimeStamp, 
                     global::System.Nullable<double> Original_Fitness, 
                     global::System.Nullable<int> Original_ProblemID, 
-                    global::System.Nullable<int> Original_ChromosomeLength) {
-            return this.Update(Termination, Crossover, MutationProb, CrossParents, CrossChildren, CrossChromeMinLenght, CrossProbability, Population, PopMin, PopMax, GenerationTotal, GenerationCurrent, GenerationStrategy, TimeStamp, Fitness, ProblemID, ChromosomeLength, Original_ID, Original_MutationProb, Original_CrossParents, Original_CrossChildren, Original_CrossChromeMinLenght, Original_CrossProbability, Original_PopMin, Original_PopMax, Original_GenerationTotal, Original_GenerationCurrent, Original_TimeStamp, Original_Fitness, Original_ProblemID, Original_ChromosomeLength, Original_ID);
+                    global::System.Nullable<int> Original_ChromosomeLength, 
+                    int Original_CrossID, 
+                    int Original_TermID, 
+                    int Original_ReinsID, 
+                    int Original_SelectID, 
+                    int Original_MutaID, 
+                    int Original_GenStrategyID) {
+            return this.Update(MutationProb, CrossParents, CrossChildren, CrossChromeMinLenght, CrossProbability, PopMin, PopMax, GenerationTotal, GenerationCurrent, TimeStamp, Fitness, ProblemID, ChromosomeLength, GenerationStrategy, Crossover, Termination, Reinsertion, Mutation, Selection, CrossID, TermID, ReinsID, SelectID, MutaID, GenStrategyID, Original_ID, Original_MutationProb, Original_CrossParents, Original_CrossChildren, Original_CrossChromeMinLenght, Original_CrossProbability, Original_PopMin, Original_PopMax, Original_GenerationTotal, Original_GenerationCurrent, Original_TimeStamp, Original_Fitness, Original_ProblemID, Original_ChromosomeLength, Original_CrossID, Original_TermID, Original_ReinsID, Original_SelectID, Original_MutaID, Original_GenStrategyID, Original_ID);
         }
     }
     

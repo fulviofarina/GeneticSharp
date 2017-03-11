@@ -1,20 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Linq;
-using GeneticSharp.Domain;
 using GeneticSharp.Domain.Chromosomes;
 
 namespace GADB
 {
     public partial class KnapController : ControllerBase
     {
-
         public override void FillStrings<T>(ref GADataSet.SolutionsRow r, ref T s)
         {
-         
-
             for (int i = 0; i < VariableNames.Length; i++)
             {
                 string dummy = Aid.DecodeStrings(r.GenesAsInts, ProblemData, VariableNames[i]);
@@ -23,7 +16,6 @@ namespace GADB
                 row.SetField(field, dummy); //first
             }
         }
-
 
         /// <summary>
         /// Finds the fine for the given solution row, based on the conditions MAX, MIN and FINE TARIF
@@ -44,7 +36,7 @@ namespace GADB
                 for (int i = 0; i < VariableNames.Length; i++)
                 {
                     varOk[i] = false;
-                    string totalVarStr =  VariableNames[i];
+                    string totalVarStr = VariableNames[i];
                     string maxVarStr = "Max" + VariableNames[i];
                     string minVarStr = "Min" + VariableNames[i];
                     //is the variable within the window given by the condition?
@@ -60,14 +52,13 @@ namespace GADB
 
                 //FIRST LETER T OR F
 
-              //  actualStr = r.Field<string>("Okays");
+                //  actualStr = r.Field<string>("Okays");
                 for (int i = 0; i < VariableNames.Length; i++)
                 {
                     actualStr += varOk[i].ToString()[0] + " ";
                 }
-               // r.SetField("Okays", actualStr);
+                // r.SetField("Okays", actualStr);
                 //NOW ASSIGN THE PENALTY / FINE
-          
 
                 if (ANDS_OK)
                 {
@@ -80,7 +71,7 @@ namespace GADB
                         if (!varOk[i])
                         {
                             //auxiliars
-                          //  string str =  VariableNames[i]; //dataRow.A B or C
+                            //  string str =  VariableNames[i]; //dataRow.A B or C
                             string maxCondstr = "Max" + VariableNames[i]; //on condition row
                             string fineCondstr = VariableNames[i] + "Fine";
 
@@ -94,15 +85,11 @@ namespace GADB
                         }
                     }
                 }
-
-              
             }
-        
 
             return new object[] { actualStr, fine };
-
         }
-     
+
         /// <summary>
         /// BASIC CALCULATION NECESSARY FOR FITNESS
         /// </summary>
@@ -110,10 +97,6 @@ namespace GADB
         /// <param name="c"></param>
         public override void FillBasic(ref GADataSet.SolutionsRow r)
         {
-            
-
-          
-
             GADataSet.DataRow d = r.DataAxuliar.NewDataRow();
             r.DataAxuliar.AddDataRow(d);
             //auxiliar data row
@@ -122,12 +105,11 @@ namespace GADB
                 //Field A, B or C
                 double dummy = Aid.SetBasic(r.GenesAsInts, ProblemData, VariableNames[i]);
                 d.SetField(VariableNames[i], dummy); //first
-               //save total in a dataauxiliar Row
+                                                     //save total in a dataauxiliar Row
             }
 
-
             DataRow row = d;
-          
+
             object[] results = findFines(ref row);
             r.Okays = results[0] as string;
             double fine = Convert.ToDouble(results[1]);
@@ -136,7 +118,6 @@ namespace GADB
             r.Fitness /= (1 + fine); //max vol, max value * (1+fine)
 
             r.Genotype = Aid.SetStrings(r.GenesAsInts);
-
         }
 
         /// <summary>
@@ -151,7 +132,6 @@ namespace GADB
         /// <param name="dt"></param>
         public KnapController() : base()
         {
-          
         }
 
         /// <summary>
@@ -163,7 +143,5 @@ namespace GADB
             KnapChromosome c = new KnapChromosome(SIZE, ProblemData.Length);
             return c;
         }
-
-
     }
 }

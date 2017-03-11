@@ -1,26 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using GeneticSharp.Domain;
-using GeneticSharp.Domain.Chromosomes;
-using GeneticSharp.Domain.Crossovers;
-using GeneticSharp.Domain.Fitnesses;
-using GeneticSharp.Domain.Mutations;
-using GeneticSharp.Domain.Populations;
-using GeneticSharp.Domain.Selections;
-using GeneticSharp.Domain.Terminations;
-using GeneticSharp.Infrastructure.Threading;
 
 namespace GADB
 {
-
     /// <summary>
     /// the generic fiels, works great
     /// </summary>
     public abstract partial class ControllerBase : IController
     {
         public int SIZE = 6;
+
         public DataRow[] Conditions
         {
             get
@@ -33,6 +24,7 @@ namespace GADB
                 conditions = value;
             }
         }
+
         public GADataSet.GARow GARow
         {
             get
@@ -45,6 +37,7 @@ namespace GADB
                 gARow = value;
             }
         }
+
         public Action CallBack
         {
             get
@@ -57,6 +50,7 @@ namespace GADB
                 callBack = value;
             }
         }
+
         public Action FinalCallBack
         {
             get
@@ -69,6 +63,7 @@ namespace GADB
                 finalCallBack = value;
             }
         }
+
         public Action SaveCallBack
         {
             get
@@ -81,13 +76,16 @@ namespace GADB
                 saveCallBack = value;
             }
         }
+
         private int PROBLEMID = 0; //important!!!
+
         /// <summary>
         /// Gets the Genetic Algorithm.
         /// </summary>
         /// <value>The Genetic Algorithm.</value>
         ///
         public GeneticAlgorithm GA { get; set; }
+
         public Probabilities Probabilities
         {
             get
@@ -98,6 +96,20 @@ namespace GADB
             set
             {
                 probabilities = value;
+            }
+        }
+        Configuration config = null;
+        public Configuration Config
+        {
+            get
+            {
+              
+                return config;
+            }
+
+            set
+            {
+                config = value;
             }
         }
         public DataRow[] ProblemData
@@ -112,6 +124,7 @@ namespace GADB
                 problemData = value;
             }
         }
+
         public string[] VariableNames
         {
             get
@@ -124,15 +137,13 @@ namespace GADB
                 variableNames = value;
             }
         }
-      
-      
 
         private DataRow[] problemData = null;
         private string[] variableNames;
         private Probabilities probabilities;
         private Action finalCallBack = null;
         private HashSet<string> hashListOfGenotypes = null;
-     //   private List<GADataSet.StringsRow> listOfStrings = null;
+
         private List<GADataSet.SolutionsRow> listOfSolutions = null;
         private GADataSet.GARow gARow = null;
         private DataRow[] conditions = null;

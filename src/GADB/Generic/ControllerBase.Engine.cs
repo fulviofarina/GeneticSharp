@@ -1,21 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using GeneticSharp.Domain;
 using GeneticSharp.Domain.Chromosomes;
-using GeneticSharp.Domain.Crossovers;
-using GeneticSharp.Domain.Fitnesses;
-using GeneticSharp.Domain.Mutations;
-using GeneticSharp.Domain.Populations;
-using GeneticSharp.Domain.Selections;
-using GeneticSharp.Domain.Terminations;
-using GeneticSharp.Infrastructure.Threading;
 
 namespace GADB
 {
-
     /// <summary>
     /// The generic engine, works great
     /// </summary>
@@ -23,14 +14,11 @@ namespace GADB
     {
         private void fillStrings()
         {
-
-
             GADataSet ds = GARow.Table.DataSet as GADataSet;
 
             for (int i = 0; i < listOfSolutions.Count; i++)
             {
                 GADataSet.SolutionsRow currentSolution = listOfSolutions.ElementAt(i);
-
 
                 GADataSet.StringsRow currentString;
                 currentString = ds.Strings.NewStringsRow();
@@ -46,13 +34,9 @@ namespace GADB
                 //decode
                 FillStrings(ref currentSolution, ref currentString);
 
-                //  GNUPLOT(ref currentSolution);
+              //  GNUPLOT(ref currentSolution);
                 //assign string ID... //this should be better
-
             }
-
-
-
         }
 
         /// <summary>
@@ -62,24 +46,23 @@ namespace GADB
         {
             try
             {
-
                 IChromosome bestChromosome = GA.Population.BestChromosome;
-
 
                 //BASIC
                 GADataSet ds = GARow.Table.DataSet as GADataSet;
                 GADataSet.SolutionsRow currentSolution;
                 currentSolution = ds.Solutions.NewSolutionsRow();
-                initializeRows(ref currentSolution, ref bestChromosome);
+
+                currentSolution.Initialize(bestChromosome.GetGenes());
+                currentSolution.ProblemID = PROBLEMID;
+
+             
                 //this is the most important function to override, does the fitness calc
                 FillBasic(ref currentSolution);
 
-
-
                 GeneticAlgorithm ga = GA;
                 //fill GA data to row
-                GARow.Initialize(ref ga); //report GA stuff
-
+                GARow.Update(ref ga); //report GA stuff
 
                 //define filter function by genotype
                 Func<GADataSet.SolutionsRow, bool> funcion;
@@ -92,28 +75,27 @@ namespace GADB
                 {
                     ds.Solutions.AddSolutionsRow(currentSolution);
                     GARow.FillGADataToSolution(ref currentSolution);
-
                 }
 
                 //callBack MEthod to Form or User Control
 
-                 CallBack.Invoke();
+                CallBack.Invoke();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+
         private void workerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-
             SaveCallBack();
 
             fillStrings();
 
-
             FinalCallBack.Invoke();
         }
+
         /// <summary>
         /// Generic Do Work for the background worker
         /// </summary>
@@ -130,32 +112,14 @@ namespace GADB
             GA.Start();
         }
 
-      
-      
         /// <summary>
         /// Generic RunWorker Completed for the background worker
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-      
-      
-        /// <summary>
-        /// Sets default values 0,0 0,0,0
-        /// </summary>
-        /// <param name="r"></param>
-        /// <param name="s"></param>
-        /// <param name="c"></param>
-        private void initializeRows(ref GADataSet.SolutionsRow r, ref IChromosome c)
-        {
-            r.Initialize( c.GetGenes());
-            r.ProblemID = PROBLEMID;
-       
 
-        
-        }
-
-
-      
+   
+   
 
         private static void GNUPLOT(ref GADataSet.SolutionsRow s)
         {
@@ -163,9 +127,6 @@ namespace GADB
             script += "set title 'Trajectories'\n";
             script += "set xlabel 'X'\n";
             script += "set ylabel 'Y'\n";
-
-
-
 
             GADataSet.DataRow[] data = s.ProblemsRow.GetKnapDataRows();
             double min = data.Min(o => o.A);
@@ -200,7 +161,6 @@ namespace GADB
             //make gnuplot script file
             string scriptFile = Guid.NewGuid().ToString().Substring(0, 6);
             System.IO.File.WriteAllText(scriptFile + ".gp", script);
-
 
             //execute gnuplot
             System.Diagnostics.Process p = new System.Diagnostics.Process();

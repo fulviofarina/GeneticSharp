@@ -50,6 +50,11 @@ namespace GAForm
             this.SolTA = new GADB.GADataSetTableAdapters.SolutionsTableAdapter();
             this.StringsTA = new GADB.GADataSetTableAdapters.StringsTableAdapter();
             this.terminationTableAdapter1 = new GADB.GADataSetTableAdapters.TerminationTableAdapter();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.crossOverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mutationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reinsertionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.terminationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,10 +70,15 @@ namespace GAForm
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripComboBox1,
-            this.toolStripComboBox2,
+            this.toolStripMenuItem1,
             this.toolStripComboBox3,
+            this.crossOverToolStripMenuItem,
+            this.toolStripComboBox1,
+            this.mutationToolStripMenuItem,
+            this.toolStripComboBox2,
+            this.reinsertionToolStripMenuItem,
             this.toolStripComboBox4,
+            this.terminationToolStripMenuItem,
             this.toolStripComboBox5});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -162,6 +172,36 @@ namespace GAForm
             // 
             this.terminationTableAdapter1.ClearBeforeFill = true;
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(85, 29);
+            this.toolStripMenuItem1.Text = "Selection";
+            // 
+            // crossOverToolStripMenuItem
+            // 
+            this.crossOverToolStripMenuItem.Name = "crossOverToolStripMenuItem";
+            this.crossOverToolStripMenuItem.Size = new System.Drawing.Size(101, 29);
+            this.crossOverToolStripMenuItem.Text = "Cross-Over";
+            // 
+            // mutationToolStripMenuItem
+            // 
+            this.mutationToolStripMenuItem.Name = "mutationToolStripMenuItem";
+            this.mutationToolStripMenuItem.Size = new System.Drawing.Size(85, 29);
+            this.mutationToolStripMenuItem.Text = "Mutation";
+            // 
+            // reinsertionToolStripMenuItem
+            // 
+            this.reinsertionToolStripMenuItem.Name = "reinsertionToolStripMenuItem";
+            this.reinsertionToolStripMenuItem.Size = new System.Drawing.Size(101, 29);
+            this.reinsertionToolStripMenuItem.Text = "Reinsertion";
+            // 
+            // terminationToolStripMenuItem
+            // 
+            this.terminationToolStripMenuItem.Name = "terminationToolStripMenuItem";
+            this.terminationToolStripMenuItem.Size = new System.Drawing.Size(104, 29);
+            this.terminationToolStripMenuItem.Text = "Termination";
+            // 
             // TAControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -207,6 +247,11 @@ namespace GAForm
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox3;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox4;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox5;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem crossOverToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mutationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reinsertionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem terminationToolStripMenuItem;
     }
 }
 

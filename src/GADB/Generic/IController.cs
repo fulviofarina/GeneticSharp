@@ -7,13 +7,15 @@ namespace GADB
 {
     public interface IController
     {
-         GADataSet.GARow GARow
+        GADataSet.GARow GARow
         {
             get;
 
             set;
         }
+
         void SetControllerFor(ref GADataSet.ProblemsRow p, int size);
+
         Action SaveCallBack { get; set; }
         Action CallBack { get; set; }
         Action FinalCallBack { get; set; }
@@ -32,8 +34,8 @@ namespace GADB
         IChromosome CreateChromosome();
 
         Probabilities Probabilities { set; get; }
-
-        void ConfigGA();
+        Configuration Config { set; get; }
+        void RunConfiguration();
 
         void PostScript(bool bkgWork);
     }
