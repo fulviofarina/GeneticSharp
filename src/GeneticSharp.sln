@@ -30,9 +30,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FC0A07
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAForm", "GAForm\GAForm.csproj", "{D3E976D0-DA5E-4A09-81A1-AE6AD5E756AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GAForm", "..\..\GAlgo\GAForm\GAForm.csproj", "{D3E976D0-DA5E-4A09-81A1-AE6AD5E756AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GADB", "GADB\GADB.csproj", "{B41C5A17-B5A2-4B38-94DF-607615C90823}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GADB", "..\..\GAlgo\GADB\GADB.csproj", "{B41C5A17-B5A2-4B38-94DF-607615C90823}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
